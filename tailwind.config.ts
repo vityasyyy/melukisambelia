@@ -12,6 +12,10 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        gontserrat: ["var(--font-gontserrat)", "sans-serif"],
+        beautique: ["var(--font-beautique)", "serif"],
+      },
     },
   },
   plugins: [],
