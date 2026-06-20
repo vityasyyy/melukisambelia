@@ -116,3 +116,4 @@ dist
 .next/
 out/
 .env*.local
+test-results/
