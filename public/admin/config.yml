@@ -1,0 +1,198 @@
+local_backend: true
+
+backend:
+  name: github
+  repo: miapalovaara/melukisambelia
+  branch: main
+  auth_type: oauth
+  proxy_url: /api/auth
+  base_url: /
+  auth_endpoint: api/auth
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "tim"
+    label: "Tim"
+    folder: "content/tim"
+    create: true
+    extension: "md"
+    fields:
+      - { label: "Nama", name: "name", widget: "string" }
+      - { label: "Peran", name: "role", widget: "string" }
+      - { label: "Divisi", name: "division", widget: "select", options: ["Koor", "Pariwisata", "Irigasi", "Kesehatan", "Publikasi", "Media", "Dana", "Logistik"] }
+      - { label: "Foto", name: "photo", widget: "image" }
+      - { label: "Bio", name: "bio", widget: "text" }
+      - { label: "Instagram", name: "instagram", widget: "string", required: false }
+      - { label: "Urutan", name: "order", widget: "number" }
+
+  - name: "pariwisata"
+    label: "Pariwisata"
+    folder: "content/pariwisata"
+    create: true
+    extension: "mdx"
+    format: "mdx"
+    fields:
+      - { label: "Judul", name: "title", widget: "string" }
+      - { label: "Kategori", name: "category", widget: "select", options: ["Pantai", "Budaya", "Desa Wisata", "Air", "Trekking"] }
+      - { label: "Desa", name: "village", widget: "select", options: ["Sugian", "Labuhan Pandan", "lainnya"] }
+      - { label: "Cover", name: "cover", widget: "image" }
+      - { label: "Galeri", name: "gallery", widget: "list", field: { name: "image", label: "Gambar", widget: "image" }, required: false }
+      - { label: "Deskripsi Singkat", name: "shortDesc", widget: "string" }
+      - { label: "Konten", name: "body", widget: "markdown" }
+      - { label: "Latitude", name: "lat", widget: "number", value_type: "float" }
+      - { label: "Longitude", name: "lng", widget: "number", value_type: "float" }
+      - { label: "Fasilitas", name: "facilities", widget: "list", required: false }
+      - { label: "Catatan Akses", name: "accessNotes", widget: "string", required: false }
+
+  - name: "irigasi"
+    label: "Irigasi"
+    folder: "content/irigasi"
+    create: true
+    extension: "md"
+    fields:
+      - { label: "Nama Saluran", name: "name", widget: "string" }
+      - { label: "Tipe", name: "saluranType", widget: "select", options: ["Primer", "Sekunder", "Tersier"] }
+      - { label: "Desa", name: "village", widget: "select", options: ["Sugian", "Labuhan Pandan", "lainnya"] }
+      - { label: "Kondisi", name: "condition", widget: "select", options: ["Baik", "Rusak Ringan", "Rusak Berat"] }
+      - { label: "Panjang (m)", name: "lengthM", widget: "number" }
+      - { label: "Status Aliran", name: "flowStatus", widget: "select", options: ["Mengalir", "Kering", "Mengalir Sebagian"] }
+      - { label: "Cover", name: "cover", widget: "image" }
+      - { label: "Konten", name: "body", widget: "markdown" }
+      - { label: "Latitude", name: "lat", widget: "number", value_type: "float" }
+      - { label: "Longitude", name: "lng", widget: "number", value_type: "float" }
+
+  - name: "kesehatan"
+    label: "Kesehatan"
+    folder: "content/kesehatan"
+    create: true
+    extension: "md"
+    fields:
+      - { label: "Nama Fasilitas", name: "facilityName", widget: "string" }
+      - { label: "Tipe", name: "type", widget: "select", options: ["Posyandu", "Puskesmas", "Bidan", "Polides"] }
+      - { label: "Desa", name: "village", widget: "select", options: ["Sugian", "Labuhan Pandan", "lainnya"] }
+      - { label: "Jumlah Kader", name: "cadresCount", widget: "number" }
+      - { label: "Program Stunting", name: "stuntingProgram", widget: "boolean" }
+      - { label: "Cover", name: "cover", widget: "image" }
+      - { label: "Konten", name: "body", widget: "markdown" }
+      - { label: "Latitude", name: "lat", widget: "number", value_type: "float" }
+      - { label: "Longitude", name: "lng", widget: "number", value_type: "float" }
+
+  - name: "festival"
+    label: "Festival"
+    folder: "content/festival"
+    create: true
+    extension: "md"
+    fields:
+      - { label: "Nama Acara", name: "eventName", widget: "string" }
+      - { label: "Jadwal", name: "schedule", widget: "string" }
+      - { label: "Lokasi", name: "venue", widget: "string" }
+      - { label: "Deskripsi", name: "description", widget: "string" }
+      - { label: "Cover", name: "cover", widget: "image" }
+      - { label: "URL Pendaftaran", name: "registrationUrl", widget: "string", required: false }
+      - { label: "Konten", name: "body", widget: "markdown" }
+
+  - name: "kegiatan"
+    label: "Kegiatan"
+    folder: "content/kegiatan"
+    create: true
+    extension: "md"
+    fields:
+      - { label: "Judul", name: "title", widget: "string" }
+      - { label: "Status", name: "status", widget: "select", options: ["Aktif", "Berkembang", "Persiapan"] }
+      - { label: "Kategori", name: "category", widget: "select", options: ["Ekowisata", "Irigasi", "Kesehatan", "Pariwisata", "Ekonomi"] }
+      - { label: "Cover", name: "cover", widget: "image" }
+      - { label: "Ringkasan", name: "summary", widget: "string" }
+      - { label: "Konten", name: "body", widget: "markdown" }
+      - label: "Milestone"
+        name: "milestones"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Tanggal", name: "date", widget: "string" }
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "Selesai", name: "done", widget: "boolean" }
+
+  - name: "cerita"
+    label: "Cerita"
+    folder: "content/cerita"
+    create: true
+    extension: "mdx"
+    format: "mdx"
+    fields:
+      - { label: "Judul", name: "title", widget: "string" }
+      - { label: "Penulis", name: "author", widget: "relation", collection: "tim", value_field: "name", search_fields: ["name"] }
+      - { label: "Tanggal", name: "date", widget: "datetime" }
+      - { label: "Cover", name: "cover", widget: "image" }
+      - { label: "Ringkasan", name: "excerpt", widget: "string" }
+      - { label: "Konten", name: "body", widget: "markdown" }
+
+  - name: "umkm"
+    label: "UMKM"
+    folder: "content/umkm"
+    create: true
+    extension: "md"
+    fields:
+      - { label: "Nama UMKM", name: "name", widget: "string" }
+      - { label: "Pemilik", name: "owner", widget: "string" }
+      - { label: "Produk", name: "product", widget: "select", options: ["Kerajinan", "Kuliner", "Pertanian", "Anyaman", "lainnya"] }
+      - { label: "Desa", name: "village", widget: "select", options: ["Sugian", "Labuhan Pandan", "lainnya"] }
+      - { label: "Kontak", name: "contact", widget: "string" }
+      - { label: "Cover", name: "cover", widget: "image" }
+      - { label: "Galeri", name: "gallery", widget: "list", field: { name: "image", label: "Gambar", widget: "image" }, required: false }
+      - { label: "Konten", name: "body", widget: "markdown" }
+      - { label: "Latitude", name: "lat", widget: "number", value_type: "float", required: false }
+      - { label: "Longitude", name: "lng", widget: "number", value_type: "float", required: false }
+
+  - name: "mitra"
+    label: "Mitra"
+    folder: "content/mitra"
+    create: true
+    extension: "md"
+    fields:
+      - { label: "Nama", name: "name", widget: "string" }
+      - { label: "Logo", name: "logo", widget: "image" }
+      - { label: "URL", name: "url", widget: "string" }
+      - { label: "Tingkat", name: "tier", widget: "select", options: ["Utama", "Pendukung", "Media"] }
+      - { label: "Urutan", name: "order", widget: "number" }
+
+  - name: "settings"
+    label: "Pengaturan Situs"
+    files:
+      - label: "Pengaturan"
+        name: "_settings"
+        file: "content/_settings.md"
+        fields:
+          - { label: "Gambar Hero", name: "heroImage", widget: "image" }
+          - { label: "Tagline Hero", name: "heroTagline", widget: "string" }
+          - label: "Statistik"
+            name: "stats"
+            widget: "object"
+            fields:
+              - { label: "Luas", name: "luas", widget: "string" }
+              - { label: "Penduduk", name: "penduduk", widget: "string" }
+              - { label: "Desa Binaan", name: "desaBinaan", widget: "string" }
+              - { label: "Tahun Program", name: "tahunProgram", widget: "string" }
+          - { label: "Tanggal Festival", name: "festivalDates", widget: "string" }
+          - label: "Sosial"
+            name: "socials"
+            widget: "object"
+            fields:
+              - { label: "Instagram", name: "instagram", widget: "string", required: false }
+              - { label: "TikTok", name: "tiktok", widget: "string", required: false }
+          - label: "Kontak"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Telepon", name: "phone", widget: "string", required: false }
+              - { label: "Alamat", name: "address", widget: "string" }
+
+      - label: "Peta GIS"
+        name: "_gismap"
+        file: "content/_gismap.md"
+        fields:
+          - { label: "Judul", name: "title", widget: "string" }
+          - { label: "Deskripsi", name: "description", widget: "string", required: false }
+          - { label: "Kredit", name: "credit", widget: "string", required: false }
