@@ -2,22 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Water / coast / interactive — blue */
+    --water-50: #B3E7FB;
+    --water-500: #14A8E1;
+    --water-900: #0873B9;
+
+    /* Agriculture / health / nature — green */
+    --green-50: #DEF6AE;
+    --green-500: #99BA57;
+    --green-900: #667F37;
+
+    /* Sand / festival — gold */
+    --gold-100: #FFDFC0;
+    --gold-50: #FFE09A;
+    --gold-500: #F0AC6D;
+    --tan-700: #AF7E4F;
+
+    /* Culture / Sasak — terracotta */
+    --terracotta-500: #E3795C;
+    --brown-900: #742D1B;
+
+    /* Neutrals */
+    --white: #FFFFFF;
+    --ink: #000000;
+    --page-bg: #FFFCF7;
+    --status-aktif: #99BA57;
+    --status-berkembang: #F0AC6D;
+    --status-persiapan: #6B7280;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    background-color: var(--page-bg);
+    color: var(--ink);
+    font-family: var(--font-gontserrat), ui-sans-serif, system-ui, sans-serif;
+  }
+  .font-display {
+    font-family: var(--font-beautique), var(--font-gontserrat), sans-serif;
+  }
 }
 
 @layer utilities {
