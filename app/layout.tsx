@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
+import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 import { Nav } from '@/components/Nav'
 import { Footer } from '@/components/Footer'
@@ -50,6 +51,13 @@ export const metadata: Metadata = {
   title: 'Melukis Sambelia — KKN-PPM UGM',
   description: 'Pemberdayaan pariwisata berkelanjutan dan pengembangan kawasan agropolitan di Kecamatan Sambelia, Kabupaten Lombok Timur, NTB.',
   metadataBase: new URL('https://melukis-sambelia.vercel.app'),
+  openGraph: {
+    title: 'Melukis Sambelia — KKN-PPM UGM',
+    description: 'Pemberdayaan pariwisata berkelanjutan dan agropolitan Sambelia.',
+    type: 'website',
+    locale: 'id_ID',
+    images: ['/og.svg'],
+  },
 }
 
 export const viewport: Viewport = {
@@ -63,6 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   )
