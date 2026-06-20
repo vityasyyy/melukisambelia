@@ -14,7 +14,8 @@ const config: Config = {
       },
       fontFamily: {
         gontserrat: ["var(--font-gontserrat)", "sans-serif"],
-        beautique: ["var(--font-beautique)", "serif"],
+        beautique: ["var(--font-beautique)", "sans-serif"],
+        "beautique-condensed": ["var(--font-beautique-condensed)", "sans-serif"],
       },
     },
   },

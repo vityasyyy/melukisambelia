@@ -28,10 +28,19 @@ const beautique = localFont({
     { path: '../public/fonts/beautique-display/BeautiqueDisplay-Medium.otf', weight: '500', style: 'normal' },
     { path: '../public/fonts/beautique-display/BeautiqueDisplay-Bold.otf', weight: '700', style: 'normal' },
     { path: '../public/fonts/beautique-display/BeautiqueDisplay-Black.otf', weight: '900', style: 'normal' },
-    { path: '../public/fonts/beautique-display/BeautiqueDisplayCondensed-Regular.otf', weight: '400', style: 'normal' },
-    { path: '../public/fonts/beautique-display/BeautiqueDisplayCondensed-Bold.otf', weight: '700', style: 'normal' },
   ],
   variable: '--font-beautique',
+  display: 'swap',
+})
+
+const beautiqueCondensed = localFont({
+  src: [
+    { path: '../public/fonts/beautique-display/BeautiqueDisplayCondensed-Regular.otf', weight: '400', style: 'normal' },
+    { path: '../public/fonts/beautique-display/BeautiqueDisplayCondensed-Medium.otf', weight: '500', style: 'normal' },
+    { path: '../public/fonts/beautique-display/BeautiqueDisplayCondensed-Bold.otf', weight: '700', style: 'normal' },
+    { path: '../public/fonts/beautique-display/BeautiqueDisplayCondensed-Black.otf', weight: '900', style: 'normal' },
+  ],
+  variable: '--font-beautique-condensed',
   display: 'swap',
 })
 
@@ -47,7 +56,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className={`${gontserrat.variable} ${beautique.variable}`}>
+    <html lang="id" className={`${gontserrat.variable} ${beautique.variable} ${beautiqueCondensed.variable}`}>
       <body className="font-gontserrat bg-[#FFFCF7] text-ink antialiased">
         {children}
       </body>
