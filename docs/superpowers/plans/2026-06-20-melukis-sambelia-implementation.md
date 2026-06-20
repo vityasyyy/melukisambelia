@@ -8,6 +8,19 @@
 
 **Tech Stack:** Next.js 14, TypeScript strict, Tailwind CSS v3, shadcn/ui (Radix), react-leaflet, leaflet, Decap CMS, MDX (@next/mdx), zod, vitest, Playwright, Vercel Analytics.
 
+## Local-First Execution Principle
+
+This plan runs **locally end-to-end before any deploy**. All tasks up to and including Phase 7 must build and run on the developer's machine with `npm run dev` and `npm run build`. The following rules apply:
+
+1. **No deploy steps until local verification passes.** Phase 8 (Deployment) is gated behind a successful local `npm run build` + `npm run test:e2e` against the static `out/` output.
+2. **Stub external integrations locally.** Specifically:
+   - **Decap CMS OAuth** — Phase 6 configures Decap to use the `github` backend, but the OAuth proxy is a **stub** locally: Decap's `local_backend: true` flag is set so editors can run `npx decap-server` alongside `npm run dev` and edit content at `/admin` against the local filesystem with no GitHub auth. The real GitHub OAuth proxy (Task 25) is wired but not exercised until deploy.
+   - **Vercel Analytics** — wrapped so it no-ops locally (analytics only fires on Vercel deploy; the component is harmless in dev but we verify it doesn't break the build).
+   - **GIS files** — the `public/gis/` folder ships empty; the GisMap component's empty-state is the verified local behavior. Real GIS exports are dropped in later by the team.
+3. **Seed/stub content everywhere.** Every content collection has at least one placeholder entry (Task 7) so pages render with real structure and fake data locally. The team replaces stubs via Decap later.
+4. **Local verification gate before Phase 8:** Task 29 runs `npm run lint && npm run typecheck && npm test && npm run build` and serves `out/` locally. Only after that passes do we proceed to Task 30 (deploy).
+5. **Decap `local_backend`** — add `local_backend: true` to `public/admin/config.yml` (Task 24) so `npx decap-server` works locally. This flag is ignored in production (Decap falls back to the configured GitHub backend).
+
 ---
 
 ## File Structure
@@ -2517,10 +2530,12 @@ git commit -m "feat: Peta page with dual-map tabs"
 </html>
 ```
 
-- [ ] **Step 2: Create config.yml**
+- [ ] **Step 2: Create config.yml (with `local_backend` for local-first editing)**
 
 `public/admin/config.yml`:
 ```yaml
+local_backend: true
+
 backend:
   name: github
   repo: miapalovaara/melukisambelia
@@ -2724,9 +2739,19 @@ collections:
 
 Note: Replace `repo: miapalovaara/melukisambelia` with the actual GitHub repo path if different. Decap's nested `settings` collection uses the `files` form (singletons); verify syntax against Decap docs — if `folder` + `files` together isn't supported, split into two separate `name: "settings"` and `name: "gismap"` collections each with a single `files` entry.
 
-- [ ] **Step 3: Verify admin loads**
+- [ ] **Step 3: Verify admin loads locally (stub mode)**
 
-Run `npm run dev`, open http://localhost:3000/admin → Decap CMS UI loads (login will fail without OAuth, but UI should appear). Stop.
+Run in one terminal:
+```bash
+npm run dev
+```
+In another terminal:
+```bash
+npx decap-server
+```
+Open http://localhost:3000/admin → Decap CMS UI loads and, because `local_backend: true` is set and `decap-server` is running, it should present the collections editable against the local `content/` folder **without GitHub login**. Verify you can see the seeded collections (tim, pariwisata, etc.). Stop both servers.
+
+This is the local-first editing path — no OAuth needed until deploy.
 
 - [ ] **Step 4: Commit**
 
@@ -2735,7 +2760,9 @@ git add -A
 git commit -m "feat: Decap CMS admin + config for all collections"
 ```
 
-## Task 25: Decap OAuth proxy (Vercel serverless)
+## Task 25: Decap OAuth proxy (Vercel serverless) — DEPLOY-TIME ONLY
+
+> **Local-first note:** This task wires the OAuth handler so it's ready for deploy, but it is **not exercised locally**. Local editing uses `local_backend: true` + `decap-server` (Task 24). Do not block local progress on OAuth env vars; create the files and `.env.example` so the code is in place, but skip live OAuth testing until Phase 8.
 
 **Files:**
 - Create: `app/api/auth/[...decap].ts`, `vercel.json` (optional)
@@ -2946,10 +2973,12 @@ test('admin loads', async ({ page }) => {
 })
 ```
 
-- [ ] **Step 2: Run E2E**
+- [ ] **Step 2: Run E2E against the dev server**
 
-Run: `npm run test:e2e`
-Expected: all tests pass (admin will show the Decap UI; login not required to see the page).
+```bash
+npm run test:e2e
+```
+Expected: all tests pass (admin will show the Decap UI; if `decap-server` is running, the collections load locally without login). If the admin test is flaky without `decap-server`, guard it with a skip when the server isn't present — but the UI shell should still appear.
 
 - [ ] **Step 3: Commit**
 
@@ -2958,7 +2987,9 @@ git add -A
 git commit -m "test: Playwright smoke E2E for all routes + peta + admin"
 ```
 
-## Task 29: Production build verification
+## Task 29: Local production build verification — LOCAL-FIRST GATE
+
+> **This is the gate before any deploy.** Everything above must pass here, against the static export served locally, before Phase 8 begins.
 
 **Files:** none (verification only)
 
@@ -2988,7 +3019,9 @@ git commit -m "fix: production build issues"
 
 # Phase 8: Deployment
 
-## Task 30: Deploy to Vercel + Decap OAuth setup
+> **Gated behind Task 29.** Do not start this phase until the local-first gate passes: `npm run lint && npm run typecheck && npm test && npm run build` all green, and `out/` served locally renders beranda + peta + a detail page correctly.
+
+## Task 30: Deploy to Vercel + Decap OAuth setup — DEPLOY ONLY
 
 **Files:** none (configuration in Vercel dashboard)
 
