@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
+import { Nav } from '@/components/Nav'
+import { Footer } from '@/components/Footer'
 
 const gontserrat = localFont({
   src: [
@@ -57,8 +59,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id" className={`${gontserrat.variable} ${beautique.variable} ${beautiqueCondensed.variable}`}>
-      <body className="font-gontserrat bg-[#FFFCF7] text-ink antialiased">
-        {children}
+      <body className="font-gontserrat bg-page text-ink antialiased min-h-screen flex flex-col">
+        <Nav />
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   )
