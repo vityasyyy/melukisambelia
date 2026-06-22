@@ -55,7 +55,7 @@ export function GisMap({ title, description, credit }: { title: string; descript
         </p>
       ) : (
         <div className="grid md:grid-cols-[200px,1fr] gap-4">
-          <ul className="space-y-1">
+          <ul className="space-y-1 md:max-h-none max-h-[60vh] overflow-y-auto">
             {files.map((f) => (
               <li key={f.name}>
                 <button

@@ -27,3 +27,30 @@ test('admin loads (production static serve)', async ({ page }) => {
   await page.goto('/admin/')
   await expect(page).toHaveTitle(/Content Manager/i)
 })
+
+test('mobile nav menu opens and closes', async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 375, height: 667 } })
+  const page = await context.newPage()
+  await page.goto('/')
+  // Hamburger button should be visible on mobile
+  const menuButton = page.getByRole('button', { name: 'Buka menu' })
+  await expect(menuButton).toBeVisible()
+  await menuButton.click()
+  // Close button should appear
+  await expect(page.getByRole('button', { name: 'Tutup menu' })).toBeVisible()
+  // Click the Peta link inside the mobile menu (last visible link to /peta)
+  const mobilePetaLink = page.locator('header >> div.md\\:hidden >> a[href="/peta"]')
+  await expect(mobilePetaLink).toBeVisible()
+  await mobilePetaLink.click()
+  await expect(page).toHaveURL(/\/peta/)
+  await context.close()
+})
+
+test('mobile hero renders without horizontal scroll', async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 375, height: 667 } })
+  const page = await context.newPage()
+  await page.goto('/')
+  const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth)
+  expect(scrollWidth).toBeLessThanOrEqual(375)
+  await context.close()
+})

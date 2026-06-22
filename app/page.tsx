@@ -28,20 +28,33 @@ export default function Beranda() {
 
   return (
     <>
-      <section className="relative h-[70vh] min-h-[400px] flex items-center justify-center text-center">
-        <Image src={s.heroImage} alt="Sambelia" fill className="object-cover" priority sizes="100vw" />
-        <div className="absolute inset-0 bg-brown-900/50" />
-        <div className="relative z-10 px-4">
-          <h1 className="font-beautique text-5xl md:text-7xl text-page">Melukis Sambelia</h1>
-          <p className="mt-4 text-lg text-page/90 max-w-xl mx-auto">{s.heroTagline}</p>
-          <div className="mt-8 flex gap-3 justify-center">
-            <Link href="/peta" className="rounded-full bg-water-900 px-6 py-3 font-medium text-page hover:bg-water-500">Jelajahi Peta</Link>
-            <Link href="/festival" className="rounded-full border border-page px-6 py-3 font-medium text-page hover:bg-page/10">Festival Pesona</Link>
+      <section
+        className="relative min-h-[60vh] sm:h-[70vh] flex items-center justify-center text-center overflow-hidden bg-gradient-to-br from-brown-900 via-brown-900/80 to-terracotta-500/40"
+      >
+        <div
+          className="absolute inset-0 opacity-10 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/design-system/batik_sambel.svg')" }}
+          aria-hidden
+        />
+        <div className="relative z-10 px-6 py-16 max-w-2xl">
+          <h1 className="font-beautique text-4xl sm:text-5xl md:text-7xl text-page leading-tight">
+            Melukis Sambelia
+          </h1>
+          <p className="mt-4 text-base sm:text-lg text-page/90 max-w-xl mx-auto">
+            {s.heroTagline}
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+            <Link href="/peta" className="rounded-full bg-water-900 px-6 py-3 font-medium text-page hover:bg-water-500 transition-colors">
+              Jelajahi Peta
+            </Link>
+            <Link href="/festival" className="rounded-full border border-page/60 px-6 py-3 font-medium text-page hover:bg-page/10 transition-colors">
+              Festival Pesona
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-content px-4 py-16">
+      <section className="mx-auto max-w-content px-4 py-16 scroll-mt-20">
         <SectionHeader kicker="01 — TENTANG" title="Tentang Sambelia" intro="Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan." />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <StatCard label="Luas" value={s.stats.luas} />
@@ -53,14 +66,14 @@ export default function Beranda() {
 
       <MotifDivider className="my-8" />
 
-      <section className="mx-auto max-w-content px-4 py-8">
+      <section className="mx-auto max-w-content px-4 py-8 scroll-mt-20">
         <SectionHeader kicker="02 — JEJAKI" title="Jejaki Sambelia" />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {previews.map((p) => <DataCard key={p.href} {...p} />)}
         </div>
       </section>
 
-      <section className="mx-auto max-w-content px-4 py-16">
+      <section className="mx-auto max-w-content px-4 py-16 scroll-mt-20">
         <SectionHeader kicker="03 — MITRA" title="Bersama Mitra Kami" />
         <div className="flex flex-wrap gap-8 items-center">
           {mitra.map((m) => (

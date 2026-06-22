@@ -52,7 +52,7 @@ export function InteractiveMap({ markers }: { markers: MapMarker[] }) {
         ))}
       </MapContainer>
 
-      <aside className="space-y-2">
+      <aside className="space-y-2 md:max-h-none max-h-[60vh] overflow-y-auto">
         <h3 className="font-semibold text-sm">Lapisan</h3>
         {ALL_LAYERS.map((layer) => {
           const count = markers.filter((m) => m.layer === layer).length

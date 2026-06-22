@@ -7,7 +7,7 @@ export function KegiatanRoadmap({ items }: { items: (Kegiatan & { slug: string }
     <div className="space-y-6">
       {items.map((k) => (
         <div key={k.slug} className="rounded-2xl border border-tan-700/30 bg-white overflow-hidden md:flex">
-          <div className="relative aspect-video md:w-64 shrink-0">
+          <div className="relative aspect-video md:w-64 md:aspect-auto shrink-0">
             <Image src={k.cover} alt={k.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 256px" />
           </div>
           <div className="p-4 flex-1">
