@@ -14,7 +14,7 @@ export default function IrigasiPage() {
 
   return (
     <div className="mx-auto max-w-content px-4 py-16">
-      <SectionHeader kicker="IRIGASI" title="Data Saluran Irigasi" intro="Saluran irigasi di Kecamatan Sambelia." />
+      <SectionHeader kicker="IRIGASI" title="Data Saluran Irigasi" intro="Saluran irigasi di Kecamatan Sambelia." tone="green" />
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <StatCard label="Total Saluran" value={String(items.length)} />
         <StatCard label="Total Panjang" value={String(totalLength)} unit="m" />

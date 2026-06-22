@@ -18,12 +18,12 @@ export default function Beranda() {
   const mitra = getCollection('mitra').filter((m) => m.tier === 'Utama')
 
   const previews = [
-    { href: '/pariwisata', image: pariwisata[0]?.cover ?? '/images/placeholders/beach.svg', title: 'Pariwisata', desc: 'Destinasi unggulan Sambelia.' },
-    { href: '/irigasi', image: irigasi[0]?.cover ?? '/images/placeholders/irrigation.svg', title: 'Irigasi', desc: 'Data saluran irigasi.' },
-    { href: '/kesehatan', image: kesehatan[0]?.cover ?? '/images/placeholders/health.svg', title: 'Kesehatan', desc: 'Fasilitas & program kesehatan.' },
-    { href: '/festival', image: festival[0]?.cover ?? '/images/placeholders/festival.svg', title: 'Festival Pesona', desc: 'Peresean, Pawai Dulangan, Gendang Beleq.' },
-    { href: '/kegiatan', image: kegiatan[0]?.cover ?? '/images/placeholders/program.svg', title: 'Kegiatan', desc: 'Program unggulan tim.' },
-    { href: '/umkm', image: umkm[0]?.cover ?? '/images/placeholders/umkm.svg', title: 'UMKM', desc: 'UMKM lokal Sambelia.' },
+    { href: '/pariwisata', image: pariwisata[0]?.cover ?? '/images/placeholders/beach.svg', title: 'Pariwisata', desc: 'Destinasi unggulan Sambelia.', accent: '#14A8E1' },
+    { href: '/irigasi', image: irigasi[0]?.cover ?? '/images/placeholders/irrigation.svg', title: 'Irigasi', desc: 'Data saluran irigasi.', accent: '#99BA57' },
+    { href: '/kesehatan', image: kesehatan[0]?.cover ?? '/images/placeholders/health.svg', title: 'Kesehatan', desc: 'Fasilitas & program kesehatan.', accent: '#667F37' },
+    { href: '/festival', image: festival[0]?.cover ?? '/images/placeholders/festival.svg', title: 'Festival Pesona', desc: 'Peresean, Pawai Dulangan, Gendang Beleq.', accent: '#E3795C' },
+    { href: '/kegiatan', image: kegiatan[0]?.cover ?? '/images/placeholders/program.svg', title: 'Kegiatan', desc: 'Program unggulan tim.', accent: '#742D1B' },
+    { href: '/umkm', image: umkm[0]?.cover ?? '/images/placeholders/umkm.svg', title: 'UMKM', desc: 'UMKM lokal Sambelia.', accent: '#F0AC6D' },
   ]
 
   return (

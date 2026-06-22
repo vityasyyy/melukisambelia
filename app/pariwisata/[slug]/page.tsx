@@ -21,7 +21,7 @@ export default function PariwisataDetailPage({ params }: { params: { slug: strin
         <span className="rounded-full bg-water-50 px-3 py-1 text-water-900">{item.village}</span>
         {item.facilities.map((f) => <span key={f} className="rounded-full bg-gold-100 px-3 py-1">{f}</span>)}
       </div>
-      <div className="prose mt-6 max-w-none whitespace-pre-wrap">{item.body}</div>
+      <div className="prose prose-lg max-w-none mt-6 text-ink/80">{item.body}</div>
       <GalleryStrip images={item.gallery} altPrefix={item.title} />
       <div className="mt-8">
         <MiniMapClient lat={item.lat} lng={item.lng} title={item.title} />

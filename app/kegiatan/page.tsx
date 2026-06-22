@@ -7,7 +7,7 @@ export default function KegiatanPage() {
   const items = getCollection('kegiatan')
   return (
     <div className="mx-auto max-w-content px-4 py-16">
-      <SectionHeader kicker="KEGIATAN" title="Program Unggulan" intro="Roadmap program pemberdayaan Melukis Sambelia." />
+      <SectionHeader kicker="KEGIATAN" title="Program Unggulan" intro="Roadmap program pemberdayaan Melukis Sambelia." tone="brown" />
       {items.length === 0 ? (
         <EmptyState message="Belum ada program. Tim akan menambahkan segera." />
       ) : (

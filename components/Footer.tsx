@@ -6,6 +6,10 @@ export function Footer() {
   const s = getSettings()
   return (
     <footer className="bg-brown-900 text-page mt-20">
+      <div
+        className="h-2 bg-gradient-to-r from-terracotta-500 via-gold-500 to-water-900"
+        aria-hidden
+      />
       <div className="mx-auto max-w-content px-4 py-12 grid gap-8 md:grid-cols-3">
         <div>
           <Image src="/images/design-system/bw_logo_sambel.svg" alt="Melukis Sambelia" width={180} height={54} />

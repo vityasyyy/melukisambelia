@@ -7,7 +7,7 @@ export default function PariwisataPage() {
   const items = getCollection('pariwisata')
   return (
     <div className="mx-auto max-w-content px-4 py-16">
-      <SectionHeader kicker="PARIWISATA" title="Potensi Wisata Sambelia" intro="Destinasi unggulan di Desa Sugian dan Desa Labuhan Pandan." />
+      <SectionHeader kicker="PARIWISATA" title="Potensi Wisata Sambelia" intro="Destinasi unggulan di Desa Sugian dan Desa Labuhan Pandan." tone="water" />
       {items.length === 0 ? (
         <EmptyState message="Belum ada data wisata. Tim akan menambahkan segera." />
       ) : (

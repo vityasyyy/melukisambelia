@@ -7,7 +7,7 @@ export default function UmkmPage() {
   const items = getCollection('umkm')
   return (
     <div className="mx-auto max-w-content px-4 py-16">
-      <SectionHeader kicker="UMKM" title="UMKM Lokal Sambelia" intro="Kerajinan, kuliner, dan produk lokal." />
+      <SectionHeader kicker="UMKM" title="UMKM Lokal Sambelia" intro="Kerajinan, kuliner, dan produk lokal." tone="terracotta" />
       {items.length === 0 ? (
         <EmptyState message="Belum ada data UMKM. Tim akan menambahkan segera." />
       ) : (

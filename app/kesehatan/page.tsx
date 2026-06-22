@@ -13,7 +13,7 @@ export default function KesehatanPage() {
 
   return (
     <div className="mx-auto max-w-content px-4 py-16">
-      <SectionHeader kicker="KESEHATAN" title="Fasilitas & Program Kesehatan" intro="Posyandu, puskesmas, dan program stunting di Sambelia." />
+      <SectionHeader kicker="KESEHATAN" title="Fasilitas & Program Kesehatan" intro="Posyandu, puskesmas, dan program stunting di Sambelia." tone="green" />
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <StatCard label="Posyandu" value={String(posyandu)} />
         <StatCard label="Puskesmas" value={String(puskesmas)} />
