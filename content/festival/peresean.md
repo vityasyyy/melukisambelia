@@ -1,8 +1,8 @@
 ---
 eventName: Peresean
-schedule: TBD
-venue: Sambelia
-description: Pertunjukan tradisional adu kekuatan Sasak.
+schedule: TBD — Festival Pesona Sambelia 2026
+venue: Lapangan Sambelia
+description: Pertunjukan tradisional adu kekuatan khas suku Sasak menggunakan penjalin (rotan) dan ende (perisai).
 cover: /images/placeholders/festival.svg
-body: Detail pertunjukan akan diisi tim.
+body: Peresean adalah atraksi tradisional yang mempertemukan dua pepadu (pesilat) dalam adu kekuatan menggunakan rotan sebagai senjata dan perisai dari kulit hewan. Pertunjukan ini menjadi ikon Festival Pesona Sambelia.
 ---

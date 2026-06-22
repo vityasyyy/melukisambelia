@@ -1,12 +1,12 @@
 ---
-heroImage: /images/hero-placeholder.svg
-heroTagline: Pemberdayaan pariwisata berkelanjutan & agropolitan Sambelia
+heroImage: /images/design-system/batik_sambel.svg
+heroTagline: Pemberdayaan pariwisata berkelanjutan & pengembangan kawasan agropolitan di Sambelia, Lombok Timur
 stats:
-  luas: "—"
-  penduduk: "—"
+  luas: "±X km²"
+  penduduk: "±X jiwa"
   desaBinaan: "2"
   tahunProgram: "2026"
-festivalDates: TBD
+festivalDates: "TBD 2026"
 socials:
   instagram: melukis.sambelia
   tiktok: melukis.sambelia
