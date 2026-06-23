@@ -2,6 +2,7 @@ import { getSettings } from '@/lib/settings'
 import { SectionHeader } from '@/components/SectionHeader'
 import { StatCard } from '@/components/StatCard'
 import { MotifDivider } from '@/components/MotifDivider'
+import { GradientText } from '@/components/GradientText'
 import Image from 'next/image'
 
 export default function TentangSambeliaPage() {
@@ -15,29 +16,24 @@ export default function TentangSambeliaPage() {
   ]
 
   const desa = [
-    { name: 'Sugian', desc: 'Desa binaan dengan potensi wisata bahari dan pertanian.' },
-    { name: 'Labuhan Pandan', desc: 'Desa pesisir dengan wisata bahari dan budaya Sasak.' },
+    { name: 'Sugian', desc: 'Desa binaan dengan potensi wisata bahari dan pertanian.', image: '/images/content/pariwisata-desa.svg' },
+    { name: 'Labuhan Pandan', desc: 'Desa pesisir dengan wisata bahari dan budaya Sasak.', image: '/images/content/pariwisata-beach.svg' },
   ]
 
   return (
     <>
-      <section
-        className="relative overflow-hidden bg-gradient-to-br from-brown-900 via-wine to-terracotta-500/60"
+      <section className="relative overflow-hidden bg-gradient-to-br from-brown-900 via-wine to-terracotta-500/60 py-20 text-center text-cream-light"
       >
-        <div
-          className="absolute inset-0 opacity-[0.07] bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/design-system/batik_sambel.svg')" }}
-          aria-hidden
-        />
-        <div className="relative z-10 mx-auto max-w-content px-4 py-20 text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-page/70">TENTANG</p>
+        <div className="absolute inset-0 section-watermark" aria-hidden />
+        <div className="relative z-10 mx-auto max-w-content px-4">
+          <p className="text-xs font-semibold uppercase tracking-widest text-cream-light/70">TENTANG</p>
           <h1
-            className="mt-2 font-beautique-condensed text-4xl sm:text-5xl md:text-6xl text-page"
+            className="mt-2 font-beautique text-display-lg"
             style={{ textShadow: '0px 4px 4px rgba(0,0,0,0.25)' }}
           >
-            Sambelia
+            <GradientText className="text-cream-light">Sambelia</GradientText>
           </h1>
-          <p className="mt-4 text-page/80 max-w-xl mx-auto text-sm sm:text-base">
+          <p className="mx-auto mt-4 max-w-xl text-sm text-cream-light/80 sm:text-base">
             Kecamatan Sambelia, Kabupaten Lombok Timur, Nusa Tenggara Barat —
             pusat pengembangan pariwisata berkelanjutan dan kawasan agropolitan.
           </p>
@@ -51,14 +47,14 @@ export default function TentangSambeliaPage() {
           intro="Letak, luas, dan penduduk Kecamatan Sambelia."
           tone="green"
         />
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {geography.map((g) => (
             <StatCard key={g.label} label={g.label} value={g.value} />
           ))}
         </div>
-        <div className="mt-8 rounded-2xl border border-tan-700/30 bg-cream-beige/40 p-6">
-          <h3 className="font-semibold text-brown-900 mb-2">Letak Geografis</h3>
-          <p className="text-sm text-ink/70">
+        <div className="mt-8 rounded-2xl border border-tan-700/20 bg-cream-beige/40 p-6 shadow-terracotta">
+          <h3 className="mb-2 font-semibold text-brown-900">Letak Geografis</h3>
+          <p className="text-sm leading-relaxed text-ink/70">
             Kecamatan Sambelia terletak di Kabupaten Lombok Timur, Provinsi Nusa Tenggara Barat.
             Wilayahnya mencakup area pesisir dengan potensi wisata bahari serta kawasan pertanian
             yang subur. Batas administrasi mencakup area desa Sugian dan Labuhan Pandan sebagai
@@ -81,10 +77,10 @@ export default function TentangSambeliaPage() {
         />
         <div className="grid gap-6 md:grid-cols-2">
           {desa.map((d) => (
-            <div key={d.name} className="rounded-2xl border border-tan-700/30 bg-white overflow-hidden">
+            <div key={d.name} className="overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all hover:-translate-y-1 hover:shadow-terracotta-hover">
               <div className="relative aspect-video">
                 <Image
-                  src="/images/content/nelayan-landscape.jpg"
+                  src={d.image}
                   alt={d.name}
                   fill
                   className="object-cover"
@@ -92,8 +88,8 @@ export default function TentangSambeliaPage() {
                 />
               </div>
               <div className="p-5">
-                <h3 className="font-beautique-condensed text-2xl text-brown-900">{d.name}</h3>
-                <p className="mt-2 text-sm text-ink/70">{d.desc}</p>
+                <h3 className="font-beautique text-2xl text-brown-900">{d.name}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink/70">{d.desc}</p>
               </div>
             </div>
           ))}
@@ -110,17 +106,17 @@ export default function TentangSambeliaPage() {
           tone="terracotta"
         />
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-2xl border border-tan-700/30 bg-cream-warm/30 p-6">
+          <div className="rounded-2xl border border-tan-700/20 bg-cream-warm/30 p-6 shadow-terracotta">
             <h3 className="font-semibold text-lg text-brown-900">Pariwisata Berkelanjutan</h3>
-            <p className="mt-2 text-sm text-ink/70">
+            <p className="mt-2 text-sm leading-relaxed text-ink/70">
               Pengembangan desa wisata di Sugian dan Labuhan Pandan, promosi destinasi unggulan
               seperti Pantai Berandangan dan Taman Wisata Air Kramat Suci, serta festival budaya
               Sasak (Peresean, Pawai Dulangan, Gendang Beleq).
             </p>
           </div>
-          <div className="rounded-2xl border border-tan-700/30 bg-cream-warm/30 p-6">
+          <div className="rounded-2xl border border-tan-700/20 bg-cream-warm/30 p-6 shadow-terracotta">
             <h3 className="font-semibold text-lg text-brown-900">Kawasan Agropolitan</h3>
-            <p className="mt-2 text-sm text-ink/70">
+            <p className="mt-2 text-sm leading-relaxed text-ink/70">
               Pengembangan kawasan agropolitan melalui pendampingan irigasi, pertanian, UMKM lokal,
               serta program kesehatan terintegrasi (stunting, posyandu).
             </p>

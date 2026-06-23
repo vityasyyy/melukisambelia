@@ -7,7 +7,12 @@ export default function MitraPage() {
   const items = getCollection('mitra')
   return (
     <div className="mx-auto max-w-content px-4 py-16">
-      <SectionHeader kicker="MITRA" title="Mitra Kami" intro="Mitra program Melukis Sambelia." tone="brown" />
+      <SectionHeader
+        kicker="MITRA"
+        title="Mitra Kami"
+        intro="Mitra program Melukis Sambelia."
+        tone="brown"
+      />
       {items.length === 0 ? <EmptyState message="Belum ada mitra." /> : <MitraGrid items={items} />}
     </div>
   )
