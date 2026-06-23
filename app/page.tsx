@@ -6,6 +6,9 @@ import { StatCard } from '@/components/StatCard'
 import { DataCard } from '@/components/DataCard'
 import { SectionHeader } from '@/components/SectionHeader'
 import { MotifDivider } from '@/components/MotifDivider'
+import { GradientText } from '@/components/GradientText'
+import { KilasSambelia } from '@/components/KilasSambelia'
+import { SponsorCta } from '@/components/SponsorCta'
 
 export default function Beranda() {
   const s = getSettings()
@@ -18,52 +21,57 @@ export default function Beranda() {
   const mitra = getCollection('mitra').filter((m) => m.tier === 'Utama')
 
   const previews = [
-    { href: '/pariwisata', image: pariwisata[0]?.cover ?? '/images/placeholders/beach.svg', title: 'Pariwisata', desc: 'Destinasi unggulan Sambelia.', accent: '#14A8E1' },
-    { href: '/irigasi', image: irigasi[0]?.cover ?? '/images/placeholders/irrigation.svg', title: 'Irigasi', desc: 'Data saluran irigasi.', accent: '#99BA57' },
-    { href: '/kesehatan', image: kesehatan[0]?.cover ?? '/images/placeholders/health.svg', title: 'Kesehatan', desc: 'Fasilitas & program kesehatan.', accent: '#667F37' },
-    { href: '/festival', image: festival[0]?.cover ?? '/images/placeholders/festival.svg', title: 'Festival Pesona', desc: 'Peresean, Pawai Dulangan, Gendang Beleq.', accent: '#E3795C' },
-    { href: '/kegiatan', image: kegiatan[0]?.cover ?? '/images/placeholders/program.svg', title: 'Kegiatan', desc: 'Program unggulan tim.', accent: '#742D1B' },
-    { href: '/umkm', image: umkm[0]?.cover ?? '/images/placeholders/umkm.svg', title: 'UMKM', desc: 'UMKM lokal Sambelia.', accent: '#F0AC6D' },
+    { href: '/pariwisata', image: pariwisata[0]?.cover ?? '/images/content/pariwisata-beach.svg', title: 'Pariwisata', desc: 'Destinasi unggulan Sambelia.', accent: '#14A8E1' },
+    { href: '/irigasi', image: irigasi[0]?.cover ?? '/images/content/irigasi-saluran.svg', title: 'Irigasi', desc: 'Data saluran irigasi.', accent: '#99BA57' },
+    { href: '/kesehatan', image: kesehatan[0]?.cover ?? '/images/content/kesehatan-fasilitas.svg', title: 'Kesehatan', desc: 'Fasilitas & program kesehatan.', accent: '#667F37' },
+    { href: '/festival', image: festival[0]?.cover ?? '/images/content/festival-peresean.svg', title: 'Festival Pesona', desc: 'Peresean, Pawai Dulangan, Gendang Beleq.', accent: '#E3795C' },
+    { href: '/kegiatan', image: kegiatan[0]?.cover ?? '/images/content/kegiatan-program.svg', title: 'Kegiatan', desc: 'Program unggulan tim.', accent: '#742D1B' },
+    { href: '/umkm', image: umkm[0]?.cover ?? '/images/content/umkm-kerajinan.svg', title: 'UMKM', desc: 'UMKM lokal Sambelia.', accent: '#F0AC6D' },
   ]
 
   return (
     <>
-      <section className="relative min-h-[60vh] sm:h-[80vh] flex items-center justify-center text-center overflow-hidden">
-        <Image src="/images/content/hero-sambelia.jpg" alt="Sambelia" fill className="object-cover" priority sizes="100vw" />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(180deg, rgba(67,21,14,0.85) 10%, rgba(184,51,31,0.6) 50%, rgba(116,45,27,0.7) 100%)' }}
-        />
-        <div
-          className="absolute inset-0 opacity-[0.07] bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/design-system/batik_sambel.svg')" }}
-          aria-hidden
-        />
-        <div className="relative z-10 px-6 py-16 max-w-2xl">
+      <section className="relative flex min-h-[60vh] items-center justify-center overflow-hidden text-center sm:min-h-[75vh]">
+        <Image src={s.heroImage} alt="Sambelia" fill className="object-cover" priority sizes="100vw" />
+        <div className="absolute inset-0 hero-vignette" />
+        <div className="absolute inset-0 section-watermark" aria-hidden />
+        <div className="relative z-10 max-w-3xl px-6 py-20">
           <h1
-            className="font-beautique-condensed text-4xl sm:text-5xl md:text-7xl text-page leading-tight"
-            style={{ textShadow: '0px 4px 4px rgba(0,0,0,0.25)' }}
+            className="font-beautique text-display-xl text-cream-light text-balance"
+            style={{ textShadow: '0 2px 8px rgba(0,0,0,0.35)' }}
           >
-            <span className="font-beautique italic">M</span>elukis{' '}
-            <span className="font-beautique italic">S</span>ambelia
+            <GradientText className="text-cream-light">Melukis</GradientText>{' '}
+            <span className="text-cream-light">Sambelia</span>
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-page/90 max-w-xl mx-auto">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-cream-light/90 sm:text-lg">
             {s.heroTagline}
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href="/peta" className="rounded-full bg-water-900 px-6 py-3 font-medium text-page hover:bg-water-500 transition-colors">
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              href="/peta"
+              className="rounded-full bg-water-900 px-6 py-3 font-medium text-page shadow-sm transition-colors hover:bg-water-500"
+            >
               Jelajahi Peta
             </Link>
-            <Link href="/festival" className="rounded-full border border-page/60 px-6 py-3 font-medium text-page hover:bg-page/10 transition-colors">
+            <Link
+              href="/festival"
+              className="rounded-full border border-cream-light/60 px-6 py-3 font-medium text-cream-light backdrop-blur-sm transition-colors hover:bg-cream-light/10"
+            >
               Festival Pesona
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-content px-4 py-16 scroll-mt-20">
-        <SectionHeader kicker="01 — TENTANG" title="Tentang Sambelia" intro="Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan." />
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <section className="relative mx-auto max-w-content px-4 py-16">
+        <div className="absolute inset-0 -z-10 section-watermark" aria-hidden />
+        <SectionHeader
+          kicker="01 — TENTANG"
+          title="Tentang Sambelia"
+          intro="Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan."
+          tone="terracotta"
+        />
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           <StatCard label="Luas" value={s.stats.luas} />
           <StatCard label="Penduduk" value={s.stats.penduduk} />
           <StatCard label="Desa Binaan" value={s.stats.desaBinaan} />
@@ -71,20 +79,31 @@ export default function Beranda() {
         </div>
       </section>
 
-      <MotifDivider className="my-8" />
+      <MotifDivider motif="cincin_sambel" />
 
-      <section className="mx-auto max-w-content px-4 py-8 scroll-mt-20">
-        <SectionHeader kicker="02 — JEJAKI" title="Jejaki Sambelia" />
+      <section className="mx-auto max-w-content px-4 py-8">
+        <SectionHeader kicker="02 — JEJAKI" title="Jejaki Sambelia" tone="gold" />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {previews.map((p) => <DataCard key={p.href} {...p} />)}
         </div>
       </section>
 
-      <section className="mx-auto max-w-content px-4 py-16 scroll-mt-20">
-        <SectionHeader kicker="03 — MITRA" title="Bersama Mitra Kami" />
-        <div className="flex flex-wrap gap-8 items-center">
+      <KilasSambelia />
+
+      <SponsorCta />
+
+      <section className="mx-auto max-w-content px-4 py-12">
+        <SectionHeader kicker="04 — MITRA" title="Bersama Mitra Kami" tone="olive" centered />
+        <div className="flex flex-wrap items-center justify-center gap-8">
           {mitra.map((m) => (
-            <Image key={m.slug} src={m.logo} alt={m.name} width={140} height={60} className="opacity-70" />
+            <Image
+              key={m.slug}
+              src={m.logo}
+              alt={m.name}
+              width={140}
+              height={60}
+              className="opacity-80 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+            />
           ))}
         </div>
       </section>
