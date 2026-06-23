@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Tim">
+  <defs>
+    <linearGradient id="g-ix9sz8" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#FFFCF7"/>
+      <stop offset="55%" stop-color="#F2EBD8"/>
+      <stop offset="100%" stop-color="#742D1B"/>
+    </linearGradient>
+    <pattern id="motif-g-ix9sz8" width="200" height="200" patternUnits="userSpaceOnUse">
+      <image href="/images/design-system/bunga_sambel.svg" width="200" height="200" opacity="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#g-ix9sz8)"/>
+  <rect width="100%" height="100%" fill="url(#motif-g-ix9sz8)" opacity="0.08"/>
+  <circle cx="85%" cy="15%" r="120" fill="#742D1B" opacity="0.25"/>
+  <circle cx="15%" cy="85%" r="90" fill="#F2EBD8" opacity="0.35"/>
+  <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" font-family="Gontserrat, sans-serif" font-weight="700" font-size="72" fill="#742D1B" opacity="0.85">Tim</text>
+</svg>
