@@ -6,11 +6,20 @@ export function KegiatanRoadmap({ items }: { items: (Kegiatan & { slug: string }
   return (
     <div className="space-y-6">
       {items.map((k) => (
-        <div key={k.slug} className="rounded-2xl border border-tan-700/30 bg-white overflow-hidden md:flex">
-          <div className="relative aspect-video md:w-64 md:aspect-auto shrink-0">
-            <Image src={k.cover} alt={k.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 256px" />
+        <div
+          key={k.slug}
+          className="overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all hover:-translate-y-1 hover:shadow-terracotta-hover md:flex"
+        >
+          <div className="relative aspect-video shrink-0 md:w-64 md:aspect-auto">
+            <Image
+              src={k.cover}
+              alt={k.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 256px"
+            />
           </div>
-          <div className="p-4 flex-1">
+          <div className="flex-1 p-5">
             <div className="flex items-center gap-2">
               <h3 className="font-semibold text-lg text-brown-900">{k.title}</h3>
               <StatusBadge status={k.status} />
@@ -23,7 +32,7 @@ export function KegiatanRoadmap({ items }: { items: (Kegiatan & { slug: string }
                   <li key={i} className="flex gap-2">
                     <span>{m.done ? '✓' : '○'}</span>
                     <span className={m.done ? 'line-through text-ink/40' : ''}>{m.label}</span>
-                    <span className="text-ink/40 text-xs">— {m.date}</span>
+                    <span className="text-xs text-ink/40">— {m.date}</span>
                   </li>
                 ))}
               </ul>

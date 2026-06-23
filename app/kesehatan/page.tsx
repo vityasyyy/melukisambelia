@@ -3,6 +3,7 @@ import { SectionHeader } from '@/components/SectionHeader'
 import { StatCard } from '@/components/StatCard'
 import { EmptyState } from '@/components/EmptyState'
 import { DataCard } from '@/components/DataCard'
+import { MotifDivider } from '@/components/MotifDivider'
 
 export default function KesehatanPage() {
   const items = getCollection('kesehatan')
@@ -13,8 +14,13 @@ export default function KesehatanPage() {
 
   return (
     <div className="mx-auto max-w-content px-4 py-16">
-      <SectionHeader kicker="KESEHATAN" title="Fasilitas & Program Kesehatan" intro="Posyandu, puskesmas, dan program stunting di Sambelia." tone="green" />
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <SectionHeader
+        kicker="KESEHATAN"
+        title="Fasilitas & Program Kesehatan"
+        intro="Posyandu, puskesmas, dan program stunting di Sambelia."
+        tone="olive"
+      />
+      <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
         <StatCard label="Posyandu" value={String(posyandu)} />
         <StatCard label="Puskesmas" value={String(puskesmas)} />
         <StatCard label="Kader" value={String(cadres)} />
@@ -30,12 +36,17 @@ export default function KesehatanPage() {
               href="/kesehatan"
               image={k.cover}
               title={k.facilityName}
-              chips={[{ label: k.type, color: '#667F37' }, { label: k.village, color: '#99BA57' }, ...(k.stuntingProgram ? [{ label: 'Stunting', color: '#E3795C' }] : [])]}
+              chips={[
+                { label: k.type, color: '#667F37' },
+                { label: k.village, color: '#99BA57' },
+                ...(k.stuntingProgram ? [{ label: 'Stunting', color: '#E3795C' }] : []),
+              ]}
               desc={`Kader: ${k.cadresCount}`}
             />
           ))}
         </div>
       )}
+      <MotifDivider className="mt-12" />
     </div>
   )
 }
