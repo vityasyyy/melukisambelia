@@ -101,6 +101,10 @@ const config: Config = {
         beautique: ["var(--font-beautique)", "sans-serif"],
         "beautique-condensed": ["var(--font-beautique-condensed)", "sans-serif"],
       },
+      fontSize: {
+        "display-xl": ["clamp(2.5rem, 6vw, 5rem)", { lineHeight: "1.05", letterSpacing: "-0.01em" }],
+        "display-lg": ["clamp(2rem, 4vw, 3.5rem)", { lineHeight: "1.1" }],
+      },
       maxWidth: {
         content: "1200px",
       },
