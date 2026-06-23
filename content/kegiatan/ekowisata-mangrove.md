@@ -2,7 +2,7 @@
 title: Ekowisata Mangrove
 status: Persiapan
 category: Ekowisata
-cover: /images/placeholders/program.svg
+cover: /images/content/gallery-3.jpg
 summary: Pengembangan wisata berbasis konservasi mangrove di kawasan pesisir Sambelia.
 body: Program ekowisata mangrove bertujuan mengembangkan potensi kawasan pesisir sebagai destinasi wisata edukasi sambil melestarikan ekosistem mangrove.
 milestones:

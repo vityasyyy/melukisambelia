@@ -24,6 +24,17 @@
     --terracotta-500: #E3795C;
     --brown-900: #742D1B;
 
+    /* Figma-derived brand tokens */
+    --wine: #701414;
+    --wine-deep: #671919;
+    --cream-warm: #EFE3AB;
+    --cream-light: #FEFDD7;
+    --cream-beige: #F2EBD8;
+    --gold-bright: #F9E11F;
+    --gold-soft: #FEDF9F;
+    --olive: #68794A;
+    --brown-dark: #47230F;
+
     /* Neutrals */
     --white: #FFFFFF;
     --ink: #000000;

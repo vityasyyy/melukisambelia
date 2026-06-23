@@ -20,7 +20,7 @@ export function Footer() {
           <h3 className="font-semibold mb-3">Navigasi</h3>
           <ul className="space-y-1 text-sm">
             <li><Link href="/">Beranda</Link></li>
-            <li><Link href="/profil-tim">Profil Tim</Link></li>
+            <li><Link href="/tentang-sambelia">Tentang Sambelia</Link></li>
             <li><Link href="/peta">Peta</Link></li>
             <li><Link href="/pariwisata">Pariwisata</Link></li>
             <li><Link href="/cerita">Cerita</Link></li>

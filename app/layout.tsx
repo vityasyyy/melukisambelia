@@ -26,6 +26,16 @@ const beautique = localFont({
   display: 'swap',
 })
 
+const beautiqueCondensed = localFont({
+  src: [
+    { path: '../public/fonts/beautique-display/BeautiqueDisplayCondensed-Regular.otf', weight: '400', style: 'normal' },
+    { path: '../public/fonts/beautique-display/BeautiqueDisplayCondensed-Bold.otf', weight: '700', style: 'normal' },
+    { path: '../public/fonts/beautique-display/BeautiqueDisplayCondensed-Black.otf', weight: '900', style: 'normal' },
+  ],
+  variable: '--font-beautique-condensed',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   title: 'Melukis Sambelia — KKN-PPM UGM',
   description: 'Pemberdayaan pariwisata berkelanjutan dan pengembangan kawasan agropolitan di Kecamatan Sambelia, Kabupaten Lombok Timur, NTB.',
@@ -45,7 +55,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className={`${gontserrat.variable} ${beautique.variable}`}>
+    <html lang="id" className={`${gontserrat.variable} ${beautique.variable} ${beautiqueCondensed.variable}`}>
       <body className="font-gontserrat bg-page text-ink antialiased min-h-screen flex flex-col">
         <Nav />
         <main className="flex-1">{children}</main>

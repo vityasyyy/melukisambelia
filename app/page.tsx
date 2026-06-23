@@ -28,17 +28,24 @@ export default function Beranda() {
 
   return (
     <>
-      <section
-        className="relative min-h-[60vh] sm:h-[70vh] flex items-center justify-center text-center overflow-hidden bg-gradient-to-br from-brown-900 via-brown-900/80 to-terracotta-500/40"
-      >
+      <section className="relative min-h-[60vh] sm:h-[80vh] flex items-center justify-center text-center overflow-hidden">
+        <Image src="/images/content/hero-sambelia.jpg" alt="Sambelia" fill className="object-cover" priority sizes="100vw" />
         <div
-          className="absolute inset-0 opacity-10 bg-cover bg-center"
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(180deg, rgba(67,21,14,0.85) 10%, rgba(184,51,31,0.6) 50%, rgba(116,45,27,0.7) 100%)' }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.07] bg-cover bg-center"
           style={{ backgroundImage: "url('/images/design-system/batik_sambel.svg')" }}
           aria-hidden
         />
         <div className="relative z-10 px-6 py-16 max-w-2xl">
-          <h1 className="font-beautique text-4xl sm:text-5xl md:text-7xl text-page leading-tight">
-            Melukis Sambelia
+          <h1
+            className="font-beautique-condensed text-4xl sm:text-5xl md:text-7xl text-page leading-tight"
+            style={{ textShadow: '0px 4px 4px rgba(0,0,0,0.25)' }}
+          >
+            <span className="font-beautique italic">M</span>elukis{' '}
+            <span className="font-beautique italic">S</span>ambelia
           </h1>
           <p className="mt-4 text-base sm:text-lg text-page/90 max-w-xl mx-auto">
             {s.heroTagline}

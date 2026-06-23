@@ -11,7 +11,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "import-data": "node scripts/import-xlsx.mjs"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
@@ -38,12 +39,14 @@
     "react": "^18",
     "react-dom": "^18",
     "react-leaflet": "^4.2.1",
+    "recharts": "^3.9.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.6.0",
     "tailwindcss-animate": "^1.0.7",
+    "xlsx": "^0.18.5",
     "zod": "^4.4.3"
   },
   "devDependencies": {
@@ -61,6 +64,7 @@
     "eslint-config-next": "14.2.35",
     "jsdom": "^29.1.1",
     "postcss": "^8",
+    "sharp": "^0.35.2",
     "tailwindcss": "^3.4.1",
     "typescript": "^5",
     "vitest": "^4.1.9"

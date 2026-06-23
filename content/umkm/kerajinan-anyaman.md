@@ -4,7 +4,7 @@ owner: Kelompok Anyaman Desa Sugian
 product: Anyaman
 village: Sugian
 contact: ""
-cover: /images/placeholders/umkm.svg
+cover: /images/content/gallery-2.jpg
 gallery: []
 body: Kelompok anyaman yang memproduksi kerajinan tangan dari bahan alami lokal.
 lat: -8.355

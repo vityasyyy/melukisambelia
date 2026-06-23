@@ -6,7 +6,7 @@ import { Logo } from './Logo'
 
 const NAV_LINKS = [
   { href: '/', label: 'Beranda' },
-  { href: '/profil-tim', label: 'Profil Tim' },
+  { href: '/tentang-sambelia', label: 'Tentang Sambelia' },
   { href: '/peta', label: 'Peta' },
   { href: '/pariwisata', label: 'Pariwisata' },
   { href: '/irigasi', label: 'Irigasi' },

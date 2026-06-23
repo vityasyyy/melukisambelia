@@ -28,6 +28,19 @@ const config: Config = {
         tan: { 700: "var(--tan-700)" },
         terracotta: { 500: "var(--terracotta-500)" },
         brown: { 900: "var(--brown-900)" },
+        wine: {
+          DEFAULT: "var(--wine)",
+          deep: "var(--wine-deep)",
+        },
+        cream: {
+          warm: "var(--cream-warm)",
+          light: "var(--cream-light)",
+          beige: "var(--cream-beige)",
+        },
+        goldBright: "var(--gold-bright)",
+        goldSoft: "var(--gold-soft)",
+        olive: "var(--olive)",
+        brownDark: "var(--brown-dark)",
         ink: "var(--ink)",
         page: "var(--page-bg)",
         status: {
@@ -86,6 +99,7 @@ const config: Config = {
       fontFamily: {
         gontserrat: ["var(--font-gontserrat)", "sans-serif"],
         beautique: ["var(--font-beautique)", "sans-serif"],
+        "beautique-condensed": ["var(--font-beautique-condensed)", "sans-serif"],
       },
       maxWidth: {
         content: "1200px",
