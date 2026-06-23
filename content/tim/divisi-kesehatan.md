@@ -2,8 +2,8 @@
 name: Divisi Kesehatan
 role: Koordinator Divisi Kesehatan
 division: Kesehatan
-photo: /images/placeholders/person.svg
+photo: /images/placeholders/tim.svg
 bio: Mengkoordinasikan program stunting dan pendampingan posyandu di Sambelia.
-instagram: ""
+instagram: ''
 order: 4
 ---
