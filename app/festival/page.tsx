@@ -4,6 +4,8 @@ import { EmptyState } from '@/components/EmptyState'
 import { SectionHeader } from '@/components/SectionHeader'
 import { CountdownStrip } from '@/components/CountdownStrip'
 import { MotifDivider } from '@/components/MotifDivider'
+import { FadeIn } from '@/components/FadeIn'
+import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 
 export default function FestivalPage() {
   const events = getCollection('festival')
@@ -22,13 +24,15 @@ export default function FestivalPage() {
       <section className="relative overflow-hidden bg-gradient-to-br from-wine via-terracotta-500 to-gold-500 py-20 text-center text-cream-light">
         <div className="absolute inset-0 section-watermark" aria-hidden />
         <div className="relative z-10 mx-auto max-w-content px-4">
-          <SectionHeader
-            kicker="FESTIVAL"
-            title="Festival Pesona Sambelia"
-            intro="Peresean, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia."
-            tone="gold"
-            centered
-          />
+          <FadeIn>
+            <SectionHeader
+              kicker="FESTIVAL"
+              title="Festival Pesona Sambelia"
+              intro="Peresean, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia."
+              tone="gold"
+              centered
+            />
+          </FadeIn>
         </div>
       </section>
 
@@ -40,7 +44,11 @@ export default function FestivalPage() {
         {events.length === 0 ? (
           <EmptyState message="Belum ada data festival." />
         ) : (
-          <FestivalTimeline events={events} />
+          <StaggerContainer stagger={0.1}>
+            <StaggerItem>
+              <FestivalTimeline events={events} />
+            </StaggerItem>
+          </StaggerContainer>
         )}
       </section>
 

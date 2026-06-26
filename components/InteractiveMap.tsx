@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useMemo } from 'react'
-import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet'
+import { useState, useMemo, useEffect } from 'react'
+import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from 'react-leaflet'
+import { LatLngBoundsExpression } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import Link from 'next/link'
 import { LAYER_COLORS, type MapLayer, type MapMarker } from '@/lib/map-types'
@@ -15,6 +16,17 @@ const LAYER_LABELS: Record<MapLayer, string> = {
   umkm: 'UMKM',
 }
 
+const DEFAULT_CENTER: [number, number] = [-8.355, 116.845]
+
+function FitBounds({ bounds }: { bounds: LatLngBoundsExpression | null }) {
+  const map = useMap()
+  useEffect(() => {
+    if (!bounds) return
+    map.fitBounds(bounds, { padding: [40, 40], maxZoom: 15 })
+  }, [bounds, map])
+  return null
+}
+
 export function InteractiveMap({ markers }: { markers: MapMarker[] }) {
   const [enabled, setEnabled] = useState<Record<MapLayer, boolean>>({
     pariwisata: true,
@@ -25,6 +37,11 @@ export function InteractiveMap({ markers }: { markers: MapMarker[] }) {
 
   const visible = useMemo(() => markers.filter((m) => enabled[m.layer]), [markers, enabled])
 
+  const bounds = useMemo<LatLngBoundsExpression | null>(() => {
+    if (visible.length === 0) return null
+    return visible.map((m) => [m.lat, m.lng]) as LatLngBoundsExpression
+  }, [visible])
+
   const toggle = (layer: MapLayer) => {
     setEnabled((prev) => ({ ...prev, [layer]: !prev[layer] }))
   }
@@ -32,11 +49,12 @@ export function InteractiveMap({ markers }: { markers: MapMarker[] }) {
   return (
     <div className="grid gap-4 md:grid-cols-[1fr,200px]">
       <MapContainer
-        center={[-8.36, 116.85]}
-        zoom={12}
+        center={DEFAULT_CENTER}
+        zoom={14}
         scrollWheelZoom={false}
         className="h-[60vh] w-full rounded-2xl"
       >
+        <FitBounds bounds={bounds} />
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="© OpenStreetMap" />
         {visible.map((m) => (
           <CircleMarker

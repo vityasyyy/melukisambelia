@@ -6,7 +6,7 @@ export function Footer() {
   const s = getSettings()
   return (
     <footer className="relative mt-20 overflow-hidden bg-wine text-cream-light">
-      <div className="absolute inset-0 section-watermark" aria-hidden />
+      <div className="absolute inset-0 -z-10 section-watermark" aria-hidden />
       <div
         className="relative h-2 bg-gradient-to-r from-terracotta-500 via-gold-500 to-water-900"
         aria-hidden
@@ -38,6 +38,12 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/pariwisata" className="transition-colors hover:text-goldSoft">Pariwisata</Link>
+              </li>
+              <li>
+                <Link href="/umkm" className="transition-colors hover:text-goldSoft">UMKM</Link>
+              </li>
+              <li>
+                <Link href="/mitra" className="transition-colors hover:text-goldSoft">Mitra</Link>
               </li>
               <li>
                 <Link href="/cerita" className="transition-colors hover:text-goldSoft">Cerita</Link>

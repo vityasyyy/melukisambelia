@@ -51,7 +51,7 @@ export default function PariwisataDetailPage({ params }: { params: { slug: strin
 
       <GalleryStrip images={item.gallery} altPrefix={item.title} />
 
-      <div className="mt-8">
+      <div className="relative isolate mt-8">
         <MiniMapClient lat={item.lat} lng={item.lng} title={item.title} />
       </div>
 
