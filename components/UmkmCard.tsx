@@ -1,9 +1,10 @@
 import Image from 'next/image'
+import { Info } from 'lucide-react'
 import type { Umkm } from '@/lib/schemas'
 
-export function UmkmCard({ item }: { item: Umkm & { slug: string } }) {
+export function UmkmCard({ item, onDetailClick }: { item: Umkm & { slug: string }; onDetailClick?: () => void }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all hover:-translate-y-1 hover:shadow-terracotta-hover">
+    <div className="group relative overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all hover:-translate-y-1 hover:shadow-terracotta-hover">
       <div className="relative aspect-video">
         <Image
           src={item.cover}
@@ -22,6 +23,19 @@ export function UmkmCard({ item }: { item: Umkm & { slug: string } }) {
         </div>
         {item.contact && <p className="mt-2 text-xs text-ink/60">{item.contact}</p>}
       </div>
+      {onDetailClick && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation()
+            onDetailClick()
+          }}
+          className="absolute right-3 top-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-cream-light/90 text-brown-900 opacity-0 shadow-sm transition-opacity hover:bg-cream-light group-hover:opacity-100 focus:opacity-100"
+          aria-label={`Lihat detail ${item.name}`}
+        >
+          <Info className="h-4 w-4" />
+        </button>
+      )}
     </div>
   )
 }

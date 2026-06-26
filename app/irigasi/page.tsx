@@ -1,9 +1,14 @@
+'use client'
+
+import { useState } from 'react'
 import { getCollection } from '@/lib/content'
 import { SectionHeader } from '@/components/SectionHeader'
 import { StatCard } from '@/components/StatCard'
 import { EmptyState } from '@/components/EmptyState'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { MotifDivider } from '@/components/MotifDivider'
+import { DetailModal, type DetailModalData } from '@/components/DetailModal'
+import { petaLink } from '@/lib/links'
 
 export default function IrigasiPage() {
   const items = getCollection('irigasi')
@@ -12,6 +17,29 @@ export default function IrigasiPage() {
     acc[i.condition] = (acc[i.condition] ?? 0) + 1
     return acc
   }, {})
+
+  const [modalData, setModalData] = useState<DetailModalData | null>(null)
+  const [open, setOpen] = useState(false)
+
+  const openModal = (item: (typeof items)[number]) => {
+    setModalData({
+      title: item.name,
+      image: item.cover,
+      description: `${item.saluranType} · ${item.village} · ${item.condition}`,
+      body: `Panjang: ${item.lengthM} m. Status aliran: ${item.flowStatus}.\n\n${item.body}`,
+      href: petaLink({ tab: 'irigasi' }),
+      linkLabel: 'Buka peta irigasi →',
+      lat: item.lat,
+      lng: item.lng,
+      mapTitle: item.name,
+      chips: [
+        { label: item.saluranType, color: '#99BA57' },
+        { label: item.village, color: '#14A8E1' },
+        { label: item.condition, color: item.condition === 'Baik' ? '#667F37' : '#E3795C' },
+      ],
+    })
+    setOpen(true)
+  }
 
   return (
     <div className="mx-auto max-w-content px-4 py-16">
@@ -41,12 +69,20 @@ export default function IrigasiPage() {
                 <AccordionContent>
                   <p className="text-sm text-ink/70">Panjang: {i.lengthM} m · Status aliran: {i.flowStatus}</p>
                   <p className="mt-2 text-sm">{i.body}</p>
+                  <button
+                    type="button"
+                    onClick={() => openModal(i)}
+                    className="mt-3 text-sm font-medium text-water-900 hover:text-water-500"
+                  >
+                    Lihat detail →
+                  </button>
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </div>
       )}
+      <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
       <MotifDivider className="mt-12" />
     </div>
   )

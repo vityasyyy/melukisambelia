@@ -6,6 +6,7 @@ import { SectionHeader } from '@/components/SectionHeader'
 import { GalleryStrip } from '@/components/GalleryStrip'
 import { MiniMapClient } from '@/components/MiniMapClient'
 import { MotifDivider } from '@/components/MotifDivider'
+import { petaLink } from '@/lib/links'
 
 export function generateStaticParams() {
   return getCollection('pariwisata').map((p) => ({ slug: p.slug }))
@@ -54,6 +55,13 @@ export default function PariwisataDetailPage({ params }: { params: { slug: strin
       <div className="relative isolate mt-8">
         <MiniMapClient lat={item.lat} lng={item.lng} title={item.title} />
       </div>
+
+      <Link
+        href={petaLink({ layer: 'pariwisata', lat: item.lat, lng: item.lng })}
+        className="mt-4 inline-block text-sm font-medium text-water-900 hover:text-water-500"
+      >
+        Lihat di peta →
+      </Link>
 
       <MotifDivider className="mt-12" />
     </article>
