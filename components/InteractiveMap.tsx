@@ -1,10 +1,11 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, Suspense } from 'react'
 import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from 'react-leaflet'
 import { LatLngBoundsExpression } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { LAYER_COLORS, type MapLayer, type MapMarker } from '@/lib/map-types'
 import { MapFilterChips } from './MapFilterChips'
 
@@ -27,12 +28,29 @@ function FitBounds({ bounds }: { bounds: LatLngBoundsExpression | null }) {
   return null
 }
 
-export function InteractiveMap({ markers }: { markers: MapMarker[] }) {
-  const [enabled, setEnabled] = useState<Record<MapLayer, boolean>>({
-    pariwisata: true,
-    irigasi: true,
-    kesehatan: true,
-    umkm: true,
+function QueryView() {
+  const map = useMap()
+  const search = useSearchParams()
+  useEffect(() => {
+    const lat = Number(search.get('lat'))
+    const lng = Number(search.get('lng'))
+    if (!Number.isNaN(lat) && !Number.isNaN(lng)) {
+      map.setView([lat, lng], 16)
+    }
+  }, [search, map])
+  return null
+}
+
+function MapContents({ markers }: { markers: MapMarker[] }) {
+  const [enabled, setEnabled] = useState<Record<MapLayer, boolean>>(() => {
+    if (typeof window === 'undefined') {
+      return { pariwisata: true, irigasi: true, kesehatan: true, umkm: true }
+    }
+    const layer = new URLSearchParams(window.location.search).get('layer') as MapLayer | null
+    if (layer && ALL_LAYERS.includes(layer)) {
+      return { pariwisata: false, irigasi: false, kesehatan: false, umkm: false, [layer]: true }
+    }
+    return { pariwisata: true, irigasi: true, kesehatan: true, umkm: true }
   })
 
   const visible = useMemo(() => markers.filter((m) => enabled[m.layer]), [markers, enabled])
@@ -55,6 +73,7 @@ export function InteractiveMap({ markers }: { markers: MapMarker[] }) {
         className="h-[60vh] w-full rounded-2xl"
       >
         <FitBounds bounds={bounds} />
+        <QueryView />
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="© OpenStreetMap" />
         {visible.map((m) => (
           <CircleMarker
@@ -94,5 +113,13 @@ export function InteractiveMap({ markers }: { markers: MapMarker[] }) {
         {visible.length === 0 && <p className="text-xs text-ink/50">Tidak ada titik pada lapisan aktif.</p>}
       </aside>
     </div>
+  )
+}
+
+export function InteractiveMap({ markers }: { markers: MapMarker[] }) {
+  return (
+    <Suspense fallback={<div className="h-[60vh] w-full rounded-2xl bg-gold-100/40" />}>
+      <MapContents markers={markers} />
+    </Suspense>
   )
 }

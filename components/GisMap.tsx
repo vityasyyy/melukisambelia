@@ -1,24 +1,14 @@
 'use client'
+
 import { useEffect, useState } from 'react'
 import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet'
 import L from 'leaflet'
 import type { GeoJsonObject } from 'geojson'
 import 'leaflet/dist/leaflet.css'
 import Image from 'next/image'
+import type { GisFile } from '@/lib/gis-manifest'
 
-type GisFile = { type: 'geojson'; name: string; url: string } | { type: 'image'; name: string; url: string } | { type: 'pdf'; name: string; url: string }
-
-type ManifestItem = { type: 'geojson' | 'image' | 'pdf'; name: string; url: string }
-
-const GIS_DIR_MANIFEST = '/gis/manifest.json'
 const DEFAULT_CENTER: [number, number] = [-8.355, 116.845]
-
-function classifyFile(name: string, url: string): GisFile {
-  const ext = url.split('.').pop()?.toLowerCase()
-  if (ext === 'geojson' || ext === 'json') return { type: 'geojson', name, url }
-  if (ext === 'pdf') return { type: 'pdf', name, url }
-  return { type: 'image', name, url }
-}
 
 function FitGeoJson({ data }: { data: GeoJsonObject | null }) {
   const map = useMap()
@@ -35,18 +25,19 @@ function FitGeoJson({ data }: { data: GeoJsonObject | null }) {
   return null
 }
 
-export function GisMap({ title, description, credit }: { title: string; description: string; credit: string }) {
-  const [files, setFiles] = useState<GisFile[]>([])
+export function GisMap({
+  title,
+  description,
+  credit,
+  files,
+}: {
+  title: string
+  description: string
+  credit: string
+  files: GisFile[]
+}) {
   const [active, setActive] = useState<string | null>(null)
   const [geojsonData, setGeojsonData] = useState<Record<string, GeoJsonObject>>({})
-
-  useEffect(() => {
-    fetch(GIS_DIR_MANIFEST)
-      .then((r) => (r.ok ? r.json() : []))
-      .then((items: ManifestItem[]) => items.map((i) => classifyFile(i.name, i.url)))
-      .then(setFiles)
-      .catch(() => setFiles([]))
-  }, [])
 
   const activeFile = files.find((f) => f.name === active) ?? files[0] ?? null
 
@@ -69,7 +60,7 @@ export function GisMap({ title, description, credit }: { title: string; descript
 
       {files.length === 0 ? (
         <p className="rounded-2xl border border-dashed border-tan-700/40 p-8 text-center text-ink/60">
-          Peta GIS tim belum tersedia. Letakkan file GeoJSON atau gambar di folder <code>public/gis/</code>.
+          Peta GIS tim belum tersedia. Letakkan file GeoJSON atau gambar di folder <code>public/gis/umum/</code>.
         </p>
       ) : (
         <div className="grid md:grid-cols-[200px,1fr] gap-4">
