@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getCollection, getEntry } from '@/lib/content'
@@ -7,6 +8,16 @@ import { MotifDivider } from '@/components/MotifDivider'
 
 export function generateStaticParams() {
   return getCollection('cerita').map((c) => ({ slug: c.slug }))
+}
+
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const item = getEntry('cerita', params.slug)
+  if (!item) return {}
+  return {
+    title: item.title,
+    description: item.excerpt,
+    openGraph: { images: [item.cover] },
+  }
 }
 
 export default function CeritaDetailPage({ params }: { params: { slug: string } }) {

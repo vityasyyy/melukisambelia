@@ -1,9 +1,15 @@
+import type { Metadata } from 'next'
 import { getSettings } from '@/lib/settings'
 import { SectionHeader } from '@/components/SectionHeader'
 import { StatCard } from '@/components/StatCard'
 import { MotifDivider } from '@/components/MotifDivider'
 import { GradientText } from '@/components/GradientText'
 import Image from 'next/image'
+
+export const metadata: Metadata = {
+  title: 'Tentang Sambelia',
+  description: 'Profil Kecamatan Sambelia, Kabupaten Lombok Timur: geografi, demografi, desa binaan, dan fokus program Melukis Sambelia.',
+}
 
 export default function TentangSambeliaPage() {
   const s = getSettings()

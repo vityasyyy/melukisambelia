@@ -1,8 +1,14 @@
+import type { Metadata } from 'next'
 import { getMapMarkers } from '@/lib/map'
 import { getGisMap } from '@/lib/settings'
 import { getGisManifest } from '@/lib/gis'
 import { SectionHeader } from '@/components/SectionHeader'
 import { MapPanelClient } from '@/components/MapPanelClient'
+
+export const metadata: Metadata = {
+  title: 'Peta Sambelia',
+  description: 'Peta interaktif wisata, irigasi, kesehatan, UMKM, dan peta tematik air, vegetasi, erosi, serta blue carbon Sambelia.',
+}
 
 export default function PetaPage() {
   const markers = getMapMarkers()

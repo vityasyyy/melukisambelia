@@ -1,8 +1,14 @@
+import type { Metadata } from 'next'
 import { getCollection } from '@/lib/content'
 import { SectionHeader } from '@/components/SectionHeader'
 import { KegiatanRoadmap } from '@/components/KegiatanRoadmap'
 import { EmptyState } from '@/components/EmptyState'
 import { MotifDivider } from '@/components/MotifDivider'
+
+export const metadata: Metadata = {
+  title: 'Program Unggulan',
+  description: 'Roadmap kegiatan pemberdayaan Melukis Sambelia: ekowisata mangrove, desa wisata, program stunting, irigasi, dan ekonomi lokal.',
+}
 
 export default function KegiatanPage() {
   const items = getCollection('kegiatan')

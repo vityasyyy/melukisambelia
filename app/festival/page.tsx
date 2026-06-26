@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { getCollection } from '@/lib/content'
 import { FestivalTimeline } from '@/components/FestivalTimeline'
 import { EmptyState } from '@/components/EmptyState'
@@ -6,6 +7,11 @@ import { CountdownStrip } from '@/components/CountdownStrip'
 import { MotifDivider } from '@/components/MotifDivider'
 import { FadeIn } from '@/components/FadeIn'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
+
+export const metadata: Metadata = {
+  title: 'Festival Pesona Sambelia',
+  description: 'Jadwal dan informasi Festival Pesona Sambelia: Peresean, Pawai Dulangan, Gendang Beleq, dan warisan budaya Sasak lainnya.',
+}
 
 export default function FestivalPage() {
   const events = getCollection('festival')

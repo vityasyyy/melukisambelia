@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import { ChevronDown } from 'lucide-react'
 import { getSettings } from '@/lib/settings'
@@ -11,6 +12,11 @@ import { SponsorCta } from '@/components/SponsorCta'
 import { FadeIn } from '@/components/FadeIn'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { HeroAnimation } from '@/components/HeroAnimation'
+
+export const metadata: Metadata = {
+  title: 'Beranda',
+  description: 'Portal komunitas KKN-PPM UGM Melukis Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa binaan.',
+}
 
 export default function Beranda() {
   const s = getSettings()

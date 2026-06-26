@@ -1,8 +1,14 @@
+import type { Metadata } from 'next'
 import { getCollection } from '@/lib/content'
 import { SectionHeader } from '@/components/SectionHeader'
 import { DataCard } from '@/components/DataCard'
 import { EmptyState } from '@/components/EmptyState'
 import { MotifDivider } from '@/components/MotifDivider'
+
+export const metadata: Metadata = {
+  title: 'Cerita dari Sambelia',
+  description: 'Catatan lapangan, refleksi, dan kisah tim KKN-PPM UGM Melukis Sambelia dari Desa Sugian dan Labuhan Pandan.',
+}
 
 export default function CeritaPage() {
   const items = getCollection('cerita')

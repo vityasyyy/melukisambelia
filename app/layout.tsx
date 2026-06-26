@@ -37,7 +37,10 @@ const beautiqueCondensed = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'Melukis Sambelia — KKN-PPM UGM',
+  title: {
+    default: 'Melukis Sambelia — KKN-PPM UGM',
+    template: '%s — Melukis Sambelia',
+  },
   description: 'Pemberdayaan pariwisata berkelanjutan dan pengembangan kawasan agropolitan di Kecamatan Sambelia, Kabupaten Lombok Timur, NTB.',
   metadataBase: new URL('https://melukis-sambelia.vercel.app'),
   openGraph: {
