@@ -1,40 +1,11 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
 import { Info } from 'lucide-react'
 import type { Kegiatan } from '@/lib/schemas'
 import { StatusBadge } from '@/components/StatusBadge'
-import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 
-const CATEGORY_LINKS: Record<Kegiatan['category'], string> = {
-  Ekowisata: '/pariwisata',
-  Irigasi: '/irigasi',
-  Kesehatan: '/kesehatan',
-  Pariwisata: '/pariwisata',
-  Ekonomi: '/umkm',
-}
-
-export function KegiatanRoadmap({ items }: { items: (Kegiatan & { slug: string })[] }) {
-  const [modalData, setModalData] = useState<DetailModalData | null>(null)
-  const [open, setOpen] = useState(false)
-
-  const openModal = (item: (typeof items)[number]) => {
-    setModalData({
-      title: item.title,
-      image: item.cover,
-      description: item.summary,
-      body: item.body,
-      href: CATEGORY_LINKS[item.category],
-      linkLabel: `Jelajahi ${item.category.toLowerCase()} →`,
-      chips: [
-        { label: item.category, color: '#742D1B' },
-        { label: item.status, color: item.status === 'Aktif' ? '#667F37' : item.status === 'Berkembang' ? '#F0AC6D' : '#14A8E1' },
-      ],
-    })
-    setOpen(true)
-  }
-
+export function KegiatanRoadmap({ items, onItemClick }: { items: (Kegiatan & { slug: string })[]; onItemClick?: (item: (typeof items)[number]) => void }) {
   return (
     <div className="space-y-6">
       {items.map((k) => (
@@ -70,17 +41,18 @@ export function KegiatanRoadmap({ items }: { items: (Kegiatan & { slug: string }
               </ul>
             )}
           </div>
-          <button
-            type="button"
-            onClick={() => openModal(k)}
-            className="absolute right-3 top-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-cream-light/90 text-brown-900 opacity-0 shadow-sm transition-opacity hover:bg-cream-light group-hover:opacity-100 focus:opacity-100"
-            aria-label={`Lihat detail ${k.title}`}
-          >
-            <Info className="h-4 w-4" />
-          </button>
+          {onItemClick && (
+            <button
+              type="button"
+              onClick={() => onItemClick(k)}
+              className="absolute right-3 top-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-cream-light/90 text-brown-900 opacity-0 shadow-sm transition-opacity hover:bg-cream-light group-hover:opacity-100 focus:opacity-100"
+              aria-label={`Lihat detail ${k.title}`}
+            >
+              <Info className="h-4 w-4" />
+            </button>
+          )}
         </div>
       ))}
-      <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
     </div>
   )
 }
