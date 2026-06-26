@@ -2,10 +2,11 @@
 title: Ekowisata Mangrove
 status: Persiapan
 category: Ekowisata
-cover: /images/content/kegiatan-ekowisata.svg
+cover: /images/content/scuba.png
 summary: Pengembangan wisata berbasis konservasi mangrove di kawasan pesisir Sambelia.
 body: Program ekowisata mangrove bertujuan mengembangkan potensi kawasan pesisir sebagai
-  destinasi wisata edukasi sambil melestarikan ekosistem mangrove.
+  destinasi wisata edukasi sambil melestarikan ekosistem mangrove. Pengunjung diajak menanam
+  mangrove, melihat biota pesisir, dan membeli produk olahan mangrove.
 milestones:
 - date: '2026-07-01'
   label: Survei awal kawasan mangrove

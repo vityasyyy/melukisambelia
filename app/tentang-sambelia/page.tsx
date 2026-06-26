@@ -16,8 +16,8 @@ export default function TentangSambeliaPage() {
   ]
 
   const desa = [
-    { name: 'Sugian', desc: 'Desa binaan dengan potensi wisata bahari dan pertanian.', image: '/images/content/pariwisata-desa.svg' },
-    { name: 'Labuhan Pandan', desc: 'Desa pesisir dengan wisata bahari dan budaya Sasak.', image: '/images/content/pariwisata-beach.svg' },
+    { name: 'Sugian', desc: 'Desa binaan dengan potensi wisata bahari, pertanian, dan kerajinan tangan khas Sasak.', image: '/images/content/sugian-group44.png' },
+    { name: 'Labuhan Pandan', desc: 'Desa pesisir dengan wisata bahari, budaya Sasak, dan ekowisata mangrove.', image: '/images/content/peopleplaying.png' },
   ]
 
   return (
@@ -61,7 +61,7 @@ export default function TentangSambeliaPage() {
             desa binaan program KKN-PPM UGM Melukis Sambelia.
           </p>
           <p className="mt-3 text-xs text-ink/40">
-            *Data geografi akan dilengkapi dari BPS dan sekdes.
+            Data geografi diperbarui berdasarkan informasi desa binaan.
           </p>
         </div>
       </section>

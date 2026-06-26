@@ -2,7 +2,7 @@
 title: Pengembangan Desa Wisata Sugian & Labuhan Pandan
 status: Berkembang
 category: Pariwisata
-cover: /images/content/kegiatan-program.svg
+cover: /images/content/sugian-group44.png
 summary: Pengembangan desa wisata di Desa Sugian dan Desa Labuhan Pandan dengan fokus
   pada homestay, kerajinan, dan wisata bahari.
 body: Program pengembangan desa wisata mendampingi masyarakat di kedua desa binaan

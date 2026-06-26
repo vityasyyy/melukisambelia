@@ -2,7 +2,7 @@
 title: Program Stunting Sambelia
 status: Aktif
 category: Kesehatan
-cover: /images/content/kegiatan-program.svg
+cover: /images/content/sugian-group43.png
 summary: Program penanganan stunting terintegrasi melalui posyandu, puskesmas, dan
   edukasi gizi keluarga.
 body: Program stunting bertujuan menurunkan angka stunting di Kecamatan Sambelia melalui
