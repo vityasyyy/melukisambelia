@@ -10,6 +10,13 @@ import type { GisFile, GisCategory } from '@/lib/gis-manifest'
 import { GIS_CATEGORY_LABELS } from '@/lib/gis-manifest'
 
 const THEME_TABS: GisCategory[] = ['umum', 'air', 'irigasi', 'vegetasi']
+const VALID_TABS = ['interaktif', ...THEME_TABS]
+
+function getInitialTab(fallback: string): string {
+  if (typeof window === 'undefined') return fallback
+  const tab = new URLSearchParams(window.location.search).get('tab')
+  return tab && VALID_TABS.includes(tab) ? tab : fallback
+}
 
 export function MapPanel({
   markers,
@@ -20,7 +27,7 @@ export function MapPanel({
   gis: { title: string; description: string; credit: string }
   gisFiles: GisFile[]
 }) {
-  const [activeTab, setActiveTab] = useState('interaktif')
+  const [activeTab, setActiveTab] = useState<string>(() => getInitialTab('interaktif'))
   const filesByCategory = (category: GisCategory) => gisFiles.filter((f) => f.category === category)
 
   return (
