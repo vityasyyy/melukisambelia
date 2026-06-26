@@ -120,3 +120,6 @@ test-results/
 
 # Raw design assets (processed copies live in public/images)
 assets/images/
+
+# Superpowers worktrees
+.worktrees/
