@@ -3,9 +3,9 @@ import path from 'path'
 import matter from 'gray-matter'
 import {
   pariwisataSchema, irigasiSchema, kesehatanSchema,
-  festivalSchema, ceritaSchema, umkmSchema,
+  festivalSchema, ceritaSchema, umkmSchema, airTanahSchema,
   type Pariwisata, type Irigasi, type Kesehatan,
-  type Festival, type Cerita, type Umkm,
+  type Festival, type Cerita, type Umkm, type AirTanah,
 } from '@/lib/schemas'
 
 const CONTENT_DIR = path.join(process.cwd(), 'content')
@@ -17,6 +17,7 @@ type SchemaMap = {
   festival: { schema: typeof festivalSchema; ext: string }
   cerita: { schema: typeof ceritaSchema; ext: string }
   umkm: { schema: typeof umkmSchema; ext: string }
+  airTanah: { schema: typeof airTanahSchema; ext: string }
 }
 
 const SCHEMAS: SchemaMap = {
@@ -26,6 +27,7 @@ const SCHEMAS: SchemaMap = {
   festival: { schema: festivalSchema, ext: 'md' },
   cerita: { schema: ceritaSchema, ext: 'mdx' },
   umkm: { schema: umkmSchema, ext: 'md' },
+  airTanah: { schema: airTanahSchema, ext: 'md' },
 }
 
 export type CollectionName = keyof SchemaMap
@@ -36,6 +38,7 @@ export type CollectionItem<C extends CollectionName> =
   C extends 'festival' ? Festival & { slug: string } :
   C extends 'cerita' ? Cerita & { slug: string } :
   C extends 'umkm' ? Umkm & { slug: string } :
+  C extends 'airTanah' ? AirTanah & { slug: string } :
   never
 
 export function getCollection<C extends CollectionName>(name: C): CollectionItem<C>[] {

@@ -106,3 +106,11 @@ export type Cerita = z.infer<typeof ceritaSchema>
 export type Umkm = z.infer<typeof umkmSchema>
 export type Settings = z.infer<typeof settingsSchema>
 export type GisMap = z.infer<typeof gisMapSchema>
+
+export const airTanahSchema = z.object({
+  title: z.string(),
+  description: z.string().default(''),
+  credit: z.string().default(''),
+})
+
+export type AirTanah = z.infer<typeof airTanahSchema>
