@@ -50,6 +50,13 @@ export const metadata: Metadata = {
     locale: 'id_ID',
     images: ['/og.png'],
   },
+  icons: {
+    icon: [
+      { url: '/images/design-system/favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/design-system/favicon-16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: '/images/design-system/apple-touch-icon.png',
+  },
 }
 
 export const viewport: Viewport = {
