@@ -81,13 +81,6 @@ export function Footer() {
                 height={48}
                 className="brightness-110"
               />
-              <Image
-                src="/images/design-system/logo_ugm_text.svg"
-                alt="UGM"
-                width={120}
-                height={48}
-                className="brightness-110"
-              />
             </div>
           </div>
         </div>

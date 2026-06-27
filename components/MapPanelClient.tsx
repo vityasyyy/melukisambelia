@@ -15,7 +15,7 @@ export function MapPanelClient({
 }: {
   markers: MapMarker[]
   gis: { title: string; description: string; credit: string }
-  gisFiles: GisFile[]
+  gisFiles?: GisFile[]
 }) {
-  return <MapPanel markers={markers} gis={gis} gisFiles={gisFiles} />
+  return <MapPanel markers={markers} gis={gis} gisFiles={gisFiles ?? []} />
 }

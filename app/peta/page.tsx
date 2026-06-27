@@ -22,7 +22,7 @@ export default function PetaPage() {
         intro="Jelajahi titik wisata, irigasi, kesehatan, UMKM, serta peta tematik air, irigasi, vegetasi, erosi, dan blue carbon."
         tone="water"
       />
-      <MapPanelClient markers={markers} gis={gis} gisFiles={manifest.files} />
+      <MapPanelClient markers={markers} gis={gis} gisFiles={manifest.files ?? []} />
     </div>
   )
 }

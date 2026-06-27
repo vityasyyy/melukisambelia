@@ -1,5 +1,5 @@
 ---
-heroImage: /images/content/hero-sambelia.png
+heroImage: /images/content/hero-sambelia.webp
 heroTagline: Pemberdayaan pariwisata berkelanjutan & pengembangan kawasan agropolitan di Sambelia, Lombok Timur
 stats:
   luas: "±125 km²"

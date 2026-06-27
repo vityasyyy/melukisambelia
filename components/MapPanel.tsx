@@ -21,11 +21,11 @@ function getInitialTab(fallback: string): string {
 export function MapPanel({
   markers,
   gis,
-  gisFiles,
+  gisFiles = [],
 }: {
   markers: MapMarker[]
   gis: { title: string; description: string; credit: string }
-  gisFiles: GisFile[]
+  gisFiles?: GisFile[]
 }) {
   const [activeTab, setActiveTab] = useState<string>(() => getInitialTab('interaktif'))
   const filesByCategory = (category: GisCategory) => gisFiles.filter((f) => f.category === category)

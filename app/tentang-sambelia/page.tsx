@@ -23,7 +23,7 @@ export default function TentangSambeliaPage() {
 
   const desa = [
     { name: 'Sugian', desc: 'Desa binaan dengan potensi wisata bahari, pertanian, dan kerajinan tangan khas Sasak.', image: '/images/content/sugian-group44.png' },
-    { name: 'Labuhan Pandan', desc: 'Desa pesisir dengan wisata bahari, budaya Sasak, dan ekowisata mangrove.', image: '/images/content/peopleplaying.png' },
+    { name: 'Labuhan Pandan', desc: 'Desa pesisir dengan wisata bahari, budaya Sasak, dan ekowisata mangrove.', image: '/images/content/labuanpandan.webp' },
   ]
 
   return (
