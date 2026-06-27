@@ -28,6 +28,8 @@ export default function Beranda() {
     { href: '/pariwisata', image: pariwisata[0]?.cover ?? '/images/content/pariwisata-marine.webp', title: 'Pariwisata', desc: 'Destinasi unggulan Sambelia.', accent: '#14A8E1' },
     { href: '/irigasi', image: irigasi[0]?.cover ?? '/images/content/irigasi-saluran.svg', title: 'Irigasi', desc: 'Data saluran irigasi.', accent: '#99BA57' },
     { href: '/kesehatan', image: kesehatan[0]?.cover ?? '/images/content/kesehatan-fasilitas.svg', title: 'Kesehatan', desc: 'Fasilitas & program kesehatan.', accent: '#667F37' },
+    { href: '/air-tanah', image: '/images/content/nelayan.jpg', title: 'Air & Tanah', desc: 'Data sumber daya air & tanah.', accent: '#3B82F6' },
+    { href: '/lingkungan', image: '/images/content/nelayan-landscape.jpg', title: 'Lingkungan', desc: 'Kelestarian lingkungan Sambelia.', accent: '#22C55E' },
     { href: '/festival', image: festival[0]?.cover ?? '/images/content/festival-pawai.webp', title: 'Festival Pesona', desc: 'Peresean, Pawai Dulangan, Gendang Beleq.', accent: '#E3795C' },
     { href: '/umkm', image: umkm[0]?.cover ?? '/images/content/culture-rilistema.webp', title: 'UMKM', desc: 'UMKM lokal Sambelia.', accent: '#F0AC6D' },
   ]

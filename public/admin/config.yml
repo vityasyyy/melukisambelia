@@ -110,6 +110,17 @@ collections:
       - { label: "Latitude", name: "lat", widget: "number", value_type: "float" }
       - { label: "Longitude", name: "lng", widget: "number", value_type: "float" }
 
+  - name: "airtanah"
+    label: "Air & Tanah"
+    files:
+      - label: "Data Air & Tanah"
+        name: "air_tanah"
+        file: "content/air-tanah/air-tanah.md"
+        fields:
+          - { label: "Judul", name: "title", widget: "string", default: "Air & Tanah" }
+          - { label: "Deskripsi", name: "description", widget: "text", required: false }
+          - { label: "Kredit", name: "credit", widget: "string", required: false }
+
   - name: "settings"
     label: "Pengaturan Situs"
     files:
