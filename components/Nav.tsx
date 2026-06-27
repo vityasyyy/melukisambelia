@@ -17,7 +17,6 @@ const NAV_LINKS = [
   { href: '/kesehatan', label: 'Kesehatan' },
   { href: '/umkm', label: 'UMKM' },
   { href: '/festival', label: 'Festival' },
-  { href: '/mitra', label: 'Mitra' },
   { href: '/cerita', label: 'Cerita' },
 ]
 

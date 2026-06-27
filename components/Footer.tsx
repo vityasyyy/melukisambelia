@@ -42,10 +42,7 @@ export function Footer() {
               <li>
                 <Link href="/umkm" className="transition-colors hover:text-goldSoft">UMKM</Link>
               </li>
-              <li>
-                <Link href="/mitra" className="transition-colors hover:text-goldSoft">Mitra</Link>
-              </li>
-              <li>
+<li>
                 <Link href="/cerita" className="transition-colors hover:text-goldSoft">Cerita</Link>
               </li>
             </ul>

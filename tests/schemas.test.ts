@@ -1,19 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import {
-  timSchema, pariwisataSchema, irigasiSchema, kesehatanSchema,
-  festivalSchema, kegiatanSchema, ceritaSchema, umkmSchema, mitraSchema,
+  pariwisataSchema, irigasiSchema, kesehatanSchema,
+  festivalSchema, ceritaSchema, umkmSchema,
   settingsSchema, gisMapSchema,
 } from '@/lib/schemas'
 
 describe('schemas validate good data', () => {
-  it('tim', () => {
-    const r = timSchema.safeParse({
-      name: 'Siti', role: 'Ketua Pelaksana', division: 'Koor',
-      photo: '/images/tim/siti.jpg', bio: 'Lulusan Sosiologi UGM.',
-      instagram: 'sitiii', order: 1,
-    })
-    expect(r.success).toBe(true)
-  })
   it('pariwisata with lat/lng', () => {
     const r = pariwisataSchema.safeParse({
       title: 'Pantai Berandangan', category: 'Pantai', village: 'Sugian',
@@ -31,14 +23,6 @@ describe('schemas validate good data', () => {
     })
     expect(r.success).toBe(true)
   })
-  it('kegiatan with milestones', () => {
-    const r = kegiatanSchema.safeParse({
-      title: 'Ekowisata Mangrove', status: 'Aktif', category: 'Ekowisata',
-      cover: '/images/kegiatan/mangrove.jpg', summary: 'Konservasi mangrove.',
-      body: 'Detail.', milestones: [{ date: '2026-07-01', label: 'Survei awal', done: true }],
-    })
-    expect(r.success).toBe(true)
-  })
   it('settings', () => {
     const r = settingsSchema.safeParse({
       heroImage: '/images/hero.jpg', heroTagline: 'Melukis Sambelia',
@@ -52,10 +36,6 @@ describe('schemas validate good data', () => {
 })
 
 describe('schemas reject bad data', () => {
-  it('tim rejects bad division', () => {
-    const r = timSchema.safeParse({ name: 'x', role: 'x', division: 'TidakAda', photo: '', bio: '', instagram: '', order: 1 })
-    expect(r.success).toBe(false)
-  })
   it('pariwisata rejects out-of-range lat', () => {
     const r = pariwisataSchema.safeParse({
       title: 'x', category: 'Pantai', village: 'Sugian', cover: '', gallery: [],

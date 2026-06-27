@@ -2,49 +2,40 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import {
-  timSchema, pariwisataSchema, irigasiSchema, kesehatanSchema,
-  festivalSchema, kegiatanSchema, ceritaSchema, umkmSchema, mitraSchema,
-  type Tim, type Pariwisata, type Irigasi, type Kesehatan,
-  type Festival, type Kegiatan, type Cerita, type Umkm, type Mitra,
+  pariwisataSchema, irigasiSchema, kesehatanSchema,
+  festivalSchema, ceritaSchema, umkmSchema,
+  type Pariwisata, type Irigasi, type Kesehatan,
+  type Festival, type Cerita, type Umkm,
 } from '@/lib/schemas'
 
 const CONTENT_DIR = path.join(process.cwd(), 'content')
 
 type SchemaMap = {
-  tim: { schema: typeof timSchema; ext: string }
   pariwisata: { schema: typeof pariwisataSchema; ext: string }
   irigasi: { schema: typeof irigasiSchema; ext: string }
   kesehatan: { schema: typeof kesehatanSchema; ext: string }
   festival: { schema: typeof festivalSchema; ext: string }
-  kegiatan: { schema: typeof kegiatanSchema; ext: string }
   cerita: { schema: typeof ceritaSchema; ext: string }
   umkm: { schema: typeof umkmSchema; ext: string }
-  mitra: { schema: typeof mitraSchema; ext: string }
 }
 
 const SCHEMAS: SchemaMap = {
-  tim: { schema: timSchema, ext: 'md' },
   pariwisata: { schema: pariwisataSchema, ext: 'mdx' },
   irigasi: { schema: irigasiSchema, ext: 'md' },
   kesehatan: { schema: kesehatanSchema, ext: 'md' },
   festival: { schema: festivalSchema, ext: 'md' },
-  kegiatan: { schema: kegiatanSchema, ext: 'md' },
   cerita: { schema: ceritaSchema, ext: 'mdx' },
   umkm: { schema: umkmSchema, ext: 'md' },
-  mitra: { schema: mitraSchema, ext: 'md' },
 }
 
 export type CollectionName = keyof SchemaMap
 export type CollectionItem<C extends CollectionName> =
-  C extends 'tim' ? Tim & { slug: string } :
   C extends 'pariwisata' ? Pariwisata & { slug: string } :
   C extends 'irigasi' ? Irigasi & { slug: string } :
   C extends 'kesehatan' ? Kesehatan & { slug: string } :
   C extends 'festival' ? Festival & { slug: string } :
-  C extends 'kegiatan' ? Kegiatan & { slug: string } :
   C extends 'cerita' ? Cerita & { slug: string } :
   C extends 'umkm' ? Umkm & { slug: string } :
-  C extends 'mitra' ? Mitra & { slug: string } :
   never
 
 export function getCollection<C extends CollectionName>(name: C): CollectionItem<C>[] {

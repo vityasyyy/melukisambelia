@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import { ChevronDown } from 'lucide-react'
 import { getSettings } from '@/lib/settings'
 import { getCollection } from '@/lib/content'
@@ -8,7 +7,6 @@ import { DataCard } from '@/components/DataCard'
 import { SectionHeader } from '@/components/SectionHeader'
 import { MotifDivider } from '@/components/MotifDivider'
 import { KilasSambelia } from '@/components/KilasSambelia'
-import { SponsorCta } from '@/components/SponsorCta'
 import { FadeIn } from '@/components/FadeIn'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { HeroAnimation } from '@/components/HeroAnimation'
@@ -24,16 +22,13 @@ export default function Beranda() {
   const irigasi = getCollection('irigasi').slice(0, 1)
   const kesehatan = getCollection('kesehatan').slice(0, 1)
   const festival = getCollection('festival').slice(0, 1)
-  const kegiatan = getCollection('kegiatan').slice(0, 1)
   const umkm = getCollection('umkm').slice(0, 1)
-  const mitra = getCollection('mitra').filter((m) => m.tier === 'Utama')
 
   const previews = [
     { href: '/pariwisata', image: pariwisata[0]?.cover ?? '/images/content/pariwisata-marine.webp', title: 'Pariwisata', desc: 'Destinasi unggulan Sambelia.', accent: '#14A8E1' },
     { href: '/irigasi', image: irigasi[0]?.cover ?? '/images/content/irigasi-saluran.svg', title: 'Irigasi', desc: 'Data saluran irigasi.', accent: '#99BA57' },
     { href: '/kesehatan', image: kesehatan[0]?.cover ?? '/images/content/kesehatan-fasilitas.svg', title: 'Kesehatan', desc: 'Fasilitas & program kesehatan.', accent: '#667F37' },
     { href: '/festival', image: festival[0]?.cover ?? '/images/content/festival-pawai.webp', title: 'Festival Pesona', desc: 'Peresean, Pawai Dulangan, Gendang Beleq.', accent: '#E3795C' },
-    { href: '/kegiatan', image: kegiatan[0]?.cover ?? '/images/content/kegiatan-program.svg', title: 'Kegiatan', desc: 'Program unggulan tim.', accent: '#742D1B' },
     { href: '/umkm', image: umkm[0]?.cover ?? '/images/content/culture-rilistema.webp', title: 'UMKM', desc: 'UMKM lokal Sambelia.', accent: '#F0AC6D' },
   ]
 
@@ -88,27 +83,6 @@ export default function Beranda() {
       </section>
 
       <KilasSambelia />
-
-      <SponsorCta />
-
-      <section className="mx-auto max-w-content px-4 py-12">
-        <FadeIn>
-          <SectionHeader kicker="04 — MITRA" title="Bersama Mitra Kami" tone="olive" centered />
-        </FadeIn>
-        <StaggerContainer stagger={0.08} className="flex flex-wrap items-center justify-center gap-8">
-          {mitra.map((m) => (
-            <StaggerItem key={m.slug}>
-              <Image
-                src={m.logo}
-                alt={m.name}
-                width={140}
-                height={60}
-                className="opacity-80 grayscale transition-all hover:opacity-100 hover:grayscale-0"
-              />
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
-      </section>
     </>
   )
 }
