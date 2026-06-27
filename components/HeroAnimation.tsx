@@ -23,12 +23,12 @@ export function HeroAnimation({ src, tagline }: { src: string; tagline: string }
   return (
     <>
       <motion.div
-        initial={reduce ? undefined : { scale: 1.08, opacity: 0 }}
+        initial={reduce ? undefined : { scale: 1.03, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.4, ease: 'easeOut' }}
         className="absolute inset-0"
       >
-        <Image src={src} alt="Sambelia" fill className="object-cover object-top" priority sizes="100vw" />
+        <Image src={src} alt="Sambelia" fill className="object-cover object-[center_60%]" priority sizes="100vw" />
       </motion.div>
 
       <div className="relative z-10 flex max-w-4xl flex-col items-center px-6 py-24">
