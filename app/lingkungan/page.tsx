@@ -39,12 +39,14 @@ export default function LingkunganPage() {
       <MotifDivider className="my-4" />
 
       <section className="mx-auto max-w-content px-4 py-16 scroll-mt-20">
-        <SectionHeader
-          kicker="LINGKUNGAN"
-          title="Vegetasi, Erosi & Blue Carbon"
-          intro="Peta tematik lingkungan dari cluster GIS: indeks vegetasi (NDVI), tingkat erosi, dan sebaran blue carbon di Kecamatan Sambelia."
-          tone="green"
-        />
+        <FadeIn>
+          <SectionHeader
+            kicker="LINGKUNGAN"
+            title="Vegetasi, Erosi & Blue Carbon"
+            intro="Peta tematik lingkungan dari cluster GIS: indeks vegetasi (NDVI), tingkat erosi, dan sebaran blue carbon di Kecamatan Sambelia."
+            tone="green"
+          />
+        </FadeIn>
 
         <FadeIn>
           {vegetasiFiles.length > 0 ? (

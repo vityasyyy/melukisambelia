@@ -6,6 +6,7 @@ import { StatCard } from '@/components/StatCard'
 import { EmptyState } from '@/components/EmptyState'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { MotifDivider } from '@/components/MotifDivider'
+import { FadeIn } from '@/components/FadeIn'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 import { petaLink } from '@/lib/links'
 import type { Irigasi } from '@/lib/schemas'
@@ -36,12 +37,14 @@ export function IrigasiListClient({ items, stats }: { items: (Irigasi & { slug: 
 
   return (
     <div className="mx-auto max-w-content px-4 py-16">
-      <SectionHeader
-        kicker="IRIGASI"
-        title="Data Saluran Irigasi"
-        intro="Saluran irigasi di Kecamatan Sambelia."
-        tone="green"
-      />
+      <FadeIn>
+        <SectionHeader
+          kicker="IRIGASI"
+          title="Data Saluran Irigasi"
+          intro="Saluran irigasi di Kecamatan Sambelia."
+          tone="green"
+        />
+      </FadeIn>
       <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
         <StatCard label="Total Saluran" value={String(stats.total)} />
         <StatCard label="Total Panjang" value={String(stats.totalLength)} unit="m" />

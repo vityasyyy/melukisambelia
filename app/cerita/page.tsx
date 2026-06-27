@@ -4,6 +4,7 @@ import { SectionHeader } from '@/components/SectionHeader'
 import { DataCard } from '@/components/DataCard'
 import { EmptyState } from '@/components/EmptyState'
 import { MotifDivider } from '@/components/MotifDivider'
+import { FadeIn } from '@/components/FadeIn'
 
 export const metadata: Metadata = {
   title: 'Cerita dari Sambelia',
@@ -14,12 +15,14 @@ export default function CeritaPage() {
   const items = getCollection('cerita')
   return (
     <div className="mx-auto max-w-content px-4 py-16">
-      <SectionHeader
-        kicker="CERITA"
-        title="Cerita dari Sambelia"
-        intro="Catatan lapangan tim Melukis Sambelia."
-        tone="brown"
-      />
+      <FadeIn>
+        <SectionHeader
+          kicker="CERITA"
+          title="Cerita dari Sambelia"
+          intro="Catatan lapangan tim Melukis Sambelia."
+          tone="brown"
+        />
+      </FadeIn>
       {items.length === 0 ? (
         <EmptyState message="Belum ada cerita. Tim akan menulis segera." />
       ) : (

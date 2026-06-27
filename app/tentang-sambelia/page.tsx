@@ -4,6 +4,7 @@ import { SectionHeader } from '@/components/SectionHeader'
 import { StatCard } from '@/components/StatCard'
 import { MotifDivider } from '@/components/MotifDivider'
 import { GradientText } from '@/components/GradientText'
+import { FadeIn } from '@/components/FadeIn'
 import Image from 'next/image'
 
 export const metadata: Metadata = {
@@ -47,12 +48,14 @@ export default function TentangSambeliaPage() {
       </section>
 
       <section className="mx-auto max-w-content px-4 py-16 scroll-mt-20">
-        <SectionHeader
-          kicker="01 — GEOGRAFI"
-          title="Geografi & Demografi"
-          intro="Letak, luas, dan penduduk Kecamatan Sambelia."
-          tone="green"
-        />
+        <FadeIn>
+          <SectionHeader
+            kicker="01 — GEOGRAFI"
+            title="Geografi & Demografi"
+            intro="Letak, luas, dan penduduk Kecamatan Sambelia."
+            tone="green"
+          />
+        </FadeIn>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {geography.map((g) => (
             <StatCard key={g.label} label={g.label} value={g.value} />
@@ -75,12 +78,14 @@ export default function TentangSambeliaPage() {
       <MotifDivider className="my-4" />
 
       <section className="mx-auto max-w-content px-4 py-12 scroll-mt-20">
-        <SectionHeader
-          kicker="02 — DESA BINAAN"
-          title="Desa Binaan"
-          intro="Desa-desa yang menjadi fokus program Melukis Sambelia."
-          tone="water"
-        />
+        <FadeIn>
+          <SectionHeader
+            kicker="02 — DESA BINAAN"
+            title="Desa Binaan"
+            intro="Desa-desa yang menjadi fokus program Melukis Sambelia."
+            tone="water"
+          />
+        </FadeIn>
         <div className="grid gap-6 md:grid-cols-2">
           {desa.map((d) => (
             <div key={d.name} className="overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all hover:-translate-y-1 hover:shadow-terracotta-hover">
@@ -105,12 +110,14 @@ export default function TentangSambeliaPage() {
       <MotifDivider className="my-4" />
 
       <section className="mx-auto max-w-content px-4 py-12 scroll-mt-20">
-        <SectionHeader
-          kicker="03 — POTENSI DESA"
-          title="Potensi Desa"
-          intro="Potensi unggulan Kecamatan Sambelia: wisata bahari, pertanian, dan kerajinan khas Sasak."
-          tone="terracotta"
-        />
+        <FadeIn>
+          <SectionHeader
+            kicker="03 — POTENSI DESA"
+            title="Potensi Desa"
+            intro="Potensi unggulan Kecamatan Sambelia: wisata bahari, pertanian, dan kerajinan khas Sasak."
+            tone="terracotta"
+          />
+        </FadeIn>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-2xl border border-tan-700/20 bg-cream-warm/30 p-6 shadow-terracotta">
             <h3 className="font-semibold text-lg text-brown-900">Pariwisata Bahari & Budaya</h3>

@@ -6,6 +6,7 @@ import { StatCard } from '@/components/StatCard'
 import { EmptyState } from '@/components/EmptyState'
 import { DataCard } from '@/components/DataCard'
 import { MotifDivider } from '@/components/MotifDivider'
+import { FadeIn } from '@/components/FadeIn'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 import { petaLink } from '@/lib/links'
 import type { Kesehatan } from '@/lib/schemas'
@@ -38,12 +39,14 @@ export function KesehatanListClient({ items, stats }: { items: (Kesehatan & { sl
 
   return (
     <div className="mx-auto max-w-content px-4 py-16">
-      <SectionHeader
-        kicker="KESEHATAN"
-        title="Fasilitas & Program Kesehatan"
-        intro="Posyandu, puskesmas, dan program stunting di Sambelia."
-        tone="olive"
-      />
+      <FadeIn>
+        <SectionHeader
+          kicker="KESEHATAN"
+          title="Fasilitas & Program Kesehatan"
+          intro="Posyandu, puskesmas, dan program stunting di Sambelia."
+          tone="olive"
+        />
+      </FadeIn>
       <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
         <StatCard label="Posyandu" value={String(stats.posyandu)} />
         <StatCard label="Puskesmas" value={String(stats.puskesmas)} />

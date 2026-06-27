@@ -5,6 +5,7 @@ import { SectionHeader } from '@/components/SectionHeader'
 import { DataCard } from '@/components/DataCard'
 import { EmptyState } from '@/components/EmptyState'
 import { MotifDivider } from '@/components/MotifDivider'
+import { FadeIn } from '@/components/FadeIn'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 import type { Pariwisata } from '@/lib/schemas'
 
@@ -34,12 +35,14 @@ export function PariwisataListClient({ items }: { items: (Pariwisata & { slug: s
 
   return (
     <div className="mx-auto max-w-content px-4 py-16">
-      <SectionHeader
-        kicker="PARIWISATA"
-        title="Potensi Wisata Sambelia"
-        intro="Destinasi unggulan di Desa Sugian dan Desa Labuhan Pandan."
-        tone="water"
-      />
+      <FadeIn>
+        <SectionHeader
+          kicker="PARIWISATA"
+          title="Potensi Wisata Sambelia"
+          intro="Destinasi unggulan di Desa Sugian dan Desa Labuhan Pandan."
+          tone="water"
+        />
+      </FadeIn>
       {items.length === 0 ? (
         <EmptyState message="Belum ada data wisata. Tim akan menambahkan segera." />
       ) : (

@@ -20,7 +20,7 @@ export function DataCard({
   onDetailClick?: () => void
 }) {
   return (
-    <div className="group relative block rounded-2xl border border-tan-700/20 bg-cream-beige/50 overflow-hidden shadow-terracotta transition-all hover:-translate-y-1 hover:shadow-terracotta-hover">
+    <div className="group relative block rounded-2xl border border-tan-700/20 bg-cream-beige/50 overflow-hidden shadow-terracotta transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:-translate-y-1 hover:shadow-lg hover:shadow-terracotta/20">
       <Link href={href} className="block">
         <div className="relative aspect-video overflow-hidden">
           <div className="absolute inset-x-0 top-0 h-1 z-10" style={{ backgroundColor: accent }} />

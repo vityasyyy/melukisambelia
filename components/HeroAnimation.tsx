@@ -2,11 +2,13 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { GradientText } from './GradientText'
 
 export function HeroAnimation({ src, tagline }: { src: string; tagline: string }) {
   const reduce = useReducedMotion()
+  const { scrollY } = useScroll()
+  const heroY = useTransform(scrollY, [0, 600], reduce ? [0, 0] : [0, 150])
 
   const container = {
     hidden: {},
@@ -27,6 +29,7 @@ export function HeroAnimation({ src, tagline }: { src: string; tagline: string }
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.4, ease: 'easeOut' }}
         className="absolute inset-0"
+        style={{ y: heroY }}
       >
         <Image src={src} alt="Sambelia" fill className="object-cover object-[center_60%]" priority sizes="100vw" />
       </motion.div>

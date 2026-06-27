@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Festival } from '@/lib/schemas'
 
 function pad(n: number) {
@@ -17,6 +18,7 @@ function getNextEvent(festivals: Festival[]) {
 }
 
 export function CountdownStrip({ festivals }: { festivals: Festival[] }) {
+  const reduce = useReducedMotion()
   const next = useMemo(() => getNextEvent(festivals), [festivals])
   const [left, setLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
 
@@ -54,7 +56,13 @@ export function CountdownStrip({ festivals }: { festivals: Festival[] }) {
             { label: 'Detik', value: left.seconds },
           ].map((u) => (
             <div key={u.label} className="text-center">
-              <div className="font-beautique text-3xl sm:text-4xl text-brown-900">{pad(u.value)}</div>
+              <motion.div
+                className="font-beautique text-3xl sm:text-4xl text-brown-900"
+                animate={reduce ? undefined : { scale: [1, 1.02, 1] }}
+                transition={reduce ? undefined : { repeat: Infinity, duration: 3, ease: 'easeInOut' }}
+              >
+                {pad(u.value)}
+              </motion.div>
               <div className="text-[10px] uppercase tracking-wide text-ink/60">{u.label}</div>
             </div>
           ))}
