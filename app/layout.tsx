@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     default: 'Melukis Sambelia — KKN-PPM UGM',
     template: '%s — Melukis Sambelia',
   },
-  description: 'Pemberdayaan pariwisata berkelanjutan dan pengembangan kawasan agropolitan di Kecamatan Sambelia, Kabupaten Lombok Timur, NTB.',
+  description: 'Profil desa Kecamatan Sambelia — pariwisata, data kesehatan, irigasi, UMKM, dan peta tematik.',
   metadataBase: new URL('https://melukis-sambelia.vercel.app'),
   openGraph: {
     title: 'Melukis Sambelia — KKN-PPM UGM',
