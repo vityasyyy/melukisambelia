@@ -21,30 +21,22 @@ export function Footer() {
               height={54}
               className="brightness-110"
             />
-            <p className="mt-4 text-sm text-cream-light/80">KKN-PPM UGM Melukis Sambelia 2026</p>
+            <p className="mt-4 text-sm text-cream-light/80">Profil Desa Sambelia — KKN-PPM UGM 2026</p>
             <p className="text-sm text-cream-light/60">{s.contact.address}</p>
           </div>
           <div>
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-goldSoft">Navigasi</h3>
             <ul className="space-y-2 text-sm text-cream-light/80">
-              <li>
-                <Link href="/" className="transition-colors hover:text-goldSoft">Beranda</Link>
-              </li>
-              <li>
-                <Link href="/tentang-sambelia" className="transition-colors hover:text-goldSoft">Tentang Sambelia</Link>
-              </li>
-              <li>
-                <Link href="/peta" className="transition-colors hover:text-goldSoft">Peta</Link>
-              </li>
-              <li>
-                <Link href="/pariwisata" className="transition-colors hover:text-goldSoft">Pariwisata</Link>
-              </li>
-              <li>
-                <Link href="/umkm" className="transition-colors hover:text-goldSoft">UMKM</Link>
-              </li>
-<li>
-                <Link href="/cerita" className="transition-colors hover:text-goldSoft">Cerita</Link>
-              </li>
+              <li><Link href="/tentang-sambelia" className="transition-colors hover:text-goldSoft">Tentang Sambelia</Link></li>
+              <li><Link href="/cerita" className="transition-colors hover:text-goldSoft">Cerita</Link></li>
+              <li><Link href="/peta" className="transition-colors hover:text-goldSoft">Peta</Link></li>
+              <li><Link href="/pariwisata" className="transition-colors hover:text-goldSoft">Pariwisata</Link></li>
+              <li><Link href="/irigasi" className="transition-colors hover:text-goldSoft">Irigasi</Link></li>
+              <li><Link href="/kesehatan" className="transition-colors hover:text-goldSoft">Kesehatan</Link></li>
+              <li><Link href="/air-tanah" className="transition-colors hover:text-goldSoft">Air & Tanah</Link></li>
+              <li><Link href="/lingkungan" className="transition-colors hover:text-goldSoft">Lingkungan</Link></li>
+              <li><Link href="/umkm" className="transition-colors hover:text-goldSoft">UMKM</Link></li>
+              <li><Link href="/festival" className="transition-colors hover:text-goldSoft">Festival</Link></li>
             </ul>
           </div>
           <div>
