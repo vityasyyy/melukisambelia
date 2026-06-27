@@ -101,14 +101,14 @@ collections:
     fields:
       - { label: "Nama UMKM", name: "name", widget: "string" }
       - { label: "Pemilik", name: "owner", widget: "string" }
-      - { label: "Produk", name: "product", widget: "select", options: ["Kerajinan", "Kuliner", "Pertanian", "Anyaman", "lainnya"] }
+      - { label: "Kategori", name: "kategori", widget: "select", options: ["Kuliner", "Jasa", "Kerajinan", "Pertanian", "Perikanan", "Lainnya"] }
       - { label: "Desa", name: "village", widget: "select", options: ["Sugian", "Labuhan Pandan", "lainnya"] }
       - { label: "Kontak", name: "contact", widget: "string" }
       - { label: "Cover", name: "cover", widget: "image" }
       - { label: "Galeri", name: "gallery", widget: "list", field: { name: "image", label: "Gambar", widget: "image" }, required: false }
       - { label: "Konten", name: "body", widget: "markdown" }
-      - { label: "Latitude", name: "lat", widget: "number", value_type: "float", required: false }
-      - { label: "Longitude", name: "lng", widget: "number", value_type: "float", required: false }
+      - { label: "Latitude", name: "lat", widget: "number", value_type: "float" }
+      - { label: "Longitude", name: "lng", widget: "number", value_type: "float" }
 
   - name: "settings"
     label: "Pengaturan Situs"

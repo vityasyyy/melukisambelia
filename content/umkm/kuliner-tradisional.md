@@ -1,7 +1,7 @@
 ---
 name: Kuliner Tradisional Sambelia
 owner: Ibu-ibu PKK Labuhan Pandan
-product: Kuliner
+kategori: Kuliner
 village: Labuhan Pandan
 contact: ''
 cover: /images/content/peopleplaying.webp

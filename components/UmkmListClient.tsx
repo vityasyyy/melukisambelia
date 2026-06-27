@@ -9,15 +9,20 @@ import { FadeIn } from '@/components/FadeIn'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 import { petaLink } from '@/lib/links'
+import { cn } from '@/lib/utils'
 import type { Umkm } from '@/lib/schemas'
+
+const KATEGORI_OPTIONS = ['Semua', 'Kuliner', 'Jasa', 'Kerajinan', 'Pertanian', 'Perikanan', 'Lainnya'] as const
 
 export function UmkmListClient({ items }: { items: (Umkm & { slug: string })[] }) {
   const [modalData, setModalData] = useState<DetailModalData | null>(null)
   const [open, setOpen] = useState(false)
+  const [activeKategori, setActiveKategori] = useState<string>('Semua')
+  const filtered = activeKategori === 'Semua' ? items : items.filter(i => i.kategori === activeKategori)
 
   const openModal = (item: (typeof items)[number]) => {
     const chips: DetailModalData['chips'] = [
-      { label: item.product, color: '#F0AC6D' },
+      { label: item.kategori, color: '#F0AC6D' },
       { label: item.village, color: '#14A8E1' },
     ]
     if (item.contact) chips.push({ label: item.contact, color: '#667F37' })
@@ -50,13 +55,32 @@ export function UmkmListClient({ items }: { items: (Umkm & { slug: string })[] }
       {items.length === 0 ? (
         <EmptyState message="Belum ada data UMKM. Tim akan menambahkan segera." />
       ) : (
-        <StaggerContainer stagger={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((u) => (
-            <StaggerItem key={u.slug}>
-              <UmkmCard item={u} onDetailClick={() => openModal(u)} />
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+        <>
+          <div className="mb-6 flex flex-wrap gap-2">
+            {KATEGORI_OPTIONS.map((k) => (
+              <button
+                key={k}
+                onClick={() => setActiveKategori(k)}
+                className={cn(
+                  'inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-semibold transition-all',
+                  activeKategori === k
+                    ? 'border-transparent bg-cream-beige text-brown-900 shadow-sm'
+                    : 'border-tan-700/30 bg-page text-ink/60'
+                )}
+                aria-pressed={activeKategori === k}
+              >
+                {k}
+              </button>
+            ))}
+          </div>
+          <StaggerContainer stagger={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {filtered.map((u) => (
+              <StaggerItem key={u.slug}>
+                <UmkmCard item={u} onDetailClick={() => openModal(u)} />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </>
       )}
       <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
       <MotifDivider className="mt-12" />

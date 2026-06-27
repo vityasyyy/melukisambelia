@@ -18,7 +18,7 @@ export function UmkmCard({ item, onDetailClick }: { item: Umkm & { slug: string 
         <h3 className="font-semibold text-lg text-brown-900">{item.name}</h3>
         <p className="text-sm text-ink/70">{item.owner}</p>
         <div className="mt-2 flex flex-wrap gap-1.5">
-          <span className="rounded-full bg-gold-50 px-2.5 py-0.5 text-xs font-medium">{item.product}</span>
+          <span className="rounded-full bg-gold-50 px-2.5 py-0.5 text-xs font-medium">{item.kategori}</span>
           <span className="rounded-full bg-water-50 px-2.5 py-0.5 text-xs font-medium text-water-900">{item.village}</span>
         </div>
         {item.contact && <p className="mt-2 text-xs text-ink/60">{item.contact}</p>}

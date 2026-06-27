@@ -24,9 +24,7 @@ export function getMapMarkers(): MapMarker[] {
 
   const umkm = getCollection('umkm')
   for (const u of umkm) {
-    if (u.lat !== undefined && u.lng !== undefined) {
-      markers.push({ layer: 'umkm', slug: u.slug, title: u.name, lat: u.lat, lng: u.lng, href: `/umkm` })
-    }
+    markers.push({ layer: 'umkm', slug: u.slug, title: u.name, lat: u.lat, lng: u.lng, href: `/umkm` })
   }
 
   return markers

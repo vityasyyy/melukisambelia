@@ -61,14 +61,14 @@ export const ceritaSchema = z.object({
 export const umkmSchema = z.object({
   name: z.string(),
   owner: z.string(),
-  product: z.enum(['Kerajinan', 'Kuliner', 'Pertanian', 'Anyaman', 'lainnya']),
+  kategori: z.enum(['Kuliner', 'Jasa', 'Kerajinan', 'Pertanian', 'Perikanan', 'Lainnya']),
   village: z.enum(['Sugian', 'Labuhan Pandan', 'lainnya']),
   contact: z.string(),
   cover: z.string(),
   gallery: z.array(z.string()).default([]),
   body: z.string(),
-  lat: z.number().min(-90).max(90).optional(),
-  lng: z.number().min(-180).max(180).optional(),
+  lat: z.number().min(-90).max(90),
+  lng: z.number().min(-180).max(180),
 })
 
 export const settingsSchema = z.object({
