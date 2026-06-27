@@ -106,25 +106,22 @@ export default function TentangSambeliaPage() {
 
       <section className="mx-auto max-w-content px-4 py-12 scroll-mt-20">
         <SectionHeader
-          kicker="03 — PROGRAM"
-          title="Fokus Program"
-          intro="Penguatan kemandirian masyarakat berbasis pariwisata berkelanjutan dan pengembangan kawasan agropolitan."
+          kicker="03 — POTENSI DESA"
+          title="Potensi Desa"
+          intro="Potensi unggulan Kecamatan Sambelia: wisata bahari, pertanian, dan kerajinan khas Sasak."
           tone="terracotta"
         />
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-2xl border border-tan-700/20 bg-cream-warm/30 p-6 shadow-terracotta">
-            <h3 className="font-semibold text-lg text-brown-900">Pariwisata Berkelanjutan</h3>
+            <h3 className="font-semibold text-lg text-brown-900">Pariwisata Bahari & Budaya</h3>
             <p className="mt-2 text-sm leading-relaxed text-ink/70">
-              Pengembangan desa wisata di Sugian dan Labuhan Pandan, promosi destinasi unggulan
-              seperti Pantai Berandangan dan Taman Wisata Air Kramat Suci, serta festival budaya
-              Sasak (Peresean, Pawai Dulangan, Gendang Beleq).
+              Pantai Berandangan, Taman Wisata Air Kramat Suci, Desa Wisata Sugian dan Labuhan Pandan, serta tradisi Sasak seperti Peresean, Pawai Dulangan, dan Gendang Beleq.
             </p>
           </div>
           <div className="rounded-2xl border border-tan-700/20 bg-cream-warm/30 p-6 shadow-terracotta">
-            <h3 className="font-semibold text-lg text-brown-900">Kawasan Agropolitan</h3>
+            <h3 className="font-semibold text-lg text-brown-900">Agropolitan & UMKM</h3>
             <p className="mt-2 text-sm leading-relaxed text-ink/70">
-              Pengembangan kawasan agropolitan melalui pendampingan irigasi, pertanian, UMKM lokal,
-              serta program kesehatan terintegrasi (stunting, posyandu).
+              Pengembangan kawasan agropolitan berbasis pertanian, perikanan, dan kerajinan lokal, didukung jaringan irigasi dan program kesehatan masyarakat terpadu.
             </p>
           </div>
         </div>

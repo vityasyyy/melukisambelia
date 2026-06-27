@@ -8,8 +8,16 @@ export function KilasSambelia() {
   const umkm = getCollection('umkm')
 
   const items = [
-    ...pariwisata.flatMap((p) => p.gallery.map((src) => ({ src, alt: p.title, href: `/pariwisata/${p.slug}` }))),
-    ...umkm.flatMap((u) => u.gallery.map((src) => ({ src, alt: u.name, href: `/umkm` }))),
+    ...pariwisata.flatMap((p) =>
+      p.gallery.length > 0
+        ? p.gallery.map((src) => ({ src, alt: p.title, href: `/pariwisata/${p.slug}` }))
+        : [{ src: p.cover, alt: p.title, href: `/pariwisata/${p.slug}` }]
+    ),
+    ...umkm.flatMap((u) =>
+      u.gallery.length > 0
+        ? u.gallery.map((src) => ({ src, alt: u.name, href: `/umkm` }))
+        : [{ src: u.cover, alt: u.name, href: `/umkm` }]
+    ),
   ].filter((i) =>
     !i.src.includes('gallery-') &&
     !i.src.includes('imlek') &&
