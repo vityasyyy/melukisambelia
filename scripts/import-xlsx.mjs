@@ -150,17 +150,37 @@ function importPariwisata(rows) {
   console.log(`  Wrote ${count} pariwisata entries`)
 }
 
+function importTma(rows) {
+  const PUBLIC_DATA = path.join(process.cwd(), 'public', 'data')
+  if (!fs.existsSync(PUBLIC_DATA)) fs.mkdirSync(PUBLIC_DATA, { recursive: true })
+  const measurements = rows.map((row) => ({
+    location: String(row.Lokasi || row.lokasi || row.Location || ''),
+    date: String(row.Tanggal || row.tanggal || row.Date || row.Tgl || ''),
+    tmaMeters: parseNumber(row.TMA || row.tma || row.TmaMeters || 0),
+    dhlMsiemens: parseNumber(row.DHL || row.dhl || row.DhlMsiemens || 0),
+  }))
+  const output = {
+    title: 'Data Tinggi Muka Airtanah (TMA)',
+    description: 'Hasil pengukuran Tinggi Muka Airtanah dan Daya Hantar Listrik (DHL) di Kecamatan Sambelia.',
+    credit: 'Tim Air & Tanah — Melukis Sambelia',
+    measurements,
+  }
+  fs.writeFileSync(path.join(PUBLIC_DATA, 'air-tanah.json'), JSON.stringify(output, null, 2))
+  console.log(`  Wrote ${measurements.length} TMA measurements to public/data/air-tanah.json`)
+}
+
 const SHEET_MAPPERS = {
   demografi: importDemografi,
   irigasi: importIrigasi,
   kesehatan: importKesehatan,
   pariwisata: importPariwisata,
+  tma: importTma,
 }
 
 function main() {
   if (!fs.existsSync(DATA_DIR)) {
     console.log('No data/ folder found. Create it and drop .xlsx files there.')
-    console.log('Expected sheets: demografi, irigasi, kesehatan, pariwisata')
+    console.log('Expected sheets: demografi, irigasi, kesehatan, pariwisata, tma')
     process.exit(0)
   }
 
