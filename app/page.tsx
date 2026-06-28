@@ -10,44 +10,61 @@ import { KilasSambelia } from '@/components/KilasSambelia'
 import { FadeIn } from '@/components/FadeIn'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { HeroAnimation } from '@/components/HeroAnimation'
+import { CountdownStrip } from '@/components/CountdownStrip'
+import { FestivalTimeline } from '@/components/FestivalTimeline'
+import { UmkmCard } from '@/components/UmkmCard'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Beranda',
   description: 'Portal komunitas KKN-PPM UGM Melukis Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa binaan.',
 }
 
+export const dynamic = 'force-dynamic'
+
 export default function Beranda() {
   const s = getSettings()
-  const pariwisata = getCollection('pariwisata').slice(0, 1)
+  const hi = s.homepageIntros
+  const pariwisata = getCollection('pariwisata')
   const irigasi = getCollection('irigasi').slice(0, 1)
   const kesehatan = getCollection('kesehatan').slice(0, 1)
-  const festival = getCollection('festival').slice(0, 1)
-  const umkm = getCollection('umkm').slice(0, 1)
+  const festival = getCollection('festival')
+  const umkm = getCollection('umkm')
 
   const previews = [
     { href: '/pariwisata', image: pariwisata[0]?.cover ?? '/images/content/pariwisata-marine.webp', title: 'Pariwisata', desc: 'Destinasi unggulan Sambelia.', accent: '#14A8E1' },
     { href: '/irigasi', image: irigasi[0]?.cover ?? '/images/content/irigasi-saluran.svg', title: 'Irigasi', desc: 'Data saluran irigasi.', accent: '#99BA57' },
     { href: '/kesehatan', image: kesehatan[0]?.cover ?? '/images/content/kesehatan-fasilitas.svg', title: 'Kesehatan', desc: 'Fasilitas & program kesehatan.', accent: '#667F37' },
-    { href: '/air-tanah', image: '/images/content/nelayan.jpg', title: 'Air & Tanah', desc: 'Data sumber daya air & tanah.', accent: '#3B82F6' },
-    { href: '/lingkungan', image: '/images/content/nelayan-landscape.jpg', title: 'Lingkungan', desc: 'Kelestarian lingkungan Sambelia.', accent: '#22C55E' },
+    { href: '/air-tanah', image: '/images/content/pariwisata-marine.webp', title: 'Air & Tanah', desc: 'Data sumber daya air & tanah.', accent: '#3B82F6' },
+    { href: '/lingkungan', image: '/images/content/kegiatan-ekowisata.svg', title: 'Lingkungan', desc: 'Kelestarian lingkungan Sambelia.', accent: '#22C55E' },
     { href: '/festival', image: festival[0]?.cover ?? '/images/content/festival-pawai.webp', title: 'Festival Pesona', desc: 'Peresean, Pawai Dulangan, Gendang Beleq.', accent: '#E3795C' },
     { href: '/umkm', image: umkm[0]?.cover ?? '/images/content/culture-rilistema.webp', title: 'UMKM', desc: 'UMKM lokal Sambelia.', accent: '#F0AC6D' },
   ]
+
+  const wisataUnggulan = pariwisata.slice(0, 3)
+  const umkmSpotlight = umkm.slice(0, 3)
+  const festivalData = festival.map((f) => ({
+    eventName: f.eventName,
+    schedule: f.schedule,
+    venue: f.venue,
+    description: f.description,
+    cover: f.cover,
+    registrationUrl: f.registrationUrl,
+    body: f.body,
+  }))
 
   return (
     <>
       <section className="relative flex h-[100dvh] min-h-[600px] items-center justify-center overflow-hidden text-center">
         <HeroAnimation src={s.heroImage} tagline={s.heroTagline} />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brown-900/40 via-brown-900/20 to-brown-900/70" />
-        <div className="absolute inset-0 -z-10 hero-vignette" />
-        <div className="absolute inset-0 -z-10 section-watermark" aria-hidden />
 
         <a
           href="#tentang"
-          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-cream-light/80 transition-colors hover:text-cream-light"
+          className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center text-cream-light/70 transition-colors hover:text-cream-light"
           aria-label="Gulir ke bawah"
         >
-          <ChevronDown className="h-8 w-8 animate-bounce" />
+          <span className="mb-1 text-[10px] font-medium uppercase tracking-widest">Gulir untuk menjelajah</span>
+          <ChevronDown className="h-5 w-5 animate-bounce" />
         </a>
       </section>
 
@@ -73,7 +90,7 @@ export default function Beranda() {
 
       <section className="mx-auto max-w-content px-4 py-8">
         <FadeIn>
-          <SectionHeader kicker="02 — JEJAKI" title="Jejaki Sambelia" tone="gold" />
+          <SectionHeader kicker={hi.jejakiKicker} title={hi.jejakiTitle} tone="gold" />
         </FadeIn>
         <StaggerContainer stagger={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {previews.map((p) => (
@@ -83,6 +100,101 @@ export default function Beranda() {
           ))}
         </StaggerContainer>
       </section>
+
+      {/* Wisata Unggulan */}
+      {wisataUnggulan.length > 0 && (
+        <section className="mx-auto max-w-content px-4 py-12">
+          <FadeIn>
+            <SectionHeader
+              kicker={hi.wisataKicker}
+              title={hi.wisataTitle}
+              intro={hi.wisataIntro}
+              tone="water"
+            />
+          </FadeIn>
+          <StaggerContainer stagger={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {wisataUnggulan.map((p) => (
+              <StaggerItem key={p.slug}>
+                <DataCard
+                  href={`/pariwisata/${p.slug}`}
+                  image={p.cover}
+                  title={p.title}
+                  chips={[
+                    { label: p.category, color: '#14A8E1' },
+                    { label: p.village, color: '#99BA57' },
+                  ]}
+                  desc={p.shortDesc}
+                />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+          <div className="mt-6 text-center">
+            <Link
+              href="/pariwisata"
+              className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-colors hover:bg-cream-beige"
+            >
+              Lihat semua wisata →
+            </Link>
+          </div>
+        </section>
+      )}
+
+      {/* Festival Terdekat */}
+      {festival.length > 0 && (
+        <section className="mx-auto max-w-content px-4 py-12">
+          <FadeIn>
+            <SectionHeader
+              kicker={hi.festivalKicker}
+              title={hi.festivalTitle}
+              intro={hi.festivalIntro}
+              tone="gold"
+            />
+          </FadeIn>
+          <FadeIn>
+            <CountdownStrip festivals={festivalData} />
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <FestivalTimeline events={festival.slice(0, 2)} />
+          </FadeIn>
+          <div className="mt-6 text-center">
+            <Link
+              href="/festival"
+              className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-colors hover:bg-cream-beige"
+            >
+              Lihat semua festival →
+            </Link>
+          </div>
+        </section>
+      )}
+
+      {/* UMKM Spotlight */}
+      {umkmSpotlight.length > 0 && (
+        <section className="mx-auto max-w-content px-4 py-12">
+          <FadeIn>
+            <SectionHeader
+              kicker={hi.umkmKicker}
+              title={hi.umkmTitle}
+              intro={hi.umkmIntro}
+              tone="terracotta"
+            />
+          </FadeIn>
+          <StaggerContainer stagger={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {umkmSpotlight.map((u) => (
+              <StaggerItem key={u.slug}>
+                <UmkmCard item={u} />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+          <div className="mt-6 text-center">
+            <Link
+              href="/umkm"
+              className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-colors hover:bg-cream-beige"
+            >
+              Lihat semua UMKM →
+            </Link>
+          </div>
+        </section>
+      )}
 
       <KilasSambelia />
     </>

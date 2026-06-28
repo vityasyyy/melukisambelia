@@ -56,8 +56,8 @@ export function Nav() {
 
   return (
     <header className="sticky top-0 z-[1000] border-b border-tan-700/10 bg-page/90 backdrop-blur">
-      <nav className="mx-auto flex max-w-content items-center justify-between px-4 py-3">
-        <Link href="/">
+      <nav aria-label="Navigasi utama" className="mx-auto flex max-w-content items-center justify-between px-4 py-3">
+        <Link href="/" aria-label="Beranda Melukis Sambelia">
           <Logo className="h-10 w-auto" />
         </Link>
 
@@ -66,6 +66,7 @@ export function Nav() {
             <li key={l.href}>
               <Link
                 href={l.href}
+                aria-current={isActive(l.href) ? 'page' : undefined}
                 className={cn(
                   'rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
                   isActive(l.href)
@@ -82,6 +83,9 @@ export function Nav() {
             return (
               <li key={group.label} className="group relative">
                 <button
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded={undefined}
                   className={cn(
                     'flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
                     groupActive
@@ -92,12 +96,13 @@ export function Nav() {
                   {group.label}
                   <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                 </button>
-                <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-focus-within:visible group-hover:opacity-100 group-focus-within:opacity-100">
                   <ul className="min-w-[180px] rounded-xl border border-tan-700/10 bg-page shadow-lg">
                     {group.items.map((item) => (
                       <li key={item.href}>
                         <Link
                           href={item.href}
+                          aria-current={isActive(item.href) ? 'page' : undefined}
                           className={cn(
                             'block rounded-lg px-4 py-2 text-sm font-medium transition-colors',
                             isActive(item.href)
@@ -117,10 +122,12 @@ export function Nav() {
         </ul>
 
         <button
-          className="-mr-2 p-2 text-ink hover:text-water-900 lg:hidden"
+          type="button"
+          className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-lg text-ink hover:bg-cream-beige hover:text-water-900 lg:hidden"
           onClick={() => setOpen(!open)}
           aria-label={open ? 'Tutup menu' : 'Buka menu'}
           aria-expanded={open}
+          aria-controls="mobile-menu"
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -129,6 +136,7 @@ export function Nav() {
       <AnimatePresence>
         {open && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -147,7 +155,8 @@ export function Nav() {
                     >
                       <Link
                         href={l.href}
-                        className="block rounded-lg px-3 py-2 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
+                        aria-current={isActive(l.href) ? 'page' : undefined}
+                        className="block rounded-lg px-3 py-2.5 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
                         onClick={() => { setOpen(false); setOpenGroup(null) }}
                       >
                         {l.label}
@@ -164,7 +173,8 @@ export function Nav() {
                   >
                     <Link
                       href={l.href}
-                      className="block rounded-lg px-3 py-2 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
+                      aria-current={isActive(l.href) ? 'page' : undefined}
+                      className="block rounded-lg px-3 py-2.5 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
                       onClick={() => { setOpen(false); setOpenGroup(null) }}
                     >
                       {l.label}
@@ -182,7 +192,9 @@ export function Nav() {
                     transition={{ delay: (NAV_TOP_LEVEL.length + gi) * 0.04 }}
                   >
                     <button
-                      className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
+                      type="button"
+                      aria-expanded={expanded}
+                      className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
                       onClick={() => setOpenGroup(expanded ? null : group.label)}
                     >
                       {group.label}
@@ -206,7 +218,8 @@ export function Nav() {
                             <li key={item.href}>
                               <Link
                                 href={item.href}
-                                className="block rounded-lg pl-6 pr-3 py-2 text-sm font-medium text-ink hover:bg-cream-beige hover:text-water-900"
+                                aria-current={isActive(item.href) ? 'page' : undefined}
+                                className="block rounded-lg pl-6 pr-3 py-2.5 text-sm font-medium text-ink hover:bg-cream-beige hover:text-water-900"
                                 onClick={() => { setOpen(false); setOpenGroup(null) }}
                               >
                                 {item.label}

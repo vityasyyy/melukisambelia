@@ -2,11 +2,15 @@ import createMDX from './mdx-config.mjs'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   images: {
     unoptimized: true,
   },
   reactStrictMode: true,
+  async rewrites() {
+    return [
+      { source: '/admin', destination: '/admin/index.html' },
+    ]
+  },
 }
 
 const withMDX = createMDX(nextConfig)

@@ -1,0 +1,57 @@
+import { GradientText } from '@/components/GradientText'
+import { FadeIn } from '@/components/FadeIn'
+import { cn } from '@/lib/utils'
+
+type Tone = 'water' | 'terracotta' | 'green' | 'gold' | 'olive' | 'brown'
+
+const GRADIENTS: Record<Tone, string> = {
+  water: 'from-water-900 via-water-700 to-brown-900',
+  terracotta: 'from-terracotta-900 via-terracotta-700 to-brown-900',
+  green: 'from-green-900 via-olive to-brown-900',
+  gold: 'from-gold-700 via-terracotta-700 to-brown-900',
+  olive: 'from-olive via-olive-dark to-brown-900',
+  brown: 'from-brown-900 via-brown-700 to-brown-950',
+}
+
+export function PageHero({
+  kicker,
+  title,
+  intro,
+  tone = 'terracotta',
+  className,
+}: {
+  kicker: string
+  title: string
+  intro?: string
+  tone?: Tone
+  className?: string
+}) {
+  return (
+    <section
+      className={cn(
+        'relative overflow-hidden bg-gradient-to-br py-20 text-center text-cream-light',
+        GRADIENTS[tone],
+        className
+      )}
+    >
+      <div className="absolute inset-0 section-watermark" aria-hidden />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{ boxShadow: 'inset 0 -80px 120px -30px rgba(26,17,13,0.6)' }}
+      />
+      <FadeIn className="relative z-10 mx-auto max-w-content px-4">
+        <p className="text-xs font-semibold uppercase tracking-widest text-cream-light/70">{kicker}</p>
+        <h1
+          className="mt-2 font-beautique text-display-lg"
+          style={{ textShadow: '0px 4px 4px rgba(0,0,0,0.25)' }}
+        >
+          <GradientText className="text-cream-light">{title}</GradientText>
+        </h1>
+        {intro && (
+          <p className="mx-auto mt-4 max-w-xl text-sm text-cream-light/80 sm:text-base">{intro}</p>
+        )}
+      </FadeIn>
+    </section>
+  )
+}

@@ -90,6 +90,33 @@ export const settingsSchema = z.object({
     phone: z.string(),
     address: z.string(),
   }),
+  homepageIntros: z.object({
+    jejakiKicker: z.string().default('02 — JEJAKI'),
+    jejakiTitle: z.string().default('Jejaki Sambelia'),
+    jejakiIntro: z.string().default(''),
+    wisataKicker: z.string().default('03 — WISATA UNGGULAN'),
+    wisataTitle: z.string().default('Destinasi Pilihan'),
+    wisataIntro: z.string().default('Destinasi wisata unggulan di Desa Sugian dan Labuhan Pandan.'),
+    festivalKicker: z.string().default('04 — FESTIVAL'),
+    festivalTitle: z.string().default('Festival Pesona Sambelia'),
+    festivalIntro: z.string().default('Peresean, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia.'),
+    umkmKicker: z.string().default('05 — UMKM'),
+    umkmTitle: z.string().default('UMKM Spotlight'),
+    umkmIntro: z.string().default('Kerajinan, kuliner, dan produk lokal andalan masyarakat Sambelia.'),
+  }).optional().default({
+    jejakiKicker: '02 — JEJAKI',
+    jejakiTitle: 'Jejaki Sambelia',
+    jejakiIntro: '',
+    wisataKicker: '03 — WISATA UNGGULAN',
+    wisataTitle: 'Destinasi Pilihan',
+    wisataIntro: 'Destinasi wisata unggulan di Desa Sugian dan Labuhan Pandan.',
+    festivalKicker: '04 — FESTIVAL',
+    festivalTitle: 'Festival Pesona Sambelia',
+    festivalIntro: 'Peresean, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia.',
+    umkmKicker: '05 — UMKM',
+    umkmTitle: 'UMKM Spotlight',
+    umkmIntro: 'Kerajinan, kuliner, dan produk lokal andalan masyarakat Sambelia.',
+  }),
 })
 
 export const gisMapSchema = z.object({
@@ -107,10 +134,36 @@ export type Umkm = z.infer<typeof umkmSchema>
 export type Settings = z.infer<typeof settingsSchema>
 export type GisMap = z.infer<typeof gisMapSchema>
 
+export const airTanahMeasurementSchema = z.object({
+  location: z.string(),
+  date: z.string(),
+  tmaMeters: z.number(),
+  dhlMsiemens: z.number(),
+})
+
 export const airTanahSchema = z.object({
   title: z.string(),
   description: z.string().default(''),
   credit: z.string().default(''),
+  measurements: z.array(airTanahMeasurementSchema).optional().default([]),
 })
 
 export type AirTanah = z.infer<typeof airTanahSchema>
+export type AirTanahMeasurement = z.infer<typeof airTanahMeasurementSchema>
+
+export const desaSchema = z.object({
+  name: z.string(),
+  description: z.string(),
+  image: z.string(),
+})
+
+export const tentangSchema = z.object({
+  geographyProse: z.string(),
+  potensiDesa: z.array(z.object({
+    title: z.string(),
+    description: z.string(),
+  })).optional().default([]),
+})
+
+export type Desa = z.infer<typeof desaSchema>
+export type Tentang = z.infer<typeof tentangSchema>

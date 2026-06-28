@@ -1,12 +1,13 @@
 'use client'
 
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { SectionHeader } from '@/components/SectionHeader'
 import { UmkmCard } from '@/components/UmkmCard'
 import { EmptyState } from '@/components/EmptyState'
-import { MotifDivider } from '@/components/MotifDivider'
 import { FadeIn } from '@/components/FadeIn'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
+import { PageHero } from '@/components/PageHero'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 import { petaLink } from '@/lib/links'
 import { cn } from '@/lib/utils'
@@ -43,15 +44,22 @@ export function UmkmListClient({ items }: { items: (Umkm & { slug: string })[] }
   }
 
   return (
-    <div className="mx-auto max-w-content px-4 py-16">
-      <FadeIn>
-        <SectionHeader
-          kicker="UMKM"
-          title="UMKM Lokal Sambelia"
-          intro="Kerajinan, kuliner, dan produk lokal."
-          tone="terracotta"
-        />
-      </FadeIn>
+    <>
+      <PageHero
+        kicker="UMKM"
+        title="UMKM Lokal Sambelia"
+        intro="Kerajinan, kuliner, dan produk lokal yang menjadi andalan masyarakat Sambelia."
+        tone="terracotta"
+      />
+      <div className="mx-auto max-w-content px-4 py-16">
+        <FadeIn>
+          <SectionHeader
+            kicker="UMKM"
+            title="UMKM Lokal Sambelia"
+            intro="Kerajinan, kuliner, dan produk lokal."
+            tone="terracotta"
+          />
+        </FadeIn>
       {items.length === 0 ? (
         <EmptyState message="Belum ada data UMKM. Tim akan menambahkan segera." />
       ) : (
@@ -62,18 +70,30 @@ export function UmkmListClient({ items }: { items: (Umkm & { slug: string })[] }
                 key={k}
                 onClick={() => setActiveKategori(k)}
                 className={cn(
-                  'inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-semibold transition-all',
+                  'relative inline-flex min-h-[44px] items-center rounded-full border px-4 py-2 text-xs font-semibold transition-colors',
                   activeKategori === k
-                    ? 'border-transparent bg-cream-beige text-brown-900 shadow-sm'
-                    : 'border-tan-700/30 bg-page text-ink/60'
+                    ? 'border-transparent text-brown-900'
+                    : 'border-tan-700/30 bg-page text-ink/70 hover:text-ink'
                 )}
                 aria-pressed={activeKategori === k}
               >
+                {activeKategori === k && (
+                  <motion.span
+                    layoutId="umkm-kategori-pill"
+                    className="absolute inset-0 -z-10 rounded-full bg-cream-beige shadow-sm"
+                    transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                  />
+                )}
                 {k}
               </button>
             ))}
           </div>
-          <StaggerContainer stagger={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerContainer
+            key={activeKategori}
+            stagger={0.08}
+            mode="mount"
+            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          >
             {filtered.map((u) => (
               <StaggerItem key={u.slug}>
                 <UmkmCard item={u} onDetailClick={() => openModal(u)} />
@@ -83,7 +103,7 @@ export function UmkmListClient({ items }: { items: (Umkm & { slug: string })[] }
         </>
       )}
       <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
-      <MotifDivider className="mt-12" />
-    </div>
+      </div>
+    </>
   )
 }

@@ -1,5 +1,4 @@
-import fs from 'fs'
-import path from 'path'
+import { getCollection } from '@/lib/content'
 
 export type TmaMeasurement = {
   location: string
@@ -16,8 +15,13 @@ export type AirTanahData = {
 }
 
 export function getAirTanahData(): AirTanahData | null {
-  const filePath = path.join(process.cwd(), 'public', 'data', 'air-tanah.json')
-  if (!fs.existsSync(filePath)) return null
-  const raw = fs.readFileSync(filePath, 'utf8')
-  return JSON.parse(raw) as AirTanahData
+  const items = getCollection('airTanah')
+  if (items.length === 0) return null
+  const item = items[0]
+  return {
+    title: item.title,
+    description: item.description,
+    credit: item.credit,
+    measurements: item.measurements,
+  }
 }

@@ -35,6 +35,15 @@
     --olive: #68794A;
     --brown-dark: #47230F;
 
+    /* Extended shades for gradients */
+    --water-700: #0A8FD0;
+    --terracotta-700: #B85540;
+    --terracotta-900: #5A1E14;
+    --gold-700: #D49050;
+    --olive-dark: #4A5535;
+    --brown-700: #5A3A28;
+    --brown-950: #1A0F0A;
+
     /* Neutrals */
     --white: #FFFFFF;
     --ink: #000000;
@@ -120,6 +129,25 @@
   }
   .font-display {
     font-family: var(--font-beautique), var(--font-gontserrat), sans-serif;
+  }
+
+  /* Visible keyboard focus indicator for all interactive elements */
+  *:focus-visible {
+    outline: 2px solid var(--water-500);
+    outline-offset: 2px;
+  }
+
+  /* Skip link — visible only when focused by keyboard */
+  .skip-link {
+    position: absolute;
+    left: 0.5rem;
+    top: 0.5rem;
+    z-index: 100;
+    transform: translateY(-150%);
+    transition: transform 0.2s ease;
+  }
+  .skip-link:focus {
+    transform: translateY(0);
   }
 }
 

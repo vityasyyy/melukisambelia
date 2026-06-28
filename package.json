@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/build-gis-manifest.mjs && node scripts/generate-og.mjs",
+    "prebuild": "node scripts/build-gis-manifest.mjs && node scripts/generate-og.mjs && node scripts/check-images.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -12,6 +12,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "cms": "decap-server",
     "import-data": "node scripts/import-xlsx.mjs"
   },
   "dependencies": {
@@ -61,6 +62,7 @@
     "@types/react-dom": "^18",
     "@vercel/node": "^5.8.17",
     "@vitejs/plugin-react": "^6.0.2",
+    "decap-server": "^3.9.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.35",
     "jsdom": "^29.1.1",

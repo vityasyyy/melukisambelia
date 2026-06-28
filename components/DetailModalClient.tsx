@@ -2,11 +2,11 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { MapPin } from 'lucide-react'
+import { MapPin, X } from 'lucide-react'
+import * as DialogPrimitive from '@radix-ui/react-dialog'
 import {
   Dialog,
-  DialogContent,
-  DialogHeader,
+  DialogOverlay,
   DialogTitle,
   DialogDescription,
 } from '@/components/ui/dialog'
@@ -43,21 +43,36 @@ export function DetailModalClient({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto p-0">
-        {image && (
-          <div className="relative aspect-video w-full overflow-hidden rounded-t-lg">
-            <Image src={image} alt={title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 672px" />
-            <div className="absolute inset-0 hero-vignette" />
+      <DialogPrimitive.Portal>
+        <DialogOverlay />
+        <DialogPrimitive.Content className="fixed left-1/2 top-1/2 z-[1001] mx-4 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white shadow-xl focus:outline-none max-h-[80vh] overflow-hidden p-0 gap-0">
+        {/* Image header with overlay */}
+        {image ? (
+          <div className="relative aspect-[16/10] w-full overflow-hidden">
+            <Image src={image} alt={title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 512px" />
+            <div className="absolute inset-0 bg-gradient-to-t from-brown-900/80 via-brown-900/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+              <DialogTitle className="font-beautique text-xl sm:text-2xl text-cream-light">{title}</DialogTitle>
+              {description && <DialogDescription className="mt-1 text-sm text-cream-light/80 line-clamp-2">{description}</DialogDescription>}
+            </div>
+          </div>
+        ) : (
+          <div className="relative bg-gradient-to-r from-terracotta-500 to-gold-500 px-4 pt-12 pb-4 sm:px-6 sm:pt-14 sm:pb-6">
+            <DialogTitle className="font-beautique text-xl sm:text-2xl text-cream-light">{title}</DialogTitle>
+            {description && <DialogDescription className="mt-1 text-sm text-cream-light/80">{description}</DialogDescription>}
           </div>
         )}
-        <div className="p-6 pt-4">
-          <DialogHeader className="text-left">
-            <DialogTitle className="font-beautique text-2xl text-brown-900">{title}</DialogTitle>
-            {description && <DialogDescription className="text-sm text-ink/70">{description}</DialogDescription>}
-          </DialogHeader>
 
+        {/* Close button - floating above image */}
+        <DialogPrimitive.Close className="absolute right-2 top-2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-cream-light/90 backdrop-blur-sm text-brown-900 transition-colors hover:bg-cream-light" aria-label="Tutup dialog">
+          <X className="h-5 w-5" />
+          <span className="sr-only">Tutup</span>
+        </DialogPrimitive.Close>
+
+        {/* Scrollable body */}
+        <div className="overflow-y-auto max-h-[35vh] p-4 sm:p-6">
           {chips && chips.length > 0 && (
-            <div className="mt-3 flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-1.5">
               {chips.map((c) => (
                 <span
                   key={c.label}
@@ -74,7 +89,7 @@ export function DetailModalClient({
             </div>
           )}
 
-          {body && <div className={cn('prose prose-sm mt-4 max-w-none text-ink/80', !image && 'mt-2')}>{body}</div>}
+          {body && <div className={cn('prose prose-sm mt-4 max-w-none text-ink/80 prose-headings:text-brown-900 prose-p:text-ink/70', !image && 'mt-2')}>{body}</div>}
 
           {hasMap && (
             <div className="mt-6">
@@ -96,7 +111,8 @@ export function DetailModalClient({
             </div>
           )}
         </div>
-      </DialogContent>
+        </DialogPrimitive.Content>
+      </DialogPrimitive.Portal>
     </Dialog>
   )
 }

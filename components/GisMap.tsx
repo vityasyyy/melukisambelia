@@ -53,25 +53,27 @@ export function GisMap({
   return (
     <div>
       <header className="mb-4">
-        <h3 className="font-beautique text-2xl text-brown-900">{title}</h3>
+        <h2 className="font-beautique text-2xl text-brown-900">{title}</h2>
         {description && <p className="text-sm text-ink/70">{description}</p>}
-        {credit && <p className="text-xs text-ink/50"> oleh {credit}</p>}
+        {credit && <p className="text-xs text-ink/60"> oleh {credit}</p>}
       </header>
 
       {files.length === 0 ? (
-        <p className="rounded-2xl border border-dashed border-tan-700/40 p-8 text-center text-ink/60">
-          Peta GIS tim belum tersedia. Letakkan file GeoJSON atau gambar di folder <code>public/gis/umum/</code>.
-        </p>
+        <div className="py-16 text-center">
+          <p className="text-ink/70 text-sm sm:text-base">Peta GIS tim belum tersedia.</p>
+          <p className="mt-2 text-xs text-ink/60">Letakkan file GeoJSON atau gambar di folder <code>public/gis/umum/</code>.</p>
+        </div>
       ) : (
         <div className="grid md:grid-cols-[200px,1fr] gap-4">
-          <ul className="space-y-1 md:max-h-none max-h-[60vh] overflow-y-auto">
+          <ul className="space-y-1 md:max-h-none max-h-[60vh] overflow-y-auto" aria-label="Daftar lapisan GIS">
             {files.map((f) => (
               <li key={f.name}>
                 <button
                   onClick={() => setActive(f.name)}
+                  aria-pressed={activeFile?.name === f.name}
                   className={`w-full rounded-lg px-3 py-2 text-left text-sm ${activeFile?.name === f.name ? 'bg-water-50 text-water-900' : 'hover:bg-white'}`}
                 >
-                  {f.name} <span className="text-xs text-ink/40">({f.type})</span>
+                  {f.name} <span className="text-xs text-ink/60">({f.type})</span>
                 </button>
               </li>
             ))}
@@ -85,7 +87,7 @@ export function GisMap({
               </MapContainer>
             )}
             {activeFile?.type === 'geojson' && geojsonData[activeFile.name] == null && (
-              <div className="flex h-[60vh] w-full items-center justify-center text-sm text-ink/50">Memuat GeoJSON…</div>
+              <div className="flex h-[60vh] w-full items-center justify-center text-sm text-ink/60">Memuat GeoJSON…</div>
             )}
             {activeFile?.type === 'image' && (
               <div className="relative h-[60vh] w-full">

@@ -21,12 +21,12 @@ export function Footer() {
               height={54}
               className="brightness-110"
             />
-            <p className="mt-4 text-sm text-cream-light/80">Profil Desa Sambelia — KKN-PPM UGM 2026</p>
-            <p className="text-sm text-cream-light/60">{s.contact.address}</p>
+            <p className="mt-4 text-sm text-cream-light/85">Profil Desa Sambelia — KKN-PPM UGM 2026</p>
+            <p className="text-sm text-cream-light/75">{s.contact.address}</p>
           </div>
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-goldSoft">Navigasi</h3>
-            <ul className="space-y-2 text-sm text-cream-light/80">
+          <nav aria-label="Navigasi footer">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-goldSoft">Navigasi</h2>
+            <ul className="space-y-2 text-sm text-cream-light/85">
               <li><Link href="/tentang-sambelia" className="transition-colors hover:text-goldSoft">Tentang Sambelia</Link></li>
               <li><Link href="/cerita" className="transition-colors hover:text-goldSoft">Cerita</Link></li>
               <li><Link href="/peta" className="transition-colors hover:text-goldSoft">Peta</Link></li>
@@ -38,14 +38,14 @@ export function Footer() {
               <li><Link href="/umkm" className="transition-colors hover:text-goldSoft">UMKM</Link></li>
               <li><Link href="/festival" className="transition-colors hover:text-goldSoft">Festival</Link></li>
             </ul>
-          </div>
+          </nav>
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-goldSoft">Sosial</h3>
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-goldSoft">Sosial</h2>
             {s.socials.instagram && (
               <p>
                 <a
                   href={`https://instagram.com/${s.socials.instagram}`}
-                  className="text-sm text-cream-light/80 transition-colors hover:text-goldSoft"
+                  className="text-sm text-cream-light/85 transition-colors hover:text-goldSoft"
                 >
                   @{s.socials.instagram}
                 </a>
@@ -55,13 +55,13 @@ export function Footer() {
               <p>
                 <a
                   href={`https://tiktok.com/@${s.socials.tiktok}`}
-                  className="text-sm text-cream-light/80 transition-colors hover:text-goldSoft"
+                  className="text-sm text-cream-light/85 transition-colors hover:text-goldSoft"
                 >
                   @{s.socials.tiktok}
                 </a>
               </p>
             )}
-            <p className="mt-2 text-sm text-cream-light/60">{s.contact.email}</p>
+            <p className="mt-2 text-sm text-cream-light/75">{s.contact.email}</p>
             <div className="mt-5 flex gap-3">
               <Image
                 src="/images/design-system/logo_kkn_ugm.svg"
@@ -73,7 +73,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <div className="relative mt-12 border-t border-cream-light/20 pt-6 text-center text-xs text-cream-light/50">
+        <div className="relative mt-12 border-t border-cream-light/20 pt-6 text-center text-xs text-cream-light/75">
           © 2026 KKN-PPM UGM Melukis Sambelia
         </div>
       </div>

@@ -1,23 +1,53 @@
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getCollection, getEntry } from '@/lib/content'
 import { SectionHeader } from '@/components/SectionHeader'
 import { GalleryStrip } from '@/components/GalleryStrip'
 import { MiniMapClient } from '@/components/MiniMapClient'
-import { MotifDivider } from '@/components/MotifDivider'
 import { petaLink } from '@/lib/links'
 
 export function generateStaticParams() {
   return getCollection('pariwisata').map((p) => ({ slug: p.slug }))
 }
 
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const item = getEntry('pariwisata', params.slug)
+  if (!item) return {}
+  return {
+    title: item.title,
+    description: item.shortDesc,
+    openGraph: {
+      title: item.title,
+      description: item.shortDesc,
+      images: [{ url: item.cover, width: 1200, height: 630 }],
+      type: 'article',
+    },
+    alternates: { canonical: `/pariwisata/${params.slug}` },
+  }
+}
+
 export default function PariwisataDetailPage({ params }: { params: { slug: string } }) {
   const item = getEntry('pariwisata', params.slug)
   if (!item) notFound()
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'TouristAttraction',
+    name: item.title,
+    description: item.shortDesc,
+    image: item.cover,
+    geo: { '@type': 'GeoCoordinates', latitude: item.lat, longitude: item.lng },
+    address: { '@type': 'PostalAddress', addressLocality: `${item.village}, Sambelia`, addressRegion: 'Lombok Timur, NTB', addressCountry: 'ID' },
+  }
+
   return (
     <article className="mx-auto max-w-content px-4 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link href="/pariwisata" className="text-sm text-water-900 transition-colors hover:text-terracotta-500">
         ← Kembali
       </Link>
@@ -63,7 +93,6 @@ export default function PariwisataDetailPage({ params }: { params: { slug: strin
         Lihat di peta →
       </Link>
 
-      <MotifDivider className="mt-12" />
     </article>
   )
 }

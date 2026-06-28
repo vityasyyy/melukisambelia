@@ -123,3 +123,11 @@ assets/images/
 
 # Superpowers worktrees
 .worktrees/
+
+# Playwright MCP artifacts
+.playwright-mcp/
+
+# Stray screenshots from audits
+audit-*.jpeg
+review-*.png
+review-*.jpeg

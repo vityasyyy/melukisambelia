@@ -4,6 +4,8 @@ import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 import { Nav } from '@/components/Nav'
 import { Footer } from '@/components/Footer'
+import { ScrollProgress } from '@/components/ScrollProgress'
+import { BackToTop } from '@/components/BackToTop'
 
 const gontserrat = localFont({
   src: [
@@ -50,12 +52,24 @@ export const metadata: Metadata = {
     locale: 'id_ID',
     images: ['/og.png'],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Melukis Sambelia — KKN-PPM UGM',
+    description: 'Pemberdayaan pariwisata berkelanjutan dan agropolitan Sambelia.',
+    images: ['/og.png'],
+  },
+  manifest: '/manifest.json',
   icons: {
     icon: [
       { url: '/images/design-system/favicon-32.png', sizes: '32x32', type: 'image/png' },
       { url: '/images/design-system/favicon-16.png', sizes: '16x16', type: 'image/png' },
     ],
     apple: '/images/design-system/apple-touch-icon.png',
+  },
+  other: {
+    'apple-mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-status-bar-style': 'default',
+    'apple-mobile-web-app-title': 'Sambelia',
   },
 }
 
@@ -67,10 +81,35 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="id" className={`${gontserrat.variable} ${beautique.variable} ${beautiqueCondensed.variable}`}>
       <body className="font-gontserrat bg-page text-ink antialiased min-h-screen flex flex-col">
+        <a
+          href="#main"
+          className="skip-link sr-only rounded-lg bg-white px-4 py-2 text-sm font-semibold text-brown-900 shadow-lg focus:not-sr-only focus:z-50"
+        >
+          Lewati ke konten
+        </a>
+        <ScrollProgress />
         <Nav />
-        <main className="flex-1">{children}</main>
+        <main id="main" className="flex-1">{children}</main>
         <Footer />
+        <BackToTop />
         <Analytics />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Melukis Sambelia',
+              url: 'https://melukis-sambelia.vercel.app',
+              description: 'Portal komunitas KKN-PPM UGM Melukis Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa binaan.',
+              publisher: {
+                '@type': 'Organization',
+                name: 'KKN-PPM UGM Melukis Sambelia',
+                url: 'https://melukis-sambelia.vercel.app',
+              },
+            }),
+          }}
+        />
       </body>
     </html>
   )

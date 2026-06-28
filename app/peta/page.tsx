@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import { getMapMarkers } from '@/lib/map'
 import { getGisMap } from '@/lib/settings'
 import { getGisManifest } from '@/lib/gis'
-import { SectionHeader } from '@/components/SectionHeader'
-import { FadeIn } from '@/components/FadeIn'
 import { MapPanelClient } from '@/components/MapPanelClient'
+import { PageHero } from '@/components/PageHero'
 
 export const metadata: Metadata = {
   title: 'Peta Sambelia',
@@ -16,16 +15,11 @@ export default function PetaPage() {
   const gis = getGisMap()
   const manifest = getGisManifest()
   return (
-    <div className="mx-auto max-w-content px-4 py-16">
-      <FadeIn>
-        <SectionHeader
-          kicker="02 — PETA"
-          title="Peta Sambelia"
-          intro="Jelajahi titik wisata, irigasi, kesehatan, UMKM, serta peta tematik air, irigasi, vegetasi, erosi, dan blue carbon."
-          tone="water"
-        />
-      </FadeIn>
-      <MapPanelClient markers={markers} gis={gis} gisFiles={manifest.files ?? []} />
-    </div>
+    <>
+      <PageHero kicker="PETA" title="Peta Sambelia" intro="Jelajahi titik wisata, irigasi, kesehatan, UMKM, serta peta tematik air, vegetasi, erosi, dan blue carbon." tone="water" />
+      <div className="mx-auto max-w-content px-4 py-16">
+        <MapPanelClient markers={markers} gis={gis} gisFiles={manifest.files ?? []} />
+      </div>
+    </>
   )
 }

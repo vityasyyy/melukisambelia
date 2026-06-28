@@ -42,7 +42,19 @@ export function CountdownStrip({ festivals }: { festivals: Festival[] }) {
     return () => clearInterval(id)
   }, [next])
 
-  if (!next) return null
+  if (!next) {
+    return (
+      <div className="rounded-2xl bg-gradient-to-r from-wine via-terracotta-500 to-gold-500 p-1 shadow-terracotta">
+        <div className="rounded-xl bg-page px-6 py-5 text-center">
+          <p className="text-xs font-semibold uppercase tracking-widest text-terracotta-500">
+            Festival Pesona Sambelia 2026
+          </p>
+          <p className="mt-3 font-beautique text-2xl text-brown-900">Segera diumumkan</p>
+          <p className="mt-2 text-sm text-ink/70">Jadwal festival segera diumumkan</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="rounded-2xl bg-gradient-to-r from-wine via-terracotta-500 to-gold-500 p-1 shadow-terracotta">
@@ -63,7 +75,7 @@ export function CountdownStrip({ festivals }: { festivals: Festival[] }) {
               >
                 {pad(u.value)}
               </motion.div>
-              <div className="text-[10px] uppercase tracking-wide text-ink/60">{u.label}</div>
+              <div className="text-[10px] uppercase tracking-wide text-ink/70">{u.label}</div>
             </div>
           ))}
         </div>

@@ -1,0 +1,32 @@
+{
+  "name": "Melukis Sambelia",
+  "short_name": "Sambelia",
+  "description": "Portal komunitas KKN-PPM UGM Melukis Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFCF7",
+  "theme_color": "#0873B9",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/design-system/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/design-system/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/design-system/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/design-system/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

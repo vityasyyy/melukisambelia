@@ -4,10 +4,8 @@ backend:
   name: github
   repo: miapalovaara/melukisambelia
   branch: main
-  auth_type: oauth
-  proxy_url: /api/auth
-  base_url: /
-  auth_endpoint: api/auth
+  base_url: https://melukis-sambelia.vercel.app
+  auth_endpoint: /api/auth
 
 media_folder: "public/images"
 public_folder: "/images"
@@ -18,7 +16,7 @@ collections:
     folder: "content/pariwisata"
     create: true
     extension: "mdx"
-    format: "mdx"
+    format: "frontmatter"
     fields:
       - { label: "Judul", name: "title", widget: "string" }
       - { label: "Kategori", name: "category", widget: "select", options: ["Pantai", "Budaya", "Desa Wisata", "Air", "Trekking"] }
@@ -36,7 +34,10 @@ collections:
     label: "Irigasi"
     folder: "content/irigasi"
     create: true
+    identifier_field: "name"
+    slug: "{{slug}}"
     extension: "md"
+    format: "yaml-frontmatter"
     fields:
       - { label: "Nama Saluran", name: "name", widget: "string" }
       - { label: "Tipe", name: "saluranType", widget: "select", options: ["Primer", "Sekunder", "Tersier"] }
@@ -53,7 +54,10 @@ collections:
     label: "Kesehatan"
     folder: "content/kesehatan"
     create: true
+    identifier_field: "facilityName"
+    slug: "{{slug}}"
     extension: "md"
+    format: "yaml-frontmatter"
     fields:
       - { label: "Nama Fasilitas", name: "facilityName", widget: "string" }
       - { label: "Tipe", name: "type", widget: "select", options: ["Posyandu", "Puskesmas", "Bidan", "Polides"] }
@@ -69,7 +73,10 @@ collections:
     label: "Festival"
     folder: "content/festival"
     create: true
+    identifier_field: "eventName"
+    slug: "{{slug}}"
     extension: "md"
+    format: "yaml-frontmatter"
     fields:
       - { label: "Nama Acara", name: "eventName", widget: "string" }
       - { label: "Jadwal", name: "schedule", widget: "string" }
@@ -84,7 +91,7 @@ collections:
     folder: "content/cerita"
     create: true
     extension: "mdx"
-    format: "mdx"
+    format: "frontmatter"
     fields:
       - { label: "Judul", name: "title", widget: "string" }
       - { label: "Penulis", name: "author", widget: "string" }
@@ -97,7 +104,10 @@ collections:
     label: "UMKM"
     folder: "content/umkm"
     create: true
+    identifier_field: "name"
+    slug: "{{slug}}"
     extension: "md"
+    format: "yaml-frontmatter"
     fields:
       - { label: "Nama UMKM", name: "name", widget: "string" }
       - { label: "Pemilik", name: "owner", widget: "string" }
@@ -120,6 +130,15 @@ collections:
           - { label: "Judul", name: "title", widget: "string", default: "Air & Tanah" }
           - { label: "Deskripsi", name: "description", widget: "text", required: false }
           - { label: "Kredit", name: "credit", widget: "string", required: false }
+          - label: "Pengukuran TMA & DHL"
+            name: "measurements"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Lokasi", name: "location", widget: "string" }
+              - { label: "Tanggal", name: "date", widget: "datetime", date_only: true }
+              - { label: "TMA (m)", name: "tmaMeters", widget: "number", value_type: "float" }
+              - { label: "DHL (mS)", name: "dhlMsiemens", widget: "number", value_type: "float" }
 
   - name: "settings"
     label: "Pengaturan Situs"
@@ -152,6 +171,23 @@ collections:
               - { label: "Email", name: "email", widget: "string" }
               - { label: "Telepon", name: "phone", widget: "string", required: false }
               - { label: "Alamat", name: "address", widget: "string" }
+          - label: "Intro Beranda (Section 02-05)"
+            name: "homepageIntros"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "02 — Kicker (Jejaki)", name: "jejakiKicker", widget: "string", default: "02 — JEJAKI" }
+              - { label: "02 — Judul (Jejaki)", name: "jejakiTitle", widget: "string", default: "Jejaki Sambelia" }
+              - { label: "02 — Intro (Jejaki)", name: "jejakiIntro", widget: "string", required: false }
+              - { label: "03 — Kicker (Wisata)", name: "wisataKicker", widget: "string", default: "03 — WISATA UNGGULAN" }
+              - { label: "03 — Judul (Wisata)", name: "wisataTitle", widget: "string", default: "Destinasi Pilihan" }
+              - { label: "03 — Intro (Wisata)", name: "wisataIntro", widget: "text", default: "Destinasi wisata unggulan di Desa Sugian dan Labuhan Pandan." }
+              - { label: "04 — Kicker (Festival)", name: "festivalKicker", widget: "string", default: "04 — FESTIVAL" }
+              - { label: "04 — Judul (Festival)", name: "festivalTitle", widget: "string", default: "Festival Pesona Sambelia" }
+              - { label: "04 — Intro (Festival)", name: "festivalIntro", widget: "text", default: "Peresean, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia." }
+              - { label: "05 — Kicker (UMKM)", name: "umkmKicker", widget: "string", default: "05 — UMKM" }
+              - { label: "05 — Judul (UMKM)", name: "umkmTitle", widget: "string", default: "UMKM Spotlight" }
+              - { label: "05 — Intro (UMKM)", name: "umkmIntro", widget: "text", default: "Kerajinan, kuliner, dan produk lokal andalan masyarakat Sambelia." }
 
       - label: "Peta GIS"
         name: "_gismap"
@@ -160,3 +196,32 @@ collections:
           - { label: "Judul", name: "title", widget: "string" }
           - { label: "Deskripsi", name: "description", widget: "string", required: false }
           - { label: "Kredit", name: "credit", widget: "string", required: false }
+
+  - name: "desa"
+    label: "Desa Binaan"
+    folder: "content/desa"
+    create: true
+    extension: "md"
+    format: "yaml-frontmatter"
+    identifier_field: "name"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nama Desa", name: "name", widget: "string" }
+      - { label: "Deskripsi", name: "description", widget: "text" }
+      - { label: "Gambar", name: "image", widget: "image" }
+
+  - name: "tentang"
+    label: "Tentang Sambelia"
+    files:
+      - label: "Konten Tentang"
+        name: "_tentang"
+        file: "content/_tentang.md"
+        fields:
+          - { label: "Prose Geografi", name: "geographyProse", widget: "text" }
+          - label: "Potensi Desa"
+            name: "potensiDesa"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Deskripsi", name: "description", widget: "text" }

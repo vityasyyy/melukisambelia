@@ -26,13 +26,13 @@ export function MapFilterChips({
           <button
             key={layer}
             onClick={() => onToggle(layer)}
+            aria-pressed={isActive}
             className={cn(
-              'inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all',
+              'inline-flex min-h-[44px] items-center gap-2 rounded-full border px-3 py-2 text-xs font-semibold transition-all',
               isActive
                 ? 'border-transparent bg-cream-beige text-brown-900 shadow-sm'
-                : 'border-tan-700/30 bg-page text-ink/60'
+                : 'border-tan-700/30 bg-page text-ink/70 hover:text-ink'
             )}
-            aria-pressed={isActive}
           >
             <span
               className="h-2.5 w-2.5 rounded-full"

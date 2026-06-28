@@ -6,9 +6,10 @@ import type { GisFile } from '@/lib/gis-manifest'
 export function PetaSection({ files }: { files: GisFile[] }) {
   if (files.length === 0) {
     return (
-      <p className="rounded-2xl border border-dashed border-tan-700/40 p-8 text-center text-sm text-ink/60">
-        Peta untuk kategori ini belum tersedia. Tim akan menambahkan segera.
-      </p>
+      <div className="py-16 text-center">
+        <p className="text-ink/70 text-sm sm:text-base">Peta untuk kategori ini belum tersedia.</p>
+        <p className="mt-2 text-xs text-ink/60">Tim GIS akan menambahkan segera.</p>
+      </div>
     )
   }
 
@@ -30,7 +31,7 @@ export function PetaSection({ files }: { files: GisFile[] }) {
             </div>
           )}
           {f.type === 'geojson' && (
-            <div className="flex aspect-[4/3] w-full items-center justify-center bg-gold-50 text-sm text-ink/60">
+            <div className="flex aspect-[4/3] w-full items-center justify-center bg-gold-50 text-sm text-ink/70">
               GeoJSON (ditampilkan di peta interaktif)
             </div>
           )}

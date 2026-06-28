@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: 'Produk kerajinan, kuliner, pertanian, dan UMKM lokal Kecamatan Sambelia, termasuk peyek mangrove.',
 }
 
+export const dynamic = 'force-dynamic'
+
 export default function UmkmPage() {
   const items = getCollection('umkm')
   return <UmkmListClient items={items} />

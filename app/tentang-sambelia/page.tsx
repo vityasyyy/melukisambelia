@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
-import { getSettings } from '@/lib/settings'
+import { getSettings, getDesa, getTentang } from '@/lib/settings'
 import { SectionHeader } from '@/components/SectionHeader'
 import { StatCard } from '@/components/StatCard'
-import { MotifDivider } from '@/components/MotifDivider'
-import { GradientText } from '@/components/GradientText'
+
 import { FadeIn } from '@/components/FadeIn'
+import { PageHero } from '@/components/PageHero'
+import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import Image from 'next/image'
 
 export const metadata: Metadata = {
@@ -14,6 +15,8 @@ export const metadata: Metadata = {
 
 export default function TentangSambeliaPage() {
   const s = getSettings()
+  const desa = getDesa()
+  const tentang = getTentang()
 
   const geography = [
     { label: 'Luas Wilayah', value: s.stats.luas },
@@ -22,30 +25,14 @@ export default function TentangSambeliaPage() {
     { label: 'Tahun Program', value: s.stats.tahunProgram },
   ]
 
-  const desa = [
-    { name: 'Sugian', desc: 'Desa binaan dengan potensi wisata bahari, pertanian, dan kerajinan tangan khas Sasak.', image: '/images/content/sugian-group44.png' },
-    { name: 'Labuhan Pandan', desc: 'Desa pesisir dengan wisata bahari, budaya Sasak, dan ekowisata mangrove.', image: '/images/content/labuanpandan.webp' },
-  ]
-
   return (
     <>
-      <section className="relative overflow-hidden bg-gradient-to-br from-brown-900 via-wine to-terracotta-500/60 py-20 text-center text-cream-light"
-      >
-        <div className="absolute inset-0 section-watermark" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-content px-4">
-          <p className="text-xs font-semibold uppercase tracking-widest text-cream-light/70">TENTANG</p>
-          <h1
-            className="mt-2 font-beautique text-display-lg"
-            style={{ textShadow: '0px 4px 4px rgba(0,0,0,0.25)' }}
-          >
-            <GradientText className="text-cream-light">Sambelia</GradientText>
-          </h1>
-          <p className="mx-auto mt-4 max-w-xl text-sm text-cream-light/80 sm:text-base">
-            Kecamatan Sambelia, Kabupaten Lombok Timur, Nusa Tenggara Barat —
-            pusat pengembangan pariwisata berkelanjutan dan kawasan agropolitan.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        kicker="TENTANG"
+        title="Sambelia"
+        intro="Kecamatan Sambelia, Kabupaten Lombok Timur, Nusa Tenggara Barat — pusat pengembangan pariwisata berkelanjutan dan kawasan agropolitan."
+        tone="brown"
+      />
 
       <section className="mx-auto max-w-content px-4 py-16 scroll-mt-20">
         <FadeIn>
@@ -56,26 +43,23 @@ export default function TentangSambeliaPage() {
             tone="green"
           />
         </FadeIn>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <StaggerContainer stagger={0.06} className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {geography.map((g) => (
-            <StatCard key={g.label} label={g.label} value={g.value} />
+            <StaggerItem key={g.label}>
+              <StatCard label={g.label} value={g.value} />
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
         <div className="mt-8 rounded-2xl border border-tan-700/20 bg-cream-beige/40 p-6 shadow-terracotta">
           <h3 className="mb-2 font-semibold text-brown-900">Letak Geografis</h3>
           <p className="text-sm leading-relaxed text-ink/70">
-            Kecamatan Sambelia terletak di Kabupaten Lombok Timur, Provinsi Nusa Tenggara Barat.
-            Wilayahnya mencakup area pesisir dengan potensi wisata bahari serta kawasan pertanian
-            yang subur. Batas administrasi mencakup area desa Sugian dan Labuhan Pandan sebagai
-            desa binaan program KKN-PPM UGM Melukis Sambelia.
+            {tentang.geographyProse}
           </p>
           <p className="mt-3 text-xs text-ink/40">
             Data geografi diperbarui berdasarkan informasi desa binaan.
           </p>
         </div>
       </section>
-
-      <MotifDivider className="my-4" />
 
       <section className="mx-auto max-w-content px-4 py-12 scroll-mt-20">
         <FadeIn>
@@ -86,28 +70,28 @@ export default function TentangSambeliaPage() {
             tone="water"
           />
         </FadeIn>
-        <div className="grid gap-6 md:grid-cols-2">
+        <StaggerContainer stagger={0.1} className="grid gap-6 md:grid-cols-2">
           {desa.map((d) => (
-            <div key={d.name} className="overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all hover:-translate-y-1 hover:shadow-terracotta-hover">
-              <div className="relative aspect-video">
-                <Image
-                  src={d.image}
-                  alt={d.name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
+            <StaggerItem key={d.slug}>
+              <div className="group overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:-translate-y-1 hover:shadow-terracotta-hover">
+                <div className="relative aspect-video overflow-hidden">
+                  <Image
+                    src={d.image}
+                    alt={d.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="font-beautique text-2xl text-brown-900">{d.name}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/70">{d.description}</p>
+                </div>
               </div>
-              <div className="p-5">
-                <h3 className="font-beautique text-2xl text-brown-900">{d.name}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink/70">{d.desc}</p>
-              </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </section>
-
-      <MotifDivider className="my-4" />
 
       <section className="mx-auto max-w-content px-4 py-12 scroll-mt-20">
         <FadeIn>
@@ -118,20 +102,18 @@ export default function TentangSambeliaPage() {
             tone="terracotta"
           />
         </FadeIn>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-2xl border border-tan-700/20 bg-cream-warm/30 p-6 shadow-terracotta">
-            <h3 className="font-semibold text-lg text-brown-900">Pariwisata Bahari & Budaya</h3>
-            <p className="mt-2 text-sm leading-relaxed text-ink/70">
-              Pantai Berandangan, Taman Wisata Air Kramat Suci, Desa Wisata Sugian dan Labuhan Pandan, serta tradisi Sasak seperti Peresean, Pawai Dulangan, dan Gendang Beleq.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-tan-700/20 bg-cream-warm/30 p-6 shadow-terracotta">
-            <h3 className="font-semibold text-lg text-brown-900">Agropolitan & UMKM</h3>
-            <p className="mt-2 text-sm leading-relaxed text-ink/70">
-              Pengembangan kawasan agropolitan berbasis pertanian, perikanan, dan kerajinan lokal, didukung jaringan irigasi dan program kesehatan masyarakat terpadu.
-            </p>
-          </div>
-        </div>
+        <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2">
+          {tentang.potensiDesa.map((p) => (
+            <StaggerItem key={p.title}>
+              <div className="h-full rounded-2xl border border-tan-700/20 bg-cream-warm/30 p-6 shadow-terracotta">
+                <h3 className="font-semibold text-lg text-brown-900">{p.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink/70">
+                  {p.description}
+                </p>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
       </section>
     </>
   )

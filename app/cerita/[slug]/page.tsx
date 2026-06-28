@@ -3,8 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getCollection, getEntry } from '@/lib/content'
-import { SectionHeader } from '@/components/SectionHeader'
-import { MotifDivider } from '@/components/MotifDivider'
+import { Pill } from '@/components/Pill'
 
 export function generateStaticParams() {
   return getCollection('cerita').map((c) => ({ slug: c.slug }))
@@ -24,8 +23,22 @@ export default function CeritaDetailPage({ params }: { params: { slug: string } 
   const item = getEntry('cerita', params.slug)
   if (!item) notFound()
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: item.title,
+    author: { '@type': 'Person', name: item.author },
+    datePublished: item.date,
+    image: item.cover,
+    description: item.excerpt,
+  }
+
   return (
     <article className="mx-auto max-w-3xl px-4 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link href="/cerita" className="text-sm text-water-900 transition-colors hover:text-terracotta-500">
         ← Kembali
       </Link>
@@ -34,11 +47,14 @@ export default function CeritaDetailPage({ params }: { params: { slug: string } 
         <Image src={item.cover} alt={item.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
       </div>
 
-      <SectionHeader kicker={item.date} title={item.title} intro={`Oleh ${item.author}`} tone="brown" />
+      <div className="mt-6">
+        <Pill variant="terracotta" className="mb-3">{item.date}</Pill>
+        <h1 className="font-beautique text-display-lg text-brown-900">{item.title}</h1>
+        <p className="mt-3 text-ink/70 leading-relaxed">Oleh {item.author}</p>
+      </div>
 
       <div className="prose prose-lg max-w-none text-ink/80">{item.body}</div>
 
-      <MotifDivider className="mt-12" />
     </article>
   )
 }

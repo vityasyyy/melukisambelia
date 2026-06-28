@@ -7,10 +7,15 @@ export function StaggerContainer({
   children,
   stagger = 0.1,
   className,
+  mode = 'view',
+  once = true,
 }: {
   children: ReactNode
   stagger?: number
   className?: string
+  /** 'view' = reveal on scroll into view; 'mount' = animate immediately on mount (for filtered lists) */
+  mode?: 'view' | 'mount'
+  once?: boolean
 }) {
   const shouldReduce = useReducedMotion()
   if (shouldReduce) {
@@ -26,8 +31,15 @@ export function StaggerContainer({
       },
     },
   }
+  if (mode === 'mount') {
+    return (
+      <motion.div variants={variants} initial="hidden" animate="visible" className={className}>
+        {children}
+      </motion.div>
+    )
+  }
   return (
-    <motion.div variants={variants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} className={className}>
+    <motion.div variants={variants} initial="hidden" whileInView="visible" viewport={{ once, margin: '-60px' }} className={className}>
       {children}
     </motion.div>
   )

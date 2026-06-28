@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: 'Fasilitas kesehatan, posyandu, puskesmas, bidan, dan program stunting di Kecamatan Sambelia.',
 }
 
+export const dynamic = 'force-dynamic'
+
 export default function KesehatanPage() {
   const items = getCollection('kesehatan')
   const stats = {

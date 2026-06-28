@@ -2,16 +2,16 @@ import type { Metadata } from 'next'
 import { getCollection } from '@/lib/content'
 import { FestivalTimeline } from '@/components/FestivalTimeline'
 import { EmptyState } from '@/components/EmptyState'
-import { SectionHeader } from '@/components/SectionHeader'
 import { CountdownStrip } from '@/components/CountdownStrip'
-import { MotifDivider } from '@/components/MotifDivider'
-import { FadeIn } from '@/components/FadeIn'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
+import { PageHero } from '@/components/PageHero'
 
 export const metadata: Metadata = {
   title: 'Festival Pesona Sambelia',
   description: 'Jadwal dan informasi Festival Pesona Sambelia: Peresean, Pawai Dulangan, Gendang Beleq, dan warisan budaya Sasak lainnya.',
 }
+
+export const dynamic = 'force-dynamic'
 
 export default function FestivalPage() {
   const events = getCollection('festival')
@@ -27,20 +27,7 @@ export default function FestivalPage() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-gradient-to-br from-wine via-terracotta-500 to-gold-500 py-20 text-center text-cream-light">
-        <div className="absolute inset-0 section-watermark" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-content px-4">
-          <FadeIn>
-            <SectionHeader
-              kicker="FESTIVAL"
-              title="Festival Pesona Sambelia"
-              intro="Peresean, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia."
-              tone="gold"
-              centered
-            />
-          </FadeIn>
-        </div>
-      </section>
+      <PageHero kicker="FESTIVAL" title="Festival Pesona Sambelia" intro="Peresean, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia." tone="gold" />
 
       <section className="mx-auto max-w-content px-4 py-10">
         {events.length > 0 ? <CountdownStrip festivals={festivalData} /> : <EmptyState message="Jadwal festival akan segera diumumkan." />}
@@ -58,7 +45,6 @@ export default function FestivalPage() {
         )}
       </section>
 
-      <MotifDivider />
     </>
   )
 }

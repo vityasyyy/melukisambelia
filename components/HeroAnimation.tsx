@@ -5,7 +5,13 @@ import Link from 'next/link'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { GradientText } from './GradientText'
 
-export function HeroAnimation({ src, tagline }: { src: string; tagline: string }) {
+export function HeroAnimation({
+  src,
+  tagline,
+}: {
+  src?: string
+  tagline: string
+}) {
   const reduce = useReducedMotion()
   const { scrollY } = useScroll()
   const heroY = useTransform(scrollY, [0, 600], reduce ? [0, 0] : [0, 150])
@@ -31,8 +37,38 @@ export function HeroAnimation({ src, tagline }: { src: string; tagline: string }
         className="absolute inset-0"
         style={{ y: heroY }}
       >
-        <Image src={src} alt="Sambelia" fill className="object-cover object-[center_60%]" priority sizes="100vw" />
+        <Image
+          src={src ?? '/images/content/personstanding.webp'}
+          alt="Pemandangan Kecamatan Sambelia"
+          fill
+          className="object-cover object-[center_60%]"
+          priority
+          sizes="100vw"
+        />
       </motion.div>
+
+      {/* Warm duotone grade overlays */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(43,28,21,0.45) 0%, rgba(120,52,40,0.18) 38%, rgba(43,28,21,0.20) 70%, rgba(26,17,13,0.78) 100%)',
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1] mix-blend-soft-light"
+        style={{
+          background:
+            'radial-gradient(120% 90% at 50% 30%, rgba(244,232,208,0.35) 0%, rgba(232,168,109,0.12) 40%, transparent 75%)',
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[2]"
+        style={{ boxShadow: 'inset 0 -120px 160px -40px rgba(26,17,13,0.9), inset 0 0 220px 10px rgba(26,17,13,0.45)' }}
+      />
 
       <div className="relative z-10 flex max-w-4xl flex-col items-center px-6 py-24">
         <motion.div variants={container} initial="hidden" animate="visible" className="flex flex-col items-center">

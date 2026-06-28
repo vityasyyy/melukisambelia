@@ -4,8 +4,10 @@ import matter from 'gray-matter'
 import {
   pariwisataSchema, irigasiSchema, kesehatanSchema,
   festivalSchema, ceritaSchema, umkmSchema, airTanahSchema,
+  desaSchema, tentangSchema,
   type Pariwisata, type Irigasi, type Kesehatan,
   type Festival, type Cerita, type Umkm, type AirTanah,
+  type Desa, type Tentang,
 } from '@/lib/schemas'
 
 const CONTENT_DIR = path.join(process.cwd(), 'content')
@@ -18,6 +20,8 @@ type SchemaMap = {
   cerita: { schema: typeof ceritaSchema; ext: string }
   umkm: { schema: typeof umkmSchema; ext: string }
   airTanah: { schema: typeof airTanahSchema; ext: string }
+  desa: { schema: typeof desaSchema; ext: string }
+  tentang: { schema: typeof tentangSchema; ext: string }
 }
 
 const SCHEMAS: SchemaMap = {
@@ -28,6 +32,8 @@ const SCHEMAS: SchemaMap = {
   cerita: { schema: ceritaSchema, ext: 'mdx' },
   umkm: { schema: umkmSchema, ext: 'md' },
   airTanah: { schema: airTanahSchema, ext: 'md' },
+  desa: { schema: desaSchema, ext: 'md' },
+  tentang: { schema: tentangSchema, ext: 'md' },
 }
 
 export type CollectionName = keyof SchemaMap
@@ -39,6 +45,8 @@ export type CollectionItem<C extends CollectionName> =
   C extends 'cerita' ? Cerita & { slug: string } :
   C extends 'umkm' ? Umkm & { slug: string } :
   C extends 'airTanah' ? AirTanah & { slug: string } :
+  C extends 'desa' ? Desa & { slug: string } :
+  C extends 'tentang' ? Tentang & { slug: string } :
   never
 
 export function getCollection<C extends CollectionName>(name: C): CollectionItem<C>[] {
@@ -46,22 +54,25 @@ export function getCollection<C extends CollectionName>(name: C): CollectionItem
   if (!fs.existsSync(dir)) return [] as CollectionItem<C>[]
   const { schema, ext } = SCHEMAS[name]
   const files = fs.readdirSync(dir).filter((f) => f.endsWith(`.${ext}`))
-  return files
-    .map((file) => {
-      const raw = fs.readFileSync(path.join(dir, file), 'utf8')
-      const { data, content } = matter(raw)
-      const parsed = schema.safeParse({ ...data, body: content })
-      if (!parsed.success) {
-        throw new Error(`Invalid frontmatter in ${name}/${file}:\n${parsed.error.toString()}`)
+  const items: CollectionItem<C>[] = []
+  for (const file of files) {
+    const raw = fs.readFileSync(path.join(dir, file), 'utf8')
+    const { data, content } = matter(raw)
+    const parsed = schema.safeParse({ ...data, body: content || data.body || '' })
+    if (!parsed.success) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(`[content] Invalid frontmatter in ${name}/${file} — skipping entry:\n${parsed.error.toString()}`)
       }
-      const slug = file.replace(/\.(md|mdx)$/, '')
-      return { ...parsed.data, slug } as CollectionItem<C>
-    })
-    .sort((a, b) => {
-      const ao = (a as unknown as { order?: number }).order ?? 0
-      const bo = (b as unknown as { order?: number }).order ?? 0
-      return ao - bo
-    })
+      continue
+    }
+    const slug = file.replace(/\.(md|mdx)$/, '')
+    items.push({ ...parsed.data, slug } as CollectionItem<C>)
+  }
+  return items.sort((a, b) => {
+    const ao = (a as unknown as { order?: number }).order ?? 0
+    const bo = (b as unknown as { order?: number }).order ?? 0
+    return ao - bo
+  })
 }
 
 export function getEntry<C extends CollectionName>(name: C, slug: string): CollectionItem<C> | null {

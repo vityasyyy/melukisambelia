@@ -2,6 +2,47 @@
 title: "Air & Tanah"
 description: "Data Tinggi Muka Airtanah (TMA) dan Daya Hantar Listrik (DHL) di Kecamatan Sambelia."
 credit: "Tim Air & Tanah — Melukis Sambelia"
+measurements:
+  - location: "Sumur Sugian 1"
+    date: "2026-06-10"
+    tmaMeters: 2.3
+    dhlMsiemens: 450
+  - location: "Sumur Sugian 2"
+    date: "2026-06-10"
+    tmaMeters: 3.1
+    dhlMsiemens: 380
+  - location: "Sumur Labuhan Pandan 1"
+    date: "2026-06-11"
+    tmaMeters: 1.8
+    dhlMsiemens: 520
+  - location: "Sumur Labuhan Pandan 2"
+    date: "2026-06-11"
+    tmaMeters: 2.5
+    dhlMsiemens: 410
+  - location: "Mata Air Sugian"
+    date: "2026-06-12"
+    tmaMeters: 0.8
+    dhlMsiemens: 290
+  - location: "Sumur Bor Desa Sugian"
+    date: "2026-06-12"
+    tmaMeters: 4.2
+    dhlMsiemens: 350
+  - location: "Sumur Dangkal Labuhan Pandan"
+    date: "2026-06-13"
+    tmaMeters: 1.5
+    dhlMsiemens: 480
+  - location: "Sungai Sugian Hilir"
+    date: "2026-06-13"
+    tmaMeters: 0.5
+    dhlMsiemens: 610
+  - location: "Sumur Warga Labuhan Pandan"
+    date: "2026-06-14"
+    tmaMeters: 3.7
+    dhlMsiemens: 390
+  - location: "Mata Air Pesisir Sugian"
+    date: "2026-06-14"
+    tmaMeters: 0.3
+    dhlMsiemens: 270
 ---
 
 Data TMA dan kualitas air diperoleh dari survei lapangan oleh tim cluster Air & Tanah.

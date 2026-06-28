@@ -19,6 +19,15 @@ const LAYER_LABELS: Record<MapLayer, string> = {
 
 const DEFAULT_CENTER: [number, number] = [-8.355, 116.845]
 
+function MapReady() {
+  const map = useMap()
+  useEffect(() => {
+    const t = setTimeout(() => { map.invalidateSize() }, 200)
+    return () => clearTimeout(t)
+  }, [map])
+  return null
+}
+
 function FitBounds({ bounds }: { bounds: LatLngBoundsExpression | null }) {
   const map = useMap()
   useEffect(() => {
@@ -32,11 +41,14 @@ function QueryView() {
   const map = useMap()
   const search = useSearchParams()
   useEffect(() => {
-    const lat = Number(search.get('lat'))
-    const lng = Number(search.get('lng'))
-    if (!Number.isNaN(lat) && !Number.isNaN(lng)) {
-      map.setView([lat, lng], 16)
-    }
+    const latRaw = search.get('lat')
+    const lngRaw = search.get('lng')
+    if (latRaw == null || lngRaw == null) return
+    const lat = Number(latRaw)
+    const lng = Number(lngRaw)
+    if (Number.isNaN(lat) || Number.isNaN(lng)) return
+    if (lat < -90 || lat > 90 || lng < -180 || lng > 180) return
+    map.setView([lat, lng], 16)
   }, [search, map])
   return null
 }
@@ -69,18 +81,21 @@ function MapContents({ markers }: { markers: MapMarker[] }) {
       <MapContainer
         center={DEFAULT_CENTER}
         zoom={14}
+        minZoom={10}
         scrollWheelZoom={false}
+        aria-label="Peta interaktif Sambelia"
         className="h-[60vh] w-full rounded-2xl"
       >
         <FitBounds bounds={bounds} />
+        <MapReady />
         <QueryView />
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="© OpenStreetMap" />
         {visible.map((m) => (
           <CircleMarker
             key={`${m.layer}-${m.slug}`}
             center={[m.lat, m.lng]}
-            radius={8}
-            pathOptions={{ color: LAYER_COLORS[m.layer], fillColor: LAYER_COLORS[m.layer], fillOpacity: 0.8 }}
+            radius={10}
+            pathOptions={{ color: LAYER_COLORS[m.layer], fillColor: LAYER_COLORS[m.layer], fillOpacity: 0.8, weight: 2 }}
           >
             <Popup>
               <strong>{m.title}</strong>
@@ -93,8 +108,8 @@ function MapContents({ markers }: { markers: MapMarker[] }) {
         ))}
       </MapContainer>
 
-      <aside className="max-h-[60vh] space-y-4 overflow-y-auto rounded-2xl border border-tan-700/20 bg-cream-beige/50 p-4 shadow-terracotta md:max-h-none">
-        <h3 className="text-sm font-semibold uppercase tracking-wide text-brown-900">Lapisan</h3>
+      <aside aria-label="Lapisan peta" className="max-h-[60vh] space-y-4 overflow-y-auto rounded-2xl border border-tan-700/20 bg-cream-beige/50 p-4 shadow-terracotta md:max-h-none">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-brown-900">Lapisan</h2>
         <MapFilterChips active={enabled} onToggle={toggle} />
         <div className="space-y-2 pt-2">
           {ALL_LAYERS.map((layer) => {
@@ -110,7 +125,7 @@ function MapContents({ markers }: { markers: MapMarker[] }) {
             )
           })}
         </div>
-        {visible.length === 0 && <p className="text-xs text-ink/50">Tidak ada titik pada lapisan aktif.</p>}
+        {visible.length === 0 && <p className="text-xs text-ink/60">Tidak ada titik pada lapisan aktif.</p>}
       </aside>
     </div>
   )

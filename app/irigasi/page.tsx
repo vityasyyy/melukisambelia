@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: 'Data saluran irigasi, kondisi saluran, dan peta titik rawan kekeringan di Kecamatan Sambelia.',
 }
 
+export const dynamic = 'force-dynamic'
+
 export default function IrigasiPage() {
   const items = getCollection('irigasi')
   const conditionCounts = items.reduce<Record<string, number>>((acc, i) => {

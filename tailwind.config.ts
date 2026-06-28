@@ -13,6 +13,7 @@ const config: Config = {
         water: {
           50: "var(--water-50)",
           500: "var(--water-500)",
+          700: "var(--water-700)",
           900: "var(--water-900)",
         },
         green: {
@@ -24,10 +25,19 @@ const config: Config = {
           50: "var(--gold-50)",
           100: "var(--gold-100)",
           500: "var(--gold-500)",
+          700: "var(--gold-700)",
         },
         tan: { 700: "var(--tan-700)" },
-        terracotta: { 500: "var(--terracotta-500)" },
-        brown: { 900: "var(--brown-900)" },
+        terracotta: {
+          500: "var(--terracotta-500)",
+          700: "var(--terracotta-700)",
+          900: "var(--terracotta-900)",
+        },
+        brown: {
+          700: "var(--brown-700)",
+          900: "var(--brown-900)",
+          950: "var(--brown-950)",
+        },
         wine: {
           DEFAULT: "var(--wine)",
           deep: "var(--wine-deep)",
@@ -39,7 +49,10 @@ const config: Config = {
         },
         goldBright: "var(--gold-bright)",
         goldSoft: "var(--gold-soft)",
-        olive: "var(--olive)",
+        olive: {
+          DEFAULT: "var(--olive)",
+          dark: "var(--olive-dark)",
+        },
         brownDark: "var(--brown-dark)",
         ink: "var(--ink)",
         page: "var(--page-bg)",
