@@ -52,7 +52,7 @@ export const festivalSchema = z.object({
 export const ceritaSchema = z.object({
   title: z.string(),
   author: z.string(),
-  date: z.string(),
+  date: z.coerce.string(),
   cover: z.string(),
   excerpt: z.string(),
   body: z.string(),
