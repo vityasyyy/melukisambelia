@@ -81,6 +81,7 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
               </button>
             ))}
           </div>
+          <div role="region" aria-live="polite" aria-label={`Menampilkan ${filtered.length} UMKM`}>
           <StaggerContainer
             key={activeKategori}
             stagger={0.08}
@@ -93,6 +94,7 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
               </StaggerItem>
             ))}
           </StaggerContainer>
+          </div>
         </>
       )}
       <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
