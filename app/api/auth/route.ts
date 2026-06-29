@@ -65,15 +65,16 @@ export async function GET(request: NextRequest) {
     const provider = 'github'
 
     // Return HTML that implements the Decap CMS (NetlifyAuthenticator) popup protocol.
-    // The opener (Decap CMS admin page) will:
-    //   1. Send "authorizing:github" to this popup window
-    //   2. Wait for this popup to echo it back (handshake)
-    //   3. Then listen for "authorization:github:success:{JSON}"
     //
-    // We must:
-    //   1. Listen for "authorizing:github" from the opener
-    //   2. Echo it back to complete the handshake
-    //   3. Then send the authorization result
+    // The NetlifyAuthenticator in the opener (admin page) does:
+    //   1. Opens this popup window
+    //   2. Adds a handshake listener on the opener window
+    //   3. Waits for the popup to send "authorizing:github"
+    //
+    // This popup must:
+    //   1. Send "authorizing:github" to the opener (initiate handshake)
+    //   2. Listen for the echo back from opener
+    //   3. Then send "authorization:github:success:{JSON}" to the opener
     //   4. Close the popup
     const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Authorizing...</title></head><body>
 <script>
@@ -83,35 +84,29 @@ export async function GET(request: NextRequest) {
   var tokenData = JSON.stringify({ token: token, provider: provider });
   var authMsg = 'authorization:' + provider + ':success:' + tokenData;
   var handshakeMsg = 'authorizing:' + provider;
-  var origin = '*';
 
-  function handleMessage(e) {
-    // Step 1: Receive handshake from opener
+  function receiveEcho(e) {
+    // Opener echoed back the handshake — now send the authorization result
     if (e.data === handshakeMsg) {
-      // Step 2: Echo handshake back to opener
-      e.source.postMessage(e.data, e.origin);
-      // Step 3: Remove this listener, send auth result after brief delay
-      window.removeEventListener('message', handleMessage, false);
-      setTimeout(function() {
-        // Step 4: Send authorization result to opener
-        if (window.opener) {
-          window.opener.postMessage(authMsg, e.origin);
-        }
-        // Step 5: Close popup
-        window.close();
-      }, 100);
+      window.removeEventListener('message', receiveEcho, false);
+      if (window.opener) {
+        window.opener.postMessage(authMsg, e.origin);
+      }
+      window.close();
     }
   }
 
-  window.addEventListener('message', handleMessage, false);
+  window.addEventListener('message', receiveEcho, false);
 
-  // Fallback: if handshake doesn't arrive within 2 seconds, send result anyway
-  setTimeout(function() {
-    if (window.opener) {
-      window.opener.postMessage(authMsg, origin);
-    }
+  // Step 1: Send handshake message to opener to initiate the protocol
+  if (window.opener) {
+    window.opener.postMessage(handshakeMsg, '*');
+  } else {
+    // Fallback: no opener reference, try sending auth result directly
+    // This can happen if window.opener was lost during cross-origin navigation
+    // In that case, the user may need to retry
     window.close();
-  }, 2000);
+  }
 })();
 </script></body></html>`
 
