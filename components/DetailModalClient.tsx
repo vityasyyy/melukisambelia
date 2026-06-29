@@ -10,7 +10,6 @@ import {
   DialogTitle,
   DialogDescription,
 } from '@/components/ui/dialog'
-import { MiniMapClient } from '@/components/MiniMapClient'
 import { cn } from '@/lib/utils'
 
 export type Chip = { label: string; color?: string }
@@ -38,7 +37,7 @@ export function DetailModalClient({
   data: DetailModalData | null
 }) {
   if (!data) return null
-  const { title, image, chips, description, body, href, linkLabel, lat, lng, mapTitle } = data
+  const { title, image, chips, description, body, href, linkLabel, lat, lng } = data
   const hasMap = typeof lat === 'number' && typeof lng === 'number'
 
   return (
@@ -96,7 +95,15 @@ export function DetailModalClient({
               <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-brown-900">
                 <MapPin className="h-3.5 w-3.5" /> Lokasi
               </div>
-              <MiniMapClient lat={lat} lng={lng} title={mapTitle ?? title} />
+              <a
+                href={`https://www.google.com/maps?q=${lat},${lng}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-water-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-water-700"
+              >
+                <MapPin className="h-4 w-4" />
+                Buka di Google Maps
+              </a>
             </div>
           )}
 

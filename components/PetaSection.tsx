@@ -8,7 +8,7 @@ export function PetaSection({ files }: { files: GisFile[] }) {
     return (
       <div className="py-16 text-center">
         <p className="text-ink/70 text-sm sm:text-base">Peta untuk kategori ini belum tersedia.</p>
-        <p className="mt-2 text-xs text-ink/60">Tim GIS akan menambahkan segera.</p>
+        <p className="mt-2 text-xs text-ink/70">Tim GIS akan menambahkan segera.</p>
       </div>
     )
   }

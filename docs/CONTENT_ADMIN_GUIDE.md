@@ -37,10 +37,10 @@ Ada **dua cara** mengedit konten:
 
 ### Mode Online (setelah deploy ke Vercel)
 
-1. Buka `https://[domain-anda].vercel.app/admin`
+1. Buka `https://melukis-sambelia.vercel.app/admin`
 2. Klik **Login with GitHub**
 3. Authorize aplikasi (sekali saja)
-4. Pilih koleksi (Pariwisata, UMKM, dll) → edit → **Save** → **Publish**
+4. Pilih koleksi → edit → **Save** → **Publish**
 5. Perubahan otomatis commit ke GitHub dan Vercel rebuild website (±1-2 menit)
 
 ### Mode Lokal (di komputer tim, tanpa internet)
@@ -55,38 +55,36 @@ npm run dev
 npm run cms
 ```
 
-Buka `http://localhost:3000/admin` → klik **Login** (langkah ini adalah no-op di mode lokal, tidak benar-benar login GitHub) → CMS langsung jalan, edit tersimpan ke file lokal.
+Buka `http://localhost:3000/admin` → CMS langsung jalan, edit tersimpan ke file lokal.
 
 ---
 
 ## Master Table: Halaman → Bagian → Sumber Konten
 
-Tabel ini menunjukkan **bagian mana di setiap halaman** dikendalikan oleh koleksi mana.
-
-| Halaman (route) | Bagian / Section | Sumber Konten | Koleksi CMS |
+| Halaman | Bagian | Sumber Konten | Koleksi CMS |
 |---|---|---|---|
 | `/` (Beranda) | Hero (gambar + tagline) | `content/_settings.md` | Pengaturan Situs → `heroImage`, `heroTagline` |
 | `/` | Statistik (Luas, Penduduk, dst) | `content/_settings.md` → `stats` | Pengaturan Situs → `stats` |
-| `/` | Grid "Jejaki Sambelia" (7 kartu) | Ambil 1 item pertama dari tiap koleksi | Pariwisata, Irigasi, Kesehatan, UMKM, Festival + 2 hardcoded (Air & Tanah, Lingkungan) |
+| `/` | Grid "Jejaki Sambelia" (7 kartu) | `content/_settings.md` → `jejakiCards` | Pengaturan Situs → `jejakiCards` |
 | `/` | Section header 02-05 (kicker/judul/intro) | `content/_settings.md` → `homepageIntros` | Pengaturan Situs → `homepageIntros` |
-| `/` | Kilas Sambelia | Hardcoded di `components/KilasSambelia.tsx` | *(butuh developer untuk ubah)* |
-| `/pariwisata` | Hero banner | Hardcoded judul/intro di `components/PariwisataListClient.tsx` | — |
+| `/` | Section "Cerita & Dampak" (2 cerita + stats) | `content/cerita/*.mdx` + `content/_settings.md` → `stats` | Cerita + Pengaturan Situs |
+| `/pariwisata` | Hero banner + SEO | `content/_settings.md` → `pages.pariwisata` | Pengaturan Situs → `pages` |
 | `/pariwisata` | Grid kartu wisata | `content/pariwisata/*.mdx` | **Pariwisata** |
-| `/pariwisata/[slug]` | Halaman detail wisata | `content/pariwisata/[slug].mdx` | **Pariwisata** |
-| `/irigasi` | Hero + statistik + daftar akordion | `content/irigasi/*.md` | **Irigasi** |
-| `/kesehatan` | Hero + statistik + grid kartu | `content/kesehatan/*.md` | **Kesehatan** |
-| `/umkm` | Hero + filter kategori + grid kartu | `content/umkm/*.md` | **UMKM** |
-| `/festival` | Hero + countdown + timeline | `content/festival/*.md` | **Festival** |
-| `/cerita` | Hero + grid artikel | `content/cerita/*.mdx` | **Cerita** |
-| `/cerita/[slug]` | Halaman artikel | `content/cerita/[slug].mdx` | **Cerita** |
-| `/air-tanah` | Judul + deskripsi + grafik + data TMA/DHL | `content/air-tanah/air-tanah.md` | **Air & Tanah** (termasuk `measurements`) |
-| `/lingkungan` | Hero + grid peta vegetasi | `public/gis/vegetasi/*` | **Peta GIS** (upload file) |
-| `/peta` | Peta interaktif + daftar peta GIS | `public/gis/*` + layer peta | **Peta GIS** (upload file) |
-| `/tentang-sambelia` | Hero + geografi + desa binaan + potensi desa | `content/_settings.md` (stats), `content/desa/*.md`, `content/_tentang.md` | Pengaturan Situs + **Desa Binaan** + **Tentang Sambelia** |
-| Footer (semua halaman) | Sosial media, kontak | `content/_settings.md` → `socials`, `contact` | Pengaturan Situs → `socials`, `contact` |
-| Favicon, OG image | Branding | `public/images/design-system/` | *(upload file manual)* |
+| `/irigasi` | Hero + SEO | `content/_settings.md` → `pages.irigasi` | Pengaturan Situs → `pages` |
+| `/kesehatan` | Hero + SEO | `content/_settings.md` → `pages.kesehatan` | Pengaturan Situs → `pages` |
+| `/umkm` | Hero + SEO | `content/_settings.md` → `pages.umkm` | Pengaturan Situs → `pages` |
+| `/festival` | Hero + SEO | `content/_settings.md` → `pages.festival` | Pengaturan Situs → `pages` |
+| `/cerita` | Hero + SEO | `content/_settings.md` → `pages.cerita` | Pengaturan Situs → `pages` |
+| `/air-tanah` | Hero + SEO | `content/_settings.md` → `pages.airTanah` | Pengaturan Situs → `pages` |
+| `/peta` | Hero + SEO | `content/_settings.md` → `pages.peta` | Pengaturan Situs → `pages` |
+| `/lingkungan` | Hero + SEO | `content/_settings.md` → `pages.lingkungan` | Pengaturan Situs → `pages` |
+| `/tentang-sambelia` | Hero + section headers + SEO | `content/_settings.md` → `pages.tentang` | Pengaturan Situs → `pages` |
+| `/tentang-sambelia` | Geografi prose + potensi desa | `content/_tentang.md` | **Tentang Sambelia** |
+| `/tentang-sambelia` | Desa binaan | `content/desa/*.md` | **Desa Binaan** |
+| Footer (semua halaman) | Tagline, copyright, sosial, kontak | `content/_settings.md` → `footer`, `socials`, `contact` | Pengaturan Situs |
+| Semua halaman | Empty state messages | `content/_settings.md` → `emptyStates` | Pengaturan Situs → `emptyStates` |
 
-> **Catatan:** Bagian yang ditandai "hardcoded" butuh developer ubah. Semua bagian dengan koleksi CMS bisa admin edit langsung.
+> **Penting:** Semua teks yang dilihat pengguna sekarang bisa diedit via CMS. Tidak ada lagi konten yang "hardcoded" yang butuh developer untuk diubah.
 
 ---
 
@@ -94,7 +92,7 @@ Tabel ini menunjukkan **bagian mana di setiap halaman** dikendalikan oleh koleks
 
 ### 1. Pariwisata
 
-**Folder:** `content/pariwisata/` · **Format:** `.mdx` · **Muncul di:** `/pariwisata` (grid) + `/pariwisata/[slug]` (detail)
+**Folder:** `content/pariwisata/` · **Format:** `.mdx` · **Muncul di:** `/pariwisata` (grid + modal) + `/cerita-stats` (teaser di beranda)
 
 | Field | Tipe | Wajib | Contoh | Penjelasan |
 |---|---|---|---|---|
@@ -102,49 +100,27 @@ Tabel ini menunjukkan **bagian mana di setiap halaman** dikendalikan oleh koleks
 | `category` | select | ✅ | `Pantai` | Salah satu: `Pantai`, `Budaya`, `Desa Wisata`, `Air`, `Trekking` |
 | `village` | select | ✅ | `Sugian` | Salah satu: `Sugian`, `Labuhan Pandan`, `lainnya` |
 | `cover` | image | ✅ | `/images/content/kondo.webp` | Gambar utama (rasio 16:9) |
-| `gallery` | list<image> | ❌ | `[/images/a.jpg, /images/b.jpg]` | Galeri foto tambahan |
+| `gallery` | list<image> | ❌ | `[/images/a.jpg]` | Galeri foto tambahan |
 | `shortDesc` | string | ✅ | `Pantai pasir putih...` | Deskripsi singkat untuk kartu |
-| `lat` | number | ✅ | `-8.3583` | Latitude (untuk peta) |
-| `lng` | number | ✅ | `116.8417` | Longitude (untuk peta) |
+| `lat` | number | ✅ | `-8.3583` | Latitude (untuk link Google Maps) |
+| `lng` | number | ✅ | `116.8417` | Longitude (untuk link Google Maps) |
 | `facilities` | list<string> | ❌ | `[Parkir, Warung]` | Fasilitas tersedia |
 | `accessNotes` | string | ❌ | `±30 menit dari pusat...` | Catatan akses jalan |
-| `body` | markdown | ✅ | *(isi MDX)* | Deskripsi lengkap, tampil di halaman detail |
-
-**Contoh file** (`content/pariwisata/pantai-berandangan.mdx`):
-
-```mdx
----
-title: Pantai Berandangan
-category: Pantai
-village: Sugian
-cover: /images/content/kondo.webp
-gallery: []
-shortDesc: Pantai pasir putih dengan ombak tenang di Desa Sugian, cocok untuk wisata keluarga.
-lat: -8.3583
-lng: 116.8417
-facilities:
-  - Parkir
-  - Warung
-accessNotes: ±30 menit dari pusat Kecamatan Sambelia via jalan desa.
----
-
-Pantai Berandangan adalah salah satu destinasi unggulan di Desa Sugian...
-Tulis deskripsi lengkap di sini, boleh pakai **Markdown**.
-```
+| `body` | markdown | ✅ | *(isi MDX)* | Deskripsi lengkap, tampil di modal |
 
 ---
 
 ### 2. Irigasi
 
-**Folder:** `content/irigasi/` · **Format:** `.md` · **Muncul di:** `/irigasi` (akordion + modal detail)
+**Folder:** `content/irigasi/` · **Format:** `.md` · **Muncul di:** `/irigasi` (akordion + modal)
 
 | Field | Tipe | Wajib | Contoh | Penjelasan |
 |---|---|---|---|---|
 | `name` | string | ✅ | `Saluran Irigasi Sugian` | Nama saluran |
-| `saluranType` | select | ✅ | `Primer` | Salah satu: `Primer`, `Sekunder`, `Tersier` |
+| `saluranType` | select | ✅ | `Primer` | `Primer`, `Sekunder`, `Tersier` |
 | `village` | select | ✅ | `Sugian` | `Sugian`, `Labuhan Pandan`, `lainnya` |
 | `condition` | select | ✅ | `Baik` | `Baik`, `Rusak Ringan`, `Rusak Berat` |
-| `lengthM` | number | ✅ | `2500` | Panjang saluran dalam meter |
+| `lengthM` | number | ✅ | `2500` | Panjang saluran (meter) |
 | `flowStatus` | select | ✅ | `Mengalir` | `Mengalir`, `Kering`, `Mengalir Sebagian` |
 | `cover` | image | ✅ | `/images/content/irigasi-saluran.svg` | Gambar saluran |
 | `lat` | number | ✅ | `-8.35` | Latitude |
@@ -173,22 +149,20 @@ Tulis deskripsi lengkap di sini, boleh pakai **Markdown**.
 
 ### 4. UMKM
 
-**Folder:** `content/umkm/` · **Format:** `.md` · **Muncul di:** `/umkm` (grid + filter kategori + modal)
+**Folder:** `content/umkm/` · **Format:** `.md` · **Muncul di:** `/umkm` (grid + filter + modal)
 
 | Field | Tipe | Wajib | Contoh | Penjelasan |
 |---|---|---|---|---|
 | `name` | string | ✅ | `Peyek Mangrove Sambelia` | Nama UMKM |
-| `owner` | string | ✅ | `Muadz — UMKM Lokal` | Pemilik/penanggung jawab |
+| `owner` | string | ✅ | `Muadz — UMKM Lokal` | Pemilik |
 | `kategori` | select | ✅ | `Kuliner` | `Kuliner`, `Jasa`, `Kerajinan`, `Pertanian`, `Perikanan`, `Lainnya` |
 | `village` | select | ✅ | `Labuhan Pandan` | `Sugian`, `Labuhan Pandan`, `lainnya` |
-| `contact` | string | ❌ | `0812-xxxx` | Kontak (WA/telepon). Kosongkan jika tidak ada |
+| `contact` | string | ❌ | `0812-xxxx` | Kontak |
 | `cover` | image | ✅ | `/images/content/scuba.png` | Gambar produk |
-| `gallery` | list<image> | ❌ | `[]` | Galeri foto produk |
+| `gallery` | list<image> | ❌ | `[]` | Galeri foto |
 | `lat` | number | ✅ | `-8.34` | Latitude |
 | `lng` | number | ✅ | `116.86` | Longitude |
-| `body` | markdown | ✅ | `Peyek mangrove adalah...` | Deskripsi produk |
-
-> **Tip:** Field `kategori` dipakai oleh filter di halaman UMKM. Pastikan konsisten dengan opsi yang tersedia.
+| `body` | markdown | ✅ | `Peyek mangrove adalah...` | Deskripsi |
 
 ---
 
@@ -203,16 +177,14 @@ Tulis deskripsi lengkap di sini, boleh pakai **Markdown**.
 | `venue` | string | ✅ | `Lapangan Sambelia` | Lokasi acara |
 | `description` | string | ✅ | `Pertunjukan...` | Deskripsi singkat |
 | `cover` | image | ✅ | `/images/content/festival-peresean.svg` | Gambar acara |
-| `registrationUrl` | string (URL) | ❌ | `https://...` | Link pendaftaran (harus URL valid) |
+| `registrationUrl` | string (URL) | ❌ | `https://...` | Link pendaftaran |
 | `body` | markdown | ❌ | `Peresean adalah...` | Detail acara |
-
-> **Tip:** `schedule` dipakai oleh komponen countdown. Format bebas, tapi konsisten antar event.
 
 ---
 
 ### 6. Cerita
 
-**Folder:** `content/cerita/` · **Format:** `.mdx` · **Muncul di:** `/cerita` (grid) + `/cerita/[slug]` (artikel)
+**Folder:** `content/cerita/` · **Format:** `.mdx` · **Muncul di:** `/cerita` (grid) + `/cerita/[slug]` (artikel) + beranda (teaser)
 
 | Field | Tipe | Wajib | Contoh | Penjelasan |
 |---|---|---|---|---|
@@ -221,13 +193,15 @@ Tulis deskripsi lengkap di sini, boleh pakai **Markdown**.
 | `date` | datetime | ✅ | `2026-06-20` | Tanggal (ISO) |
 | `cover` | image | ✅ | `/images/content/cerita-placeholder.svg` | Cover artikel |
 | `excerpt` | string | ✅ | `Refleksi minggu pertama...` | Ringkasan untuk kartu |
-| `body` | markdown | ✅ | *(isi MDX)* | Isi artikel, bisa pakai komponen MDX |
+| `body` | markdown | ✅ | *(isi MDX)* | Isi artikel |
+
+> **Catatan:** 2 cerita terbaru otomatis tampil di section "Cerita & Dampak" di beranda.
 
 ---
 
 ### 7. Air & Tanah
 
-**Folder:** `content/air-tanah/air-tanah.md` · **Format:** `.md` (single file) · **Muncul di:** `/air-tanah`
+**File:** `content/air-tanah/air-tanah.md` · **Format:** `.md` (single file) · **Muncul di:** `/air-tanah`
 
 | Field | Tipe | Wajib | Contoh | Penjelasan |
 |---|---|---|---|---|
@@ -240,18 +214,18 @@ Tulis deskripsi lengkap di sini, boleh pakai **Markdown**.
 | `measurements[].tmaMeters` | number (float) | ✅ | `2.3` | Tinggi Muka Airtanah (meter) |
 | `measurements[].dhlMsiemens` | number (float) | ✅ | `450` | Daya Hantar Listrik (mS) |
 
-> **Catatan:** Admin kini bisa mengedit seluruh data TMA & DHL langsung via CMS (termasuk menambah/menghapus baris pengukuran). Grafik dan tabel di halaman `/air-tanah` otomatis terupdate dari data ini.
-
 ---
 
 ### 8. Pengaturan Situs (Settings)
 
-**File:** `content/_settings.md` · **Format:** `.md` (single file) · **Muncul di:** global (hero beranda, stats, footer)
+**File:** `content/_settings.md` · **Format:** `.md` (single file) · **Muncul di:** global (semua halaman)
+
+#### Bagian Utama
 
 | Field | Tipe | Wajib | Contoh | Penjelasan |
 |---|---|---|---|---|
 | `heroImage` | image | ✅ | `/images/content/personstanding.webp` | Gambar hero beranda |
-| `heroTagline` | string | ✅ | `Pemberdayaan pariwisata...` | Teks di bawah judul hero |
+| `heroTagline` | string | ✅ | `Pemberdayaan pariwisata...` | Teks hero beranda |
 | `stats.luas` | string | ✅ | `±125 km²` | Statistik luas wilayah |
 | `stats.penduduk` | string | ✅ | `±20.000 jiwa` | Statistik penduduk |
 | `stats.desaBinaan` | string | ✅ | `2` | Jumlah desa binaan |
@@ -262,46 +236,97 @@ Tulis deskripsi lengkap di sini, boleh pakai **Markdown**.
 | `contact.email` | string | ✅ | `melukis.sambelia@ugm.ac.id` | Email kontak |
 | `contact.phone` | string | ❌ | `0812-xxxx` | Nomor telepon |
 | `contact.address` | string | ✅ | `Kecamatan Sambelia...` | Alamat |
-| `homepageIntros.jejakiKicker` | string | ❌ | `02 — JEJAKI` | Label section 02 (Jejaki) di beranda |
-| `homepageIntros.jejakiTitle` | string | ❌ | `Jejaki Sambelia` | Judul section 02 |
-| `homepageIntros.jejakiIntro` | string | ❌ | *(kosong)* | Intro section 02 (opsional) |
-| `homepageIntros.wisataKicker` | string | ❌ | `03 — WISATA UNGGULAN` | Label section 03 (Wisata Unggulan) |
-| `homepageIntros.wisataTitle` | string | ❌ | `Destinasi Pilihan` | Judul section 03 |
-| `homepageIntros.wisataIntro` | text | ❌ | `Destinasi wisata unggulan...` | Intro section 03 |
-| `homepageIntros.festivalKicker` | string | ❌ | `04 — FESTIVAL` | Label section 04 (Festival) |
-| `homepageIntros.festivalTitle` | string | ❌ | `Festival Pesona Sambelia` | Judul section 04 |
-| `homepageIntros.festivalIntro` | text | ❌ | `Peresean, Pawai Dulangan...` | Intro section 04 |
-| `homepageIntros.umkmKicker` | string | ❌ | `05 — UMKM` | Label section 05 (UMKM) |
-| `homepageIntros.umkmTitle` | string | ❌ | `UMKM Spotlight` | Judul section 05 |
-| `homepageIntros.umkmIntro` | text | ❌ | `Kerajinan, kuliner...` | Intro section 05 |
+
+#### Section Headers Beranda (homepageIntros)
+
+| Field | Contoh Default | Penjelasan |
+|---|---|---|
+| `jejakiKicker` | `02 — JEJAKI` | Label section Jejaki |
+| `jejakiTitle` | `Jejaki Sambelia` | Judul section Jejaki |
+| `jejakiIntro` | *(kosong)* | Intro section Jejaki |
+| `wisataKicker` | `03 — WISATA UNGGULAN` | Label section Wisata |
+| `wisataTitle` | `Destinasi Pilihan` | Judul section Wisata |
+| `wisataIntro` | `Destinasi wisata unggulan...` | Intro section Wisata |
+| `festivalKicker` | `04 — FESTIVAL` | Label section Festival |
+| `festivalTitle` | `Festival Pesona Sambelia` | Judul section Festival |
+| `festivalIntro` | `Peresean, Pawai Dulangan...` | Intro section Festival |
+| `umkmKicker` | `05 — UMKM` | Label section UMKM |
+| `umkmTitle` | `UMKM Spotlight` | Judul section UMKM |
+| `umkmIntro` | `Kerajinan, kuliner...` | Intro section UMKM |
+
+#### Page-Specific Settings (pages)
+
+Setiap halaman punya field berikut (opsional, ada default):
+
+| Field per page | Contoh | Penjelasan |
+|---|---|---|
+| `heroKicker` | `PARIWISATA` | Label di banner hero |
+| `heroTitle` | `Potensi Wisata Sambelia` | Judul besar di hero |
+| `heroIntro` | `Destinasi unggulan...` | Deskripsi di hero |
+| `seoTitle` | `Pariwisata Sambelia` | Title tag untuk SEO |
+| `seoDescription` | `Destinasi wisata unggulan...` | Meta description untuk SEO |
+
+Halaman yang tersedia: `home`, `tentang`, `pariwisata`, `irigasi`, `kesehatan`, `umkm`, `peta`, `lingkungan`, `airTanah`, `festival`, `cerita`.
+
+Halaman `tentang` punya field tambahan: `sectionGeografiKicker`, `sectionGeografiTitle`, `sectionGeografiIntro`, `sectionDesaKicker`, `sectionDesaTitle`, `sectionDesaIntro`, `sectionPotensiKicker`, `sectionPotensiTitle`, `sectionPotensiIntro`.
+
+#### Jejaki Cards (jejakiCards)
+
+List 7 kartu yang tampil di section "Jejaki Sambelia" di beranda:
+
+| Field per card | Contoh | Penjelasan |
+|---|---|---|
+| `href` | `/pariwisata` | Link tujuan |
+| `title` | `Pariwisata` | Judul kartu |
+| `desc` | `Destinasi unggulan Sambelia.` | Deskripsi singkat |
+| `accent` | `#14A8E1` | Warna aksen (hex) |
+| `image` | `/images/content/pariwisata-marine.webp` | Gambar fallback (opsional) |
+
+#### Footer
+
+| Field | Default | Penjelasan |
+|---|---|---|
+| `tagline` | `Profil Desa Sambelia — KKN-PPM UGM 2026` | Teks di bawah logo footer |
+| `copyright` | `© 2026 KKN-PPM UGM Melukis Sambelia` | Teks copyright di bawah footer |
+
+#### Empty States (emptyStates)
+
+Pesan yang tampil ketika koleksi kosong:
+
+| Field | Default |
+|---|---|
+| `pariwisata` | `Belum ada data wisata. Tim akan menambahkan segera.` |
+| `irigasi` | `Belum ada data irigasi. Tim akan menambahkan segera.` |
+| `kesehatan` | `Belum ada data kesehatan. Tim akan menambahkan segera.` |
+| `umkm` | `Belum ada data UMKM. Tim akan menambahkan segera.` |
+| `cerita` | `Belum ada cerita. Tim akan menambahkan segera.` |
 
 ---
 
 ### 9. Peta GIS
 
-**Bukan via CMS** — upload file langsung. **Muncul di:** `/peta`, `/lingkungan`
+Admin dapat mengedit metadata untuk setiap kategori GIS via CMS, atau upload file langsung.
 
-**Folder:** `public/gis/<kategori>/`
+**Folder:** `public/gis/<kategori>/` + file metadata `content/_gis_<kategori>.md`
 
-| Subfolder | Kategori | Contoh Isi |
+**CMS Collections:**
+
+| Collection | File | Field |
 |---|---|---|
-| `public/gis/umum/` | Peta umum tim | Peta dasar, lokasi desa |
-| `public/gis/air/` | Kualitas air, TMA, DHL | Peta iso-DHL, TMA |
-| `public/gis/irigasi/` | Irigasi & rawan kekeringan | Jaringan saluran, titik kering |
-| `public/gis/vegetasi/` | NDVI, erosi, blue carbon | Peta NDVI, erosi |
+| GIS Umum | `content/_gis_umum.md` | `title`, `description`, `credit` |
+| GIS Air | `content/_gis_air.md` | `title`, `description`, `credit` |
+| GIS Irigasi | `content/_gis_irigasi.md` | `title`, `description`, `credit` |
+| GIS Vegetasi | `content/_gis_vegetasi.md` | `title`, `description`, `credit` |
 
-**Langkah upload peta:**
+**Upload file peta GIS:**
 
-1. Letakkan file di subfolder sesuai kategori. Format yang didukung:
-   - Gambar: `.jpg`, `.png`, `.webp`
-   - Vektor: `.geojson`, `.pdf`
-2. **(Opsional)** Buat file `.txt` dengan nama sama untuk deskripsi:
-   - `peta-tma.jpg` → `peta-tma.txt` berisi deskripsi singkat
+1. Letakkan file di subfolder sesuai kategori: `public/gis/umum/`, `air/`, `irigasi/`, `vegetasi/`
+2. Format yang didukung: `.jpg`, `.png`, `.webp`, `.geojson`, `.pdf`
 3. Jalankan manifest build (otomatis saat deploy, atau manual):
    ```bash
    node scripts/build-gis-manifest.mjs
    ```
-4. Peta muncul otomatis di halaman `/peta` (tab kategori) dan `/lingkungan` (tab vegetasi).
+4. Peta muncul otomatis di halaman `/peta` dan `/lingkungan`
 
 ---
 
@@ -311,26 +336,22 @@ Tulis deskripsi lengkap di sini, boleh pakai **Markdown**.
 
 | Field | Tipe | Wajib | Contoh | Penjelasan |
 |---|---|---|---|---|
-| `name` | string | ✅ | `Sugian` | Nama desa (dipakai sebagai judul kartu) |
-| `description` | text | ✅ | `Desa binaan dengan...` | Deskripsi singkat desa |
-| `image` | image | ✅ | `/images/content/sugian-group44.png` | Gambar desa (rasio 16:9) |
-
-> **Tip:** Untuk menambah desa baru, klik **Tambah Desa Binaan** di CMS. Slug otomatis dibuat dari `name`.
+| `name` | string | ✅ | `Sugian` | Nama desa |
+| `description` | text | ✅ | `Desa binaan dengan...` | Deskripsi singkat |
+| `image` | image | ✅ | `/images/content/sugian-group44.png` | Gambar desa (16:9) |
 
 ---
 
 ### 11. Tentang Sambelia
 
-**File:** `content/_tentang.md` · **Format:** `.md` (single file) · **Muncul di:** `/tentang-sambelia` (section "Letak Geografis" + "Potensi Desa")
+**File:** `content/_tentang.md` · **Format:** `.md` (single file)
 
 | Field | Tipe | Wajib | Contoh | Penjelasan |
 |---|---|---|---|---|
-| `geographyProse` | text | ✅ | `Kecamatan Sambelia terletak...` | Paragraf prose di section "Letak Geografis" |
-| `potensiDesa` | list<object> | ❌ | *(lihat di bawah)* | Kartu potensi desa di section "Potensi Desa" |
-| `potensiDesa[].title` | string | ✅ | `Pariwisata Bahari & Budaya` | Judul kartu potensi |
-| `potensiDesa[].description` | text | ✅ | `Pantai Berandangan...` | Deskripsi kartu potensi |
-
-> **Tip:** Tambah/kurang kartu potensi desa via CMS — klik **Tambah** di list `potensiDesa`.
+| `geographyProse` | text | ✅ | `Kecamatan Sambelia terletak...` | Paragraf di section "Letak Geografis" |
+| `potensiDesa` | list<object> | ❌ | *(lihat di bawah)* | Kartu potensi desa |
+| `potensiDesa[].title` | string | ✅ | `Pariwisata Bahari & Budaya` | Judul kartu |
+| `potensiDesa[].description` | text | ✅ | `Pantai Berandangan...` | Deskripsi kartu |
 
 ---
 
@@ -338,8 +359,7 @@ Tulis deskripsi lengkap di sini, boleh pakai **Markdown**.
 
 ### Via CMS (Decap)
 
-Saat edit field bertipe `image`:
-1. Klik field image
+1. Klik field image di form CMS
 2. Klik **Choose** → upload dari komputer, atau pilih dari media library
 3. Gambar tersimpan di `public/images/` (otomatis)
 4. Path referensi otomatis terisi: `/images/nama-file.jpg`
@@ -356,7 +376,7 @@ Saat edit field bertipe `image`:
 - Format: `.webp` (terkecil) atau `.jpg`
 - Ukuran cover: maksimal 1920px lebar, rasio 16:9
 - Ukuran file: < 500KB per gambar (gunakan https://squoosh.app untuk kompres)
-- Nama file: lowercase, tanpa spasi (`pantai-berandangan.webp`, bukan `Pantai Berandangan.JPG`)
+- Nama file: lowercase, tanpa spasi (`pantai-berandangan.webp`)
 
 ---
 
@@ -380,27 +400,6 @@ Setiap file konten terdiri dari dua bagian:
 4. Simpan file
 5. Jalankan verifikasi (lihat bawah)
 6. Commit & push ke GitHub
-
-**Contoh menambah UMKM baru:**
-
-Buat file baru `content/umkm/kerupuk-panggang.md`:
-
-```md
----
-name: Kerupuk Panggang Sambelia
-owner: Pak Joko
-kategori: Kuliner
-village: Sugian
-contact: '0812-3456-7890'
-cover: /images/content/kerupuk-panggang.jpg
-gallery: []
-body: |
-  Kerupuk panggang khas Sambelia yang terbuat dari ikan laut segar.
-  Dipanggang tradisional dengan api kayu, menghasilkan rasa gurih khas.
-lat: -8.355
-lng: 116.845
----
-```
 
 ---
 
@@ -431,7 +430,7 @@ Edit file di content/  →  git commit & push  →  Vercel auto-build
 Sebelum commit/publish, jalankan untuk memastikan konten valid:
 
 ```bash
-# Cek semua referensi gambar ada (tidak ada 404)
+# Cek semua referensi gambar ada
 node scripts/check-images.mjs
 
 # Cek frontmatter valid sesuai skema
@@ -458,14 +457,23 @@ A: Pastikan path diawali `/images/` dan file benar-benar ada di `public/images/`
 **Q: Saya edit di CMS tapi website tidak berubah.**
 A: Online — cek GitHub apakah commit masuk, lalu cek Vercel dashboard apakah build berhasil. Lokal — pastikan `npm run dev` jalan dan refresh browser (Ctrl+Shift+R).
 
+**Q: Bagaimana mengubah teks hero di halaman tertentu?**
+A: Edit di CMS → **Pengaturan Situs** → section `pages` → pilih halaman → ubah `heroKicker`, `heroTitle`, `heroIntro`.
+
+**Q: Bagaimana mengubah teks footer?**
+A: Edit di CMS → **Pengaturan Situs** → section `footer` → ubah `tagline` dan `copyright`.
+
+**Q: Bagaimana mengubah pesan "Belum ada data" di halaman kosong?**
+A: Edit di CMS → **Pengaturan Situs** → section `emptyStates` → ubah pesan per koleksi.
+
 **Q: Bisa tambah koleksi/field baru?**
 A: Tambah/mengubah field butuh developer (ubah `lib/schemas.ts` + `public/admin/config.yml`). Hubungi tim teknis.
-
-**Q: Bagaimana mengubah hero beranda?**
-A: Edit di CMS → **Pengaturan Situs** → field `heroImage` dan `heroTagline`.
 
 **Q: Bagaimana mengubah menu navigasi?**
 A: Butuh developer — edit `components/Nav.tsx`. Bukan konten CMS.
 
 **Q: Data peta GIS dari mana?**
-A: Upload file ke `public/gis/<kategori>/` (lihat [Peta GIS](#9-peta-gis)). Bukan via CMS.
+A: Upload file ke `public/gis/<kategori>/`. Metadata (judul, deskripsi, kredit) bisa diedit via CMS (koleksi GIS Umum/Air/Irigasi/Vegetasi).
+
+**Q: Mengapa peta sekarang pakai Google Maps embed, bukan peta interaktif Leaflet?**
+A: Peta sekarang menggunakan embed Google Maps gratis (tanpa API key) untuk menampilkan lokasi umum Kecamatan Sambelia. Setiap titik data (pariwisata, irigasi, kesehatan, UMKM) memiliki link "Buka di Google Maps" yang membuka lokasi tepat di aplikasi Google Maps.

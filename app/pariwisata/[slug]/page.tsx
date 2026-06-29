@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getCollection, getEntry } from '@/lib/content'
 import { GalleryStrip } from '@/components/GalleryStrip'
-import { MiniMapClient } from '@/components/MiniMapClient'
 import { petaLink } from '@/lib/links'
 
 export function generateStaticParams() {
@@ -84,7 +83,17 @@ export default function PariwisataDetailPage({ params }: { params: { slug: strin
       <GalleryStrip images={item.gallery} altPrefix={item.title} />
 
       <div className="relative isolate mt-8">
-        <MiniMapClient lat={item.lat} lng={item.lng} title={item.title} />
+        <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-brown-900 mb-2">
+          Lokasi
+        </div>
+        <a
+          href={`https://www.google.com/maps?q=${item.lat},${item.lng}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-full bg-water-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-water-700"
+        >
+          Buka di Google Maps
+        </a>
       </div>
 
       <Link

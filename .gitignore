@@ -131,3 +131,5 @@ assets/images/
 audit-*.jpeg
 review-*.png
 review-*.jpeg
+.vercel
+.env*

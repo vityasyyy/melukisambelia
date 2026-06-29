@@ -15,3 +15,10 @@ export const LAYER_COLORS: Record<MapLayer, string> = {
   kesehatan: '#667F37',
   umkm: '#F0AC6D',
 }
+
+export const LAYER_LABELS: Record<MapLayer, string> = {
+  pariwisata: 'Pariwisata',
+  irigasi: 'Irigasi',
+  kesehatan: 'Kesehatan',
+  umkm: 'UMKM',
+}

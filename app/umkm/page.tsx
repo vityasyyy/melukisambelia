@@ -1,15 +1,21 @@
 import type { Metadata } from 'next'
 import { getCollection } from '@/lib/content'
+import { getPageSettings, getEmptyStates } from '@/lib/settings'
 import { UmkmListClient } from '@/components/UmkmListClient'
 
-export const metadata: Metadata = {
-  title: 'UMKM Lokal Sambelia',
-  description: 'Produk kerajinan, kuliner, pertanian, dan UMKM lokal Kecamatan Sambelia, termasuk peyek mangrove.',
+export async function generateMetadata(): Promise<Metadata> {
+  const umkm = getPageSettings('umkm')
+  return {
+    title: umkm.seoTitle ?? 'UMKM Lokal Sambelia',
+    description: umkm.seoDescription ?? 'Produk kerajinan, kuliner, pertanian, dan UMKM lokal Kecamatan Sambelia, termasuk peyek mangrove.',
+  }
 }
 
 export const dynamic = 'force-dynamic'
 
 export default function UmkmPage() {
   const items = getCollection('umkm')
-  return <UmkmListClient items={items} />
+  const ps = getPageSettings('umkm')
+  const empty = getEmptyStates()
+  return <UmkmListClient items={items} pageSettings={ps} emptyMessage={empty.umkm} />
 }

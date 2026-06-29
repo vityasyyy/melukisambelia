@@ -122,6 +122,9 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--page-bg);
     color: var(--ink);
@@ -189,5 +192,21 @@
   @keyframes motifFadeIn {
     from { opacity: 0; transform: translateY(12px); }
     to { opacity: 0.06; transform: translateY(0); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .img-shimmer {
+    background: linear-gradient(90deg, var(--cream-beige) 25%, var(--cream-warm) 50%, var(--cream-beige) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s ease-in-out infinite;
+  }
+
+  @keyframes gradient-sweep {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
   }
 }

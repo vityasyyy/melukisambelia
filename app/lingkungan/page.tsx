@@ -3,35 +3,41 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getGisManifest } from '@/lib/gis'
 import { GIS_CATEGORY_LABELS } from '@/lib/gis-manifest'
+import { getPageSettings, getEmptyStates } from '@/lib/settings'
 import { SectionHeader } from '@/components/SectionHeader'
 import { FadeIn } from '@/components/FadeIn'
 import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 
-export const metadata: Metadata = {
-  title: 'Lingkungan',
-  description: 'Peta indeks vegetasi, erosi, dan distribusi blue carbon di Kecamatan Sambelia.',
+export async function generateMetadata(): Promise<Metadata> {
+  const lingkungan = getPageSettings('lingkungan')
+  return {
+    title: lingkungan.seoTitle ?? 'Lingkungan',
+    description: lingkungan.seoDescription ?? 'Peta indeks vegetasi, erosi, dan distribusi blue carbon di Kecamatan Sambelia.',
+  }
 }
 
 export default function LingkunganPage() {
   const manifest = getGisManifest()
+  const ps = getPageSettings('lingkungan')
+  const empty = getEmptyStates()
   const vegetasiFiles = manifest.files.filter((f) => f.category === 'vegetasi')
 
   return (
     <>
       <PageHero
-        kicker="LINGKUNGAN"
-        title="Vegetasi, Erosi & Blue Carbon"
-        intro="Analisis lingkungan Kecamatan Sambelia: indeks vegetasi, tingkat erosi, dan sebaran blue carbon di wilayah pesisir dan daratan."
+        kicker={ps.heroKicker ?? 'LINGKUNGAN'}
+        title={ps.heroTitle ?? 'Vegetasi, Erosi & Blue Carbon'}
+        intro={ps.heroIntro ?? 'Analisis lingkungan Kecamatan Sambelia: indeks vegetasi, tingkat erosi, dan sebaran blue carbon di wilayah pesisir dan daratan.'}
         tone="green"
       />
 
       <section className="mx-auto max-w-content px-4 py-16 scroll-mt-20">
         <FadeIn>
           <SectionHeader
-            kicker="LINGKUNGAN"
-            title="Vegetasi, Erosi & Blue Carbon"
-            intro="Peta tematik lingkungan dari cluster GIS: indeks vegetasi (NDVI), tingkat erosi, dan sebaran blue carbon di Kecamatan Sambelia."
+            kicker={ps.heroKicker ?? 'LINGKUNGAN'}
+            title={ps.heroTitle ?? 'Vegetasi, Erosi & Blue Carbon'}
+            intro={ps.heroIntro ?? 'Peta tematik lingkungan dari cluster GIS: indeks vegetasi (NDVI), tingkat erosi, dan sebaran blue carbon di Kecamatan Sambelia.'}
             tone="green"
           />
         </FadeIn>
@@ -72,8 +78,8 @@ export default function LingkunganPage() {
             </StaggerContainer>
           ) : (
             <div className="rounded-2xl border border-tan-700/20 bg-cream-beige/40 p-8 text-center">
-              <p className="text-ink/70">Data peta lingkungan dari cluster GIS akan diunggah.</p>
-              <p className="mt-2 text-sm text-ink/50">Peta tematik akan tersedia di halaman Peta.</p>
+              <p className="text-ink/70">{empty.lingkungan}</p>
+              <p className="mt-2 text-sm text-ink/70">Peta tematik akan tersedia di halaman Peta.</p>
             </div>
           )}
         </FadeIn>

@@ -2,12 +2,10 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { SectionHeader } from '@/components/SectionHeader'
 import { UmkmCard } from '@/components/UmkmCard'
 import { EmptyState } from '@/components/EmptyState'
-import { FadeIn } from '@/components/FadeIn'
-import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { PageHero } from '@/components/PageHero'
+import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 import { petaLink } from '@/lib/links'
 import { cn } from '@/lib/utils'
@@ -15,7 +13,7 @@ import type { Umkm } from '@/lib/schemas'
 
 const KATEGORI_OPTIONS = ['Semua', 'Kuliner', 'Jasa', 'Kerajinan', 'Pertanian', 'Perikanan', 'Lainnya'] as const
 
-export function UmkmListClient({ items }: { items: (Umkm & { slug: string })[] }) {
+export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (Umkm & { slug: string })[]; pageSettings: Record<string, string>; emptyMessage: string }) {
   const [modalData, setModalData] = useState<DetailModalData | null>(null)
   const [open, setOpen] = useState(false)
   const [activeKategori, setActiveKategori] = useState<string>('Semua')
@@ -46,22 +44,14 @@ export function UmkmListClient({ items }: { items: (Umkm & { slug: string })[] }
   return (
     <>
       <PageHero
-        kicker="UMKM"
-        title="UMKM Lokal Sambelia"
-        intro="Kerajinan, kuliner, dan produk lokal yang menjadi andalan masyarakat Sambelia."
+        kicker={pageSettings.heroKicker ?? 'UMKM'}
+        title={pageSettings.heroTitle ?? 'UMKM Lokal Sambelia'}
+        intro={pageSettings.heroIntro ?? 'Kerajinan, kuliner, dan produk lokal yang menjadi andalan masyarakat Sambelia.'}
         tone="terracotta"
       />
       <div className="mx-auto max-w-content px-4 py-16">
-        <FadeIn>
-          <SectionHeader
-            kicker="UMKM"
-            title="UMKM Lokal Sambelia"
-            intro="Kerajinan, kuliner, dan produk lokal."
-            tone="terracotta"
-          />
-        </FadeIn>
       {items.length === 0 ? (
-        <EmptyState message="Belum ada data UMKM. Tim akan menambahkan segera." />
+        <EmptyState message={emptyMessage} />
       ) : (
         <>
           <div className="mb-6 flex flex-wrap gap-2">

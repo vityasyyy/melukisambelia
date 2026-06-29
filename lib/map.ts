@@ -2,7 +2,7 @@ import { getCollection } from '@/lib/content'
 import type { MapMarker } from '@/lib/map-types'
 
 export type { MapLayer, MapMarker } from '@/lib/map-types'
-export { LAYER_COLORS } from '@/lib/map-types'
+export { LAYER_COLORS, LAYER_LABELS } from '@/lib/map-types'
 
 export function getMapMarkers(): MapMarker[] {
   const markers: MapMarker[] = []

@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { getSettings } from '@/lib/settings'
+import { getSettings, getFooter } from '@/lib/settings'
 
 export function Footer() {
   const s = getSettings()
+  const footer = getFooter()
   return (
     <footer className="relative mt-20 overflow-hidden bg-wine text-cream-light">
       <div className="absolute inset-0 -z-10 section-watermark" aria-hidden />
@@ -11,8 +12,8 @@ export function Footer() {
         className="relative h-2 bg-gradient-to-r from-terracotta-500 via-gold-500 to-water-900"
         aria-hidden
       />
-      <div className="relative mx-auto max-w-content px-4 py-14">
-        <div className="grid gap-10 md:grid-cols-3">
+      <div className="relative mx-auto max-w-content px-4 py-10 md:py-14">
+        <div className="grid gap-6 md:gap-10 md:grid-cols-3">
           <div>
             <Image
               src="/images/design-system/bw_logo_sambel.svg"
@@ -21,7 +22,7 @@ export function Footer() {
               height={54}
               className="brightness-110"
             />
-            <p className="mt-4 text-sm text-cream-light/85">Profil Desa Sambelia — KKN-PPM UGM 2026</p>
+            <p className="mt-4 text-sm text-cream-light/85">{footer.tagline}</p>
             <p className="text-sm text-cream-light/75">{s.contact.address}</p>
           </div>
           <nav aria-label="Navigasi footer">
@@ -73,8 +74,8 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <div className="relative mt-12 border-t border-cream-light/20 pt-6 text-center text-xs text-cream-light/75">
-          © 2026 KKN-PPM UGM Melukis Sambelia
+        <div className="relative mt-8 md:mt-12 border-t border-cream-light/20 pt-6 text-center text-xs text-cream-light/75">
+          {footer.copyright}
         </div>
       </div>
     </footer>

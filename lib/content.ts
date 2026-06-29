@@ -13,15 +13,15 @@ import {
 const CONTENT_DIR = path.join(process.cwd(), 'content')
 
 type SchemaMap = {
-  pariwisata: { schema: typeof pariwisataSchema; ext: string }
-  irigasi: { schema: typeof irigasiSchema; ext: string }
-  kesehatan: { schema: typeof kesehatanSchema; ext: string }
-  festival: { schema: typeof festivalSchema; ext: string }
-  cerita: { schema: typeof ceritaSchema; ext: string }
-  umkm: { schema: typeof umkmSchema; ext: string }
-  airTanah: { schema: typeof airTanahSchema; ext: string }
-  desa: { schema: typeof desaSchema; ext: string }
-  tentang: { schema: typeof tentangSchema; ext: string }
+  pariwisata: { schema: typeof pariwisataSchema; ext: string; dir?: string }
+  irigasi: { schema: typeof irigasiSchema; ext: string; dir?: string }
+  kesehatan: { schema: typeof kesehatanSchema; ext: string; dir?: string }
+  festival: { schema: typeof festivalSchema; ext: string; dir?: string }
+  cerita: { schema: typeof ceritaSchema; ext: string; dir?: string }
+  umkm: { schema: typeof umkmSchema; ext: string; dir?: string }
+  airTanah: { schema: typeof airTanahSchema; ext: string; dir?: string }
+  desa: { schema: typeof desaSchema; ext: string; dir?: string }
+  tentang: { schema: typeof tentangSchema; ext: string; dir?: string }
 }
 
 const SCHEMAS: SchemaMap = {
@@ -31,7 +31,7 @@ const SCHEMAS: SchemaMap = {
   festival: { schema: festivalSchema, ext: 'md' },
   cerita: { schema: ceritaSchema, ext: 'mdx' },
   umkm: { schema: umkmSchema, ext: 'md' },
-  airTanah: { schema: airTanahSchema, ext: 'md' },
+  airTanah: { schema: airTanahSchema, ext: 'md', dir: 'air-tanah' },
   desa: { schema: desaSchema, ext: 'md' },
   tentang: { schema: tentangSchema, ext: 'md' },
 }
@@ -50,9 +50,11 @@ export type CollectionItem<C extends CollectionName> =
   never
 
 export function getCollection<C extends CollectionName>(name: C): CollectionItem<C>[] {
-  const dir = path.join(CONTENT_DIR, name)
+  const entry = SCHEMAS[name]
+  if (!entry) return [] as CollectionItem<C>[]
+  const dir = path.join(CONTENT_DIR, entry.dir ?? name)
   if (!fs.existsSync(dir)) return [] as CollectionItem<C>[]
-  const { schema, ext } = SCHEMAS[name]
+  const { schema, ext } = entry
   const files = fs.readdirSync(dir).filter((f) => f.endsWith(`.${ext}`))
   const items: CollectionItem<C>[] = []
   for (const file of files) {

@@ -78,7 +78,7 @@ export function AirTanahClient({
       )}
 
       {credit && (
-        <p className="mt-8 text-center text-xs text-ink/60">{credit}</p>
+        <p className="mt-8 text-center text-xs text-ink/70">{credit}</p>
       )}
 
     </div>

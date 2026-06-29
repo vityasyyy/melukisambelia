@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getSettings, getDesa, getTentang } from '@/lib/settings'
+import { getSettings, getDesa, getTentang, getPageSettings } from '@/lib/settings'
 import { SectionHeader } from '@/components/SectionHeader'
 import { StatCard } from '@/components/StatCard'
 
@@ -8,15 +8,19 @@ import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import Image from 'next/image'
 
-export const metadata: Metadata = {
-  title: 'Tentang Sambelia',
-  description: 'Profil Kecamatan Sambelia, Kabupaten Lombok Timur: geografi, demografi, desa binaan, dan fokus program Melukis Sambelia.',
+export async function generateMetadata(): Promise<Metadata> {
+  const tentang = getPageSettings('tentang')
+  return {
+    title: tentang.seoTitle ?? 'Tentang Sambelia',
+    description: tentang.seoDescription ?? 'Profil Kecamatan Sambelia, Kabupaten Lombok Timur: geografi, demografi, desa binaan, dan fokus program Melukis Sambelia.',
+  }
 }
 
 export default function TentangSambeliaPage() {
   const s = getSettings()
   const desa = getDesa()
   const tentang = getTentang()
+  const ps = getPageSettings('tentang')
 
   const geography = [
     { label: 'Luas Wilayah', value: s.stats.luas },
@@ -28,18 +32,18 @@ export default function TentangSambeliaPage() {
   return (
     <>
       <PageHero
-        kicker="TENTANG"
-        title="Sambelia"
-        intro="Kecamatan Sambelia, Kabupaten Lombok Timur, Nusa Tenggara Barat — pusat pengembangan pariwisata berkelanjutan dan kawasan agropolitan."
+        kicker={ps.heroKicker ?? 'TENTANG'}
+        title={ps.heroTitle ?? 'Sambelia'}
+        intro={ps.heroIntro ?? 'Kecamatan Sambelia, Kabupaten Lombok Timur, Nusa Tenggara Barat — pusat pengembangan pariwisata berkelanjutan dan kawasan agropolitan.'}
         tone="brown"
       />
 
       <section className="mx-auto max-w-content px-4 py-16 scroll-mt-20">
         <FadeIn>
           <SectionHeader
-            kicker="01 — GEOGRAFI"
-            title="Geografi & Demografi"
-            intro="Letak, luas, dan penduduk Kecamatan Sambelia."
+            kicker={ps.sectionGeografiKicker ?? '01 — GEOGRAFI'}
+            title={ps.sectionGeografiTitle ?? 'Geografi & Demografi'}
+            intro={ps.sectionGeografiIntro ?? 'Letak, luas, dan penduduk Kecamatan Sambelia.'}
             tone="green"
           />
         </FadeIn>
@@ -55,7 +59,7 @@ export default function TentangSambeliaPage() {
           <p className="text-sm leading-relaxed text-ink/70">
             {tentang.geographyProse}
           </p>
-          <p className="mt-3 text-xs text-ink/40">
+          <p className="mt-3 text-xs text-ink/70">
             Data geografi diperbarui berdasarkan informasi desa binaan.
           </p>
         </div>
@@ -64,9 +68,9 @@ export default function TentangSambeliaPage() {
       <section className="mx-auto max-w-content px-4 py-12 scroll-mt-20">
         <FadeIn>
           <SectionHeader
-            kicker="02 — DESA BINAAN"
-            title="Desa Binaan"
-            intro="Desa-desa yang menjadi fokus program Melukis Sambelia."
+            kicker={ps.sectionDesaKicker ?? '02 — DESA BINAAN'}
+            title={ps.sectionDesaTitle ?? 'Desa Binaan'}
+            intro={ps.sectionDesaIntro ?? 'Desa-desa yang menjadi fokus program Melukis Sambelia.'}
             tone="water"
           />
         </FadeIn>
@@ -96,9 +100,9 @@ export default function TentangSambeliaPage() {
       <section className="mx-auto max-w-content px-4 py-12 scroll-mt-20">
         <FadeIn>
           <SectionHeader
-            kicker="03 — POTENSI DESA"
-            title="Potensi Desa"
-            intro="Potensi unggulan Kecamatan Sambelia: wisata bahari, pertanian, dan kerajinan khas Sasak."
+            kicker={ps.sectionPotensiKicker ?? '03 — POTENSI DESA'}
+            title={ps.sectionPotensiTitle ?? 'Potensi Desa'}
+            intro={ps.sectionPotensiIntro ?? 'Potensi unggulan Kecamatan Sambelia: wisata bahari, pertanian, dan kerajinan khas Sasak.'}
             tone="terracotta"
           />
         </FadeIn>

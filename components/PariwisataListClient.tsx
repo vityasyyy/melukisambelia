@@ -1,39 +1,52 @@
 'use client'
 
-import { SectionHeader } from '@/components/SectionHeader'
+import { useState } from 'react'
 import { DataCard } from '@/components/DataCard'
 import { EmptyState } from '@/components/EmptyState'
-import { FadeIn } from '@/components/FadeIn'
 import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
+import { DetailModal, type DetailModalData } from '@/components/DetailModal'
+import { petaLink } from '@/lib/links'
 import type { Pariwisata } from '@/lib/schemas'
 
-export function PariwisataListClient({ items }: { items: (Pariwisata & { slug: string })[] }) {
+export function PariwisataListClient({ items, pageSettings, emptyMessage }: { items: (Pariwisata & { slug: string })[]; pageSettings: Record<string, string>; emptyMessage: string }) {
+  const [modalData, setModalData] = useState<DetailModalData | null>(null)
+  const [open, setOpen] = useState(false)
+
+  const openModal = (item: (typeof items)[number]) => {
+    setModalData({
+      title: item.title,
+      image: item.cover,
+      description: item.shortDesc,
+      body: item.body,
+      href: petaLink({ layer: 'pariwisata', lat: item.lat, lng: item.lng }),
+      linkLabel: 'Buka di Google Maps →',
+      lat: item.lat,
+      lng: item.lng,
+      chips: [
+        { label: item.category, color: '#14A8E1' },
+        { label: item.village, color: '#99BA57' },
+      ],
+    })
+    setOpen(true)
+  }
+
   return (
     <>
       <PageHero
-        kicker="PARIWISATA"
-        title="Potensi Wisata Sambelia"
-        intro="Destinasi unggulan di Desa Sugian dan Desa Labuhan Pandan."
+        kicker={pageSettings.heroKicker ?? 'PARIWISATA'}
+        title={pageSettings.heroTitle ?? 'Potensi Wisata Sambelia'}
+        intro={pageSettings.heroIntro ?? 'Destinasi unggulan di Desa Sugian dan Desa Labuhan Pandan.'}
         tone="water"
       />
       <div className="mx-auto max-w-content px-4 py-16">
-        <FadeIn>
-          <SectionHeader
-            kicker="PARIWISATA"
-            title="Potensi Wisata Sambelia"
-            intro="Destinasi unggulan di Desa Sugian dan Desa Labuhan Pandan."
-            tone="water"
-          />
-        </FadeIn>
         {items.length === 0 ? (
-          <EmptyState message="Belum ada data wisata. Tim akan menambahkan segera." />
+          <EmptyState message={emptyMessage} />
         ) : (
           <StaggerContainer stagger={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {items.map((p) => (
               <StaggerItem key={p.slug}>
                 <DataCard
-                  href={`/pariwisata/${p.slug}`}
                   image={p.cover}
                   title={p.title}
                   chips={[
@@ -41,11 +54,13 @@ export function PariwisataListClient({ items }: { items: (Pariwisata & { slug: s
                     { label: p.village, color: '#99BA57' },
                   ]}
                   desc={p.shortDesc}
+                  onDetailClick={() => openModal(p)}
                 />
               </StaggerItem>
             ))}
           </StaggerContainer>
         )}
+        <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
       </div>
     </>
   )

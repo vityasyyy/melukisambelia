@@ -6,7 +6,7 @@ import { StatCard } from '@/components/StatCard'
 import { DataCard } from '@/components/DataCard'
 import { SectionHeader } from '@/components/SectionHeader'
 import { MotifDivider } from '@/components/MotifDivider'
-import { KilasSambelia } from '@/components/KilasSambelia'
+import { CeritaStats } from '@/components/CeritaStats'
 import { FadeIn } from '@/components/FadeIn'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { HeroAnimation } from '@/components/HeroAnimation'
@@ -196,7 +196,7 @@ export default function Beranda() {
         </section>
       )}
 
-      <KilasSambelia />
+      <CeritaStats />
     </>
   )
 }
