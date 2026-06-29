@@ -4,6 +4,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getCollection, getEntry } from '@/lib/content'
 import { Pill } from '@/components/Pill'
+import { Breadcrumb } from '@/components/Breadcrumb'
+import { ShareButtons } from '@/components/ShareButtons'
+
+export const revalidate = 60
 
 export function generateStaticParams() {
   return getCollection('cerita').map((c) => ({ slug: c.slug }))
@@ -34,6 +38,14 @@ export default function CeritaDetailPage({ params }: { params: { slug: string } 
   }
 
   return (
+    <>
+      <Breadcrumb
+        items={[
+          { label: 'Beranda', href: '/' },
+          { label: 'Cerita', href: '/cerita' },
+          { label: item.title },
+        ]}
+      />
     <article className="mx-auto max-w-3xl px-4 py-16">
       <script
         type="application/ld+json"
@@ -55,6 +67,9 @@ export default function CeritaDetailPage({ params }: { params: { slug: string } 
 
       <div className="prose prose-lg max-w-none text-ink/80">{item.body}</div>
 
+      <ShareButtons title={item.title} className="mt-8" />
+
     </article>
+    </>
   )
 }

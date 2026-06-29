@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { StatCard } from '@/components/StatCard'
 import { FadeIn } from '@/components/FadeIn'
+import { MotifFloater } from '@/components/MotifFloater'
 import { petaLink } from '@/lib/links'
 import { AirTanahChart } from './AirTanahChart'
 import type { AirTanah } from '@/lib/schemas'
@@ -18,7 +19,9 @@ export function AirTanahClient({
   const credit = meta?.credit ?? ''
 
   return (
-    <div className="mx-auto max-w-content px-4 py-16">
+    <div className="relative mx-auto max-w-content overflow-hidden px-4 py-16">
+      <MotifFloater motif="cincin_sambel" position="top-left" size="md" color="water" />
+      <MotifFloater motif="bunga_sambel" position="bottom-right" size="sm" color="gold" />
 
       {data === null ? (
         <FadeIn>

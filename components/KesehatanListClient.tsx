@@ -7,6 +7,7 @@ import { DataCard } from '@/components/DataCard'
 import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
+import { MotifFloater } from '@/components/MotifFloater'
 import { petaLink } from '@/lib/links'
 import type { Kesehatan } from '@/lib/schemas'
 
@@ -44,7 +45,9 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
         intro={pageSettings.heroIntro ?? 'Posyandu, puskesmas, dan program stunting di Sambelia.'}
         tone="olive"
       />
-      <div className="mx-auto max-w-content px-4 py-16">
+      <div className="relative mx-auto max-w-content overflow-hidden px-4 py-16">
+        <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="olive" />
+        <MotifFloater motif="cincin_sambel" position="bottom-right" size="md" color="water" />
         <StaggerContainer stagger={0.06} className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
           <StaggerItem><StatCard label="Posyandu" value={String(stats.posyandu)} /></StaggerItem>
           <StaggerItem><StatCard label="Puskesmas" value={String(stats.puskesmas)} /></StaggerItem>

@@ -9,6 +9,7 @@ export function Logo({ variant = 'color', className }: { variant?: 'color' | 'bw
       width={160}
       height={48}
       className={className}
+      style={{ width: 'auto', height: 'auto' }}
       priority
     />
   )

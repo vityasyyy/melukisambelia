@@ -6,6 +6,7 @@ import { EmptyState } from '@/components/EmptyState'
 import { CountdownStrip } from '@/components/CountdownStrip'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { PageHero } from '@/components/PageHero'
+import { MotifFloater } from '@/components/MotifFloater'
 
 export async function generateMetadata(): Promise<Metadata> {
   const festival = getPageSettings('festival')
@@ -15,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 export default function FestivalPage() {
   const events = getCollection('festival')
@@ -35,11 +36,14 @@ export default function FestivalPage() {
     <>
       <PageHero kicker={ps.heroKicker ?? 'FESTIVAL'} title={ps.heroTitle ?? 'Festival Pesona Sambelia'} intro={ps.heroIntro ?? 'Peresean, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia.'} tone="gold" />
 
-      <section className="mx-auto max-w-content px-4 py-10">
+      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
+        <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="gold" />
         {events.length > 0 ? <CountdownStrip festivals={festivalData} /> : <EmptyState message="Jadwal festival akan segera diumumkan." />}
       </section>
 
-      <section className="mx-auto max-w-content px-4 py-8">
+      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-8">
+        <MotifFloater motif="cincin_sambel" position="bottom-right" size="md" color="terracotta" />
+        <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="gold" />
         {events.length === 0 ? (
           <EmptyState message={empty.festival} />
         ) : (

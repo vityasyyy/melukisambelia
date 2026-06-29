@@ -5,6 +5,8 @@ import { getPageSettings } from '@/lib/settings'
 import { AirTanahClient } from './AirTanahClient'
 import { PageHero } from '@/components/PageHero'
 
+export const revalidate = 60
+
 export async function generateMetadata(): Promise<Metadata> {
   const airTanah = getPageSettings('airTanah')
   return {

@@ -4,7 +4,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getCollection, getEntry } from '@/lib/content'
 import { GalleryStrip } from '@/components/GalleryStrip'
+import { Breadcrumb } from '@/components/Breadcrumb'
+import { ShareButtons } from '@/components/ShareButtons'
 import { petaLink } from '@/lib/links'
+
+export const revalidate = 60
 
 export function generateStaticParams() {
   return getCollection('pariwisata').map((p) => ({ slug: p.slug }))
@@ -41,6 +45,14 @@ export default function PariwisataDetailPage({ params }: { params: { slug: strin
   }
 
   return (
+    <>
+      <Breadcrumb
+        items={[
+          { label: 'Beranda', href: '/' },
+          { label: 'Pariwisata', href: '/pariwisata' },
+          { label: item.title },
+        ]}
+      />
     <article className="mx-auto max-w-content px-4 py-16">
       <script
         type="application/ld+json"
@@ -103,6 +115,9 @@ export default function PariwisataDetailPage({ params }: { params: { slug: strin
         Lihat di peta →
       </Link>
 
+      <ShareButtons title={item.title} className="mt-8" />
+
     </article>
+    </>
   )
 }

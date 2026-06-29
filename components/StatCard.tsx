@@ -1,7 +1,7 @@
 export function StatCard({ label, value, unit }: { label: string; value: string; unit?: string }) {
   return (
-    <div className="rounded-2xl border border-tan-700/20 bg-cream-beige/60 p-6 text-center shadow-terracotta transition-transform hover:-translate-y-1 hover:shadow-terracotta-hover">
-      <div className="font-beautique text-3xl md:text-4xl text-water-900">
+    <div className="h-full flex flex-col min-w-0 rounded-2xl border border-tan-700/20 bg-cream-beige/60 p-4 sm:p-6 text-center shadow-terracotta transition-transform hover:-translate-y-1 hover:shadow-terracotta-hover">
+      <div className="font-beautique text-2xl sm:text-3xl md:text-4xl text-water-900 break-words">
         {value}
         {unit && <span className="text-sm text-ink/70 ml-1">{unit}</span>}
       </div>

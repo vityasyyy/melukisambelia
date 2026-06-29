@@ -66,11 +66,21 @@ export function HeroAnimation({
       />
       <div
         aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          backgroundImage: "url('/images/design-system/batik_sambel.svg')",
+          backgroundSize: '1200px auto',
+          backgroundPosition: 'center',
+          opacity: 0.04,
+        }}
+      />
+      <div
+        aria-hidden
         className="pointer-events-none absolute inset-0 z-[2]"
         style={{ boxShadow: 'inset 0 -120px 160px -40px rgba(26,17,13,0.9), inset 0 0 220px 10px rgba(26,17,13,0.45)' }}
       />
 
-      <div className="relative z-10 flex max-w-4xl flex-col items-center px-6 py-24">
+      <div className="relative z-10 flex max-w-4xl flex-col items-center px-4 py-16 sm:px-6 sm:py-24 md:py-32">
         <motion.div variants={container} initial="hidden" animate="visible" className="flex flex-col items-center">
           <motion.h1
             variants={item}

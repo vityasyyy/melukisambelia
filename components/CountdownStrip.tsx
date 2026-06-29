@@ -79,7 +79,7 @@ export function CountdownStrip({ festivals }: { festivals: Festival[] }) {
             </div>
           ))}
         </div>
-        <p className="mt-2 text-sm text-ink/70">{next.f.venue} · {next.f.schedule}</p>
+        <p className="mt-2 text-sm text-ink/70 break-words">{next.f.venue} · {next.f.schedule}</p>
       </div>
     </div>
   )

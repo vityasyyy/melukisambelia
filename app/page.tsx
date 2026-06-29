@@ -5,7 +5,6 @@ import { getCollection } from '@/lib/content'
 import { StatCard } from '@/components/StatCard'
 import { DataCard } from '@/components/DataCard'
 import { SectionHeader } from '@/components/SectionHeader'
-import { MotifDivider } from '@/components/MotifDivider'
 import { CeritaStats } from '@/components/CeritaStats'
 import { FadeIn } from '@/components/FadeIn'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
@@ -13,6 +12,7 @@ import { HeroAnimation } from '@/components/HeroAnimation'
 import { CountdownStrip } from '@/components/CountdownStrip'
 import { FestivalTimeline } from '@/components/FestivalTimeline'
 import { UmkmCard } from '@/components/UmkmCard'
+import { MotifFloater } from '@/components/MotifFloater'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description: 'Portal komunitas KKN-PPM UGM Melukis Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa binaan.',
 }
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 export default function Beranda() {
   const s = getSettings()
@@ -68,8 +68,8 @@ export default function Beranda() {
         </a>
       </section>
 
-      <section id="tentang" className="relative mx-auto max-w-content px-4 py-16">
-        <div className="absolute inset-0 -z-10 section-watermark" aria-hidden />
+      <section id="tentang" className="relative mx-auto max-w-content overflow-hidden px-4 py-16">
+        <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="gold" />
         <FadeIn>
           <SectionHeader
             kicker="01 — TENTANG"
@@ -84,11 +84,18 @@ export default function Beranda() {
           <StaggerItem><StatCard label="Desa Binaan" value={s.stats.desaBinaan} /></StaggerItem>
           <StaggerItem><StatCard label="Tahun Program" value={s.stats.tahunProgram} /></StaggerItem>
         </StaggerContainer>
+        <div className="mt-6 text-center">
+          <Link
+            href="/tentang-sambelia"
+            className="inline-block rounded-full border border-tan-700/30 px-5 py-2.5 text-sm font-medium text-brown-900 transition-colors hover:bg-cream-beige"
+          >
+            Selengkapnya →
+          </Link>
+        </div>
       </section>
 
-      <MotifDivider motif="cincin_sambel" />
-
-      <section className="mx-auto max-w-content px-4 py-8">
+      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-8">
+        <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="terracotta" />
         <FadeIn>
           <SectionHeader kicker={hi.jejakiKicker} title={hi.jejakiTitle} tone="gold" />
         </FadeIn>
@@ -103,7 +110,9 @@ export default function Beranda() {
 
       {/* Wisata Unggulan */}
       {wisataUnggulan.length > 0 && (
-        <section className="mx-auto max-w-content px-4 py-12">
+        <section className="relative mx-auto max-w-content overflow-hidden px-4 py-12">
+          <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="water" />
+          <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="water" />
           <FadeIn>
             <SectionHeader
               kicker={hi.wisataKicker}
@@ -141,7 +150,9 @@ export default function Beranda() {
 
       {/* Festival Terdekat */}
       {festival.length > 0 && (
-        <section className="mx-auto max-w-content px-4 py-12">
+        <section className="relative mx-auto max-w-content overflow-hidden px-4 py-12">
+          <MotifFloater motif="cincin_sambel" position="top-left" size="md" color="gold" />
+          <MotifFloater motif="bunga_sambel" position="bottom-right" size="sm" color="terracotta" />
           <FadeIn>
             <SectionHeader
               kicker={hi.festivalKicker}
@@ -153,7 +164,7 @@ export default function Beranda() {
           <FadeIn>
             <CountdownStrip festivals={festivalData} />
           </FadeIn>
-          <FadeIn delay={0.1}>
+          <FadeIn delay={0.1} className="mt-8">
             <FestivalTimeline events={festival.slice(0, 2)} />
           </FadeIn>
           <div className="mt-6 text-center">
@@ -169,7 +180,9 @@ export default function Beranda() {
 
       {/* UMKM Spotlight */}
       {umkmSpotlight.length > 0 && (
-        <section className="mx-auto max-w-content px-4 py-12">
+        <section className="relative mx-auto max-w-content overflow-hidden px-4 py-12">
+          <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="olive" />
+          <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="terracotta" />
           <FadeIn>
             <SectionHeader
               kicker={hi.umkmKicker}

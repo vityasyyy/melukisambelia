@@ -30,8 +30,8 @@ export function DataCard({
           sizes="(max-width: 768px) 100vw, 33vw"
         />
       </div>
-      <div className="flex-1 p-5">
-        <h3 className="font-semibold text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{title}</h3>
+      <div className="min-w-0 flex-1 p-5">
+        <h3 className="truncate font-semibold text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{title}</h3>
         {chips.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-1.5">
             {chips.map((c) => (
@@ -57,11 +57,11 @@ export function DataCard({
   return (
     <div className="group relative h-full flex flex-col rounded-2xl border border-tan-700/20 bg-cream-beige/50 overflow-hidden shadow-terracotta transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:-translate-y-1 hover:shadow-lg hover:shadow-terracotta/20">
       {onDetailClick ? (
-        <button type="button" onClick={onDetailClick} className="block h-full w-full text-left">
+        <button type="button" onClick={onDetailClick} className="block min-w-0 h-full w-full text-left">
           {inner}
         </button>
       ) : (
-        <Link href={href ?? '#'} className="block h-full">
+        <Link href={href ?? '#'} className="block min-w-0 h-full">
           {inner}
         </Link>
       )}

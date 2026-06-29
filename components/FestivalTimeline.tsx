@@ -3,10 +3,10 @@ import type { Festival } from '@/lib/schemas'
 
 export function FestivalTimeline({ events }: { events: (Festival & { slug: string })[] }) {
   return (
-    <ol className="relative space-y-8 border-l-2 border-terracotta-500 pl-6">
+    <ol className="relative space-y-8 border-l-2 border-terracotta-500 pl-6 sm:pl-8">
       {events.map((e) => (
         <li key={e.slug} className="group relative">
-          <span className="absolute -left-[33px] top-1 h-4 w-4 rounded-full bg-terracotta-500" />
+          <span className="absolute left-0 top-1 h-4 w-4 -translate-x-1/2 rounded-full bg-terracotta-500" />
           <div className="overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all hover:-translate-y-1 hover:shadow-terracotta-hover">
             <div className="relative aspect-video overflow-hidden">
               <Image
@@ -17,10 +17,10 @@ export function FestivalTimeline({ events }: { events: (Festival & { slug: strin
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-            <div className="p-5">
-              <h2 className="font-beautique text-2xl text-brown-900">{e.eventName}</h2>
+            <div className="p-4 sm:p-5">
+              <h2 className="font-beautique text-xl sm:text-2xl text-brown-900">{e.eventName}</h2>
               <p className="text-sm text-terracotta-500 font-medium">{e.schedule} · {e.venue}</p>
-              <p className="mt-2 text-sm text-ink/70">{e.description}</p>
+              <p className="mt-2 text-sm text-ink/70 line-clamp-3">{e.description}</p>
               {e.registrationUrl && (
                 <a
                   href={e.registrationUrl}

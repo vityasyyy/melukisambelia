@@ -6,7 +6,10 @@ import { StatCard } from '@/components/StatCard'
 import { FadeIn } from '@/components/FadeIn'
 import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
+import { MotifFloater } from '@/components/MotifFloater'
 import Image from 'next/image'
+
+export const revalidate = 60
 
 export async function generateMetadata(): Promise<Metadata> {
   const tentang = getPageSettings('tentang')
@@ -38,7 +41,8 @@ export default function TentangSambeliaPage() {
         tone="brown"
       />
 
-      <section className="mx-auto max-w-content px-4 py-16 scroll-mt-20">
+      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-16 scroll-mt-20">
+        <MotifFloater motif="cincin_sambel" position="top-right" size="md" color="terracotta" />
         <FadeIn>
           <SectionHeader
             kicker={ps.sectionGeografiKicker ?? '01 — GEOGRAFI'}
@@ -65,7 +69,9 @@ export default function TentangSambeliaPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-content px-4 py-12 scroll-mt-20">
+      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-12 scroll-mt-20">
+        <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" />
+        <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="water" />
         <FadeIn>
           <SectionHeader
             kicker={ps.sectionDesaKicker ?? '02 — DESA BINAAN'}
@@ -97,7 +103,8 @@ export default function TentangSambeliaPage() {
         </StaggerContainer>
       </section>
 
-      <section className="mx-auto max-w-content px-4 py-12 scroll-mt-20">
+      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-12 scroll-mt-20">
+        <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="olive" />
         <FadeIn>
           <SectionHeader
             kicker={ps.sectionPotensiKicker ?? '03 — POTENSI DESA'}

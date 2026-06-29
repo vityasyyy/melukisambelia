@@ -129,6 +129,8 @@
     background-color: var(--page-bg);
     color: var(--ink);
     font-family: var(--font-gontserrat), ui-sans-serif, system-ui, sans-serif;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   .font-display {
     font-family: var(--font-beautique), var(--font-gontserrat), sans-serif;
@@ -145,7 +147,7 @@
     position: absolute;
     left: 0.5rem;
     top: 0.5rem;
-    z-index: 100;
+    z-index: 1001;
     transform: translateY(-150%);
     transition: transform 0.2s ease;
   }
@@ -203,6 +205,14 @@
     background: linear-gradient(90deg, var(--cream-beige) 25%, var(--cream-warm) 50%, var(--cream-beige) 75%);
     background-size: 200% 100%;
     animation: shimmer 2s ease-in-out infinite;
+  }
+
+  .scrollbar-none {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
   }
 
   @keyframes gradient-sweep {

@@ -8,6 +8,9 @@ import { PageHero } from '@/components/PageHero'
 import { PetaSection } from '@/components/PetaSection'
 import { FadeIn } from '@/components/FadeIn'
 import { EmptyState } from '@/components/EmptyState'
+import { MotifFloater } from '@/components/MotifFloater'
+
+export const revalidate = 60
 
 export async function generateMetadata(): Promise<Metadata> {
   const ps = getPageSettings('peta')
@@ -39,7 +42,9 @@ export default function PetaPage() {
         tone="water"
       />
 
-      <section className="mx-auto max-w-content px-4 py-16">
+      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-16">
+        <MotifFloater motif="cincin_sambel" position="top-right" size="md" color="water" />
+        <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" />
         <div className="mb-8 overflow-hidden rounded-2xl border border-tan-700/20 shadow-terracotta">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d63216.0!2d116.845!3d-8.355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sid!4v1"

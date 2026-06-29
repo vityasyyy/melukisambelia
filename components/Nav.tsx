@@ -85,7 +85,7 @@ export function Nav() {
                 <button
                   type="button"
                   aria-haspopup="true"
-                  aria-expanded={undefined}
+                  aria-expanded={groupActive}
                   className={cn(
                     'flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
                     groupActive
@@ -96,7 +96,7 @@ export function Nav() {
                   {group.label}
                   <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                 </button>
-                <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-focus-within:visible group-hover:opacity-100 group-focus-within:opacity-100">
+                <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-focus-within:visible group-hover:opacity-100 group-focus-within:opacity-100 max-lg:left-0 max-lg:-translate-x-0">
                   <ul className="min-w-[180px] rounded-xl border border-tan-700/10 bg-page shadow-lg">
                     {group.items.map((item) => (
                       <li key={item.href}>
@@ -143,7 +143,7 @@ export function Nav() {
             transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="overflow-hidden border-t border-tan-700/10 bg-page lg:hidden"
           >
-            <ul className="mx-auto max-w-content space-y-1 px-4 py-4">
+            <ul className="mx-auto max-w-content space-y-1 overflow-y-auto px-4 py-4 max-h-[70vh]">
               {NAV_TOP_LEVEL.map((l, i) => {
                 if (l.href === '/') {
                   return (
@@ -156,7 +156,7 @@ export function Nav() {
                       <Link
                         href={l.href}
                         aria-current={isActive(l.href) ? 'page' : undefined}
-                        className="block rounded-lg px-3 py-2.5 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
+                        className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
                         onClick={() => { setOpen(false); setOpenGroup(null) }}
                       >
                         {l.label}
@@ -174,7 +174,7 @@ export function Nav() {
                     <Link
                       href={l.href}
                       aria-current={isActive(l.href) ? 'page' : undefined}
-                      className="block rounded-lg px-3 py-2.5 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
+                      className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
                       onClick={() => { setOpen(false); setOpenGroup(null) }}
                     >
                       {l.label}
@@ -194,7 +194,7 @@ export function Nav() {
                     <button
                       type="button"
                       aria-expanded={expanded}
-                      className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
+                      className="flex w-full min-h-[44px] items-center justify-between rounded-lg px-3 py-2.5 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
                       onClick={() => setOpenGroup(expanded ? null : group.label)}
                     >
                       {group.label}
@@ -219,7 +219,7 @@ export function Nav() {
                               <Link
                                 href={item.href}
                                 aria-current={isActive(item.href) ? 'page' : undefined}
-                                className="block rounded-lg pl-6 pr-3 py-2.5 text-sm font-medium text-ink hover:bg-cream-beige hover:text-water-900"
+                                className="flex min-h-[44px] items-center rounded-lg pl-6 pr-3 py-2.5 text-sm font-medium text-ink hover:bg-cream-beige hover:text-water-900"
                                 onClick={() => { setOpen(false); setOpenGroup(null) }}
                               >
                                 {item.label}

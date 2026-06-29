@@ -6,6 +6,7 @@ import { EmptyState } from '@/components/EmptyState'
 import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
+import { MotifFloater } from '@/components/MotifFloater'
 import { petaLink } from '@/lib/links'
 import type { Pariwisata } from '@/lib/schemas'
 
@@ -39,7 +40,9 @@ export function PariwisataListClient({ items, pageSettings, emptyMessage }: { it
         intro={pageSettings.heroIntro ?? 'Destinasi unggulan di Desa Sugian dan Desa Labuhan Pandan.'}
         tone="water"
       />
-      <div className="mx-auto max-w-content px-4 py-16">
+      <div className="relative mx-auto max-w-content overflow-hidden px-4 py-16">
+        <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="water" />
+        <MotifFloater motif="cincin_sambel" position="bottom-left" size="md" color="terracotta" />
         {items.length === 0 ? (
           <EmptyState message={emptyMessage} />
         ) : (

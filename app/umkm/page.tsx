@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 export default function UmkmPage() {
   const items = getCollection('umkm')

@@ -18,7 +18,7 @@ export function PetaSection({ files }: { files: GisFile[] }) {
       {files.map((f) => (
         <div
           key={`${f.category}-${f.name}`}
-          className="overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all hover:-translate-y-1 hover:shadow-terracotta-hover"
+          className="h-full flex flex-col overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all hover:-translate-y-1 hover:shadow-terracotta-hover"
         >
           {f.type === 'image' && (
             <div className="relative aspect-[4/3] w-full">
@@ -26,7 +26,7 @@ export function PetaSection({ files }: { files: GisFile[] }) {
             </div>
           )}
           {f.type === 'pdf' && (
-            <div className="relative aspect-[4/3] w-full bg-gold-50">
+            <div className="relative aspect-[4/3] w-full bg-gold-50 overflow-hidden">
               <iframe src={f.url} title={f.name} className="h-full w-full" />
             </div>
           )}
@@ -35,9 +35,9 @@ export function PetaSection({ files }: { files: GisFile[] }) {
               GeoJSON (ditampilkan di peta interaktif)
             </div>
           )}
-          <div className="p-4">
-            <h3 className="font-semibold text-brown-900">{f.name}</h3>
-            {f.description && <p className="mt-1 text-xs text-ink/70">{f.description}</p>}
+          <div className="min-w-0 flex-1 p-4">
+            <h3 className="truncate font-semibold text-brown-900">{f.name}</h3>
+            {f.description && <p className="mt-1 text-xs text-ink/70 line-clamp-2">{f.description}</p>}
             <a
               href={f.url}
               target="_blank"

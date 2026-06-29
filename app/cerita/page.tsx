@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import { getCollection } from '@/lib/content'
 import { getPageSettings, getEmptyStates } from '@/lib/settings'
-import { SectionHeader } from '@/components/SectionHeader'
+
 import { DataCard } from '@/components/DataCard'
 import { EmptyState } from '@/components/EmptyState'
-import { FadeIn } from '@/components/FadeIn'
+import { MotifFloater } from '@/components/MotifFloater'
+
 import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 
@@ -16,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 export default function CeritaPage() {
   const items = getCollection('cerita')
@@ -30,15 +31,10 @@ export default function CeritaPage() {
         intro={ps.heroIntro ?? 'Catatan lapangan, refleksi, dan kisah tim Melukis Sambelia.'}
         tone="brown"
       />
-      <div className="mx-auto max-w-content px-4 py-16">
-        <FadeIn>
-          <SectionHeader
-            kicker={ps.heroKicker ?? 'CERITA'}
-            title={ps.heroTitle ?? 'Cerita dari Sambelia'}
-            intro="Catatan lapangan tim Melukis Sambelia."
-            tone="brown"
-          />
-        </FadeIn>
+      <div className="relative mx-auto max-w-content overflow-hidden px-4 py-16">
+        <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="brown" />
+        <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="olive" />
+
         {items.length === 0 ? (
           <EmptyState message={empty.cerita} />
         ) : (

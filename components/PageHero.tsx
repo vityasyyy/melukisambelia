@@ -40,10 +40,11 @@ export function PageHero({
         className="pointer-events-none absolute inset-0"
         style={{ boxShadow: 'inset 0 -80px 120px -30px rgba(26,17,13,0.6)' }}
       />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-500/30 to-transparent" aria-hidden />
       <FadeIn className="relative z-10 mx-auto max-w-content px-4">
         <p className="text-xs font-semibold uppercase tracking-widest text-cream-light/70">{kicker}</p>
         <h1
-          className="mt-2 font-beautique text-display-lg"
+          className="mt-2 font-beautique text-display-lg break-words"
           style={{ textShadow: '0px 4px 4px rgba(0,0,0,0.25)' }}
         >
           <GradientText className="text-cream-light">{title}</GradientText>

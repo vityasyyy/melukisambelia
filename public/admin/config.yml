@@ -4,6 +4,7 @@ backend:
   branch: main
   base_url: https://melukisambelia.vercel.app
   auth_endpoint: /api/auth
+  pkce: true
 
 media_folder: "public/images"
 public_folder: "/images"

@@ -4,10 +4,13 @@ import Image from 'next/image'
 import { getGisManifest } from '@/lib/gis'
 import { GIS_CATEGORY_LABELS } from '@/lib/gis-manifest'
 import { getPageSettings, getEmptyStates } from '@/lib/settings'
-import { SectionHeader } from '@/components/SectionHeader'
+
 import { FadeIn } from '@/components/FadeIn'
 import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
+import { MotifFloater } from '@/components/MotifFloater'
+
+export const revalidate = 60
 
 export async function generateMetadata(): Promise<Metadata> {
   const lingkungan = getPageSettings('lingkungan')
@@ -32,15 +35,9 @@ export default function LingkunganPage() {
         tone="green"
       />
 
-      <section className="mx-auto max-w-content px-4 py-16 scroll-mt-20">
-        <FadeIn>
-          <SectionHeader
-            kicker={ps.heroKicker ?? 'LINGKUNGAN'}
-            title={ps.heroTitle ?? 'Vegetasi, Erosi & Blue Carbon'}
-            intro={ps.heroIntro ?? 'Peta tematik lingkungan dari cluster GIS: indeks vegetasi (NDVI), tingkat erosi, dan sebaran blue carbon di Kecamatan Sambelia.'}
-            tone="green"
-          />
-        </FadeIn>
+      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-16 scroll-mt-20">
+        <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="olive" />
+        <MotifFloater motif="cincin_sambel" position="top-left" size="sm" color="olive" />
 
         <FadeIn>
           {vegetasiFiles.length > 0 ? (
@@ -63,7 +60,7 @@ export default function LingkunganPage() {
                         />
                       )}
                       {f.type !== 'image' && (
-                        <div className="flex h-full items-center justify-center text-green-900">
+                        <div className="absolute inset-0 flex items-center justify-center text-green-900">
                           <span className="text-sm font-medium">{GIS_CATEGORY_LABELS[f.category]}</span>
                         </div>
                       )}
