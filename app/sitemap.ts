@@ -20,6 +20,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const dynamic: MetadataRoute.Sitemap = [
     ...getCollection('pariwisata').map((p) => ({ url: `${BASE}/pariwisata/${p.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.7 })),
     ...getCollection('cerita').map((c) => ({ url: `${BASE}/cerita/${c.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.6 })),
+    ...getCollection('umkm').map(() => ({ url: `${BASE}/umkm`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.5 })),
+    ...getCollection('festival').map(() => ({ url: `${BASE}/festival`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.6 })),
   ]
   return [...staticRoutes, ...dynamic]
 }
