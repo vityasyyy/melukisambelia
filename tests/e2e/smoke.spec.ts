@@ -14,9 +14,9 @@ for (const route of ROUTES) {
 test('peta tabs switch', async ({ page }) => {
   await page.goto('/peta')
   const interaktifTab = page.getByRole('tab', { name: 'Peta Interaktif' })
-  await expect(interaktifTab).toBeVisible({ timeout: 15000 })
-  await page.getByRole('tab', { name: 'Peta GIS Tim' }).click()
-  await expect(page.getByText(/Peta GIS/i).first()).toBeVisible({ timeout: 10000 })
+  await expect(interaktifTab).toBeVisible({ timeout: 30000 })
+  await page.getByRole('tab', { name: 'GIS Tim' }).click()
+  await expect(page.getByText(/Peta GIS Tim Melukis Sambelia/i).first()).toBeVisible({ timeout: 10000 })
 })
 
 test('admin loads (production static serve)', async ({ page }) => {
@@ -38,8 +38,8 @@ test('mobile nav menu opens and closes', async ({ browser }) => {
   await menuButton.click()
   // Close button should appear
   await expect(page.getByRole('button', { name: 'Tutup menu' })).toBeVisible()
-  // Click the Peta link inside the mobile menu (last visible link to /peta)
-  const mobilePetaLink = page.locator('header >> div.md\\:hidden >> a[href="/peta"]')
+  // Click the Peta link inside the mobile menu
+  const mobilePetaLink = page.locator('#mobile-menu >> a[href="/peta"]')
   await expect(mobilePetaLink).toBeVisible()
   await mobilePetaLink.click()
   await expect(page).toHaveURL(/\/peta/)

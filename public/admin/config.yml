@@ -2,7 +2,7 @@ local_backend: true
 
 backend:
   name: github
-  repo: miapalovaara/melukisambelia
+  repo: vityasyyy/melukisambelia
   branch: main
   base_url: https://melukis-sambelia.vercel.app
   auth_endpoint: /api/auth

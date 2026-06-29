@@ -3,7 +3,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getCollection, getEntry } from '@/lib/content'
-import { SectionHeader } from '@/components/SectionHeader'
 import { GalleryStrip } from '@/components/GalleryStrip'
 import { MiniMapClient } from '@/components/MiniMapClient'
 import { petaLink } from '@/lib/links'
@@ -67,7 +66,9 @@ export default function PariwisataDetailPage({ params }: { params: { slug: strin
         </div>
       </div>
 
-      <SectionHeader kicker={item.category} title={item.title} intro={item.shortDesc} tone="water" />
+      <div className="mt-6">
+        <p className="text-sm leading-relaxed text-ink/70">{item.shortDesc}</p>
+      </div>
 
       <div className="flex flex-wrap gap-2 text-sm">
         <span className="rounded-full bg-water-50 px-3 py-1 font-medium text-water-900">{item.village}</span>
