@@ -50,58 +50,70 @@ export async function GET(request: NextRequest) {
     const tokenData = (await ghRes.json()) as { access_token?: string; error?: string; error_description?: string }
 
     if (tokenData.error || !tokenData.access_token) {
-      const html = `<!DOCTYPE html>
-<html><head><meta charset="utf-8"><title>Auth Error</title></head>
-<body>
-<script>
-window.opener && window.opener.postMessage(
-  'authorization:github:error:' + JSON.stringify({ message: ${JSON.stringify(tokenData.error_description || tokenData.error || 'Token exchange failed')} }),
-  '*'
-);
-window.close();
-</script>
-</body></html>`
+      const errMsg = tokenData.error_description || tokenData.error || 'Token exchange failed'
+      const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Auth Error</title></head><body><script>
+(function() {
+  var msg = 'authorization:github:error:' + JSON.stringify({ message: ${JSON.stringify(errMsg)} });
+  if (window.opener) { window.opener.postMessage(msg, '*'); }
+  window.close();
+})();
+</script></body></html>`
       return new NextResponse(html, { status: 200, headers: { 'Content-Type': 'text/html; charset=utf-8' } })
     }
 
     const token = tokenData.access_token
     const provider = 'github'
 
-    // Return HTML that follows the Decap CMS (NetlifyAuthenticator) protocol:
-    // 1. Wait for handshake message "authorizing:github" from opener
-    // 2. Echo it back to complete handshake
-    // 3. Then send "authorization:github:success:{JSON}" with the token
-    const html = `<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><title>Authorizing...</title></head>
-<body>
+    // Return HTML that implements the Decap CMS (NetlifyAuthenticator) popup protocol.
+    // The opener (Decap CMS admin page) will:
+    //   1. Send "authorizing:github" to this popup window
+    //   2. Wait for this popup to echo it back (handshake)
+    //   3. Then listen for "authorization:github:success:{JSON}"
+    //
+    // We must:
+    //   1. Listen for "authorizing:github" from the opener
+    //   2. Echo it back to complete the handshake
+    //   3. Then send the authorization result
+    //   4. Close the popup
+    const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Authorizing...</title></head><body>
 <script>
 (function() {
-  var tokenData = JSON.stringify({ token: '${token}', provider: '${provider}' });
+  var token = ${JSON.stringify(token)};
   var provider = '${provider}';
+  var tokenData = JSON.stringify({ token: token, provider: provider });
+  var authMsg = 'authorization:' + provider + ':success:' + tokenData;
+  var handshakeMsg = 'authorizing:' + provider;
+  var origin = '*';
 
-  function receiveHandshake(e) {
-    if (e.data === 'authorizing:' + provider) {
+  function handleMessage(e) {
+    // Step 1: Receive handshake from opener
+    if (e.data === handshakeMsg) {
+      // Step 2: Echo handshake back to opener
       e.source.postMessage(e.data, e.origin);
-      e.source.removeEventListener('message', receiveHandshake);
+      // Step 3: Remove this listener, send auth result after brief delay
+      window.removeEventListener('message', handleMessage, false);
+      setTimeout(function() {
+        // Step 4: Send authorization result to opener
+        if (window.opener) {
+          window.opener.postMessage(authMsg, e.origin);
+        }
+        // Step 5: Close popup
+        window.close();
+      }, 100);
     }
   }
 
-  window.addEventListener('message', receiveHandshake, false);
+  window.addEventListener('message', handleMessage, false);
 
-  // Also send the authorization result directly
-  // Some flows don't use handshake, so send immediately too
-  try {
-    window.opener.postMessage('authorization:' + provider + ':success:' + tokenData, '*');
-  } catch(e) {
-    console.error('postMessage error', e);
-  }
-
-  window.close();
+  // Fallback: if handshake doesn't arrive within 2 seconds, send result anyway
+  setTimeout(function() {
+    if (window.opener) {
+      window.opener.postMessage(authMsg, origin);
+    }
+    window.close();
+  }, 2000);
 })();
-</script>
-</body>
-</html>`
+</script></body></html>`
 
     return new NextResponse(html, {
       status: 200,
