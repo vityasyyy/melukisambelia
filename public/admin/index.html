@@ -6,97 +6,73 @@
   <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
   <title>Content Manager — Melukis Sambelia</title>
   <style>
-    #cms-gateway-warning {
+    #cms-banner {
       display: none;
       position: fixed;
-      inset: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       z-index: 99999;
       background: #fdfbf7;
       color: #3d2b1f;
       font-family: system-ui, -apple-system, sans-serif;
-      padding: 2rem;
-      max-width: 640px;
-      margin: auto;
-      text-align: center;
+      padding: 1rem 1.5rem;
+      border-top: 2px solid #e3795c;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
     }
-    #cms-gateway-warning h1 { font-size: 1.25rem; margin-bottom: 0.5rem; }
-    #cms-gateway-warning p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 0.75rem; }
-    #cms-gateway-warning code {
+    #cms-banner p { margin: 0.25rem 0; font-size: 0.875rem; }
+    #cms-banner code {
       background: #f0e6d6;
       padding: 0.15em 0.4em;
       border-radius: 4px;
-      font-size: 0.9em;
-    }
-    #cms-gateway-warning pre {
-      background: #f0e6d6;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      text-align: left;
-      overflow-x: auto;
       font-size: 0.85rem;
     }
+    #cms-banner button {
+      margin-top: 0.5rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid #af7e4f;
+      border-radius: 6px;
+      background: transparent;
+      color: #3d2b1f;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    #cms-banner button:hover { background: #f0e6d6; }
   </style>
 </head>
 <body>
-  <div id="cms-gateway-warning">
-    <h1>CMS Lokal belum berjalan</h1>
-    <p>Gateway <code>decap-server</code> tidak terdeteksi di <code>localhost:8081</code>. CMS tidak dapat membaca/menulis file tanpa gateway ini.</p>
-    <p>Buka terminal baru di <strong>root folder proyek</strong> dan jalankan:</p>
-    <pre>npm run cms</pre>
-    <p>Kemudian refresh halaman ini.</p>
-    <p style="font-size:0.8rem;color:#888">Jika ini adalah deployment produksi (Vercel), gateway lokal tidak diperlukan — login dengan GitHub.</p>
+  <div id="cms-banner">
+    <p><strong>Gateway lokal tidak terdeteksi.</strong> Jalankan <code>npm run cms</code> di terminal untuk mengaktifkan CMS lokal, atau <button onclick="this.parentElement.parentElement.style.display='none'">tutup pesan ini</button>.</p>
+    <p style="font-size:0.75rem;color:#888;">Untuk deployment produksi (Vercel), login dengan GitHub — gateway lokal tidak diperlukan.</p>
   </div>
   <script>
-    // Restore auth token from localStorage so Decap CMS doesn't require re-login
-    // This handles the case where window.opener was lost during GitHub OAuth redirect
     (function() {
       try {
         var stored = localStorage.getItem('decap_cms_user');
         if (stored) {
           var parsed = JSON.parse(stored);
-          // Only restore if we have a valid token and provider
           if (parsed && parsed.token && parsed.provider) {
-            // Decap CMS reads from this key on init
             var existing = localStorage.getItem('decap-cms-user');
             if (!existing) {
-              localStorage.setItem('decap-cms-user', JSON.stringify({
-                token: parsed.token,
-                provider: parsed.provider
-              }));
+              localStorage.setItem('decap-cms-user', JSON.stringify({ token: parsed.token, provider: parsed.provider }));
             }
           }
         }
-      } catch(e) {}
-    })();
-  </script>
-  <script>
-    (function () {
-      if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
-      fetch('http://localhost:8081/api/v1', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'info' }),
-      })
-        .then(function (r) {
-          if (r.ok || r.status === 400) {
-            // Gateway found — inject local_backend into config so Decap uses the proxy
-            var configLink = document.querySelector('link[rel="cms-config-url"]');
-            if (configLink) {
-              fetch('/admin/config.yml')
-                .then(function (res) { return res.text(); })
-                .then(function (yaml) {
-                  var patched = 'local_backend: true\n\n' + yaml;
-                  var blob = new Blob([patched], { type: 'text/yaml' });
-                  configLink.href = URL.createObjectURL(blob);
-                });
+      } catch(e) { console.warn('[CMS] localStorage restore failed:', e); }
+
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        fetch('http://localhost:8081/api/v1', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'info' }) })
+          .then(function(r) {
+            if (!r.ok && r.status !== 400) {
+              document.getElementById('cms-banner').style.display = 'block';
+            } else {
+              console.log('[CMS] Local gateway detected on port 8081');
             }
-          } else {
-            document.getElementById('cms-gateway-warning').style.display = 'flex';
-          }
-        })
-        .catch(function () {
-          document.getElementById('cms-gateway-warning').style.display = 'flex';
-        });
+          })
+          .catch(function() {
+            document.getElementById('cms-banner').style.display = 'block';
+          });
+      }
     })();
   </script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
