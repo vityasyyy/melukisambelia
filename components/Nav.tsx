@@ -135,6 +135,15 @@ export function Nav() {
 
       <AnimatePresence>
         {open && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[-1] bg-black/40 backdrop-blur-sm lg:hidden"
+              onClick={() => setOpen(false)}
+              aria-hidden
+            />
           <motion.div
             id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
@@ -234,6 +243,7 @@ export function Nav() {
               })}
             </ul>
           </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>
