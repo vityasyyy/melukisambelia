@@ -1,10 +1,8 @@
-local_backend: true
-
 backend:
   name: github
   repo: vityasyyy/melukisambelia
   branch: main
-  base_url: https://melukis-sambelia.vercel.app
+  base_url: https://melukisambelia.vercel.app
   auth_endpoint: /api/auth
 
 media_folder: "public/images"

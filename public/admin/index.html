@@ -55,7 +55,19 @@
         body: JSON.stringify({ action: 'info' }),
       })
         .then(function (r) {
-          if (!r.ok && r.status !== 400) {
+          if (r.ok || r.status === 400) {
+            // Gateway found — inject local_backend into config so Decap uses the proxy
+            var configLink = document.querySelector('link[rel="cms-config-url"]');
+            if (configLink) {
+              fetch('/admin/config.yml')
+                .then(function (res) { return res.text(); })
+                .then(function (yaml) {
+                  var patched = 'local_backend: true\n\n' + yaml;
+                  var blob = new Blob([patched], { type: 'text/yaml' });
+                  configLink.href = URL.createObjectURL(blob);
+                });
+            }
+          } else {
             document.getElementById('cms-gateway-warning').style.display = 'flex';
           }
         })
