@@ -76,6 +76,10 @@ export async function GET(request: NextRequest) {
     //   2. Listen for the echo back from opener
     //   3. Then send "authorization:github:success:{JSON}" to the opener
     //   4. Close the popup
+    //
+    // FALLBACK: If window.opener is lost (common with cross-origin redirects),
+    // store the token in localStorage so the CMS admin page can pick it up
+    // on the next load, then redirect to /admin/.
     const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Authorizing...</title></head><body>
 <script>
 (function() {
@@ -85,8 +89,13 @@ export async function GET(request: NextRequest) {
   var authMsg = 'authorization:' + provider + ':success:' + tokenData;
   var handshakeMsg = 'authorizing:' + provider;
 
+  // Store token in localStorage as fallback (persists across page reloads)
+  try {
+    var cmsUser = JSON.stringify({ token: token, provider: provider });
+    localStorage.setItem('decap_cms_user', cmsUser);
+  } catch(e) {}
+
   function receiveEcho(e) {
-    // Opener echoed back the handshake — now send the authorization result
     if (e.data === handshakeMsg) {
       window.removeEventListener('message', receiveEcho, false);
       if (window.opener) {
@@ -102,10 +111,10 @@ export async function GET(request: NextRequest) {
   if (window.opener) {
     window.opener.postMessage(handshakeMsg, '*');
   } else {
-    // Fallback: no opener reference, try sending auth result directly
-    // This can happen if window.opener was lost during cross-origin navigation
-    // In that case, the user may need to retry
-    window.close();
+    // Fallback: window.opener was lost during cross-origin navigation.
+    // Token is already stored in localStorage. Redirect to admin so
+    // the CMS can pick it up.
+    window.location.href = '/admin/';
   }
 })();
 </script></body></html>`

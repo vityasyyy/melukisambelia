@@ -62,9 +62,7 @@ export function getCollection<C extends CollectionName>(name: C): CollectionItem
     const { data, content } = matter(raw)
     const parsed = schema.safeParse({ ...data, body: content || data.body || '' })
     if (!parsed.success) {
-      if (process.env.NODE_ENV !== 'production') {
-        console.error(`[content] Invalid frontmatter in ${name}/${file} — skipping entry:\n${parsed.error.toString()}`)
-      }
+      console.error(`[content] Invalid frontmatter in ${name}/${file} — skipping entry:\n${parsed.error.toString()}`)
       continue
     }
     const slug = file.replace(/\.(md|mdx)$/, '')

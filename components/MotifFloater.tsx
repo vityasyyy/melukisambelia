@@ -78,7 +78,7 @@ export function MotifFloater({
           fill
           className="object-contain"
           sizes="(max-width: 640px) 80px, 144px"
-          style={{ filter: COLOR_FILTERS[color], opacity, width: 'auto', height: 'auto' }}
+          style={{ filter: COLOR_FILTERS[color], opacity }}
         />
       )}
     </motion.div>

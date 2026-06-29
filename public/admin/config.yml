@@ -14,8 +14,10 @@ collections:
     label: "Pariwisata"
     folder: "content/pariwisata"
     create: true
+    identifier_field: "title"
+    slug: "{{slug}}"
     extension: "mdx"
-    format: "frontmatter"
+    format: "yaml-frontmatter"
     fields:
       - { label: "Judul", name: "title", widget: "string" }
       - { label: "Kategori", name: "category", widget: "select", options: ["Pantai", "Budaya", "Desa Wisata", "Air", "Trekking"] }
@@ -89,8 +91,10 @@ collections:
     label: "Cerita"
     folder: "content/cerita"
     create: true
+    identifier_field: "title"
+    slug: "{{slug}}"
     extension: "mdx"
-    format: "frontmatter"
+    format: "yaml-frontmatter"
     fields:
       - { label: "Judul", name: "title", widget: "string" }
       - { label: "Penulis", name: "author", widget: "string" }

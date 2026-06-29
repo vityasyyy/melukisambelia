@@ -47,6 +47,29 @@
     <p style="font-size:0.8rem;color:#888">Jika ini adalah deployment produksi (Vercel), gateway lokal tidak diperlukan — login dengan GitHub.</p>
   </div>
   <script>
+    // Restore auth token from localStorage so Decap CMS doesn't require re-login
+    // This handles the case where window.opener was lost during GitHub OAuth redirect
+    (function() {
+      try {
+        var stored = localStorage.getItem('decap_cms_user');
+        if (stored) {
+          var parsed = JSON.parse(stored);
+          // Only restore if we have a valid token and provider
+          if (parsed && parsed.token && parsed.provider) {
+            // Decap CMS reads from this key on init
+            var existing = localStorage.getItem('decap-cms-user');
+            if (!existing) {
+              localStorage.setItem('decap-cms-user', JSON.stringify({
+                token: parsed.token,
+                provider: parsed.provider
+              }));
+            }
+          }
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <script>
     (function () {
       if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
       fetch('http://localhost:8081/api/v1', {
