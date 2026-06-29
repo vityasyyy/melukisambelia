@@ -85,12 +85,12 @@ export function HeroAnimation({
           <motion.h1
             variants={item}
             className="font-beautique text-[clamp(3rem,10vw,6.5rem)] leading-[0.95] text-cream-light text-balance"
-            style={{ textShadow: '0 4px 20px rgba(0,0,0,0.5)' }}
+            style={{ textShadow: '0 2px 12px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.3)' }}
           >
             <GradientText className="text-cream-light">Melukis</GradientText>{' '}
             <span className="text-cream-light">Sambelia</span>
           </motion.h1>
-          <motion.p variants={item} className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-cream-light/90 sm:text-lg md:text-xl">
+          <motion.p variants={item} className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-cream-light/90 sm:text-lg md:text-xl" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
             {tagline}
           </motion.p>
           <motion.div variants={item} className="mt-10 flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
