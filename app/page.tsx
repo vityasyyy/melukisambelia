@@ -5,7 +5,7 @@ import { getCollection } from '@/lib/content'
 import { StatCard } from '@/components/StatCard'
 import { DataCard } from '@/components/DataCard'
 import { SectionHeader } from '@/components/SectionHeader'
-import { CeritaStats } from '@/components/CeritaStats'
+import { KegiatanStats } from '@/components/KegiatanStats'
 import { FadeIn } from '@/components/FadeIn'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { HeroAnimation } from '@/components/HeroAnimation'
@@ -17,7 +17,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Beranda',
-  description: 'Portal komunitas KKN-PPM UGM Melukis Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa binaan.',
+  description: 'Portal informasi Kecamatan Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa.',
 }
 
 export const revalidate = 60
@@ -81,8 +81,8 @@ export default function Beranda() {
         <StaggerContainer stagger={0.08} className="grid grid-cols-2 gap-4 md:grid-cols-4">
           <StaggerItem><StatCard label="Luas" value={s.stats.luas} /></StaggerItem>
           <StaggerItem><StatCard label="Penduduk" value={s.stats.penduduk} /></StaggerItem>
-          <StaggerItem><StatCard label="Desa Binaan" value={s.stats.desaBinaan} /></StaggerItem>
-          <StaggerItem><StatCard label="Tahun Program" value={s.stats.tahunProgram} /></StaggerItem>
+          <StaggerItem><StatCard label="Desa/Kelurahan" value={s.stats.desaKelurahan} /></StaggerItem>
+          <StaggerItem><StatCard label="Kabupaten" value={s.stats.kabupaten} /></StaggerItem>
         </StaggerContainer>
         <div className="mt-6 text-center">
           <Link
@@ -209,7 +209,7 @@ export default function Beranda() {
         </section>
       )}
 
-      <CeritaStats />
+      <KegiatanStats />
     </>
   )
 }

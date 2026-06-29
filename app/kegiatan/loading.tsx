@@ -1,6 +1,6 @@
 import { ArticleSkeleton } from '@/components/Skeleton'
 
-export default function CeritaLoading() {
+export default function KegiatanLoading() {
   return (
     <>
       <section className="relative overflow-hidden bg-gradient-to-br from-terracotta-900 via-terracotta-700 to-brown-900 py-12 md:py-20 text-center text-cream-light">

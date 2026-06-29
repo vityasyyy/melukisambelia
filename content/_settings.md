@@ -1,11 +1,11 @@
 ---
 heroImage: /images/content/personstanding.webp
-heroTagline: Pemberdayaan pariwisata berkelanjutan & pengembangan kawasan agropolitan di Sambelia, Lombok Timur
+heroTagline: Jelajahi Kecamatan Sambelia — pariwisata, data, dan potensi daerah di Lombok Timur
 stats:
   luas: "±125 km²"
   penduduk: "±20.000 jiwa"
-  desaBinaan: "2"
-  tahunProgram: "2026"
+  desaKelurahan: "7"
+  kabupaten: "Lombok Timur"
 festivalDates: "Juli–Agustus 2026"
 socials:
   instagram: melukis.sambelia
@@ -20,7 +20,7 @@ homepageIntros:
   jejakiIntro: ""
   wisataKicker: "03 — WISATA UNGGULAN"
   wisataTitle: "Destinasi Pilihan"
-  wisataIntro: "Destinasi wisata unggulan di Desa Sugian dan Labuhan Pandan."
+  wisataIntro: "Destinasi wisata unggulan di Kecamatan Sambelia."
   festivalKicker: "04 — FESTIVAL"
   festivalTitle: "Festival Pesona Sambelia"
   festivalIntro: "Peresean, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia."
@@ -31,30 +31,30 @@ pages:
   home:
     heroKicker: "01 — TENTANG"
     heroTitle: "Tentang Sambelia"
-    heroIntro: "Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan."
+    heroIntro: "Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — pariwisata, pertanian, dan warisan budaya Sasak."
     seoTitle: "Beranda"
-    seoDescription: "Portal komunitas KKN-PPM UGM Melukis Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa binaan."
+    seoDescription: "Portal informasi Kecamatan Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa."
   tentang:
     heroKicker: "TENTANG"
     heroTitle: "Sambelia"
-    heroIntro: "Kecamatan Sambelia, Kabupaten Lombok Timur, Nusa Tenggara Barat — pusat pengembangan pariwisata berkelanjutan dan kawasan agropolitan."
+    heroIntro: "Kecamatan Sambelia, Kabupaten Lombok Timur, Nusa Tenggara Barat — pariwisata, pertanian, dan warisan budaya Sasak."
     seoTitle: "Tentang Sambelia"
-    seoDescription: "Profil Kecamatan Sambelia, Kabupaten Lombok Timur: geografi, demografi, desa binaan, dan fokus program Melukis Sambelia."
+    seoDescription: "Profil Kecamatan Sambelia, Kabupaten Lombok Timur: geografi, demografi, desa, dan potensi daerah."
     sectionGeografiKicker: "01 — GEOGRAFI"
     sectionGeografiTitle: "Geografi & Demografi"
     sectionGeografiIntro: "Letak, luas, dan penduduk Kecamatan Sambelia."
-    sectionDesaKicker: "02 — DESA BINAAN"
-    sectionDesaTitle: "Desa Binaan"
-    sectionDesaIntro: "Desa-desa yang menjadi fokus program Melukis Sambelia."
+    sectionDesaKicker: "02 — DESA & KELURAHAN"
+    sectionDesaTitle: "Desa & Kelurahan"
+    sectionDesaIntro: "Desa-desa dan kelurahan yang ada di Kecamatan Sambelia."
     sectionPotensiKicker: "03 — POTENSI DESA"
     sectionPotensiTitle: "Potensi Desa"
     sectionPotensiIntro: "Potensi unggulan Kecamatan Sambelia: wisata bahari, pertanian, dan kerajinan khas Sasak."
   pariwisata:
     heroKicker: "PARIWISATA"
     heroTitle: "Potensi Wisata Sambelia"
-    heroIntro: "Destinasi unggulan di Desa Sugian dan Desa Labuhan Pandan."
+    heroIntro: "Destinasi unggulan di Kecamatan Sambelia."
     seoTitle: "Pariwisata Sambelia"
-    seoDescription: "Destinasi wisata unggulan di Desa Sugian dan Desa Labuhan Pandan, Kecamatan Sambelia, Lombok Timur."
+    seoDescription: "Destinasi wisata unggulan di Kecamatan Sambelia, Lombok Timur."
   irigasi:
     heroKicker: "IRIGASI"
     heroTitle: "Data Saluran Irigasi"
@@ -97,12 +97,12 @@ pages:
     heroIntro: "Peresean, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia."
     seoTitle: "Festival Pesona Sambelia"
     seoDescription: "Jadwal dan informasi Festival Pesona Sambelia: Peresean, Pawai Dulangan, Gendang Beleq, dan warisan budaya Sasak lainnya."
-  cerita:
-    heroKicker: "CERITA"
-    heroTitle: "Cerita dari Sambelia"
-    heroIntro: "Catatan lapangan, refleksi, dan kisah tim Melukis Sambelia."
-    seoTitle: "Cerita dari Sambelia"
-    seoDescription: "Catatan lapangan, refleksi, dan kisah tim KKN-PPM UGM Melukis Sambelia dari Desa Sugian dan Labuhan Pandan."
+  kegiatan:
+    heroKicker: "KEGIATAN"
+    heroTitle: "Kegiatan Sambelia"
+    heroIntro: "Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia."
+    seoTitle: "Kegiatan Sambelia"
+    seoDescription: "Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia."
 jejakiCards:
   - href: "/pariwisata"
     title: "Pariwisata"
@@ -133,15 +133,15 @@ jejakiCards:
     desc: "UMKM lokal Sambelia."
     accent: "#F0AC6D"
 footer:
-  tagline: "Profil Desa Sambelia — KKN-PPM UGM 2026"
-  copyright: "© 2026 KKN-PPM UGM Melukis Sambelia"
+  tagline: "Portal Kecamatan Sambelia, Lombok Timur"
+  copyright: "© 2026 Kecamatan Sambelia — Dikembangkan oleh KKN-PPM UGM Melukis Sambelia"
 emptyStates:
-  pariwisata: "Belum ada data wisata. Tim akan menambahkan segera."
-  irigasi: "Belum ada data irigasi. Tim akan menambahkan segera."
-  kesehatan: "Belum ada data kesehatan. Tim akan menambahkan segera."
-  umkm: "Belum ada data UMKM. Tim akan menambahkan segera."
-  cerita: "Belum ada cerita. Tim akan menambahkan segera."
-  festival: "Belum ada data festival. Tim akan menambahkan segera."
-  lingkungan: "Data peta lingkungan dari cluster GIS akan diunggah."
-  airTanah: "Data TMA dari cluster air tanah akan diunggah."
+  pariwisata: "Belum ada data wisata. Data akan ditambahkan segera."
+  irigasi: "Belum ada data irigasi. Data akan ditambahkan segera."
+  kesehatan: "Belum ada data kesehatan. Data akan ditambahkan segera."
+  umkm: "Belum ada data UMKM. Data akan ditambahkan segera."
+  kegiatan: "Belum ada kegiatan. Informasi akan ditambahkan segera."
+  festival: "Belum ada data festival. Data akan ditambahkan segera."
+  lingkungan: "Data peta lingkungan akan diunggah."
+  airTanah: "Data TMA akan diunggah."
 ---

@@ -48,9 +48,9 @@ function collectFiles() {
 
 const files = collectFiles()
 const manifest = {
-  title: 'Peta GIS Tim Melukis Sambelia',
-  description: 'Peta tematik hasil kerja tim Melukis Sambelia.',
-  credit: 'Tim GIS Melukis Sambelia',
+  title: 'Peta GIS Kecamatan Sambelia',
+  description: 'Peta tematik Kecamatan Sambelia.',
+  credit: 'Tim GIS Kecamatan Sambelia',
   files,
 }
 

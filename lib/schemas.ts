@@ -3,7 +3,7 @@ import { z } from 'zod'
 export const pariwisataSchema = z.object({
   title: z.string(),
   category: z.enum(['Pantai', 'Budaya', 'Desa Wisata', 'Air', 'Trekking']),
-  village: z.enum(['Sugian', 'Labuhan Pandan', 'lainnya']),
+  village: z.enum(['Sugian', 'Labuhan Pandan', 'Sambelia', 'Rarang', 'Sambelia Rarang Selatan', 'Tembayar', 'Paok Motong', 'lainnya']),
   cover: z.string(),
   gallery: z.array(z.string()).default([]),
   shortDesc: z.string(),
@@ -17,7 +17,7 @@ export const pariwisataSchema = z.object({
 export const irigasiSchema = z.object({
   name: z.string(),
   saluranType: z.enum(['Primer', 'Sekunder', 'Tersier']),
-  village: z.enum(['Sugian', 'Labuhan Pandan', 'lainnya']),
+  village: z.enum(['Sugian', 'Labuhan Pandan', 'Sambelia', 'Rarang', 'Sambelia Rarang Selatan', 'Tembayar', 'Paok Motong', 'lainnya']),
   condition: z.enum(['Baik', 'Rusak Ringan', 'Rusak Berat']),
   lengthM: z.number().nonnegative(),
   flowStatus: z.enum(['Mengalir', 'Kering', 'Mengalir Sebagian']),
@@ -30,7 +30,7 @@ export const irigasiSchema = z.object({
 export const kesehatanSchema = z.object({
   facilityName: z.string(),
   type: z.enum(['Posyandu', 'Puskesmas', 'Bidan', 'Polides']),
-  village: z.enum(['Sugian', 'Labuhan Pandan', 'lainnya']),
+  village: z.enum(['Sugian', 'Labuhan Pandan', 'Sambelia', 'Rarang', 'Sambelia Rarang Selatan', 'Tembayar', 'Paok Motong', 'lainnya']),
   cadresCount: z.number().int().nonnegative().default(0),
   stuntingProgram: z.boolean().default(false),
   cover: z.string(),
@@ -49,7 +49,7 @@ export const festivalSchema = z.object({
   body: z.string().default(''),
 })
 
-export const ceritaSchema = z.object({
+export const kegiatanSchema = z.object({
   title: z.string(),
   author: z.string(),
   date: z.coerce.string(),
@@ -62,7 +62,7 @@ export const umkmSchema = z.object({
   name: z.string(),
   owner: z.string(),
   kategori: z.enum(['Kuliner', 'Jasa', 'Kerajinan', 'Pertanian', 'Perikanan', 'Lainnya']),
-  village: z.enum(['Sugian', 'Labuhan Pandan', 'lainnya']),
+  village: z.enum(['Sugian', 'Labuhan Pandan', 'Sambelia', 'Rarang', 'Sambelia Rarang Selatan', 'Tembayar', 'Paok Motong', 'lainnya']),
   contact: z.string(),
   cover: z.string(),
   gallery: z.array(z.string()).default([]),
@@ -83,9 +83,9 @@ export const tentangPageSchema = pageHeroSchema.extend({
   sectionGeografiKicker: z.string().default('01 — GEOGRAFI'),
   sectionGeografiTitle: z.string().default('Geografi & Demografi'),
   sectionGeografiIntro: z.string().default('Letak, luas, dan penduduk Kecamatan Sambelia.'),
-  sectionDesaKicker: z.string().default('02 — DESA BINAAN'),
-  sectionDesaTitle: z.string().default('Desa Binaan'),
-  sectionDesaIntro: z.string().default('Desa-desa yang menjadi fokus program Melukis Sambelia.'),
+  sectionDesaKicker: z.string().default('02 — DESA & KELURAHAN'),
+  sectionDesaTitle: z.string().default('Desa & Kelurahan'),
+  sectionDesaIntro: z.string().default('Desa-desa dan kelurahan yang ada di Kecamatan Sambelia.'),
   sectionPotensiKicker: z.string().default('03 — POTENSI DESA'),
   sectionPotensiTitle: z.string().default('Potensi Desa'),
   sectionPotensiIntro: z.string().default('Potensi unggulan Kecamatan Sambelia: wisata bahari, pertanian, dan kerajinan khas Sasak.'),
@@ -97,8 +97,8 @@ export const settingsSchema = z.object({
   stats: z.object({
     luas: z.string(),
     penduduk: z.string(),
-    desaBinaan: z.string(),
-    tahunProgram: z.string(),
+    desaKelurahan: z.string(),
+    kabupaten: z.string(),
   }),
   festivalDates: z.string(),
   socials: z.object({
@@ -141,22 +141,22 @@ export const settingsSchema = z.object({
     home: pageHeroSchema.optional().default({
       heroKicker: '01 — TENTANG',
       heroTitle: 'Tentang Sambelia',
-      heroIntro: 'Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan.',
+      heroIntro: 'Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — pariwisata, pertanian, dan warisan budaya Sasak.',
       seoTitle: 'Beranda',
-      seoDescription: 'Portal komunitas KKN-PPM UGM Melukis Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa binaan.',
+      seoDescription: 'Portal informasi Kecamatan Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa.',
     }),
     tentang: tentangPageSchema.optional().default({
       heroKicker: 'TENTANG',
       heroTitle: 'Sambelia',
-      heroIntro: 'Kecamatan Sambelia, Kabupaten Lombok Timur, Nusa Tenggara Barat — pusat pengembangan pariwisata berkelanjutan dan kawasan agropolitan.',
+      heroIntro: 'Kecamatan Sambelia, Kabupaten Lombok Timur, Nusa Tenggara Barat — pariwisata, pertanian, dan warisan budaya Sasak.',
       seoTitle: 'Tentang Sambelia',
-      seoDescription: 'Profil Kecamatan Sambelia, Kabupaten Lombok Timur: geografi, demografi, desa binaan, dan fokus program Melukis Sambelia.',
+      seoDescription: 'Profil Kecamatan Sambelia, Kabupaten Lombok Timur: geografi, demografi, desa, dan potensi daerah.',
       sectionGeografiKicker: '01 — GEOGRAFI',
       sectionGeografiTitle: 'Geografi & Demografi',
       sectionGeografiIntro: 'Letak, luas, dan penduduk Kecamatan Sambelia.',
-      sectionDesaKicker: '02 — DESA BINAAN',
-      sectionDesaTitle: 'Desa Binaan',
-      sectionDesaIntro: 'Desa-desa yang menjadi fokus program Melukis Sambelia.',
+      sectionDesaKicker: '02 — DESA & KELURAHAN',
+      sectionDesaTitle: 'Desa & Kelurahan',
+      sectionDesaIntro: 'Desa-desa dan kelurahan yang ada di Kecamatan Sambelia.',
       sectionPotensiKicker: '03 — POTENSI DESA',
       sectionPotensiTitle: 'Potensi Desa',
       sectionPotensiIntro: 'Potensi unggulan Kecamatan Sambelia: wisata bahari, pertanian, dan kerajinan khas Sasak.',
@@ -217,12 +217,12 @@ export const settingsSchema = z.object({
       seoTitle: 'Festival Pesona Sambelia',
       seoDescription: 'Jadwal dan informasi Festival Pesona Sambelia: Peresean, Pawai Dulangan, Gendang Beleq, dan warisan budaya Sasak lainnya.',
     }),
-    cerita: pageHeroSchema.optional().default({
-      heroKicker: 'CERITA',
-      heroTitle: 'Cerita dari Sambelia',
-      heroIntro: 'Catatan lapangan, refleksi, dan kisah tim Melukis Sambelia.',
-      seoTitle: 'Cerita dari Sambelia',
-      seoDescription: 'Catatan lapangan, refleksi, dan kisah tim KKN-PPM UGM Melukis Sambelia dari Desa Sugian dan Labuhan Pandan.',
+    kegiatan: pageHeroSchema.optional().default({
+      heroKicker: 'KEGIATAN',
+      heroTitle: 'Kegiatan Sambelia',
+      heroIntro: 'Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia.',
+      seoTitle: 'Kegiatan Sambelia',
+      seoDescription: 'Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia.',
     }),
   }).optional(),
   jejakiCards: z.array(z.object({
@@ -241,30 +241,30 @@ export const settingsSchema = z.object({
     { href: '/umkm', title: 'UMKM', desc: 'UMKM lokal Sambelia.', accent: '#F0AC6D' },
   ]),
   footer: z.object({
-    tagline: z.string().default('Profil Desa Sambelia — KKN-PPM UGM 2026'),
-    copyright: z.string().default('© 2026 KKN-PPM UGM Melukis Sambelia'),
+    tagline: z.string().default('Portal Kecamatan Sambelia, Lombok Timur'),
+    copyright: z.string().default('© 2026 Kecamatan Sambelia — Dikembangkan oleh KKN-PPM UGM Melukis Sambelia'),
   }).optional().default({
-    tagline: 'Profil Desa Sambelia — KKN-PPM UGM 2026',
-    copyright: '© 2026 KKN-PPM UGM Melukis Sambelia',
+    tagline: 'Portal Kecamatan Sambelia, Lombok Timur',
+    copyright: '© 2026 Kecamatan Sambelia — Dikembangkan oleh KKN-PPM UGM Melukis Sambelia',
   }),
   emptyStates: z.object({
-    pariwisata: z.string().default('Belum ada data wisata. Tim akan menambahkan segera.'),
-    irigasi: z.string().default('Belum ada data irigasi. Tim akan menambahkan segera.'),
-    kesehatan: z.string().default('Belum ada data kesehatan. Tim akan menambahkan segera.'),
-    umkm: z.string().default('Belum ada data UMKM. Tim akan menambahkan segera.'),
-    cerita: z.string().default('Belum ada cerita. Tim akan menambahkan segera.'),
-    festival: z.string().default('Belum ada data festival. Tim akan menambahkan segera.'),
-    lingkungan: z.string().default('Data peta lingkungan dari cluster GIS akan diunggah.'),
-    airTanah: z.string().default('Data TMA dari cluster air tanah akan diunggah.'),
+    pariwisata: z.string().default('Belum ada data wisata. Data akan ditambahkan segera.'),
+    irigasi: z.string().default('Belum ada data irigasi. Data akan ditambahkan segera.'),
+    kesehatan: z.string().default('Belum ada data kesehatan. Data akan ditambahkan segera.'),
+    umkm: z.string().default('Belum ada data UMKM. Data akan ditambahkan segera.'),
+    kegiatan: z.string().default('Belum ada kegiatan. Informasi akan ditambahkan segera.'),
+    festival: z.string().default('Belum ada data festival. Data akan ditambahkan segera.'),
+    lingkungan: z.string().default('Data peta lingkungan akan diunggah.'),
+    airTanah: z.string().default('Data TMA akan diunggah.'),
   }).optional().default({
-    pariwisata: 'Belum ada data wisata. Tim akan menambahkan segera.',
-    irigasi: 'Belum ada data irigasi. Tim akan menambahkan segera.',
-    kesehatan: 'Belum ada data kesehatan. Tim akan menambahkan segera.',
-    umkm: 'Belum ada data UMKM. Tim akan menambahkan segera.',
-    cerita: 'Belum ada cerita. Tim akan menambahkan segera.',
-    festival: 'Belum ada data festival. Tim akan menambahkan segera.',
-    lingkungan: 'Data peta lingkungan dari cluster GIS akan diunggah.',
-    airTanah: 'Data TMA dari cluster air tanah akan diunggah.',
+    pariwisata: 'Belum ada data wisata. Data akan ditambahkan segera.',
+    irigasi: 'Belum ada data irigasi. Data akan ditambahkan segera.',
+    kesehatan: 'Belum ada data kesehatan. Data akan ditambahkan segera.',
+    umkm: 'Belum ada data UMKM. Data akan ditambahkan segera.',
+    kegiatan: 'Belum ada kegiatan. Informasi akan ditambahkan segera.',
+    festival: 'Belum ada data festival. Data akan ditambahkan segera.',
+    lingkungan: 'Data peta lingkungan akan diunggah.',
+    airTanah: 'Data TMA akan diunggah.',
   }),
 })
 
@@ -284,7 +284,7 @@ export type Pariwisata = z.infer<typeof pariwisataSchema>
 export type Irigasi = z.infer<typeof irigasiSchema>
 export type Kesehatan = z.infer<typeof kesehatanSchema>
 export type Festival = z.infer<typeof festivalSchema>
-export type Cerita = z.infer<typeof ceritaSchema>
+export type Kegiatan = z.infer<typeof kegiatanSchema>
 export type Umkm = z.infer<typeof umkmSchema>
 export type Settings = z.infer<typeof settingsSchema>
 export type GisMap = z.infer<typeof gisMapSchema>

@@ -17,9 +17,9 @@ const svg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
   <rect width="${W}" height="${H}" fill="url(#bg)"/>
   <rect x="0" y="0" width="${W}" height="8" fill="#0873B9"/>
   <rect x="0" y="${H - 8}" width="${W}" height="8" fill="#E3795C"/>
-  <text x="80" y="280" font-family="serif" font-size="72" font-weight="bold" fill="#742D1B">Melukis Sambelia</text>
-  <text x="80" y="350" font-family="sans-serif" font-size="32" fill="#0873B9">KKN-PPM UGM · Sambelia, Lombok Timur</text>
-  <text x="80" y="430" font-family="sans-serif" font-size="24" fill="#AF7E4F">Pariwisata berkelanjutan &amp; agropolitan</text>
+  <text x="80" y="280" font-family="serif" font-size="72" font-weight="bold" fill="#742D1B">Sambelia</text>
+  <text x="80" y="350" font-family="sans-serif" font-size="32" fill="#0873B9">Kecamatan Sambelia, Lombok Timur</text>
+  <text x="80" y="430" font-family="sans-serif" font-size="24" fill="#AF7E4F">Pariwisata, data, dan potensi daerah</text>
 </svg>`
 
 const resvg = new Resvg(svg, { fitTo: { mode: 'width', value: W } })

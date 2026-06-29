@@ -1,6 +1,6 @@
 ---
 geographyProse: >-
-  Kecamatan Sambelia terletak di Kabupaten Lombok Timur, Provinsi Nusa Tenggara Barat. Wilayahnya mencakup area pesisir dengan potensi wisata bahari serta kawasan pertanian yang subur. Batas administrasi mencakup area desa Sugian dan Labuhan Pandan sebagai desa binaan program KKN-PPM UGM Melukis Sambelia.
+  Kecamatan Sambelia terletak di Kabupaten Lombok Timur, Provinsi Nusa Tenggara Barat. Wilayahnya mencakup area pesisir dengan potensi wisata bahari serta kawasan pertanian yang subur. Terdiri dari 7 desa/kelurahan: Sugian, Labuhan Pandan, Sambelia, Rarang, Sambelia Rarang Selatan, Tembayar, dan Paok Motong.
 potensiDesa:
   - title: "Pariwisata Bahari & Budaya"
     description: >-

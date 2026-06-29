@@ -10,7 +10,7 @@ const COLLECTIONS = [
   { name: 'irigasi', ext: '.md' },
   { name: 'kesehatan', ext: '.md' },
   { name: 'festival', ext: '.md' },
-  { name: 'cerita', ext: '.mdx' },
+  { name: 'kegiatan', ext: '.mdx' },
   { name: 'umkm', ext: '.md' },
   { name: 'air-tanah', ext: '.md', dir: 'air-tanah' },
   { name: 'desa', ext: '.md' },

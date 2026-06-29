@@ -10,25 +10,25 @@ import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const cerita = getPageSettings('cerita')
+  const kegiatan = getPageSettings('kegiatan')
   return {
-    title: cerita.seoTitle ?? 'Cerita dari Sambelia',
-    description: cerita.seoDescription ?? 'Catatan lapangan, refleksi, dan kisah tim KKN-PPM UGM Melukis Sambelia dari Desa Sugian dan Labuhan Pandan.',
+    title: kegiatan.seoTitle ?? 'Kegiatan Sambelia',
+    description: kegiatan.seoDescription ?? 'Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia.',
   }
 }
 
 export const revalidate = 60
 
-export default function CeritaPage() {
-  const items = getCollection('cerita')
-  const ps = getPageSettings('cerita')
+export default function KegiatanPage() {
+  const items = getCollection('kegiatan')
+  const ps = getPageSettings('kegiatan')
   const empty = getEmptyStates()
   return (
     <>
       <PageHero
-        kicker={ps.heroKicker ?? 'CERITA'}
-        title={ps.heroTitle ?? 'Cerita dari Sambelia'}
-        intro={ps.heroIntro ?? 'Catatan lapangan, refleksi, dan kisah tim Melukis Sambelia.'}
+        kicker={ps.heroKicker ?? 'KEGIATAN'}
+        title={ps.heroTitle ?? 'Kegiatan Sambelia'}
+        intro={ps.heroIntro ?? 'Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia.'}
         tone="brown"
       />
       <div className="relative mx-auto max-w-content overflow-hidden px-4 py-16">
@@ -36,13 +36,13 @@ export default function CeritaPage() {
         <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="olive" />
 
         {items.length === 0 ? (
-          <EmptyState message={empty.cerita} />
+          <EmptyState message={empty.kegiatan} />
         ) : (
           <StaggerContainer stagger={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {items.map((c) => (
               <StaggerItem key={c.slug}>
                 <DataCard
-                  href={`/cerita/${c.slug}`}
+                  href={`/kegiatan/${c.slug}`}
                   image={c.cover}
                   title={c.title}
                   chips={[

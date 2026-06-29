@@ -1,7 +1,7 @@
 ---
 title: "Air & Tanah"
 description: "Data Tinggi Muka Airtanah (TMA) dan Daya Hantar Listrik (DHL) di Kecamatan Sambelia."
-credit: "Tim Air & Tanah — Melukis Sambelia"
+credit: "Tim Air & Tanah — Kecamatan Sambelia"
 measurements:
   - location: "Sumur Sugian 1"
     date: "2026-06-10"

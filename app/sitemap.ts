@@ -13,13 +13,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/kesehatan`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/umkm`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${BASE}/festival`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${BASE}/cerita`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE}/kegiatan`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
     { url: `${BASE}/air-tanah`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${BASE}/lingkungan`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
   ]
   const dynamic: MetadataRoute.Sitemap = [
     ...getCollection('pariwisata').map((p) => ({ url: `${BASE}/pariwisata/${p.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.7 })),
-    ...getCollection('cerita').map((c) => ({ url: `${BASE}/cerita/${c.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.6 })),
+    ...getCollection('kegiatan').map((c) => ({ url: `${BASE}/kegiatan/${c.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.6 })),
     ...getCollection('umkm').map(() => ({ url: `${BASE}/umkm`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.5 })),
     ...getCollection('festival').map(() => ({ url: `${BASE}/festival`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.6 })),
   ]

@@ -5,22 +5,22 @@ import { FadeIn } from './FadeIn'
 import { SectionHeader } from './SectionHeader'
 import { MotifFloater } from './MotifFloater'
 
-export function CeritaStats() {
-  const cerita = getCollection('cerita').slice(0, 3)
+export function KegiatanStats() {
+  const kegiatan = getCollection('kegiatan').slice(0, 3)
 
   return (
     <section className="relative mx-auto max-w-content overflow-hidden px-4 py-16">
       <MotifFloater motif="bunga_sambel" position="top-right" size="lg" color="gold" />
       <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="terracotta" />
       <FadeIn>
-        <SectionHeader kicker="06 — CERITA" title="Cerita dari Sambelia" tone="gold" />
+        <SectionHeader kicker="06 — KEGIATAN" title="Kegiatan Sambelia" tone="gold" />
       </FadeIn>
-      {cerita.length > 0 ? (
+      {kegiatan.length > 0 ? (
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {cerita.map((c) => (
+          {kegiatan.map((c) => (
             <Link
               key={c.slug}
-              href={`/cerita/${c.slug}`}
+              href={`/kegiatan/${c.slug}`}
               className="group overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/40 shadow-terracotta transition-all hover:-translate-y-1 hover:shadow-terracotta-hover"
             >
               <div className="relative aspect-video overflow-hidden">
@@ -35,11 +35,11 @@ export function CeritaStats() {
           ))}
         </div>
       ) : (
-        <p className="mt-6 text-center text-ink/70">Cerita dari lapangan akan segera hadir.</p>
+        <p className="mt-6 text-center text-ink/70">Kegiatan terbaru akan segera hadir.</p>
       )}
       <div className="mt-8 flex flex-wrap justify-center gap-4">
-        <Link href="/cerita" className="inline-block rounded-full border border-tan-700/30 px-5 py-2.5 text-sm font-medium text-brown-900 transition-colors hover:bg-cream-beige">
-          Baca semua cerita →
+        <Link href="/kegiatan" className="inline-block rounded-full border border-tan-700/30 px-5 py-2.5 text-sm font-medium text-brown-900 transition-colors hover:bg-cream-beige">
+          Lihat semua kegiatan →
         </Link>
         <Link href="/tentang-sambelia" className="inline-block rounded-full border border-water-900/30 bg-water-900 px-5 py-2.5 text-sm font-medium text-cream-light transition-colors hover:bg-water-700">
           Tentang Sambelia →

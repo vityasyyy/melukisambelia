@@ -4,9 +4,9 @@ export function websiteJsonLd() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Melukis Sambelia',
+    name: 'Sambelia',
     url: BASE_URL,
-    description: 'Portal komunitas KKN-PPM UGM Melukis Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa binaan.',
+    description: 'Portal informasi Kecamatan Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa.',
   }
 }
 
@@ -61,7 +61,7 @@ export function articleJsonLd(item: { title: string; slug: string; author: strin
     author: { '@type': 'Person', name: item.author },
     datePublished: item.date,
     description: item.excerpt,
-    url: `${BASE_URL}/cerita/${item.slug}`,
+    url: `${BASE_URL}/kegiatan/${item.slug}`,
     image: item.cover.startsWith('/') ? `${BASE_URL}${item.cover}` : item.cover,
   }
 }

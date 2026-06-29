@@ -106,7 +106,7 @@ export default function PetaPage() {
             <h2 className="mb-6 font-beautique text-display-lg text-brown-900">Peta Tematik GIS</h2>
           </FadeIn>
           <FadeIn>
-            <p className="mb-6 text-ink/70">{gis.description || 'Peta tematik dari cluster GIS KKN-PPM UGM Melukis Sambelia.'}</p>
+            <p className="mb-6 text-ink/70">{gis.description || 'Peta tematik Kecamatan Sambelia.'}</p>
           </FadeIn>
           {(Object.keys(GIS_CATEGORY_LABELS) as Array<keyof typeof GIS_CATEGORY_LABELS>).map((cat) => {
             const files = gisByCategory(cat)

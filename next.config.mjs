@@ -9,6 +9,12 @@ const nextConfig = {
   },
   productionBrowserSourceMaps: false,
   reactStrictMode: true,
+  async redirects() {
+    return [
+      { source: '/cerita', destination: '/kegiatan', permanent: true },
+      { source: '/cerita/:slug', destination: '/kegiatan/:slug', permanent: true },
+    ]
+  },
   async rewrites() {
     return [
       { source: '/admin', destination: '/admin/index.html' },

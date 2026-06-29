@@ -3,10 +3,10 @@ import path from 'path'
 import matter from 'gray-matter'
 import {
   pariwisataSchema, irigasiSchema, kesehatanSchema,
-  festivalSchema, ceritaSchema, umkmSchema, airTanahSchema,
+  festivalSchema, kegiatanSchema, umkmSchema, airTanahSchema,
   desaSchema, tentangSchema,
   type Pariwisata, type Irigasi, type Kesehatan,
-  type Festival, type Cerita, type Umkm, type AirTanah,
+  type Festival, type Kegiatan, type Umkm, type AirTanah,
   type Desa, type Tentang,
 } from '@/lib/schemas'
 
@@ -17,7 +17,7 @@ type SchemaMap = {
   irigasi: { schema: typeof irigasiSchema; ext: string; dir?: string }
   kesehatan: { schema: typeof kesehatanSchema; ext: string; dir?: string }
   festival: { schema: typeof festivalSchema; ext: string; dir?: string }
-  cerita: { schema: typeof ceritaSchema; ext: string; dir?: string }
+  kegiatan: { schema: typeof kegiatanSchema; ext: string; dir?: string }
   umkm: { schema: typeof umkmSchema; ext: string; dir?: string }
   airTanah: { schema: typeof airTanahSchema; ext: string; dir?: string }
   desa: { schema: typeof desaSchema; ext: string; dir?: string }
@@ -29,7 +29,7 @@ const SCHEMAS: SchemaMap = {
   irigasi: { schema: irigasiSchema, ext: 'md' },
   kesehatan: { schema: kesehatanSchema, ext: 'md' },
   festival: { schema: festivalSchema, ext: 'md' },
-  cerita: { schema: ceritaSchema, ext: 'mdx' },
+  kegiatan: { schema: kegiatanSchema, ext: 'mdx' },
   umkm: { schema: umkmSchema, ext: 'md' },
   airTanah: { schema: airTanahSchema, ext: 'md', dir: 'air-tanah' },
   desa: { schema: desaSchema, ext: 'md' },
@@ -42,7 +42,7 @@ export type CollectionItem<C extends CollectionName> =
   C extends 'irigasi' ? Irigasi & { slug: string } :
   C extends 'kesehatan' ? Kesehatan & { slug: string } :
   C extends 'festival' ? Festival & { slug: string } :
-  C extends 'cerita' ? Cerita & { slug: string } :
+  C extends 'kegiatan' ? Kegiatan & { slug: string } :
   C extends 'umkm' ? Umkm & { slug: string } :
   C extends 'airTanah' ? AirTanah & { slug: string } :
   C extends 'desa' ? Desa & { slug: string } :

@@ -17,7 +17,7 @@ export function Footer() {
           <div>
             <Image
               src="/images/design-system/bw_logo_sambel.svg"
-              alt="Melukis Sambelia"
+              alt="Sambelia"
               width={180}
               height={54}
               className="brightness-110"
@@ -29,7 +29,7 @@ export function Footer() {
             <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-goldSoft">Navigasi</h2>
             <ul className="space-y-2 text-sm text-cream-light/85">
               <li><Link href="/tentang-sambelia" className="transition-colors hover:text-goldSoft">Tentang Sambelia</Link></li>
-              <li><Link href="/cerita" className="transition-colors hover:text-goldSoft">Cerita</Link></li>
+              <li><Link href="/kegiatan" className="transition-colors hover:text-goldSoft">Kegiatan</Link></li>
               <li><Link href="/peta" className="transition-colors hover:text-goldSoft">Peta</Link></li>
               <li><Link href="/pariwisata" className="transition-colors hover:text-goldSoft">Pariwisata</Link></li>
               <li><Link href="/irigasi" className="transition-colors hover:text-goldSoft">Irigasi</Link></li>

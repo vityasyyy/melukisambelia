@@ -5,7 +5,7 @@ export function Logo({ variant = 'color', className }: { variant?: 'color' | 'bw
   return (
     <Image
       src={src}
-      alt="Melukis Sambelia"
+      alt="Sambelia"
       width={160}
       height={48}
       className={className}

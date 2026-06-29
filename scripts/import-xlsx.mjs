@@ -38,8 +38,8 @@ function importDemografi(rows) {
     luas: luas ? String(luas.Nilai || luas.nilai || luas.Jumlah || '') : existing.luas || '±X km²',
     penduduk: totalPenduduk ? String(totalPenduduk.Nilai || totalPenduduk.nilai || totalPenduduk.Jumlah || '') : existing.penduduk || '±X jiwa',
     kepadatan: kepadatan ? String(kepadatan.Nilai || kepadatan.nilai || kepadatan.Jumlah || '') : existing.kepadatan || '±X/km²',
-    desaBinaan: '2',
-    tahunProgram: '2026',
+    desaKelurahan: '7',
+    kabupaten: 'Lombok Timur',
     mataPencaharian: 'Pertanian, Perikanan, UMKM',
     iklim: 'Tropis',
     ketinggian: '±X mdpl',
@@ -162,7 +162,7 @@ function importTma(rows) {
   const output = {
     title: 'Data Tinggi Muka Airtanah (TMA)',
     description: 'Hasil pengukuran Tinggi Muka Airtanah dan Daya Hantar Listrik (DHL) di Kecamatan Sambelia.',
-    credit: 'Tim Air & Tanah — Melukis Sambelia',
+    credit: 'Tim Air & Tanah — Kecamatan Sambelia',
     measurements,
   }
   fs.writeFileSync(path.join(PUBLIC_DATA, 'air-tanah.json'), JSON.stringify(output, null, 2))

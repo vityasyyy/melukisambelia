@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-const ROUTES = ['/', '/tentang-sambelia', '/peta', '/pariwisata', '/irigasi', '/kesehatan', '/festival', '/cerita', '/umkm']
+const ROUTES = ['/', '/tentang-sambelia', '/peta', '/pariwisata', '/irigasi', '/kesehatan', '/festival', '/kegiatan', '/umkm']
 
 for (const route of ROUTES) {
   test(`loads ${route}`, async ({ page }) => {
@@ -16,7 +16,7 @@ test('peta tabs switch', async ({ page }) => {
   const interaktifTab = page.getByRole('tab', { name: 'Peta Interaktif' })
   await expect(interaktifTab).toBeVisible({ timeout: 30000 })
   await page.getByRole('tab', { name: 'GIS Tim' }).click()
-  await expect(page.getByText(/Peta GIS Tim Melukis Sambelia/i).first()).toBeVisible({ timeout: 10000 })
+  await expect(page.getByText(/Peta GIS Kecamatan Sambelia/i).first()).toBeVisible({ timeout: 10000 })
 })
 
 test('admin loads (production static serve)', async ({ page }) => {

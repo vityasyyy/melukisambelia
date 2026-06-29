@@ -7,6 +7,7 @@ import { GalleryStrip } from '@/components/GalleryStrip'
 import { Breadcrumb } from '@/components/Breadcrumb'
 import { ShareButtons } from '@/components/ShareButtons'
 import { petaLink } from '@/lib/links'
+import { MapPin } from 'lucide-react'
 
 export const revalidate = 60
 
@@ -99,21 +100,13 @@ export default function PariwisataDetailPage({ params }: { params: { slug: strin
           Lokasi
         </div>
         <a
-          href={`https://www.google.com/maps?q=${item.lat},${item.lng}`}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={petaLink({ layer: 'pariwisata', lat: item.lat, lng: item.lng })}
           className="inline-flex items-center gap-2 rounded-full bg-water-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-water-700"
         >
-          Buka di Google Maps
+          <MapPin className="h-4 w-4" />
+          Lihat di Peta
         </a>
       </div>
-
-      <Link
-        href={petaLink({ layer: 'pariwisata', lat: item.lat, lng: item.lng })}
-        className="mt-4 inline-block text-sm font-medium text-water-900 hover:text-water-500"
-      >
-        Lihat di peta →
-      </Link>
 
       <ShareButtons title={item.title} className="mt-8" />
 

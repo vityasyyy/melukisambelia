@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const tentang = getPageSettings('tentang')
   return {
     title: tentang.seoTitle ?? 'Tentang Sambelia',
-    description: tentang.seoDescription ?? 'Profil Kecamatan Sambelia, Kabupaten Lombok Timur: geografi, demografi, desa binaan, dan fokus program Melukis Sambelia.',
+    description: tentang.seoDescription ?? 'Profil Kecamatan Sambelia, Kabupaten Lombok Timur: geografi, demografi, desa, dan potensi daerah.',
   }
 }
 
@@ -28,8 +28,8 @@ export default function TentangSambeliaPage() {
   const geography = [
     { label: 'Luas Wilayah', value: s.stats.luas },
     { label: 'Penduduk', value: s.stats.penduduk },
-    { label: 'Desa Binaan', value: s.stats.desaBinaan },
-    { label: 'Tahun Program', value: s.stats.tahunProgram },
+    { label: 'Desa/Kelurahan', value: s.stats.desaKelurahan },
+    { label: 'Kabupaten', value: s.stats.kabupaten },
   ]
 
   return (
@@ -64,7 +64,7 @@ export default function TentangSambeliaPage() {
             {tentang.geographyProse}
           </p>
           <p className="mt-3 text-xs text-ink/70">
-            Data geografi diperbarui berdasarkan informasi desa binaan.
+            Data geografi berdasarkan profil Kecamatan Sambelia.
           </p>
         </div>
       </section>
@@ -76,7 +76,7 @@ export default function TentangSambeliaPage() {
           <SectionHeader
             kicker={ps.sectionDesaKicker ?? '02 — DESA BINAAN'}
             title={ps.sectionDesaTitle ?? 'Desa Binaan'}
-            intro={ps.sectionDesaIntro ?? 'Desa-desa yang menjadi fokus program Melukis Sambelia.'}
+            intro={ps.sectionDesaIntro ?? 'Desa-desa dan kelurahan yang ada di Kecamatan Sambelia.'}
             tone="water"
           />
         </FadeIn>

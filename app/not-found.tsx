@@ -9,7 +9,7 @@ export default function NotFound() {
         <div className="absolute inset-0 -z-10 section-watermark" aria-hidden />
         <Image
           src="/images/design-system/bw_logo_sambel.svg"
-          alt="Melukis Sambelia"
+          alt="Sambelia"
           width={160}
           height={48}
           className="mx-auto"

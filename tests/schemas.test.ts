@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import {
   pariwisataSchema, irigasiSchema, kesehatanSchema,
-  festivalSchema, ceritaSchema, umkmSchema,
+  festivalSchema, kegiatanSchema, umkmSchema,
   settingsSchema, gisMapSchema,
 } from '@/lib/schemas'
 
@@ -25,8 +25,8 @@ describe('schemas validate good data', () => {
   })
   it('settings', () => {
     const r = settingsSchema.safeParse({
-      heroImage: '/images/hero.jpg', heroTagline: 'Melukis Sambelia',
-      stats: { luas: '1.742 km²', penduduk: '~150k', desaBinaan: '2', tahunProgram: '2026' },
+      heroImage: '/images/hero.jpg', heroTagline: 'Jelajahi Kecamatan Sambelia',
+      stats: { luas: '1.742 km²', penduduk: '~150k', desaKelurahan: '7', kabupaten: 'Lombok Timur' },
       festivalDates: 'Juli - Agustus 2026',
       socials: { instagram: 'melukis.sambelia', tiktok: 'melukis.sambelia' },
       contact: { email: 'melukis.sambelia@ugm.ac.id', phone: '+62 812 0000 0000', address: 'Sambelia, Lombok Timur, NTB' },

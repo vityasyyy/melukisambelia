@@ -9,7 +9,7 @@ export function EmptyState({ message }: { message: string }) {
           <MotifDivider motif="bunga_sambel" />
         </div>
         <p className="text-ink/70 text-sm sm:text-base">{message}</p>
-        <p className="mt-2 text-xs text-ink/70">Tim Melukis Sambelia akan menambahkan data segera.</p>
+        <p className="mt-2 text-xs text-ink/70">Data akan ditambahkan segera.</p>
       </div>
     </FadeIn>
   )

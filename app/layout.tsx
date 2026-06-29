@@ -41,22 +41,22 @@ const beautiqueCondensed = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Melukis Sambelia — KKN-PPM UGM',
-    template: '%s — Melukis Sambelia',
+    default: 'Sambelia',
+    template: '%s — Sambelia',
   },
-  description: 'Profil desa Kecamatan Sambelia — pariwisata, data kesehatan, irigasi, UMKM, dan peta tematik.',
+  description: 'Portal informasi Kecamatan Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa.',
   metadataBase: new URL('https://melukis-sambelia.vercel.app'),
   openGraph: {
-    title: 'Melukis Sambelia — KKN-PPM UGM',
-    description: 'Pemberdayaan pariwisata berkelanjutan dan agropolitan Sambelia.',
+    title: 'Sambelia — Portal Kecamatan Sambelia',
+    description: 'Portal informasi Kecamatan Sambelia: pariwisata, data kesehatan, irigasi, UMKM, dan peta tematik.',
     type: 'website',
     locale: 'id_ID',
     images: ['/og.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Melukis Sambelia — KKN-PPM UGM',
-    description: 'Pemberdayaan pariwisata berkelanjutan dan agropolitan Sambelia.',
+    title: 'Sambelia — Portal Kecamatan Sambelia',
+    description: 'Portal informasi Kecamatan Sambelia: pariwisata, data kesehatan, irigasi, UMKM, dan peta tematik.',
     images: ['/og.png'],
   },
   manifest: '/manifest.json',
@@ -101,12 +101,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
-              name: 'Melukis Sambelia',
+              name: 'Sambelia',
               url: 'https://melukis-sambelia.vercel.app',
-              description: 'Portal komunitas KKN-PPM UGM Melukis Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa binaan.',
+              description: 'Portal informasi Kecamatan Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa.',
               publisher: {
-                '@type': 'Organization',
-                name: 'KKN-PPM UGM Melukis Sambelia',
+                '@type': 'GovernmentOrganization',
+              name: 'Kecamatan Sambelia',
                 url: 'https://melukis-sambelia.vercel.app',
               },
             }),

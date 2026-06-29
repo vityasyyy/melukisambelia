@@ -85,7 +85,13 @@ export function DetailModalClient({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogPrimitive.Portal>
         <DialogOverlay />
-        <DialogPrimitive.Content className="fixed z-[1001] inset-0 flex flex-col items-stretch sm:items-center sm:justify-center p-0 sm:p-4 focus:outline-none">
+        <DialogPrimitive.Content
+          className="fixed z-[1001] inset-0 flex flex-col items-stretch sm:items-center sm:justify-center p-0 sm:p-4 focus:outline-none"
+          onPointerDownOutside={(e) => {
+            const target = e.target as HTMLElement
+            if (target.closest('[data-lightbox-trigger]')) return
+          }}
+        >
           <div
             ref={modalRef}
             onTouchStart={handleTouchStart}
@@ -146,14 +152,14 @@ export function DetailModalClient({
                       <MapPin className="h-3.5 w-3.5" /> Lokasi
                     </div>
                     <a
-                      href={`https://www.google.com/maps?q=${lat},${lng}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full bg-water-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-water-700"
-                    >
-                      <MapPin className="h-4 w-4" />
-                      Buka di Google Maps
-                    </a>
+                       href={href}
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="inline-flex items-center gap-2 rounded-full bg-water-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-water-700"
+                     >
+                       <MapPin className="h-4 w-4" />
+                       Lihat di Peta
+                     </a>
                   </div>
                 )}
 

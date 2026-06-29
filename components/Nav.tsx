@@ -18,7 +18,7 @@ const NAV_GROUPS: NavGroup[] = [
     label: 'Profil',
     items: [
       { href: '/tentang-sambelia', label: 'Tentang Sambelia' },
-      { href: '/cerita', label: 'Cerita' },
+      { href: '/kegiatan', label: 'Kegiatan' },
     ],
   },
   {
@@ -57,7 +57,7 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-[1000] border-b border-tan-700/10 bg-page/90 backdrop-blur">
       <nav aria-label="Navigasi utama" className="mx-auto flex max-w-content items-center justify-between px-4 py-3">
-        <Link href="/" aria-label="Beranda Melukis Sambelia">
+        <Link href="/" aria-label="Beranda Sambelia">
           <Logo className="h-10 w-auto" />
         </Link>
 

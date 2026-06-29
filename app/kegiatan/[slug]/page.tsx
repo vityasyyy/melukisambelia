@@ -10,11 +10,11 @@ import { ShareButtons } from '@/components/ShareButtons'
 export const revalidate = 60
 
 export function generateStaticParams() {
-  return getCollection('cerita').map((c) => ({ slug: c.slug }))
+  return getCollection('kegiatan').map((c) => ({ slug: c.slug }))
 }
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const item = getEntry('cerita', params.slug)
+  const item = getEntry('kegiatan', params.slug)
   if (!item) return {}
   return {
     title: item.title,
@@ -23,13 +23,13 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   }
 }
 
-export default function CeritaDetailPage({ params }: { params: { slug: string } }) {
-  const item = getEntry('cerita', params.slug)
+export default function KegiatanDetailPage({ params }: { params: { slug: string } }) {
+  const item = getEntry('kegiatan', params.slug)
   if (!item) notFound()
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
+    '@type': 'Article',
     headline: item.title,
     author: { '@type': 'Person', name: item.author },
     datePublished: item.date,
@@ -42,7 +42,7 @@ export default function CeritaDetailPage({ params }: { params: { slug: string } 
       <Breadcrumb
         items={[
           { label: 'Beranda', href: '/' },
-          { label: 'Cerita', href: '/cerita' },
+          { label: 'Kegiatan', href: '/kegiatan' },
           { label: item.title },
         ]}
       />
@@ -51,7 +51,7 @@ export default function CeritaDetailPage({ params }: { params: { slug: string } 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Link href="/cerita" className="text-sm text-water-900 transition-colors hover:text-terracotta-500">
+      <Link href="/kegiatan" className="text-sm text-water-900 transition-colors hover:text-terracotta-500">
         ← Kembali
       </Link>
 
