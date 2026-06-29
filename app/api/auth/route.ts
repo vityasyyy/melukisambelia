@@ -47,21 +47,56 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'GitHub token exchange failed' }, { status: 502 })
     }
 
-    const tokenData = (await ghRes.json()) as { access_token: string; token_type: string; scope: string }
+    const tokenData = (await ghRes.json()) as { access_token?: string; error?: string; error_description?: string }
 
-    // Return HTML that posts the token back to the Decap CMS opener window
+    if (tokenData.error || !tokenData.access_token) {
+      const html = `<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Auth Error</title></head>
+<body>
+<script>
+window.opener && window.opener.postMessage(
+  'authorization:github:error:' + JSON.stringify({ message: ${JSON.stringify(tokenData.error_description || tokenData.error || 'Token exchange failed')} }),
+  '*'
+);
+window.close();
+</script>
+</body></html>`
+      return new NextResponse(html, { status: 200, headers: { 'Content-Type': 'text/html; charset=utf-8' } })
+    }
+
+    const token = tokenData.access_token
+    const provider = 'github'
+
+    // Return HTML that follows the Decap CMS (NetlifyAuthenticator) protocol:
+    // 1. Wait for handshake message "authorizing:github" from opener
+    // 2. Echo it back to complete handshake
+    // 3. Then send "authorization:github:success:{JSON}" with the token
     const html = `<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"><title>Authorizing...</title></head>
 <body>
 <script>
 (function() {
-  function receiveMessage(e) {
-    console.log('receiveMessage %o', e);
+  var tokenData = JSON.stringify({ token: '${token}', provider: '${provider}' });
+  var provider = '${provider}';
+
+  function receiveHandshake(e) {
+    if (e.data === 'authorizing:' + provider) {
+      e.source.postMessage(e.data, e.origin);
+      e.source.removeEventListener('message', receiveHandshake);
+    }
   }
-  window.addEventListener('message', receiveMessage, false);
-  var data = JSON.stringify({ token: '${tokenData.access_token}', provider: 'github' });
-  window.opener.postMessage(data, '*');
+
+  window.addEventListener('message', receiveHandshake, false);
+
+  // Also send the authorization result directly
+  // Some flows don't use handshake, so send immediately too
+  try {
+    window.opener.postMessage('authorization:' + provider + ':success:' + tokenData, '*');
+  } catch(e) {
+    console.error('postMessage error', e);
+  }
+
   window.close();
 })();
 </script>
