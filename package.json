@@ -13,7 +13,8 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "cms": "decap-server",
-    "import-data": "node scripts/import-xlsx.mjs"
+    "import-data": "node scripts/import-xlsx.mjs",
+    "validate": "node scripts/validate-content.mjs"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
