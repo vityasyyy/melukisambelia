@@ -136,6 +136,13 @@ const config: Config = {
           to: { height: "0" },
         },
       },
+      transitionTimingFunction: {
+        'sambel': 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+      },
+      boxShadow: {
+        'terracotta': '0 8px 24px -12px rgba(116, 45, 27, 0.25)',
+        'terracotta-hover': '0 16px 32px -12px rgba(116, 45, 27, 0.35)',
+      },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",

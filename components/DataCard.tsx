@@ -55,7 +55,7 @@ export function DataCard({
   )
 
   return (
-    <div className="group relative h-full flex flex-col rounded-2xl border border-tan-700/20 bg-cream-beige/50 overflow-hidden shadow-terracotta transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:-translate-y-1 hover:shadow-lg hover:shadow-terracotta/20">
+    <div className="group relative h-full flex flex-col rounded-2xl border border-tan-700/20 bg-cream-beige/50 overflow-hidden shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-lg hover:shadow-terracotta/20">
       {onDetailClick ? (
         <button type="button" onClick={onDetailClick} className="block min-w-0 h-full w-full text-left">
           {inner}

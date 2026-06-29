@@ -169,14 +169,6 @@
     color: #F0AC6D;
   }
 
-  .shadow-terracotta {
-    box-shadow: 0 8px 24px -12px rgba(116, 45, 27, 0.25);
-  }
-
-  .shadow-terracotta-hover {
-    box-shadow: 0 16px 32px -12px rgba(116, 45, 27, 0.35);
-  }
-
   .hero-vignette {
     background: linear-gradient(180deg, rgba(116, 45, 27, 0) 0%, rgba(116, 45, 27, 0.85) 100%);
   }

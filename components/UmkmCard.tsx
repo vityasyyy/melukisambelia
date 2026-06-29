@@ -3,8 +3,8 @@ import type { Umkm } from '@/lib/schemas'
 
 export function UmkmCard({ item, onDetailClick }: { item: Umkm & { slug: string }; onDetailClick?: () => void }) {
   return (
-    <div className="group relative h-full flex flex-col overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:-translate-y-1 hover:shadow-terracotta-hover">
-      <button type="button" onClick={onDetailClick} className="flex min-w-0 flex-1 flex-col text-left">
+    <div className="group relative h-full flex flex-col overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover">
+      <button type="button" onClick={onDetailClick} className="flex min-w-0 w-full flex-1 flex-col text-left overflow-hidden">
         <div className="relative aspect-video overflow-hidden">
           <div className="absolute inset-x-0 top-0 h-1 z-10 bg-terracotta-500 opacity-70 transition-opacity group-hover:opacity-100" />
           <Image

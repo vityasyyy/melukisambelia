@@ -83,7 +83,7 @@ export default function TentangSambeliaPage() {
         <StaggerContainer stagger={0.1} className="grid gap-6 md:grid-cols-2">
           {desa.map((d) => (
             <StaggerItem key={d.slug}>
-              <div className="group overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:-translate-y-1 hover:shadow-terracotta-hover">
+              <div className="group overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover">
                 <div className="relative aspect-video overflow-hidden">
                   <Image
                     src={d.image}
