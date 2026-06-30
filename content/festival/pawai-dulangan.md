@@ -1,6 +1,6 @@
 ---
 eventName: Pawai Dulangan
-schedule: 2026-07-20
+schedule: "2026-07-20"
 venue: Jalan utama Sambelia
 description: Pawai budaya yang menampilkan beragam kreasi masyarakat dengan
   dulangan (nampan) sebagai pusat simbolisme.
