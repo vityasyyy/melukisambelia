@@ -1,8 +1,9 @@
 import type { MetadataRoute } from 'next'
+import { SITE_URL } from '@/lib/config'
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: { allow: '/', disallow: ['/admin'] },
-    sitemap: 'https://melukis-sambelia.vercel.app/sitemap.xml',
+    sitemap: `${SITE_URL}/sitemap.xml`,
   }
 }

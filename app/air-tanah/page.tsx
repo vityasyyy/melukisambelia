@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
+import { REVALIDATE_SECONDS } from '@/lib/config'
 import { getCollection } from '@/lib/content'
 import { getAirTanahData } from '@/lib/air-tanah-data'
 import { getPageSettings } from '@/lib/settings'
 import { AirTanahClient } from './AirTanahClient'
 import { PageHero } from '@/components/PageHero'
 
-export const revalidate = 60
+export const revalidate = REVALIDATE_SECONDS
 
 export async function generateMetadata(): Promise<Metadata> {
   const airTanah = getPageSettings('airTanah')

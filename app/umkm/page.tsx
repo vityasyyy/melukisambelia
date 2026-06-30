@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { REVALIDATE_SECONDS } from '@/lib/config'
 import { getCollection } from '@/lib/content'
 import { getPageSettings, getEmptyStates } from '@/lib/settings'
 import { UmkmListClient } from '@/components/UmkmListClient'
@@ -11,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export const revalidate = 60
+export const revalidate = REVALIDATE_SECONDS
 
 export default function UmkmPage() {
   const items = getCollection('umkm')

@@ -1,8 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { motion, useInView, useSpring, useTransform } from 'framer-motion'
-import { useReducedMotion } from 'framer-motion'
+import { motion, useInView, useSpring, useTransform, useReducedMotion } from 'framer-motion'
 
 function parseNumber(str: string): number {
   const num = parseInt(str.replace(/[^\d]/g, ''), 10)

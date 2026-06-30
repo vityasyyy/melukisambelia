@@ -7,6 +7,9 @@ import { CountdownStrip } from '@/components/CountdownStrip'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { PageHero } from '@/components/PageHero'
 import { MotifFloater } from '@/components/MotifFloater'
+import { REVALIDATE_SECONDS } from '@/lib/config'
+
+export const revalidate = REVALIDATE_SECONDS
 
 export async function generateMetadata(): Promise<Metadata> {
   const festival = getPageSettings('festival')
@@ -15,8 +18,6 @@ export async function generateMetadata(): Promise<Metadata> {
     description: festival.seoDescription ?? 'Jadwal dan informasi Festival Pesona Sambelia: Peresean, Pawai Dulangan, Gendang Beleq, dan warisan budaya Sasak lainnya.',
   }
 }
-
-export const revalidate = 60
 
 export default function FestivalPage() {
   const events = getCollection('festival')
@@ -30,6 +31,7 @@ export default function FestivalPage() {
     cover: f.cover,
     registrationUrl: f.registrationUrl,
     body: f.body,
+    order: f.order,
   }))
 
   return (
@@ -38,7 +40,7 @@ export default function FestivalPage() {
 
       <section className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
         <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="gold" />
-        {events.length > 0 ? <CountdownStrip festivals={festivalData} /> : <EmptyState message="Jadwal festival akan segera diumumkan." />}
+        {events.length > 0 ? <CountdownStrip festivals={festivalData} /> : <EmptyState message={empty.festival} />}
       </section>
 
       <section className="relative mx-auto max-w-content overflow-hidden px-4 py-8">

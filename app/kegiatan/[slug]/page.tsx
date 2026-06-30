@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { REVALIDATE_SECONDS } from '@/lib/config'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getCollection, getEntry } from '@/lib/content'
@@ -7,7 +8,7 @@ import { Pill } from '@/components/Pill'
 import { Breadcrumb } from '@/components/Breadcrumb'
 import { ShareButtons } from '@/components/ShareButtons'
 
-export const revalidate = 60
+export const revalidate = REVALIDATE_SECONDS
 
 export function generateStaticParams() {
   return getCollection('kegiatan').map((c) => ({ slug: c.slug }))

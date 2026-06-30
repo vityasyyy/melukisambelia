@@ -28,6 +28,7 @@ export type DetailModalData = {
   lat?: number
   lng?: number
   mapTitle?: string
+  googleMapsUrl?: string
 }
 
 export function DetailModalClient({
@@ -45,8 +46,9 @@ export function DetailModalClient({
   const modalRef = useRef<HTMLDivElement>(null)
 
   if (!data) return null
-  const { title, image, gallery, chips, description, body, href, linkLabel, lat, lng } = data
+  const { title, image, gallery, chips, description, body, href, linkLabel, lat, lng, googleMapsUrl } = data
   const hasMap = typeof lat === 'number' && typeof lng === 'number'
+  const mapsLink = googleMapsUrl || (hasMap ? `https://www.google.com/maps?q=${lat},${lng}` : undefined)
 
   const lightboxImages = gallery ?? (image ? [{ src: image, alt: title }] : [])
 
@@ -152,7 +154,7 @@ export function DetailModalClient({
                       <MapPin className="h-3.5 w-3.5" /> Lokasi
                     </div>
                     <a
-                       href={href}
+                       href={mapsLink}
                        target="_blank"
                        rel="noopener noreferrer"
                        className="inline-flex items-center gap-2 rounded-full bg-water-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-water-700"

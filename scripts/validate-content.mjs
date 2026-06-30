@@ -14,7 +14,20 @@ const COLLECTIONS = [
   { name: 'umkm', ext: '.md' },
   { name: 'air-tanah', ext: '.md', dir: 'air-tanah' },
   { name: 'desa', ext: '.md' },
+  { name: 'lingkungan', ext: '.md' },
 ]
+
+const REQUIRED_FIELDS = {
+  pariwisata: ['title', 'category', 'village', 'cover', 'shortDesc', 'lat', 'lng'],
+  irigasi: ['name', 'saluranType', 'village', 'condition', 'lengthM', 'flowStatus', 'cover', 'lat', 'lng'],
+  kesehatan: ['facilityName', 'type', 'village', 'cover', 'lat', 'lng'],
+  festival: ['eventName', 'schedule', 'venue', 'description', 'cover'],
+  kegiatan: ['title', 'author', 'date', 'cover', 'excerpt'],
+  umkm: ['name', 'owner', 'kategori', 'village', 'contact', 'cover', 'lat', 'lng'],
+  'air-tanah': ['title'],
+  desa: ['name', 'description', 'image'],
+  lingkungan: ['title', 'category', 'description'],
+}
 
 let errors = 0
 let warnings = 0
@@ -32,6 +45,7 @@ for (const col of COLLECTIONS) {
     warnings++
     continue
   }
+  const requiredFields = REQUIRED_FIELDS[col.name] ?? []
   for (const file of files) {
     const raw = fs.readFileSync(path.join(dir, file), 'utf8')
     if (!raw.trim().startsWith('---')) {
@@ -56,6 +70,15 @@ for (const col of COLLECTIONS) {
       console.warn(`⚠️  ${col.name}/${file}: datetime value may be unquoted — wrap in quotes`)
       warnings++
     }
+    const missingFields = requiredFields.filter(field => {
+      const re = new RegExp(`^${field}:`, 'm')
+      return !re.test(frontmatter)
+    })
+    if (missingFields.length > 0) {
+      console.error(`❌ ${col.name}/${file}: missing required fields: ${missingFields.join(', ')}`)
+      errors++
+      continue
+    }
     console.log(`✅ ${col.name}/${file}`)
   }
 }
@@ -66,6 +89,20 @@ if (fs.existsSync(settingsPath)) {
 } else {
   console.error(`❌ _settings.md not found`)
   errors++
+}
+
+const gisManifest = path.join(CONTENT_DIR, '_gis_manifest.json')
+if (fs.existsSync(gisManifest)) {
+  console.log(`✅ _gis_manifest.json exists`)
+} else {
+  console.log(`⚠️  _gis_manifest.json not found (optional)`)
+}
+
+const changelogPath = path.join(CONTENT_DIR, 'changelog.json')
+if (fs.existsSync(changelogPath)) {
+  console.log(`✅ changelog.json exists`)
+} else {
+  console.log(`⚠️  changelog.json not found — run: node scripts/generate-changelog.mjs`)
 }
 
 console.log(`\n${errors} error(s), ${warnings} warning(s)`)

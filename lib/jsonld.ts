@@ -1,4 +1,6 @@
-const BASE_URL = 'https://melukis-sambelia.vercel.app'
+import { SITE_URL } from './config'
+
+const BASE_URL = SITE_URL
 
 export function websiteJsonLd() {
   return {

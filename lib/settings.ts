@@ -14,6 +14,29 @@ export function getSettings(): Settings {
 
 type PageName = 'home' | 'tentang' | 'pariwisata' | 'irigasi' | 'kesehatan' | 'umkm' | 'peta' | 'lingkungan' | 'airTanah' | 'festival' | 'kegiatan'
 
+const PAGE_EXTRA_DEFAULTS: Record<string, Record<string, string>> = {
+  tentang: {
+    sectionGeografiKicker: '01 — GEOGRAFI',
+    sectionGeografiTitle: 'Geografi & Demografi',
+    sectionGeografiIntro: 'Letak, luas, dan penduduk Kecamatan Sambelia.',
+    sectionGeografiFootnote: 'Data geografi berdasarkan profil Kecamatan Sambelia.',
+    sectionDesaKicker: '02 — DESA & KELURAHAN',
+    sectionDesaTitle: 'Desa & Kelurahan',
+    sectionDesaIntro: 'Desa-desa dan kelurahan yang ada di Kecamatan Sambelia.',
+    sectionPotensiKicker: '03 — POTENSI DESA',
+    sectionPotensiTitle: 'Potensi Desa',
+    sectionPotensiIntro: 'Potensi unggulan Kecamatan Sambelia: wisata bahari, pertanian, dan kerajinan khas Sasak.',
+  },
+  peta: {
+    dataSectionTitle: 'Lokasi Titik Data',
+    gisSectionTitle: 'Peta Tematik GIS',
+  },
+  lingkungan: {
+    dataSectionTitle: 'Analisis Lingkungan',
+    linkToPeta: 'Lihat di Peta Interaktif →',
+  },
+}
+
 export function getPageSettings(page: PageName) {
   const s = getSettings()
   const defaults: Record<PageName, Record<string, string>> = {
@@ -30,7 +53,8 @@ export function getPageSettings(page: PageName) {
     kegiatan: { heroKicker: 'KEGIATAN', heroTitle: 'Kegiatan Sambelia', heroIntro: 'Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia.', seoTitle: 'Kegiatan Sambelia', seoDescription: 'Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia.' },
   }
   const pageData = s.pages?.[page] as Record<string, string> | undefined
-  return { ...defaults[page], ...(pageData ?? {}) } as Record<string, string>
+  const extra = PAGE_EXTRA_DEFAULTS[page] ?? {}
+  return { ...defaults[page], ...extra, ...(pageData ?? {}) } as Record<string, string>
 }
 
 export function getFooter() {
@@ -52,6 +76,9 @@ export function getEmptyStates() {
     festival: 'Belum ada data festival. Data akan ditambahkan segera.',
     lingkungan: 'Data peta lingkungan akan diunggah.',
     airTanah: 'Data TMA akan diunggah.',
+    petaDataEmpty: 'Belum ada data lokasi. Tim akan menambahkan segera.',
+    petaGisEmpty: 'Peta GIS belum tersedia.',
+    airTanahDataEmpty: 'Data TMA dari cluster air tanah akan diunggah.',
   }
   return { ...defaults, ...s.emptyStates }
 }

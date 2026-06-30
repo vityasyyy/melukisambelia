@@ -1,7 +1,8 @@
 import type { MetadataRoute } from 'next'
 import { getCollection } from '@/lib/content'
+import { SITE_URL } from '@/lib/config'
 
-const BASE = 'https://melukis-sambelia.vercel.app'
+const BASE = SITE_URL
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -16,12 +17,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/kegiatan`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
     { url: `${BASE}/air-tanah`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${BASE}/lingkungan`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${BASE}/changelog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.3 },
   ]
   const dynamic: MetadataRoute.Sitemap = [
     ...getCollection('pariwisata').map((p) => ({ url: `${BASE}/pariwisata/${p.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.7 })),
     ...getCollection('kegiatan').map((c) => ({ url: `${BASE}/kegiatan/${c.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.6 })),
-    ...getCollection('umkm').map(() => ({ url: `${BASE}/umkm`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.5 })),
-    ...getCollection('festival').map(() => ({ url: `${BASE}/festival`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.6 })),
   ]
   return [...staticRoutes, ...dynamic]
 }

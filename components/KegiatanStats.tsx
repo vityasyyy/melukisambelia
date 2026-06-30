@@ -1,12 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { getCollection } from '@/lib/content'
+import { getSettings } from '@/lib/settings'
 import { FadeIn } from './FadeIn'
 import { SectionHeader } from './SectionHeader'
 import { MotifFloater } from './MotifFloater'
 
 export function KegiatanStats() {
   const kegiatan = getCollection('kegiatan').slice(0, 3)
+  const empty = getSettings().emptyStates
 
   return (
     <section className="relative mx-auto max-w-content overflow-hidden px-4 py-16">
@@ -35,7 +37,7 @@ export function KegiatanStats() {
           ))}
         </div>
       ) : (
-        <p className="mt-6 text-center text-ink/70">Kegiatan terbaru akan segera hadir.</p>
+        <p className="mt-6 text-center text-ink/70">{empty.kegiatan}</p>
       )}
       <div className="mt-8 flex flex-wrap justify-center gap-4">
         <Link href="/kegiatan" className="inline-block rounded-full border border-tan-700/30 px-5 py-2.5 text-sm font-medium text-brown-900 transition-colors hover:bg-cream-beige">

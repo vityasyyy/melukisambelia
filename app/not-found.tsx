@@ -1,6 +1,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { MotifDivider } from '@/components/MotifDivider'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Halaman Tidak Ditemukan',
+  description: 'Halaman yang dicari tidak ditemukan.',
+}
 
 export default function NotFound() {
   return (

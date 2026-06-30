@@ -1,0 +1,507 @@
+[
+  {
+    "month": "2026-06",
+    "entries": [
+      {
+        "hash": "5b7eccdcc25dbc56c9d332a2d3676fd6de2a4aeb",
+        "subject": "chore: resolve rebase conflict, remove old cerita directory",
+        "date": "2026-06-30 01:16:25 +0800"
+      },
+      {
+        "hash": "2f672f05672a45cdf6aac88c644453c06e080626",
+        "subject": "feat: rebrand from KKN team portal to kecamatan portal",
+        "date": "2026-06-30 01:15:56 +0800"
+      },
+      {
+        "hash": "85dc6945770564f1af36b7c550789aa1a3a656d3",
+        "subject": "Update Pariwisata “taw-kramat-suci”",
+        "date": "2026-06-29 23:32:31 +0800"
+      },
+      {
+        "hash": "ccbbdcce7c1bc52cdc5dfe55f0cd704acf702e98",
+        "subject": "Create Cerita “akshdjklsahdlka”",
+        "date": "2026-06-29 20:37:38 +0800"
+      },
+      {
+        "hash": "5faee980671acf9a8302da8425e96828891d023f",
+        "subject": "Update Cerita “fidel”",
+        "date": "2026-06-29 20:36:20 +0800"
+      },
+      {
+        "hash": "c8a50f0fff524b9cb74c3d3428b20e82dabf6d70",
+        "subject": "docs: add spec and implementation plan for bugfix + improvements",
+        "date": "2026-06-29 19:23:06 +0800"
+      },
+      {
+        "hash": "27eec41ee34cbdc26e8c896c4222c4ea1e426fb8",
+        "subject": "feat: extract ContentCard base component for shared card pattern",
+        "date": "2026-06-29 19:23:02 +0800"
+      },
+      {
+        "hash": "e9bd465b1b4ee0cf981b74c15bc97b9df457d070",
+        "subject": "feat: add UMKM and festival entries to dynamic sitemap",
+        "date": "2026-06-29 19:22:58 +0800"
+      },
+      {
+        "hash": "d97535184c98b930d9728c77456818146687d2cf",
+        "subject": "feat: add content validation script for frontmatter checking",
+        "date": "2026-06-29 19:22:55 +0800"
+      },
+      {
+        "hash": "a0c278c183180ac2c9d1bc663d71efceb7c6f29f",
+        "subject": "feat: add JSON-LD structured data helpers for SEO",
+        "date": "2026-06-29 19:22:51 +0800"
+      },
+      {
+        "hash": "254a446d40d7e6ce604f5b653220c2459b6ed126",
+        "subject": "feat: add styled error boundaries for root and per-route pages",
+        "date": "2026-06-29 19:22:48 +0800"
+      },
+      {
+        "hash": "145ce94d6129bb2da16d59619c1033c1e2ae22af",
+        "subject": "feat: add skeleton loading states for all content pages",
+        "date": "2026-06-29 19:22:43 +0800"
+      },
+      {
+        "hash": "607d0bd19677a09d93f385bce77422949cb4f775",
+        "subject": "feat: add backdrop overlay behind mobile navigation menu",
+        "date": "2026-06-29 19:22:39 +0800"
+      },
+      {
+        "hash": "fc9f3d05b4b44ac201c11beaddbd7d08f311aeb5",
+        "subject": "fix: improve text readability with stronger text-shadow and better contrast on hero and page heroes",
+        "date": "2026-06-29 19:22:35 +0800"
+      },
+      {
+        "hash": "8d9c4e9600bc89f2a3c0c188c84faf05c1418e3f",
+        "subject": "fix: modal centering on mobile, bottom sheet behavior, swipe-to-close, and UMKM overflow",
+        "date": "2026-06-29 19:22:32 +0800"
+      },
+      {
+        "hash": "f64caa427edb4391dd2aecfd32e2cb07b1f24874",
+        "subject": "fix: admin CMS page — local_backend in config, rewritten index.html, fix rewrites and source maps",
+        "date": "2026-06-29 19:22:28 +0800"
+      },
+      {
+        "hash": "2e57f6fab39168d7f22575c8a0c8e44b7ed81b51",
+        "subject": "fix: quote cerita frontmatter dates and coerce string type to prevent YAML parsing errors",
+        "date": "2026-06-29 19:22:23 +0800"
+      },
+      {
+        "hash": "9c43fd96391d1075018993b49c803f2c79186954",
+        "subject": "fix: replace arbitrary cubic-bezier easing with custom token, move shadow utilities to tailwind config",
+        "date": "2026-06-29 19:22:20 +0800"
+      },
+      {
+        "hash": "f52eb89dcdd1affea2be5c0c4efb192923fb5024",
+        "subject": "fix: production 500 error, huge navbar, and CMS issues",
+        "date": "2026-06-29 18:44:40 +0800"
+      },
+      {
+        "hash": "803c56c976df5089619eeda3eacb64db5a3c8ba0",
+        "subject": "feat: comprehensive frontend refactor — decorations, layout fixes, responsiveness",
+        "date": "2026-06-29 18:34:35 +0800"
+      },
+      {
+        "hash": "68abc823fd5355e39ad624d3542fddd7abad0137",
+        "subject": "Create Cerita “fidel”",
+        "date": "2026-06-29 15:27:53 +0700"
+      },
+      {
+        "hash": "989c80715d18592d6477fafc937b997ae8c89cd2",
+        "subject": "Update Cerita “persiapan-festival”",
+        "date": "2026-06-29 15:25:19 +0700"
+      },
+      {
+        "hash": "c13d3a928c3fc0a26ea73efdf21a997732ee743b",
+        "subject": "fix: popup must SEND handshake first, not listen for it",
+        "date": "2026-06-29 16:15:59 +0800"
+      },
+      {
+        "hash": "e34f055d28021765d62964d38d3ebfb8a7e92d42",
+        "subject": "fix: implement proper Decap CMS auth popup handshake protocol",
+        "date": "2026-06-29 16:11:14 +0800"
+      },
+      {
+        "hash": "d874ec4bfb6433617639ef0a65da6b313820040a",
+        "subject": "fix: implement full Decap CMS OAuth popup protocol in /api/auth",
+        "date": "2026-06-29 16:07:31 +0800"
+      },
+      {
+        "hash": "ec624ce7edde539e153a56af29fe57ca2832c9c3",
+        "subject": "fix: handle OAuth callback in GET handler to stop infinite redirect",
+        "date": "2026-06-29 15:58:52 +0800"
+      },
+      {
+        "hash": "d46ec715d4c2584cf61528c1a32cd1c58bad00ec",
+        "subject": "fix: add GET handler to /api/auth for Decap CMS OAuth redirect",
+        "date": "2026-06-29 15:55:48 +0800"
+      },
+      {
+        "hash": "96e0c3b7161e1f5f6e64ee1a1b8cc9c7c08ddc84",
+        "subject": "fix: convert OAuth endpoint to Next.js Route Handler",
+        "date": "2026-06-29 15:48:16 +0800"
+      },
+      {
+        "hash": "d62d5864114e153b2af0441ab17c666895c48fb3",
+        "subject": "fix: admin OAuth login + add Vercel Speed Insights",
+        "date": "2026-06-29 15:40:40 +0800"
+      },
+      {
+        "hash": "7b8bd75dab568c86447df7c03d8f8adf6f812438",
+        "subject": "feat: CMS-driven content, Google Maps, CeritaStats, modal, mobile, docs",
+        "date": "2026-06-29 12:59:15 +0800"
+      },
+      {
+        "hash": "8f3e02ec1f198b25ee167cdfd88e1f3cb9c6ce97",
+        "subject": "fix: CMS repo mismatch, pariwisata duplicate h1, e2e test mismatches",
+        "date": "2026-06-29 08:03:38 +0800"
+      },
+      {
+        "hash": "f013d443456263cc4ec2b43caa5e3313526586a8",
+        "subject": "feat: CMS as source of truth, a11y/visual audit, map fix, decap-server integration",
+        "date": "2026-06-29 00:50:16 +0800"
+      },
+      {
+        "hash": "18989a3417380af6248afce529fb78b70ca70f6e",
+        "subject": "feat: update site metadata to village-profile framing",
+        "date": "2026-06-27 22:00:10 +0800"
+      },
+      {
+        "hash": "2bd37d12830351b7a2c98038a001d20e49db9ea0",
+        "subject": "feat: add purposeful micro-interactions - hero parallax, card hover, countdown pulse, section reveals",
+        "date": "2026-06-27 21:59:38 +0800"
+      },
+      {
+        "hash": "45d9d8bf3d60134728170eeb7af1a7e2bd702f20",
+        "subject": "feat: add TMA XLSX import pipeline for Air & Tanah data",
+        "date": "2026-06-27 21:56:42 +0800"
+      },
+      {
+        "hash": "34cb376f605ce38e4fb61f80694674d98d04d92d",
+        "subject": "feat: update homepage grid, map UMKM layer, CMS config, and sitemap for new sections",
+        "date": "2026-06-27 21:56:06 +0800"
+      },
+      {
+        "hash": "3225f6264af243d44e06439be59233072e5e909e",
+        "subject": "feat: add Lingkungan page with GIS gallery and map deep-link",
+        "date": "2026-06-27 21:55:02 +0800"
+      },
+      {
+        "hash": "ccd6d907402211c8283213450e649da7e8d1404e",
+        "subject": "feat: add Air & Tanah page with TMA data table and chart",
+        "date": "2026-06-27 21:53:17 +0800"
+      },
+      {
+        "hash": "0a0ca09579cd24bdea26e2098ba0e81c48cf9b0d",
+        "subject": "feat: migrate UMKM schema from product to kategori, require lat/lng",
+        "date": "2026-06-27 21:51:08 +0800"
+      },
+      {
+        "hash": "2389b9a784b7e41859b3323e9718a31cb354b4f2",
+        "subject": "feat: restructure navbar with grouped dropdowns for Profil and Data & Analisis",
+        "date": "2026-06-27 21:48:32 +0800"
+      },
+      {
+        "hash": "2b766adbea34ba61eb0375d3e43c9f29c468fcd1",
+        "subject": "fix: Kilas Sambelia gallery fallback, reframe to Potensi Desa, verify social links",
+        "date": "2026-06-27 21:47:16 +0800"
+      },
+      {
+        "hash": "bf1d3977884f572f418f472d11b98a95ece057e3",
+        "subject": "feat: remove KKN-centric sections (kegiatan, mitra, SponsorCta, tim)",
+        "date": "2026-06-27 21:46:27 +0800"
+      },
+      {
+        "hash": "87cc95bacd566eeaac63edb68546dc7cfc7ac2f7",
+        "subject": "fix: adjust hero image crop to show boat and beach",
+        "date": "2026-06-27 21:42:52 +0800"
+      },
+      {
+        "hash": "3596e7152930cb7abc687380eb1d48fc9064860a",
+        "subject": "feat: replace Vercel favicon with village logo",
+        "date": "2026-06-27 21:42:00 +0800"
+      },
+      {
+        "hash": "8e8d79184d931835d4f1499ba62ed6a0cf67ce2e",
+        "subject": "fix: hero image, mitra, /peta crash, tentang images, image optimization, footer",
+        "date": "2026-06-27 18:45:54 +0800"
+      },
+      {
+        "hash": "78e480de7d863dd4ce47d42ac4a9c136b3b7cfe4",
+        "subject": "fix: add missing lib/links.ts with petaLink helper, wire tab query param into MapPanel",
+        "date": "2026-06-27 00:16:40 +0800"
+      },
+      {
+        "hash": "347a5dafddbb46dc46e2701982d0fac1ed4c0dc0",
+        "subject": "docs: self-review findings and future work",
+        "date": "2026-06-26 23:47:37 +0800"
+      },
+      {
+        "hash": "c4bc04f4441b3599ba8fec251deaa8b71a946ebc",
+        "subject": "refactor(listings): split listing pages into server page + client list component",
+        "date": "2026-06-26 23:45:03 +0800"
+      },
+      {
+        "hash": "5d5e9e8bb738a30fd172f27f696a1ed1d78232b0",
+        "subject": "docs: add content contributor guide",
+        "date": "2026-06-26 23:19:09 +0800"
+      },
+      {
+        "hash": "2c2f43cfc4a42c69853880bdc5a2e8b9a7043186",
+        "subject": "feat(seo): add per-page metadata and title template",
+        "date": "2026-06-26 23:18:48 +0800"
+      },
+      {
+        "hash": "8d35bf23793d3314332fc473c6579cc272c4e75f",
+        "subject": "feat(content): replace hero and placeholders with real nature photos and descriptions",
+        "date": "2026-06-26 23:16:52 +0800"
+      },
+      {
+        "hash": "e9772ff32d47f09f25f66beecbde3fa1cc950305",
+        "subject": "feat(listings): add DetailModal popups and cross-links across content pages",
+        "date": "2026-06-26 23:13:54 +0800"
+      },
+      {
+        "hash": "221a4adadda24122bc024f5a6390087f714ac3fe",
+        "subject": "feat(links): cross-linking helpers and query-driven map state",
+        "date": "2026-06-26 23:11:29 +0800"
+      },
+      {
+        "hash": "8490b62c885ac73a25c2d394617eaf2ae680f4dd",
+        "subject": "feat(card): add modal detail trigger to DataCard",
+        "date": "2026-06-26 23:10:29 +0800"
+      },
+      {
+        "hash": "35f0ce13516532e0f50175420ebf0c5edf164132",
+        "subject": "feat(modal): reusable DetailModal with chips, prose body, map, and cta",
+        "date": "2026-06-26 23:10:07 +0800"
+      },
+      {
+        "hash": "649183665b56534756baa422d560cdcdfbfd8d94",
+        "subject": "fix(leaflet): stop default marker icon requests causing 500s",
+        "date": "2026-06-26 23:09:46 +0800"
+      },
+      {
+        "hash": "d901311f0e3bcea9dafab0f3c4a27b62a394fd57",
+        "subject": "chore(gitignore): ignore superpowers worktrees",
+        "date": "2026-06-26 23:07:12 +0800"
+      },
+      {
+        "hash": "82fb980ae8545472984a97a5c6864170e982239b",
+        "subject": "docs(spec): content and ux refresh spec",
+        "date": "2026-06-26 23:07:05 +0800"
+      },
+      {
+        "hash": "0286ffa6c62a1dc82097382759443e4e6ffa33dc",
+        "subject": "feat(website): full visual refresh, real photos, animations, CI",
+        "date": "2026-06-26 11:12:46 +0800"
+      },
+      {
+        "hash": "672780a1449bd6ba7c411fbf92294373e1f476f9",
+        "subject": "feat(pages): restyle cerita, tentang-sambelia, mitra, pariwisata detail",
+        "date": "2026-06-24 03:16:34 +0800"
+      },
+      {
+        "hash": "60547bd81d672ae538ff6c87d8668c485677d2b2",
+        "subject": "feat(content-pages): restyle pariwisata, irigasi, kesehatan, kegiatan, umkm",
+        "date": "2026-06-24 03:13:44 +0800"
+      },
+      {
+        "hash": "3e6b4c6446a280d12d1145d558ce735e72d8a56c",
+        "subject": "feat(peta): MapFilterChips and warm map panel styling",
+        "date": "2026-06-24 03:11:17 +0800"
+      },
+      {
+        "hash": "d4dc6caaca274ed520c75767c9b626b0d3f3f4f5",
+        "subject": "feat(festival): terracotta hero, CountdownStrip, themed timeline cards",
+        "date": "2026-06-24 03:10:06 +0800"
+      },
+      {
+        "hash": "37b55bbba72f2c683a44f5d51465a5e3fd792d83",
+        "subject": "feat(beranda): new hero, Kilas Sambelia, SponsorCta, themed cards",
+        "date": "2026-06-24 03:09:03 +0800"
+      },
+      {
+        "hash": "9884b820c1e6ae329f227c972389ca79a374e250",
+        "subject": "feat(shell): pill nav active states, warm wine footer, restyled 404",
+        "date": "2026-06-24 03:08:05 +0800"
+      },
+      {
+        "hash": "7f98a31104858002004d9a2f466514666dcf58a2",
+        "subject": "refactor(content): remove off-theme JPGs, point covers at on-brand SVGs",
+        "date": "2026-06-24 03:06:53 +0800"
+      },
+      {
+        "hash": "c1a2c894d868bd33c71664b4faed961840dfb675",
+        "subject": "feat(assets): generate on-brand illustrated placeholders",
+        "date": "2026-06-24 03:06:00 +0800"
+      },
+      {
+        "hash": "48de081a862e397378b4335003347f24b0e88f52",
+        "subject": "feat(components): CountdownStrip, MapFilterChips, KilasSambelia, SponsorCta",
+        "date": "2026-06-24 03:05:14 +0800"
+      },
+      {
+        "hash": "50a5a6adc967405048d3c2d6c3b34c6873fc9113",
+        "subject": "feat(components): Pill, GradientText, restyled SectionHeader/StatCard/DataCard/MotifDivider",
+        "date": "2026-06-24 03:02:43 +0800"
+      },
+      {
+        "hash": "5b0d66fd9fddfa0278d6e6ce6e0a8730931db8ba",
+        "subject": "feat(design-system): finalize Figma-derived tokens, gradient text, shadows, motif animation",
+        "date": "2026-06-24 02:59:44 +0800"
+      },
+      {
+        "hash": "9e81de48a5792de53dd570a57cfd4dc70cdc8ef1",
+        "subject": "docs: visual refresh implementation plan",
+        "date": "2026-06-24 02:58:13 +0800"
+      },
+      {
+        "hash": "cc5d093f75cdc2692c1c4d30fcc9e0af40d31ebe",
+        "subject": "docs: visual refresh design spec (clean Figma-informed interpretation)",
+        "date": "2026-06-24 02:52:02 +0800"
+      },
+      {
+        "hash": "74ee22b535b3a2ef71a1d23184f68ea09adc4ee5",
+        "subject": "feat: Figma design reflection, Tentang Sambelia, BPS import script",
+        "date": "2026-06-23 23:33:10 +0800"
+      },
+      {
+        "hash": "1c0a32c2ec8f9f5b1b729f65a5ed7117757ed5da",
+        "subject": "docs: deploy guide + CMS content guide for non-technical team members",
+        "date": "2026-06-22 17:40:07 +0800"
+      },
+      {
+        "hash": "5f79b07c8064329015f09200d757360872c95c12",
+        "subject": "feat: expand content — 5 pariwisata, 3 irigasi, 3 kesehatan, 3 festival, 3 kegiatan, 4 tim, 3 cerita, 3 umkm, 3 mitra",
+        "date": "2026-06-22 17:38:09 +0800"
+      },
+      {
+        "hash": "d8934435eac39e2a1c13378cced9a782f70b1207",
+        "subject": "feat: styling beautification — SectionHeader tones, card hover lift, festival hero, prose, footer gradient, warmer empty states",
+        "date": "2026-06-22 17:33:11 +0800"
+      },
+      {
+        "hash": "372932456bf65ef9211c406fdfd9d77578eb622a",
+        "subject": "feat: mobile responsive — hamburger nav, responsive hero, map sidebar caps, mobile E2E",
+        "date": "2026-06-22 17:28:16 +0800"
+      },
+      {
+        "hash": "9062c4983f76942426ee79d43afb34d3694d518b",
+        "subject": "perf: trim fonts 2.9MB -> 748KB, generate static OG PNG, add typography plugin",
+        "date": "2026-06-22 17:24:02 +0800"
+      },
+      {
+        "hash": "8eb51c22efdd65c5ca90c07bb4b806ae2232954d",
+        "subject": "chore: ignore test-results artifacts",
+        "date": "2026-06-20 16:28:40 +0700"
+      },
+      {
+        "hash": "ec95b6fdc886482195e43a6b8d2a08ba3aabce3f",
+        "subject": "fix: E2E smoke tests — use banner role, skip admin in dev (static-serve quirk)",
+        "date": "2026-06-20 16:28:36 +0700"
+      },
+      {
+        "hash": "9e4326b3c8f062126e04d3f980ef57388b37f844",
+        "subject": "feat: 404, robots, sitemap, OG metadata, Vercel Analytics, Playwright E2E",
+        "date": "2026-06-20 16:26:45 +0700"
+      },
+      {
+        "hash": "bf27af16aff638073fb958a1dc0d17df9e70334c",
+        "subject": "feat: Decap CMS admin + config + OAuth proxy (deploy-time)",
+        "date": "2026-06-20 16:24:36 +0700"
+      },
+      {
+        "hash": "f23565f9ed79968000621a1f852d4aa0e9a09cdc",
+        "subject": "feat: Peta dual-map (InteractiveMap + GisMap + MapPanel), GIS manifest builder",
+        "date": "2026-06-20 16:22:51 +0700"
+      },
+      {
+        "hash": "792a6b0588a17a561354b0a0d7aef5b2e9de059b",
+        "subject": "feat: all page routes (Beranda, Profil Tim, Pariwisata + detail, Irigasi, Kesehatan, Festival, Kegiatan, Cerita + detail, UMKM, Mitra)",
+        "date": "2026-06-20 16:21:02 +0700"
+      },
+      {
+        "hash": "bd1aa14ba01ecd670881a74e9d13012143e8c387",
+        "subject": "feat: reusable display components (StatCard, DataCard, etc.)",
+        "date": "2026-06-20 16:18:14 +0700"
+      },
+      {
+        "hash": "95bc26e435d6f5387773644c05f6cfcbf4a440d0",
+        "subject": "feat: Logo, Nav, Footer components",
+        "date": "2026-06-20 16:17:23 +0700"
+      },
+      {
+        "hash": "fdbbac145f0540c37fe61997e729d96841277bb7",
+        "subject": "feat: map marker aggregator from content collections",
+        "date": "2026-06-20 16:16:10 +0700"
+      },
+      {
+        "hash": "abdf962636c4968ef193db4bde5973ec37415dbb",
+        "subject": "feat: content loaders, settings, seed content",
+        "date": "2026-06-20 16:15:07 +0700"
+      },
+      {
+        "hash": "9eef7113ca2fa83c567c8b108b7e0cf037256ff9",
+        "subject": "feat: add zod schemas for all content collections",
+        "date": "2026-06-20 16:13:06 +0700"
+      },
+      {
+        "hash": "74fd2e811a1c935beb9e5a906a1f3382719a5de0",
+        "subject": "chore: set up vitest + Playwright",
+        "date": "2026-06-20 16:12:13 +0700"
+      },
+      {
+        "hash": "9f157cb288e5110725286a32728ab00980cdcbde",
+        "subject": "feat: initialize shadcn/ui + core primitives",
+        "date": "2026-06-20 16:07:40 +0700"
+      },
+      {
+        "hash": "8f746072ee889c5be3e4094c0ff0a1f34026eba3",
+        "subject": "feat: define Sasak palette as CSS variables + Tailwind tokens",
+        "date": "2026-06-20 16:03:16 +0700"
+      },
+      {
+        "hash": "d990fe65fa3c7f9256b16515d1625979f21e238c",
+        "subject": "fix: split Beautique Condensed into own font instance, correct serif->sans-serif fallback",
+        "date": "2026-06-20 16:02:41 +0700"
+      },
+      {
+        "hash": "983b06c0076e2c0cfc33f57f525d838d9465a85e",
+        "subject": "feat: wire Gontserrat + Beautique Display fonts via next/font/local",
+        "date": "2026-06-20 15:59:57 +0700"
+      },
+      {
+        "hash": "78de4168bd8bdb27d2fc043b93f97f9826e1f38f",
+        "subject": "fix: pin @next/mdx to ^14.2.35 to match next major",
+        "date": "2026-06-20 15:51:45 +0700"
+      },
+      {
+        "hash": "924cdfb2ed16f50396affe2e098960f5bfc10a4f",
+        "subject": "chore: scaffold Next.js 14 with TypeScript, Tailwind, MDX, static export",
+        "date": "2026-06-20 15:49:12 +0700"
+      },
+      {
+        "hash": "a30f2329a00072b5a66936557b66d81f3ef8319f",
+        "subject": "docs: make implementation plan local-first (stubs, no deploy until gate)",
+        "date": "2026-06-20 15:25:44 +0700"
+      },
+      {
+        "hash": "4a7e5f2c2af0702afbfbd4bab7f4ae4ecbc9912a",
+        "subject": "docs: add Melukis Sambelia implementation plan",
+        "date": "2026-06-20 14:52:57 +0700"
+      },
+      {
+        "hash": "5fc40d60f6b78e2ba85e5edd13302b458c289311",
+        "subject": "docs: add Melukis Sambelia design spec",
+        "date": "2026-06-20 13:30:16 +0700"
+      },
+      {
+        "hash": "1ea12ffe3f6943151811615b33c96f5f792d5203",
+        "subject": "Initial commit",
+        "date": "2026-06-20 11:49:53 +0700"
+      }
+    ]
+  }
+]

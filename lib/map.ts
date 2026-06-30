@@ -9,22 +9,22 @@ export function getMapMarkers(): MapMarker[] {
 
   const pariwisata = getCollection('pariwisata')
   for (const p of pariwisata) {
-    markers.push({ layer: 'pariwisata', slug: p.slug, title: p.title, lat: p.lat, lng: p.lng, href: `/pariwisata/${p.slug}` })
+    markers.push({ layer: 'pariwisata', slug: p.slug, title: p.title, lat: p.lat, lng: p.lng, href: `/pariwisata/${p.slug}`, googleMapsUrl: p.googleMapsUrl })
   }
 
   const irigasi = getCollection('irigasi')
   for (const i of irigasi) {
-    markers.push({ layer: 'irigasi', slug: i.slug, title: i.name, lat: i.lat, lng: i.lng, href: `/irigasi` })
+    markers.push({ layer: 'irigasi', slug: i.slug, title: i.name, lat: i.lat, lng: i.lng, href: `/irigasi`, googleMapsUrl: i.googleMapsUrl })
   }
 
   const kesehatan = getCollection('kesehatan')
   for (const k of kesehatan) {
-    markers.push({ layer: 'kesehatan', slug: k.slug, title: k.facilityName, lat: k.lat, lng: k.lng, href: `/kesehatan` })
+    markers.push({ layer: 'kesehatan', slug: k.slug, title: k.facilityName, lat: k.lat, lng: k.lng, href: `/kesehatan`, googleMapsUrl: k.googleMapsUrl })
   }
 
   const umkm = getCollection('umkm')
   for (const u of umkm) {
-    markers.push({ layer: 'umkm', slug: u.slug, title: u.name, lat: u.lat, lng: u.lng, href: `/umkm` })
+    markers.push({ layer: 'umkm', slug: u.slug, title: u.name, lat: u.lat, lng: u.lng, href: `/umkm`, googleMapsUrl: u.googleMapsUrl })
   }
 
   return markers

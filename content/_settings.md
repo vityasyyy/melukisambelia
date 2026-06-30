@@ -15,6 +15,10 @@ contact:
   phone: ""
   address: "Kecamatan Sambelia, Kabupaten Lombok Timur, NTB"
 homepageIntros:
+  aboutKicker: "01 — TENTANG"
+  aboutTitle: "Tentang Sambelia"
+  aboutIntro: "Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan."
+  scrollPrompt: "Gulir untuk menjelajah"
   jejakiKicker: "02 — JEJAKI"
   jejakiTitle: "Jejaki Sambelia"
   jejakiIntro: ""
@@ -79,12 +83,16 @@ pages:
     heroIntro: "Jelajahi titik wisata, irigasi, kesehatan, UMKM, serta peta tematik air, vegetasi, erosi, dan blue carbon."
     seoTitle: "Peta Sambelia"
     seoDescription: "Peta interaktif wisata, irigasi, kesehatan, UMKM, dan peta tematik air, vegetasi, erosi, serta blue carbon Sambelia."
+    dataSectionTitle: "Lokasi Titik Data"
+    gisSectionTitle: "Peta Tematik GIS"
   lingkungan:
     heroKicker: "LINGKUNGAN"
     heroTitle: "Vegetasi, Erosi & Blue Carbon"
     heroIntro: "Analisis lingkungan Kecamatan Sambelia: indeks vegetasi, tingkat erosi, dan sebaran blue carbon di wilayah pesisir dan daratan."
     seoTitle: "Lingkungan"
     seoDescription: "Peta indeks vegetasi, erosi, dan distribusi blue carbon di Kecamatan Sambelia."
+    dataSectionTitle: "Analisis Lingkungan"
+    linkToPeta: "Lihat di Peta Interaktif →"
   airTanah:
     heroKicker: "AIR & TANAH"
     heroTitle: "Tinggi Muka Airtanah"
@@ -144,4 +152,7 @@ emptyStates:
   festival: "Belum ada data festival. Data akan ditambahkan segera."
   lingkungan: "Data peta lingkungan akan diunggah."
   airTanah: "Data TMA akan diunggah."
+  petaDataEmpty: "Belum ada data lokasi. Tim akan menambahkan segera."
+  petaGisEmpty: "Peta GIS belum tersedia."
+  airTanahDataEmpty: "Data TMA dari cluster air tanah akan diunggah."
 ---

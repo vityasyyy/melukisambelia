@@ -4,10 +4,10 @@ import matter from 'gray-matter'
 import {
   pariwisataSchema, irigasiSchema, kesehatanSchema,
   festivalSchema, kegiatanSchema, umkmSchema, airTanahSchema,
-  desaSchema, tentangSchema,
+  desaSchema, tentangSchema, lingkunganSchema,
   type Pariwisata, type Irigasi, type Kesehatan,
   type Festival, type Kegiatan, type Umkm, type AirTanah,
-  type Desa, type Tentang,
+  type Desa, type Tentang, type Lingkungan,
 } from '@/lib/schemas'
 
 const CONTENT_DIR = path.join(process.cwd(), 'content')
@@ -22,6 +22,7 @@ type SchemaMap = {
   airTanah: { schema: typeof airTanahSchema; ext: string; dir?: string }
   desa: { schema: typeof desaSchema; ext: string; dir?: string }
   tentang: { schema: typeof tentangSchema; ext: string; dir?: string }
+  lingkungan: { schema: typeof lingkunganSchema; ext: string; dir?: string }
 }
 
 const SCHEMAS: SchemaMap = {
@@ -34,6 +35,7 @@ const SCHEMAS: SchemaMap = {
   airTanah: { schema: airTanahSchema, ext: 'md', dir: 'air-tanah' },
   desa: { schema: desaSchema, ext: 'md' },
   tentang: { schema: tentangSchema, ext: 'md' },
+  lingkungan: { schema: lingkunganSchema, ext: 'md' },
 }
 
 export type CollectionName = keyof SchemaMap
@@ -47,6 +49,7 @@ export type CollectionItem<C extends CollectionName> =
   C extends 'airTanah' ? AirTanah & { slug: string } :
   C extends 'desa' ? Desa & { slug: string } :
   C extends 'tentang' ? Tentang & { slug: string } :
+  C extends 'lingkungan' ? Lingkungan & { slug: string } :
   never
 
 export function getCollection<C extends CollectionName>(name: C): CollectionItem<C>[] {
@@ -71,7 +74,8 @@ export function getCollection<C extends CollectionName>(name: C): CollectionItem
   return items.sort((a, b) => {
     const ao = (a as unknown as { order?: number }).order ?? 0
     const bo = (b as unknown as { order?: number }).order ?? 0
-    return ao - bo
+    if (ao !== bo) return ao - bo
+    return a.slug.localeCompare(b.slug)
   })
 }
 

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from '@/lib/config'
 import './globals.css'
 import { Nav } from '@/components/Nav'
 import { Footer } from '@/components/Footer'
@@ -41,22 +42,22 @@ const beautiqueCondensed = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Sambelia',
-    template: '%s — Sambelia',
+    default: SITE_NAME,
+    template: `%s — ${SITE_NAME}`,
   },
-  description: 'Portal informasi Kecamatan Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa.',
-  metadataBase: new URL('https://melukis-sambelia.vercel.app'),
+  description: SITE_DESCRIPTION,
+  metadataBase: new URL(SITE_URL),
   openGraph: {
-    title: 'Sambelia — Portal Kecamatan Sambelia',
-    description: 'Portal informasi Kecamatan Sambelia: pariwisata, data kesehatan, irigasi, UMKM, dan peta tematik.',
+    title: `${SITE_NAME} — Portal Kecamatan Sambelia`,
+    description: SITE_DESCRIPTION,
     type: 'website',
     locale: 'id_ID',
     images: ['/og.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sambelia — Portal Kecamatan Sambelia',
-    description: 'Portal informasi Kecamatan Sambelia: pariwisata, data kesehatan, irigasi, UMKM, dan peta tematik.',
+    title: `${SITE_NAME} — Portal Kecamatan Sambelia`,
+    description: SITE_DESCRIPTION,
     images: ['/og.png'],
   },
   manifest: '/manifest.json',
@@ -101,13 +102,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
-              name: 'Sambelia',
-              url: 'https://melukis-sambelia.vercel.app',
-              description: 'Portal informasi Kecamatan Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa.',
+              name: SITE_NAME,
+              url: SITE_URL,
+              description: SITE_DESCRIPTION,
               publisher: {
                 '@type': 'GovernmentOrganization',
-              name: 'Kecamatan Sambelia',
-                url: 'https://melukis-sambelia.vercel.app',
+                name: 'Kecamatan Sambelia',
+                url: SITE_URL,
               },
             }),
           }}

@@ -7,6 +7,7 @@ export type MapMarker = {
   lat: number
   lng: number
   href: string
+  googleMapsUrl?: string
 }
 
 export const LAYER_COLORS: Record<MapLayer, string> = {

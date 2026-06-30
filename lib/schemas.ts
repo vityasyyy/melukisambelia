@@ -12,6 +12,8 @@ export const pariwisataSchema = z.object({
   lng: z.number().min(-180).max(180),
   facilities: z.array(z.string()).default([]),
   accessNotes: z.string().default(''),
+  googleMapsUrl: z.string().optional(),
+  order: z.number().int().default(0),
 })
 
 export const irigasiSchema = z.object({
@@ -25,6 +27,8 @@ export const irigasiSchema = z.object({
   body: z.string(),
   lat: z.number().min(-90).max(90),
   lng: z.number().min(-180).max(180),
+  googleMapsUrl: z.string().optional(),
+  order: z.number().int().default(0),
 })
 
 export const kesehatanSchema = z.object({
@@ -37,16 +41,19 @@ export const kesehatanSchema = z.object({
   body: z.string(),
   lat: z.number().min(-90).max(90),
   lng: z.number().min(-180).max(180),
+  googleMapsUrl: z.string().optional(),
+  order: z.number().int().default(0),
 })
 
 export const festivalSchema = z.object({
   eventName: z.string(),
-  schedule: z.string(),
+  schedule: z.coerce.string(),
   venue: z.string(),
   description: z.string(),
   cover: z.string(),
-  registrationUrl: z.string().url().optional(),
+  registrationUrl: z.string().optional(),
   body: z.string().default(''),
+  order: z.number().int().default(0),
 })
 
 export const kegiatanSchema = z.object({
@@ -56,6 +63,7 @@ export const kegiatanSchema = z.object({
   cover: z.string(),
   excerpt: z.string(),
   body: z.string(),
+  order: z.number().int().default(0),
 })
 
 export const umkmSchema = z.object({
@@ -69,6 +77,8 @@ export const umkmSchema = z.object({
   body: z.string(),
   lat: z.number().min(-90).max(90),
   lng: z.number().min(-180).max(180),
+  googleMapsUrl: z.string().optional(),
+  order: z.number().int().default(0),
 })
 
 export const pageHeroSchema = z.object({
@@ -83,12 +93,23 @@ export const tentangPageSchema = pageHeroSchema.extend({
   sectionGeografiKicker: z.string().default('01 — GEOGRAFI'),
   sectionGeografiTitle: z.string().default('Geografi & Demografi'),
   sectionGeografiIntro: z.string().default('Letak, luas, dan penduduk Kecamatan Sambelia.'),
+  sectionGeografiFootnote: z.string().default('Data geografi berdasarkan profil Kecamatan Sambelia.'),
   sectionDesaKicker: z.string().default('02 — DESA & KELURAHAN'),
   sectionDesaTitle: z.string().default('Desa & Kelurahan'),
   sectionDesaIntro: z.string().default('Desa-desa dan kelurahan yang ada di Kecamatan Sambelia.'),
   sectionPotensiKicker: z.string().default('03 — POTENSI DESA'),
   sectionPotensiTitle: z.string().default('Potensi Desa'),
   sectionPotensiIntro: z.string().default('Potensi unggulan Kecamatan Sambelia: wisata bahari, pertanian, dan kerajinan khas Sasak.'),
+})
+
+export const petaPageSchema = pageHeroSchema.extend({
+  dataSectionTitle: z.string().default('Lokasi Titik Data'),
+  gisSectionTitle: z.string().default('Peta Tematik GIS'),
+})
+
+export const lingkunganPageSchema = pageHeroSchema.extend({
+  dataSectionTitle: z.string().default('Analisis Lingkungan'),
+  linkToPeta: z.string().default('Lihat di Peta Interaktif →'),
 })
 
 export const settingsSchema = z.object({
@@ -111,6 +132,10 @@ export const settingsSchema = z.object({
     address: z.string(),
   }),
   homepageIntros: z.object({
+    aboutKicker: z.string().default('01 — TENTANG'),
+    aboutTitle: z.string().default('Tentang Sambelia'),
+    aboutIntro: z.string().default('Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan.'),
+    scrollPrompt: z.string().default('Gulir untuk menjelajah'),
     jejakiKicker: z.string().default('02 — JEJAKI'),
     jejakiTitle: z.string().default('Jejaki Sambelia'),
     jejakiIntro: z.string().default(''),
@@ -123,7 +148,11 @@ export const settingsSchema = z.object({
     umkmKicker: z.string().default('05 — UMKM'),
     umkmTitle: z.string().default('UMKM Spotlight'),
     umkmIntro: z.string().default('Kerajinan, kuliner, dan produk lokal andalan masyarakat Sambelia.'),
-  }).optional().default({
+  }).optional().default(() => ({
+    aboutKicker: '01 — TENTANG',
+    aboutTitle: 'Tentang Sambelia',
+    aboutIntro: 'Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan.',
+    scrollPrompt: 'Gulir untuk menjelajah',
     jejakiKicker: '02 — JEJAKI',
     jejakiTitle: 'Jejaki Sambelia',
     jejakiIntro: '',
@@ -136,7 +165,7 @@ export const settingsSchema = z.object({
     umkmKicker: '05 — UMKM',
     umkmTitle: 'UMKM Spotlight',
     umkmIntro: 'Kerajinan, kuliner, dan produk lokal andalan masyarakat Sambelia.',
-  }),
+  })),
   pages: z.object({
     home: pageHeroSchema.optional().default({
       heroKicker: '01 — TENTANG',
@@ -154,6 +183,7 @@ export const settingsSchema = z.object({
       sectionGeografiKicker: '01 — GEOGRAFI',
       sectionGeografiTitle: 'Geografi & Demografi',
       sectionGeografiIntro: 'Letak, luas, dan penduduk Kecamatan Sambelia.',
+      sectionGeografiFootnote: 'Data geografi berdasarkan profil Kecamatan Sambelia.',
       sectionDesaKicker: '02 — DESA & KELURAHAN',
       sectionDesaTitle: 'Desa & Kelurahan',
       sectionDesaIntro: 'Desa-desa dan kelurahan yang ada di Kecamatan Sambelia.',
@@ -189,19 +219,23 @@ export const settingsSchema = z.object({
       seoTitle: 'UMKM Lokal Sambelia',
       seoDescription: 'Produk kerajinan, kuliner, pertanian, dan UMKM lokal Kecamatan Sambelia, termasuk peyek mangrove.',
     }),
-    peta: pageHeroSchema.optional().default({
+    peta: petaPageSchema.optional().default({
       heroKicker: 'PETA',
       heroTitle: 'Peta Sambelia',
       heroIntro: 'Jelajahi titik wisata, irigasi, kesehatan, UMKM, serta peta tematik air, vegetasi, erosi, dan blue carbon.',
       seoTitle: 'Peta Sambelia',
       seoDescription: 'Peta interaktif wisata, irigasi, kesehatan, UMKM, dan peta tematik air, vegetasi, erosi, serta blue carbon Sambelia.',
+      dataSectionTitle: 'Lokasi Titik Data',
+      gisSectionTitle: 'Peta Tematik GIS',
     }),
-    lingkungan: pageHeroSchema.optional().default({
+    lingkungan: lingkunganPageSchema.optional().default({
       heroKicker: 'LINGKUNGAN',
       heroTitle: 'Vegetasi, Erosi & Blue Carbon',
       heroIntro: 'Analisis lingkungan Kecamatan Sambelia: indeks vegetasi, tingkat erosi, dan sebaran blue carbon di wilayah pesisir dan daratan.',
       seoTitle: 'Lingkungan',
       seoDescription: 'Peta indeks vegetasi, erosi, dan distribusi blue carbon di Kecamatan Sambelia.',
+      dataSectionTitle: 'Analisis Lingkungan',
+      linkToPeta: 'Lihat di Peta Interaktif →',
     }),
     airTanah: pageHeroSchema.optional().default({
       heroKicker: 'AIR & TANAH',
@@ -256,6 +290,9 @@ export const settingsSchema = z.object({
     festival: z.string().default('Belum ada data festival. Data akan ditambahkan segera.'),
     lingkungan: z.string().default('Data peta lingkungan akan diunggah.'),
     airTanah: z.string().default('Data TMA akan diunggah.'),
+    petaDataEmpty: z.string().default('Belum ada data lokasi. Tim akan menambahkan segera.'),
+    petaGisEmpty: z.string().default('Peta GIS belum tersedia.'),
+    airTanahDataEmpty: z.string().default('Data TMA dari cluster air tanah akan diunggah.'),
   }).optional().default({
     pariwisata: 'Belum ada data wisata. Data akan ditambahkan segera.',
     irigasi: 'Belum ada data irigasi. Data akan ditambahkan segera.',
@@ -265,6 +302,9 @@ export const settingsSchema = z.object({
     festival: 'Belum ada data festival. Data akan ditambahkan segera.',
     lingkungan: 'Data peta lingkungan akan diunggah.',
     airTanah: 'Data TMA akan diunggah.',
+    petaDataEmpty: 'Belum ada data lokasi. Tim akan menambahkan segera.',
+    petaGisEmpty: 'Peta GIS belum tersedia.',
+    airTanahDataEmpty: 'Data TMA dari cluster air tanah akan diunggah.',
   }),
 })
 
@@ -311,6 +351,7 @@ export const desaSchema = z.object({
   name: z.string(),
   description: z.string(),
   image: z.string(),
+  order: z.number().int().default(0),
 })
 
 export const tentangSchema = z.object({
@@ -323,3 +364,14 @@ export const tentangSchema = z.object({
 
 export type Desa = z.infer<typeof desaSchema>
 export type Tentang = z.infer<typeof tentangSchema>
+
+export const lingkunganSchema = z.object({
+  title: z.string(),
+  category: z.enum(['Vegetasi', 'Erosi', 'Blue Carbon', 'Lainnya']),
+  cover: z.string().default('/images/content/kegiatan-ekowisata.svg'),
+  description: z.string(),
+  body: z.string().default(''),
+  order: z.number().int().default(0),
+})
+
+export type Lingkungan = z.infer<typeof lingkunganSchema>

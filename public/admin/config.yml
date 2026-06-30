@@ -32,6 +32,8 @@ collections:
       - { label: "Longitude", name: "lng", widget: "number", value_type: "float" }
       - { label: "Fasilitas", name: "facilities", widget: "list", required: false }
       - { label: "Catatan Akses", name: "accessNotes", widget: "string", required: false }
+      - { label: "Link Google Maps (opsional)", name: "googleMapsUrl", widget: "string", required: false, hint: "Paste link Google Maps jika lokasi tidak tepat di koordinat" }
+      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }
 
   - name: "irigasi"
     label: "Irigasi"
@@ -52,6 +54,8 @@ collections:
       - { label: "Konten", name: "body", widget: "markdown" }
       - { label: "Latitude", name: "lat", widget: "number", value_type: "float" }
       - { label: "Longitude", name: "lng", widget: "number", value_type: "float" }
+      - { label: "Link Google Maps (opsional)", name: "googleMapsUrl", widget: "string", required: false, hint: "Paste link Google Maps jika lokasi tidak tepat di koordinat" }
+      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }
 
   - name: "kesehatan"
     label: "Kesehatan"
@@ -71,6 +75,8 @@ collections:
       - { label: "Konten", name: "body", widget: "markdown" }
       - { label: "Latitude", name: "lat", widget: "number", value_type: "float" }
       - { label: "Longitude", name: "lng", widget: "number", value_type: "float" }
+      - { label: "Link Google Maps (opsional)", name: "googleMapsUrl", widget: "string", required: false, hint: "Paste link Google Maps jika lokasi tidak tepat di koordinat" }
+      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }
 
   - name: "festival"
     label: "Festival"
@@ -82,11 +88,12 @@ collections:
     format: "yaml-frontmatter"
     fields:
       - { label: "Nama Acara", name: "eventName", widget: "string" }
-      - { label: "Jadwal", name: "schedule", widget: "string" }
+      - { label: "Jadwal", name: "schedule", widget: "datetime", date_only: true }
       - { label: "Lokasi", name: "venue", widget: "string" }
       - { label: "Deskripsi", name: "description", widget: "string" }
       - { label: "Cover", name: "cover", widget: "image" }
       - { label: "URL Pendaftaran", name: "registrationUrl", widget: "string", required: false }
+      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }
       - { label: "Konten", name: "body", widget: "markdown" }
 
   - name: "kegiatan"
@@ -104,6 +111,23 @@ collections:
       - { label: "Cover", name: "cover", widget: "image" }
       - { label: "Ringkasan", name: "excerpt", widget: "string" }
       - { label: "Konten", name: "body", widget: "markdown" }
+      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }
+
+  - name: "lingkungan"
+    label: "Lingkungan"
+    folder: "content/lingkungan"
+    create: true
+    identifier_field: "title"
+    slug: "{{slug}}"
+    extension: "md"
+    format: "yaml-frontmatter"
+    fields:
+      - { label: "Judul", name: "title", widget: "string" }
+      - { label: "Kategori", name: "category", widget: "select", options: ["Vegetasi", "Erosi", "Blue Carbon", "Lainnya"] }
+      - { label: "Cover", name: "cover", widget: "image" }
+      - { label: "Deskripsi Singkat", name: "description", widget: "string" }
+      - { label: "Konten", name: "body", widget: "markdown" }
+      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }
 
   - name: "umkm"
     label: "UMKM"
@@ -124,6 +148,8 @@ collections:
       - { label: "Konten", name: "body", widget: "markdown" }
       - { label: "Latitude", name: "lat", widget: "number", value_type: "float" }
       - { label: "Longitude", name: "lng", widget: "number", value_type: "float" }
+      - { label: "Link Google Maps (opsional)", name: "googleMapsUrl", widget: "string", required: false, hint: "Paste link Google Maps jika lokasi tidak tepat di koordinat" }
+      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }
 
   - name: "airtanah"
     label: "Air & Tanah"
@@ -176,12 +202,16 @@ collections:
               - { label: "Email", name: "email", widget: "string" }
               - { label: "Telepon", name: "phone", widget: "string", required: false }
               - { label: "Alamat", name: "address", widget: "string" }
-          - label: "Intro Beranda (Section 02-05)"
-            name: "homepageIntros"
-            widget: "object"
-            required: false
-            fields:
-              - { label: "02 — Kicker (Jejaki)", name: "jejakiKicker", widget: "string", default: "02 — JEJAKI" }
+           - label: "Intro Beranda (Section 01-05)"
+             name: "homepageIntros"
+             widget: "object"
+             required: false
+             fields:
+               - { label: "01 — Kicker (Tentang)", name: "aboutKicker", widget: "string", default: "01 — TENTANG" }
+               - { label: "01 — Judul (Tentang)", name: "aboutTitle", widget: "string", default: "Tentang Sambelia" }
+               - { label: "01 — Intro (Tentang)", name: "aboutIntro", widget: "text", default: "Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan." }
+               - { label: "Scroll Prompt", name: "scrollPrompt", widget: "string", default: "Gulir untuk menjelajah" }
+               - { label: "02 — Kicker (Jejaki)", name: "jejakiKicker", widget: "string", default: "02 — JEJAKI" }
               - { label: "02 — Judul (Jejaki)", name: "jejakiTitle", widget: "string", default: "Jejaki Sambelia" }
               - { label: "02 — Intro (Jejaki)", name: "jejakiIntro", widget: "string", required: false }
               - { label: "03 — Kicker (Wisata)", name: "wisataKicker", widget: "string", default: "03 — WISATA UNGGULAN" }
@@ -277,6 +307,8 @@ collections:
                   - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Jelajahi titik wisata, irigasi, kesehatan, UMKM, serta peta tematik air, vegetasi, erosi, dan blue carbon." }
                   - { label: "SEO Title", name: "seoTitle", widget: "string", default: "Peta Sambelia" }
                   - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Peta interaktif wisata, irigasi, kesehatan, UMKM, dan peta tematik air, vegetasi, erosi, serta blue carbon Sambelia." }
+                  - { label: "Judul Section Data", name: "dataSectionTitle", widget: "string", default: "Lokasi Titik Data" }
+                  - { label: "Judul Section GIS", name: "gisSectionTitle", widget: "string", default: "Peta Tematik GIS" }
               - label: "Lingkungan"
                 name: "lingkungan"
                 widget: "object"
@@ -287,6 +319,8 @@ collections:
                   - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Analisis lingkungan Kecamatan Sambelia: indeks vegetasi, tingkat erosi, dan sebaran blue carbon di wilayah pesisir dan daratan." }
                   - { label: "SEO Title", name: "seoTitle", widget: "string", default: "Lingkungan" }
                   - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Peta indeks vegetasi, erosi, dan distribusi blue carbon di Kecamatan Sambelia." }
+                  - { label: "Judul Section Data", name: "dataSectionTitle", widget: "string", default: "Analisis Lingkungan" }
+                  - { label: "Link ke Peta", name: "linkToPeta", widget: "string", default: "Lihat di Peta Interaktif →" }
               - label: "Air & Tanah"
                 name: "airTanah"
                 widget: "object"
@@ -334,19 +368,22 @@ collections:
             fields:
                - { label: "Tagline", name: "tagline", widget: "string", default: "Portal Kecamatan Sambelia, Lombok Timur" }
                - { label: "Hak Cipta", name: "copyright", widget: "string", default: "© 2026 Kecamatan Sambelia — Dikembangkan oleh KKN-PPM UGM Melukis Sambelia" }
-          - label: "Pesan Kosong"
-            name: "emptyStates"
-            widget: "object"
-            required: false
-            fields:
-              - { label: "Pariwisata", name: "pariwisata", widget: "string", default: "Belum ada data wisata. Data akan ditambahkan segera." }
-              - { label: "Irigasi", name: "irigasi", widget: "string", default: "Belum ada data irigasi. Data akan ditambahkan segera." }
-              - { label: "Kesehatan", name: "kesehatan", widget: "string", default: "Belum ada data kesehatan. Data akan ditambahkan segera." }
-              - { label: "UMKM", name: "umkm", widget: "string", default: "Belum ada data UMKM. Data akan ditambahkan segera." }
-              - { label: "Kegiatan", name: "kegiatan", widget: "string", default: "Belum ada kegiatan. Informasi akan ditambahkan segera." }
-              - { label: "Festival", name: "festival", widget: "string", default: "Belum ada data festival. Data akan ditambahkan segera." }
-              - { label: "Lingkungan", name: "lingkungan", widget: "string", default: "Data peta lingkungan akan diunggah." }
-              - { label: "Air & Tanah", name: "airTanah", widget: "string", default: "Data TMA akan diunggah." }
+           - label: "Pesan Kosong"
+             name: "emptyStates"
+             widget: "object"
+             required: false
+             fields:
+               - { label: "Pariwisata", name: "pariwisata", widget: "string", default: "Belum ada data wisata. Data akan ditambahkan segera." }
+               - { label: "Irigasi", name: "irigasi", widget: "string", default: "Belum ada data irigasi. Data akan ditambahkan segera." }
+               - { label: "Kesehatan", name: "kesehatan", widget: "string", default: "Belum ada data kesehatan. Data akan ditambahkan segera." }
+               - { label: "UMKM", name: "umkm", widget: "string", default: "Belum ada data UMKM. Data akan ditambahkan segera." }
+               - { label: "Kegiatan", name: "kegiatan", widget: "string", default: "Belum ada kegiatan. Informasi akan ditambahkan segera." }
+               - { label: "Festival", name: "festival", widget: "string", default: "Belum ada data festival. Data akan ditambahkan segera." }
+               - { label: "Lingkungan", name: "lingkungan", widget: "string", default: "Data peta lingkungan akan diunggah." }
+               - { label: "Air & Tanah", name: "airTanah", widget: "string", default: "Data TMA akan diunggah." }
+               - { label: "Peta Data Kosong", name: "petaDataEmpty", widget: "string", default: "Belum ada data lokasi. Tim akan menambahkan segera." }
+               - { label: "Peta GIS Kosong", name: "petaGisEmpty", widget: "string", default: "Peta GIS belum tersedia." }
+               - { label: "Air Tanah Data Kosong", name: "airTanahDataEmpty", widget: "string", default: "Data TMA dari cluster air tanah akan diunggah." }
 
       - label: "Peta GIS"
         name: "_gismap"
@@ -400,6 +437,7 @@ collections:
       - { label: "Nama Desa", name: "name", widget: "string" }
       - { label: "Deskripsi", name: "description", widget: "text" }
       - { label: "Gambar", name: "image", widget: "image" }
+      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }
 
   - name: "tentang"
     label: "Tentang Sambelia"

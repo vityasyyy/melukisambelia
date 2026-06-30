@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
+import { SITE_URL } from '@/lib/config'
 
 type BreadcrumbItem = {
   label: string
@@ -18,7 +19,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
       '@type': 'ListItem',
       position: i + 1,
       name: item.label,
-      ...(item.href ? { item: `https://melukisambelia.id${item.href}` } : {}),
+      ...(item.href ? { item: `${SITE_URL}${item.href}` } : {}),
     })),
   }
 

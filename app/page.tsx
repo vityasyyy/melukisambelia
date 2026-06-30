@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { ChevronDown } from 'lucide-react'
-import { getSettings } from '@/lib/settings'
+import { getSettings, getJejakiCards, getPageSettings } from '@/lib/settings'
 import { getCollection } from '@/lib/content'
+import { SITE_URL, REVALIDATE_SECONDS } from '@/lib/config'
 import { StatCard } from '@/components/StatCard'
 import { DataCard } from '@/components/DataCard'
 import { SectionHeader } from '@/components/SectionHeader'
@@ -15,31 +16,46 @@ import { UmkmCard } from '@/components/UmkmCard'
 import { MotifFloater } from '@/components/MotifFloater'
 import Link from 'next/link'
 
+const pageSettings = getPageSettings('home')
+
 export const metadata: Metadata = {
-  title: 'Beranda',
-  description: 'Portal informasi Kecamatan Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa.',
+  title: pageSettings.seoTitle || 'Beranda',
+  description: pageSettings.seoDescription || 'Portal informasi Kecamatan Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa.',
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: pageSettings.seoTitle || 'Sambelia',
+    description: pageSettings.seoDescription || 'Portal informasi Kecamatan Sambelia',
+    url: SITE_URL,
+    siteName: 'Sambelia',
+    type: 'website',
+  },
 }
 
-export const revalidate = 60
+export const revalidate = REVALIDATE_SECONDS
 
 export default function Beranda() {
   const s = getSettings()
   const hi = s.homepageIntros
+  const jejaki = getJejakiCards()
   const pariwisata = getCollection('pariwisata')
   const irigasi = getCollection('irigasi').slice(0, 1)
   const kesehatan = getCollection('kesehatan').slice(0, 1)
   const festival = getCollection('festival')
   const umkm = getCollection('umkm')
 
-  const previews = [
-    { href: '/pariwisata', image: pariwisata[0]?.cover ?? '/images/content/pariwisata-marine.webp', title: 'Pariwisata', desc: 'Destinasi unggulan Sambelia.', accent: '#14A8E1' },
-    { href: '/irigasi', image: irigasi[0]?.cover ?? '/images/content/irigasi-saluran.svg', title: 'Irigasi', desc: 'Data saluran irigasi.', accent: '#99BA57' },
-    { href: '/kesehatan', image: kesehatan[0]?.cover ?? '/images/content/kesehatan-fasilitas.svg', title: 'Kesehatan', desc: 'Fasilitas & program kesehatan.', accent: '#667F37' },
-    { href: '/air-tanah', image: '/images/content/pariwisata-marine.webp', title: 'Air & Tanah', desc: 'Data sumber daya air & tanah.', accent: '#3B82F6' },
-    { href: '/lingkungan', image: '/images/content/kegiatan-ekowisata.svg', title: 'Lingkungan', desc: 'Kelestarian lingkungan Sambelia.', accent: '#22C55E' },
-    { href: '/festival', image: festival[0]?.cover ?? '/images/content/festival-pawai.webp', title: 'Festival Pesona', desc: 'Peresean, Pawai Dulangan, Gendang Beleq.', accent: '#E3795C' },
-    { href: '/umkm', image: umkm[0]?.cover ?? '/images/content/culture-rilistema.webp', title: 'UMKM', desc: 'UMKM lokal Sambelia.', accent: '#F0AC6D' },
-  ]
+  const previews = jejaki.map((card) => {
+    const imageMap: Record<string, string | undefined> = {
+      '/pariwisata': pariwisata[0]?.cover,
+      '/irigasi': irigasi[0]?.cover,
+      '/kesehatan': kesehatan[0]?.cover,
+      '/festival': festival[0]?.cover,
+      '/umkm': umkm[0]?.cover,
+    }
+    return {
+      ...card,
+      image: card.image || imageMap[card.href] || '/images/content/pariwisata-marine.webp',
+    }
+  })
 
   const wisataUnggulan = pariwisata.slice(0, 3)
   const umkmSpotlight = umkm.slice(0, 3)
@@ -51,6 +67,7 @@ export default function Beranda() {
     cover: f.cover,
     registrationUrl: f.registrationUrl,
     body: f.body,
+    order: f.order,
   }))
 
   return (
@@ -61,9 +78,9 @@ export default function Beranda() {
         <a
           href="#tentang"
           className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center text-cream-light/70 transition-colors hover:text-cream-light"
-          aria-label="Gulir ke bawah"
+          aria-label={hi.scrollPrompt || 'Gulir untuk menjelajah'}
         >
-          <span className="mb-1 text-[10px] font-medium uppercase tracking-widest">Gulir untuk menjelajah</span>
+          <span className="mb-1 text-[10px] font-medium uppercase tracking-widest">{hi.scrollPrompt || 'Gulir untuk menjelajah'}</span>
           <ChevronDown className="h-5 w-5 animate-bounce" />
         </a>
       </section>
@@ -72,9 +89,9 @@ export default function Beranda() {
         <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="gold" />
         <FadeIn>
           <SectionHeader
-            kicker="01 — TENTANG"
-            title="Tentang Sambelia"
-            intro="Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan."
+            kicker={hi.aboutKicker || '01 — TENTANG'}
+            title={hi.aboutTitle || 'Tentang Sambelia'}
+            intro={hi.aboutIntro || 'Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan.'}
             tone="terracotta"
           />
         </FadeIn>
@@ -102,7 +119,7 @@ export default function Beranda() {
         <StaggerContainer stagger={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {previews.map((p) => (
             <StaggerItem key={p.href}>
-              <DataCard {...p} />
+              <DataCard href={p.href} image={p.image} title={p.title} desc={p.desc} accent={p.accent} />
             </StaggerItem>
           ))}
         </StaggerContainer>

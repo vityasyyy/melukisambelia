@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { REVALIDATE_SECONDS } from '@/lib/config'
 import { getSettings, getDesa, getTentang, getPageSettings } from '@/lib/settings'
 import { SectionHeader } from '@/components/SectionHeader'
 import { StatCard } from '@/components/StatCard'
@@ -9,7 +10,7 @@ import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { MotifFloater } from '@/components/MotifFloater'
 import Image from 'next/image'
 
-export const revalidate = 60
+export const revalidate = REVALIDATE_SECONDS
 
 export async function generateMetadata(): Promise<Metadata> {
   const tentang = getPageSettings('tentang')

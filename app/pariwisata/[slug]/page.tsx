@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { REVALIDATE_SECONDS } from '@/lib/config'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getCollection, getEntry } from '@/lib/content'
@@ -9,7 +10,7 @@ import { ShareButtons } from '@/components/ShareButtons'
 import { petaLink } from '@/lib/links'
 import { MapPin } from 'lucide-react'
 
-export const revalidate = 60
+export const revalidate = REVALIDATE_SECONDS
 
 export function generateStaticParams() {
   return getCollection('pariwisata').map((p) => ({ slug: p.slug }))
