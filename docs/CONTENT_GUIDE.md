@@ -17,17 +17,143 @@ Dokumen ini menjelaskan cara menambah dan mengubah konten pada website Melukis S
 | Irigasi | `content/irigasi/` | `.md` | `saluran-sugian.md` | Data saluran irigasi dan kondisinya |
 | Kesehatan | `content/kesehatan/` | `.md` | `puskesmas-sambelia.md` | Fasilitas kesehatan, posyandu, bidan |
 | UMKM | `content/umkm/` | `.md` | `peyek-mangrove.md` | Produk dan pelaku UMKM lokal |
-| Kegiatan | `content/kegiatan/` | `.md` | `program-stunting.md` | Program unggulan dengan roadmap |
+| Kegiatan | `content/kegiatan/` | `.mdx` | `survei-irigasi.mdx` | Program unggulan dengan roadmap |
 | Festival | `content/festival/` | `.md` | `gendang-beleq.md` | Acara Festival Pesona Sambelia |
-| Cerita | `content/cerita/` | `.mdx` | `catatan-lapangan-1.mdx` | Artikel/catatan lapangan tim |
-| Mitra | `content/mitra/` | `.md` | `ugm.md` | Logo dan tautan mitra |
-| Tim | `content/tim/` | `.md` | `koordinator.md` | Profil anggota tim |
+| Desa | `content/desa/` | `.md` | `sambelia.md` | Profil desa/kelurahan |
+| Lingkungan | `content/lingkungan/` | `.md` | `peta-ndvi.md` | Analisis vegetasi, erosi, blue carbon |
+| Air Tanah | `content/air-tanah/` | `.md` | `air-tanah.md` | Data TMA dan kualitas air |
+
+> **Catatan:** Koleksi lama `cerita` sudah digabungkan ke **Kegiatan** (`content/kegiatan/`). Jika ada file lama di `content/cerita/`, pindahkan ke `content/kegiatan/` dan sesuaikan frontmatter-nya.
+
+## Skema Frontmatter per Koleksi
+
+### Pariwisata (`content/pariwisata/*.mdx`)
+
+| Field | Tipe | Wajib | Keterangan |
+|---|---|---|---|
+| `title` | string | ✅ | Nama destinasi |
+| `category` | enum | ✅ | `Pantai`, `Budaya`, `Desa Wisata`, `Air`, `Trekking` |
+| `village` | enum | ✅ | Nama desa atau `lainnya` |
+| `cover` | string | ✅ | Path gambar cover, mis. `/images/content/hero.png` |
+| `shortDesc` | string | ✅ | Deskripsi singkat |
+| `body` | string | ✅ | Isi artikel (MDX body) |
+| `lat` | number | ✅ | Lintang (-90 s.d. 90) |
+| `lng` | number | ✅ | Bujur (-180 s.d. 180) |
+| `facilities` | string[] | ❌ | Daftar fasilitas, default `[]` |
+| `accessNotes` | string | ❌ | Catatan akses, default `''` |
+| `gallery` | string[] | ❌ | Daftar path gambar, default `[]` |
+| `googleMapsUrl` | string | ❌ | Link Google Maps jika lokasi tidak tepat di koordinat |
+| `order` | number | ❌ | Urutan tampil, default `0` |
+
+### Irigasi (`content/irigasi/*.md`)
+
+| Field | Tipe | Wajib | Keterangan |
+|---|---|---|---|
+| `name` | string | ✅ | Nama saluran |
+| `saluranType` | enum | ✅ | `Primer`, `Sekunder`, `Tersier` |
+| `village` | enum | ✅ | Nama desa atau `lainnya` |
+| `condition` | enum | ✅ | `Baik`, `Rusak Ringan`, `Rusak Berat` |
+| `lengthM` | number | ✅ | Panjang saluran (meter, ≥ 0) |
+| `flowStatus` | enum | ✅ | `Mengalir`, `Kering`, `Mengalir Sebagian` |
+| `cover` | string | ✅ | Path gambar cover |
+| `body` | string | ✅ | Isi artikel |
+| `lat` | number | ✅ | Lintang |
+| `lng` | number | ✅ | Bujur |
+| `googleMapsUrl` | string | ❌ | Link Google Maps jika lokasi tidak tepat di koordinat |
+| `order` | number | ❌ | Urutan tampil, default `0` |
+
+### Kesehatan (`content/kesehatan/*.md`)
+
+| Field | Tipe | Wajib | Keterangan |
+|---|---|---|---|
+| `facilityName` | string | ✅ | Nama fasilitas |
+| `type` | enum | ✅ | `Posyandu`, `Puskesmas`, `Bidan`, `Polides` |
+| `village` | enum | ✅ | Nama desa atau `lainnya` |
+| `cadresCount` | number | ❌ | Jumlah kader, default `0` |
+| `stuntingProgram` | boolean | ❌ | Apakah ada program stunting, default `false` |
+| `cover` | string | ✅ | Path gambar cover |
+| `body` | string | ✅ | Isi artikel |
+| `lat` | number | ✅ | Lintang |
+| `lng` | number | ✅ | Bujur |
+| `googleMapsUrl` | string | ❌ | Link Google Maps jika lokasi tidak tepat di koordinat |
+| `order` | number | ❌ | Urutan tampil, default `0` |
+
+### UMKM (`content/umkm/*.md`)
+
+| Field | Tipe | Wajib | Keterangan |
+|---|---|---|---|
+| `name` | string | ✅ | Nama UMKM/produk |
+| `owner` | string | ✅ | Nama pemilik |
+| `kategori` | enum | ✅ | `Kuliner`, `Jasa`, `Kerajinan`, `Pertanian`, `Perikanan`, `Lainnya` |
+| `village` | enum | ✅ | Nama desa atau `lainnya` |
+| `contact` | string | ✅ | Info kontak |
+| `cover` | string | ✅ | Path gambar cover |
+| `body` | string | ✅ | Isi artikel |
+| `lat` | number | ✅ | Lintang |
+| `lng` | number | ✅ | Bujur |
+| `gallery` | string[] | ❌ | Daftar path gambar, default `[]` |
+| `googleMapsUrl` | string | ❌ | Link Google Maps jika lokasi tidak tepat di koordinat |
+| `order` | number | ❌ | Urutan tampil, default `0` |
+
+### Kegiatan (`content/kegiatan/*.mdx`)
+
+| Field | Tipe | Wajib | Keterangan |
+|---|---|---|---|
+| `title` | string | ✅ | Judul kegiatan/catatan |
+| `author` | string | ✅ | Penulis/divisi |
+| `date` | string | ✅ | Tanggal (wrap dalam tanda kutip, mis. `'2026-07-01'`) |
+| `cover` | string | ✅ | Path gambar cover |
+| `excerpt` | string | ✅ | Ringkasan singkat |
+| `body` | string | ✅ | Isi artikel (MDX body) |
+| `order` | number | ❌ | Urutan tampil, default `0` |
+
+### Festival (`content/festival/*.md`)
+
+| Field | Tipe | Wajib | Keterangan |
+|---|---|---|---|
+| `eventName` | string | ✅ | Nama acara |
+| `schedule` | string | ✅ | Jadwal acara (wrap dalam tanda kutip) |
+| `venue` | string | ✅ | Lokasi acara |
+| `description` | string | ✅ | Deskripsi singkat |
+| `cover` | string | ✅ | Path gambar cover |
+| `registrationUrl` | string | ❌ | Link pendaftaran |
+| `body` | string | ❌ | Isi artikel, default `''` |
+| `order` | number | ❌ | Urutan tampil, default `0` |
+
+### Desa (`content/desa/*.md`)
+
+| Field | Tipe | Wajib | Keterangan |
+|---|---|---|---|
+| `name` | string | ✅ | Nama desa/kelurahan |
+| `description` | string | ✅ | Deskripsi singkat |
+| `image` | string | ✅ | Path gambar desa |
+| `order` | number | ❌ | Urutan tampil, default `0` |
+
+### Lingkungan (`content/lingkungan/*.md`)
+
+| Field | Tipe | Wajib | Keterangan |
+|---|---|---|---|
+| `title` | string | ✅ | Judul analisis/peta |
+| `category` | enum | ✅ | `Vegetasi`, `Erosi`, `Blue Carbon`, `Lainnya` |
+| `cover` | string | ❌ | Path gambar cover, default `/images/content/kegiatan-ekowisata.svg` |
+| `description` | string | ✅ | Deskripsi singkat |
+| `body` | string | ❌ | Isi artikel, default `''` |
+| `order` | number | ❌ | Urutan tampil, default `0` |
+
+### Air Tanah (`content/air-tanah/*.md`)
+
+| Field | Tipe | Wajib | Keterangan |
+|---|---|---|---|
+| `title` | string | ✅ | Judul data |
+| `description` | string | ❌ | Deskripsi, default `''` |
+| `credit` | string | ❌ | Sumber/kredit, default `''` |
+| `measurements` | array | ❌ | Data TMA/DHL, default `[]` |
 
 ## Cara Menambah Konten Baru
 
 1. **Salin file contoh** dari koleksi yang sesuai.
 2. **Ubah nama file** menjadi slug yang deskriptif, misalnya `pantai-baru.mdx`.
-3. **Isi frontmatter** sesuai skema koleksi (lihat contoh yang sudah ada).
+3. **Isi frontmatter** sesuai skema koleksi (lihat tabel di atas).
 4. **Tulis body** di bawah tanda `---` kedua.
 5. **Simpan file** dan jalankan verifikasi.
 
@@ -61,12 +187,19 @@ Langkah:
 Jalankan perintah berikut untuk memastikan konten valid:
 
 ```bash
-pnpm run test
-pnpm run lint
-pnpm run typecheck
+npm run validate
+# atau: node scripts/validate-content.mjs
 ```
 
-Jika ada pesan error terkait frontmatter, periksa kembali penulisan metadata sesuai contoh yang sudah ada.
+Skrip ini memeriksa **field wajib** setiap koleksi sesuai skema. Jika ada field yang hilang, akan muncul pesan error. Selain itu, jalankan juga:
+
+```bash
+npm run lint
+npm run typecheck
+npm run test
+```
+
+Jika ada pesan error terkait frontmatter, periksa kembali penulisan metadata sesuai tabel skema di atas.
 
 ## SEO
 

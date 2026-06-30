@@ -6,6 +6,7 @@ Panduan praktis untuk mengelola dan mengoperasikan website Melukis Sambelia seha
 
 ## Daftar Isi
 
+- [Konfigurasi Pusat](#konfigurasi-pusat)
 - [Menjalankan Lokal](#menjalankan-lokal)
 - [Mengedit Konten via CMS (Lokal)](#mengedit-konten-via-cms-lokal)
 - [Mengedit Konten via CMS (Online/Produksi)](#mengedit-konten-via-cms-onlineproduksi)
@@ -15,8 +16,25 @@ Panduan praktis untuk mengelola dan mengoperasikan website Melukis Sambelia seha
   - [Menambah Acara Festival](#menambah-acara-festival)
   - [Mengupload Peta GIS](#mengupload-peta-gis)
   - [Mengubah Data Air Tanah](#mengubah-data-air-tanah)
+  - [Menghasilkan Changelog](#menghasilkan-changelog)
+- [Halaman Situs](#halaman-situs)
 - [Deploy ke Vercel](#deploy-ke-vercel)
 - [Troubleshooting](#troubleshooting)
+
+---
+
+## Konfigurasi Pusat
+
+Nilai konfigurasi situs terpusat di `lib/config.ts`:
+
+| Konstanta | Default | Kegunaan |
+|-----------|---------|----------|
+| `SITE_URL` | `https://melukis-sambelia.vercel.app` | Base URL untuk metadata, sitemap, OG images |
+| `SITE_NAME` | `Sambelia` | Nama situs di metadata dan CMS |
+| `SITE_DESCRIPTION` | Portal informasi Kec. Sambelia… | Meta description default |
+| `REVALIDATE_SECONDS` | `300` | Interval revalidasi ISR (dalam detik) |
+
+Jika mengganti domain, update `SITE_URL` di `lib/config.ts` (atau set env `NEXT_PUBLIC_SITE_URL`) — ini menggantikan hard-coded URL di beberapa file.
 
 ---
 
@@ -108,10 +126,55 @@ Pastikan `cover` merujuk ke file yang ada di `public/images/`.
 
 File data ada di `public/data/air-tanah.json`. Edit langsung atau ganti file-nya dengan data survei baru (format JSON, lihat struktur yang ada).
 
+### Menghasilkan Changelog
+
+Sebelum build atau deploy, jalankan script changelog untuk memperbarui halaman `/changelog`:
+
+```bash
+node scripts/generate-changelog.mjs
+```
+
+Script ini membaca riwayat git commit dan menghasilkan `content/changelog.json`, yang ditampilkan di halaman `/changelog`. Jalankan setiap kali ada perubahan yang ingin tercatat di changelog situs.
+
+> **Penting:** Jalankan sebelum `npm run build` atau push ke Vercel agar changelog selalu terbaru.
+
+---
+
+## Halaman Situs
+
+| Route | Keterangan |
+|-------|------------|
+| `/` | Beranda — hero, highlight pariwisata & UMKM |
+| `/pariwisata/[slug]` | Detail tempat wisata |
+| `/irigasi/[slug]` | Detail infrastruktur irigasi |
+| `/kesehatan/[slug]` | Detail fasilitas kesehatan |
+| `/umkm/[slug]` | Detail UMKM |
+| `/festival` | Halaman festival & countdown |
+| `/kegiatan/[slug]` | Artikel kegiatan |
+| `/peta` | Peta interaktif — query params (`?layer=`, `?lat=`, `?lng=`), embed Google Maps, filter layer, tab switching |
+| `/lingkungan` | Informasi lingkungan & peta tematik |
+| `/changelog` | Riwayat perubahan situs (dari git log) |
+| `/desa/[slug]` | Profil desa |
+| `/air-tanah` | Data air tanah |
+| `/admin` | Decap CMS admin |
+
+---
+
 ## Deploy ke Vercel
 
 ```bash
-# Commit semua perubahan
+# Hasilkan changelog terbaru (opsional tapi disarankan)
+node scripts/generate-changelog.mjs
+
+# Verifikasi lokal sebelum push
+npm run lint
+npm run typecheck
+npm run test
+npm run validate
+node scripts/check-images.mjs
+npm run build
+
+# Commit dan push
 git add .
 git commit -m "deskripsi perubahan"
 git push origin main
@@ -119,15 +182,11 @@ git push origin main
 
 Vercel akan otomatis build dan deploy. Atau buka dashboard Vercel → klik **Redeploy**.
 
-Jika ada masalah build:
-```bash
-# Verifikasi lokal sebelum push
-npm run lint
-npm run typecheck
-npm run test
-node scripts/check-images.mjs
-npm run build
-```
+> **Catatan:** `npm run validate` sama dengan `node scripts/validate-content.mjs` — memeriksa frontmatter, required fields, dan file penting di folder `content/`.
+
+### Error Boundary
+
+Aplikasi memiliki error boundary di `app/error.tsx` yang menyediakan UI pemulihan error bergaya: menampilkan pesan error, tombol **Coba Lagi**, dan link **Kembali ke Beranda**. Jika halaman crash saat runtime, pengguna tetap mendapat tampilan yang rapi, bukan layar kosong.
 
 ## Troubleshooting
 
@@ -144,6 +203,7 @@ npm run build
 - Jika peta tidak muncul sama sekali, coba hard refresh (Ctrl+Shift+R)
 - Marker harus muncul dalam beberapa detik setelah halaman load
 - Jika tetap bermasalah, cek browser console (F12) untuk error
+- Peta mendukung query params untuk deep-linking: `/peta?layer=pariwisata&lat=-8.35&lng=116.84`
 
 ### Gambar 404
 
@@ -152,8 +212,9 @@ Jalankan `node scripts/check-images.mjs` untuk memverifikasi semua referensi gam
 ### Build gagal di Vercel
 
 1. Jalankan `npm run build` lokal — pastikan lulus
-2. Cek apakah ada perubahan di `next.config.mjs` yang perlu penyesuaian
-3. Cek Vercel dashboard → Build Logs untuk error spesifik
+2. Jalankan `npm run validate` untuk memastikan konten valid
+3. Cek apakah ada perubahan di `next.config.mjs` yang perlu penyesuaian
+4. Cek Vercel dashboard → Build Logs untuk error spesifik
 
 ### Countdown festival tidak muncul
 
@@ -162,6 +223,10 @@ Pastikan field `schedule` di file festival berisi tanggal format `YYYY-MM-DD`, b
 ### Data Air Tanah kosong
 
 File `public/data/air-tanah.json` harus ada dan berformat benar. Lihat struktur yang sudah ada sebagai template. Jika file kosong atau hilang, halaman Air Tanah menampilkan pesan "Data akan diunggah".
+
+### Changelog kosong
+
+Jalankan `node scripts/generate-changelog.mjs` untuk menghasilkan `content/changelog.json` dari riwayat git. Pastikan ada commit di repo sebelum menjalankan script.
 
 ### Search tidak berfungsi
 
@@ -173,12 +238,11 @@ Search menggunakan data yang di-build saat build time. Jika konten baru tidak mu
 
 Jika mengganti domain (misal dari `melukis-sambelia.vercel.app` ke `melukissambelia.id`):
 
-1. Update `base_url` di `public/admin/config.yml`
-2. Update `metadataBase` di `app/layout.tsx`
-3. Update `app/robots.ts` dan `app/sitemap.ts` (ganti `https://melukis-sambelia.vercel.app`)
-4. Update callback URL di GitHub OAuth App
-5. Set ulang domain di Vercel dashboard → Settings → Domains
-6. Redeploy
+1. Set env `NEXT_PUBLIC_SITE_URL` di Vercel (atau ubah default di `lib/config.ts`)
+2. Update `base_url` di `public/admin/config.yml`
+3. Update callback URL di GitHub OAuth App
+4. Set ulang domain di Vercel dashboard → Settings → Domains
+5. Redeploy
 
 ---
 
