@@ -169,6 +169,11 @@
     color: #F0AC6D;
   }
 
+  .shimmer-slow {
+    background-size: 200% 100%;
+    animation: shimmer 6s ease-in-out infinite;
+  }
+
   .hero-vignette {
     background: linear-gradient(180deg, rgba(116, 45, 27, 0) 0%, rgba(116, 45, 27, 0.85) 100%);
   }
@@ -176,7 +181,7 @@
   .section-watermark {
     background-image: url('/images/design-system/batik_sambel.svg');
     background-size: 1200px auto;
-    opacity: 0.06;
+    opacity: 0.04;
   }
 
   .motif-fade {

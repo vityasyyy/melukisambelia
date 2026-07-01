@@ -55,7 +55,7 @@ export default function PariwisataDetailPage({ params }: { params: { slug: strin
           { label: item.title },
         ]}
       />
-    <article className="mx-auto max-w-content px-4 py-16">
+    <article className="mx-auto max-w-content px-4 py-10">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

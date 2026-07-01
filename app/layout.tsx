@@ -91,7 +91,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <ScrollProgress />
         <Nav />
-        <main id="main" className="flex-1">{children}</main>
+        <main id="main" className="flex-1 pt-[60px]">{children}</main>
         <Footer />
         <BackToTop />
         <Analytics />

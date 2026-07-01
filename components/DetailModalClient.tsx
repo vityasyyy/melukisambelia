@@ -114,16 +114,16 @@ export function DetailModalClient({
                   className="relative aspect-[16/10] w-full overflow-hidden cursor-pointer block"
                 >
                   <Image src={image} alt={title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 512px" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brown-900/80 via-brown-900/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                    <DialogTitle className="font-beautique text-xl sm:text-2xl text-cream-light break-words" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>{title}</DialogTitle>
-                    {description && <DialogDescription className="mt-1 text-sm text-cream-light/85 line-clamp-2" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>{description}</DialogDescription>}
+                    <DialogTitle className="font-beautique text-xl sm:text-2xl text-white break-words" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.7)' }}>{title}</DialogTitle>
+                    {description && <DialogDescription className="mt-1 text-sm text-white/95 line-clamp-2" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}>{description}</DialogDescription>}
                   </div>
                 </button>
               ) : (
                 <div className="relative bg-gradient-to-r from-terracotta-500 to-gold-500 px-4 pt-12 pb-4 sm:px-6 sm:pt-14 sm:pb-6">
-                  <DialogTitle className="font-beautique text-xl sm:text-2xl text-cream-light break-words">{title}</DialogTitle>
-                  {description && <DialogDescription className="mt-1 text-sm text-cream-light/85">{description}</DialogDescription>}
+                  <DialogTitle className="font-beautique text-xl sm:text-2xl text-white break-words">{title}</DialogTitle>
+                  {description && <DialogDescription className="mt-1 text-sm text-white/95">{description}</DialogDescription>}
                 </div>
               )}
 

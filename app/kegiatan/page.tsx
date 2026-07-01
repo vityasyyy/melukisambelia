@@ -32,14 +32,14 @@ export default function KegiatanPage() {
         intro={ps.heroIntro ?? 'Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia.'}
         tone="brown"
       />
-      <div className="relative mx-auto max-w-content overflow-hidden px-4 py-16">
+      <div className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
         <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="brown" />
         <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="olive" />
 
         {items.length === 0 ? (
           <EmptyState message={empty.kegiatan} />
         ) : (
-          <StaggerContainer stagger={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {items.map((c) => (
               <StaggerItem key={c.slug}>
                 <DataCard

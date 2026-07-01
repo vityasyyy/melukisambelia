@@ -43,10 +43,10 @@ export function IrigasiListClient({ items, stats, pageSettings, emptyMessage }: 
         intro={pageSettings.heroIntro ?? 'Saluran irigasi di Kecamatan Sambelia dan kondisinya.'}
         tone="green"
       />
-      <div className="relative mx-auto max-w-content overflow-hidden px-4 py-16">
+      <div className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
         <MotifFloater motif="cincin_sambel" position="top-right" size="md" color="olive" />
         <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" />
-        <StaggerContainer stagger={0.06} className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+        <StaggerContainer stagger={0.06} className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
           <StaggerItem><StatCard label="Total Saluran" value={String(stats.total)} /></StaggerItem>
           <StaggerItem><StatCard label="Total Panjang" value={String(stats.totalLength)} unit="m" /></StaggerItem>
           <StaggerItem><StatCard label="Kondisi Baik" value={String(stats.good)} /></StaggerItem>

@@ -45,10 +45,10 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
         intro={pageSettings.heroIntro ?? 'Posyandu, puskesmas, dan program stunting di Sambelia.'}
         tone="olive"
       />
-      <div className="relative mx-auto max-w-content overflow-hidden px-4 py-16">
+      <div className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
         <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="olive" />
         <MotifFloater motif="cincin_sambel" position="bottom-right" size="md" color="water" />
-        <StaggerContainer stagger={0.06} className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+        <StaggerContainer stagger={0.06} className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
           <StaggerItem><StatCard label="Posyandu" value={String(stats.posyandu)} /></StaggerItem>
           <StaggerItem><StatCard label="Puskesmas" value={String(stats.puskesmas)} /></StaggerItem>
           <StaggerItem><StatCard label="Kader" value={String(stats.cadres)} /></StaggerItem>
@@ -57,7 +57,7 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
         {items.length === 0 ? (
           <EmptyState message={emptyMessage} />
         ) : (
-          <StaggerContainer stagger={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {items.map((k) => (
               <StaggerItem key={k.slug}>
                 <DataCard

@@ -50,7 +50,7 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
         intro={pageSettings.heroIntro ?? 'Kerajinan, kuliner, dan produk lokal yang menjadi andalan masyarakat Sambelia.'}
         tone="terracotta"
       />
-      <div className="relative mx-auto max-w-content overflow-hidden px-4 py-16">
+      <div className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
         <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="olive" />
         <MotifFloater motif="cincin_sambel" position="top-left" size="sm" color="terracotta" />
       {items.length === 0 ? (
@@ -86,7 +86,7 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
             key={activeKategori}
             stagger={0.08}
             mode="mount"
-            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
           >
             {filtered.map((u) => (
               <StaggerItem key={u.slug}>

@@ -4,7 +4,7 @@ type: Puskesmas
 village: lainnya
 cadresCount: 12
 stuntingProgram: true
-cover: /images/content/scuba.png
+cover: /images/design-system/bw_logo_sambel.svg
 lat: -8.36
 lng: 116.85
 ---

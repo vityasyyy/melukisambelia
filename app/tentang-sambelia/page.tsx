@@ -42,7 +42,7 @@ export default function TentangSambeliaPage() {
         tone="brown"
       />
 
-      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-16 scroll-mt-20">
+      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-10 scroll-mt-20">
         <MotifFloater motif="cincin_sambel" position="top-right" size="md" color="terracotta" />
         <FadeIn>
           <SectionHeader
@@ -52,14 +52,14 @@ export default function TentangSambeliaPage() {
             tone="green"
           />
         </FadeIn>
-        <StaggerContainer stagger={0.06} className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <StaggerContainer stagger={0.06} className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {geography.map((g) => (
             <StaggerItem key={g.label}>
               <StatCard label={g.label} value={g.value} />
             </StaggerItem>
           ))}
         </StaggerContainer>
-        <div className="mt-8 rounded-2xl border border-tan-700/20 bg-cream-beige/40 p-6 shadow-terracotta">
+        <div className="mt-6 rounded-2xl border border-tan-700/20 bg-cream-beige/40 p-5 shadow-terracotta">
           <h3 className="mb-2 font-semibold text-brown-900">Letak Geografis</h3>
           <p className="text-sm leading-relaxed text-ink/70">
             {tentang.geographyProse}
@@ -70,7 +70,7 @@ export default function TentangSambeliaPage() {
         </div>
       </section>
 
-      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-12 scroll-mt-20">
+      <section className="relative bg-cream-warm/20 mx-auto max-w-content overflow-hidden px-4 py-10 scroll-mt-20 rounded-2xl">
         <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" />
         <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="water" />
         <FadeIn>
@@ -81,7 +81,7 @@ export default function TentangSambeliaPage() {
             tone="water"
           />
         </FadeIn>
-        <StaggerContainer stagger={0.1} className="grid gap-6 md:grid-cols-2">
+        <StaggerContainer stagger={0.1} className="grid gap-5 md:grid-cols-2">
           {desa.map((d) => (
             <StaggerItem key={d.slug}>
               <div className="group overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover">
@@ -94,7 +94,7 @@ export default function TentangSambeliaPage() {
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
-                <div className="p-5">
+                <div className="p-4">
                   <h3 className="font-beautique text-2xl text-brown-900">{d.name}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink/70">{d.description}</p>
                 </div>
@@ -104,7 +104,7 @@ export default function TentangSambeliaPage() {
         </StaggerContainer>
       </section>
 
-      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-12 scroll-mt-20">
+      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-10 scroll-mt-20">
         <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="olive" />
         <FadeIn>
           <SectionHeader

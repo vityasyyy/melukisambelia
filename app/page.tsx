@@ -72,12 +72,12 @@ export default function Beranda() {
 
   return (
     <>
-      <section className="relative flex h-[100dvh] min-h-[600px] items-center justify-center overflow-hidden text-center">
+      <section className="relative -mt-[60px] flex h-[100dvh] min-h-[600px] items-center justify-center overflow-hidden text-center">
         <HeroAnimation src={s.heroImage} tagline={s.heroTagline} />
 
         <a
           href="#tentang"
-          className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center text-cream-light/70 transition-colors hover:text-cream-light"
+          className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center text-white/70 transition-colors hover:text-white"
           aria-label={hi.scrollPrompt || 'Gulir untuk menjelajah'}
         >
           <span className="mb-1 text-[10px] font-medium uppercase tracking-widest">{hi.scrollPrompt || 'Gulir untuk menjelajah'}</span>
@@ -85,7 +85,7 @@ export default function Beranda() {
         </a>
       </section>
 
-      <section id="tentang" className="relative mx-auto max-w-content overflow-hidden px-4 py-16">
+      <section id="tentang" className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
         <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="gold" />
         <FadeIn>
           <SectionHeader
@@ -95,28 +95,28 @@ export default function Beranda() {
             tone="terracotta"
           />
         </FadeIn>
-        <StaggerContainer stagger={0.08} className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <StaggerContainer stagger={0.08} className="grid grid-cols-2 gap-3 md:grid-cols-4">
           <StaggerItem><StatCard label="Luas" value={s.stats.luas} /></StaggerItem>
           <StaggerItem><StatCard label="Penduduk" value={s.stats.penduduk} /></StaggerItem>
           <StaggerItem><StatCard label="Desa/Kelurahan" value={s.stats.desaKelurahan} /></StaggerItem>
           <StaggerItem><StatCard label="Kabupaten" value={s.stats.kabupaten} /></StaggerItem>
         </StaggerContainer>
-        <div className="mt-6 text-center">
+        <div className="mt-5 text-center">
           <Link
             href="/tentang-sambelia"
-            className="inline-block rounded-full border border-tan-700/30 px-5 py-2.5 text-sm font-medium text-brown-900 transition-colors hover:bg-cream-beige"
+            className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-all hover:bg-cream-beige hover:scale-[1.02]"
           >
             Selengkapnya →
           </Link>
         </div>
       </section>
 
-      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-8">
+      <section className="relative bg-cream-warm/20 mx-auto max-w-content overflow-hidden px-4 py-10 rounded-2xl">
         <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="terracotta" />
         <FadeIn>
           <SectionHeader kicker={hi.jejakiKicker} title={hi.jejakiTitle} tone="gold" />
         </FadeIn>
-        <StaggerContainer stagger={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {previews.map((p) => (
             <StaggerItem key={p.href}>
               <DataCard href={p.href} image={p.image} title={p.title} desc={p.desc} accent={p.accent} />
@@ -125,9 +125,8 @@ export default function Beranda() {
         </StaggerContainer>
       </section>
 
-      {/* Wisata Unggulan */}
       {wisataUnggulan.length > 0 && (
-        <section className="relative mx-auto max-w-content overflow-hidden px-4 py-12">
+        <section className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
           <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="water" />
           <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="water" />
           <FadeIn>
@@ -138,7 +137,7 @@ export default function Beranda() {
               tone="water"
             />
           </FadeIn>
-          <StaggerContainer stagger={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {wisataUnggulan.map((p) => (
               <StaggerItem key={p.slug}>
                 <DataCard
@@ -154,10 +153,10 @@ export default function Beranda() {
               </StaggerItem>
             ))}
           </StaggerContainer>
-          <div className="mt-6 text-center">
+          <div className="mt-5 text-center">
             <Link
               href="/pariwisata"
-              className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-colors hover:bg-cream-beige"
+              className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-all hover:bg-cream-beige hover:scale-[1.02]"
             >
               Lihat semua wisata →
             </Link>
@@ -165,9 +164,8 @@ export default function Beranda() {
         </section>
       )}
 
-      {/* Festival Terdekat */}
       {festival.length > 0 && (
-        <section className="relative mx-auto max-w-content overflow-hidden px-4 py-12">
+        <section className="relative bg-terracotta-500/5 mx-auto max-w-content overflow-hidden px-4 py-10 rounded-2xl">
           <MotifFloater motif="cincin_sambel" position="top-left" size="md" color="gold" />
           <MotifFloater motif="bunga_sambel" position="bottom-right" size="sm" color="terracotta" />
           <FadeIn>
@@ -181,13 +179,13 @@ export default function Beranda() {
           <FadeIn>
             <CountdownStrip festivals={festivalData} />
           </FadeIn>
-          <FadeIn delay={0.1} className="mt-8">
+          <FadeIn delay={0.1} className="mt-6">
             <FestivalTimeline events={festival.slice(0, 2)} />
           </FadeIn>
-          <div className="mt-6 text-center">
+          <div className="mt-5 text-center">
             <Link
               href="/festival"
-              className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-colors hover:bg-cream-beige"
+              className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-all hover:bg-cream-beige hover:scale-[1.02]"
             >
               Lihat semua festival →
             </Link>
@@ -195,9 +193,8 @@ export default function Beranda() {
         </section>
       )}
 
-      {/* UMKM Spotlight */}
       {umkmSpotlight.length > 0 && (
-        <section className="relative mx-auto max-w-content overflow-hidden px-4 py-12">
+        <section className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
           <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="olive" />
           <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="terracotta" />
           <FadeIn>
@@ -208,17 +205,17 @@ export default function Beranda() {
               tone="terracotta"
             />
           </FadeIn>
-          <StaggerContainer stagger={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {umkmSpotlight.map((u) => (
               <StaggerItem key={u.slug}>
                 <UmkmCard item={u} />
               </StaggerItem>
             ))}
           </StaggerContainer>
-          <div className="mt-6 text-center">
+          <div className="mt-5 text-center">
             <Link
               href="/umkm"
-              className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-colors hover:bg-cream-beige"
+              className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-all hover:bg-cream-beige hover:scale-[1.02]"
             >
               Lihat semua UMKM →
             </Link>

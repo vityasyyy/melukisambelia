@@ -184,10 +184,10 @@ collections:
             name: "stats"
             widget: "object"
             fields:
-               - { label: "Luas", name: "luas", widget: "string" }
-               - { label: "Penduduk", name: "penduduk", widget: "string" }
-               - { label: "Desa/Kelurahan", name: "desaKelurahan", widget: "string" }
-               - { label: "Kabupaten", name: "kabupaten", widget: "string" }
+              - { label: "Luas", name: "luas", widget: "string" }
+              - { label: "Penduduk", name: "penduduk", widget: "string" }
+              - { label: "Desa/Kelurahan", name: "desaKelurahan", widget: "string" }
+              - { label: "Kabupaten", name: "kabupaten", widget: "string" }
           - { label: "Tanggal Festival", name: "festivalDates", widget: "string" }
           - label: "Sosial"
             name: "socials"
@@ -202,16 +202,16 @@ collections:
               - { label: "Email", name: "email", widget: "string" }
               - { label: "Telepon", name: "phone", widget: "string", required: false }
               - { label: "Alamat", name: "address", widget: "string" }
-           - label: "Intro Beranda (Section 01-05)"
-             name: "homepageIntros"
-             widget: "object"
-             required: false
-             fields:
-               - { label: "01 — Kicker (Tentang)", name: "aboutKicker", widget: "string", default: "01 — TENTANG" }
-               - { label: "01 — Judul (Tentang)", name: "aboutTitle", widget: "string", default: "Tentang Sambelia" }
-               - { label: "01 — Intro (Tentang)", name: "aboutIntro", widget: "text", default: "Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan." }
-               - { label: "Scroll Prompt", name: "scrollPrompt", widget: "string", default: "Gulir untuk menjelajah" }
-               - { label: "02 — Kicker (Jejaki)", name: "jejakiKicker", widget: "string", default: "02 — JEJAKI" }
+          - label: "Intro Beranda (Section 01-05)"
+            name: "homepageIntros"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "01 — Kicker (Tentang)", name: "aboutKicker", widget: "string", default: "01 — TENTANG" }
+              - { label: "01 — Judul (Tentang)", name: "aboutTitle", widget: "string", default: "Tentang Sambelia" }
+              - { label: "01 — Intro (Tentang)", name: "aboutIntro", widget: "text", default: "Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan." }
+              - { label: "Scroll Prompt", name: "scrollPrompt", widget: "string", default: "Gulir untuk menjelajah" }
+              - { label: "02 — Kicker (Jejaki)", name: "jejakiKicker", widget: "string", default: "02 — JEJAKI" }
               - { label: "02 — Judul (Jejaki)", name: "jejakiTitle", widget: "string", default: "Jejaki Sambelia" }
               - { label: "02 — Intro (Jejaki)", name: "jejakiIntro", widget: "string", required: false }
               - { label: "03 — Kicker (Wisata)", name: "wisataKicker", widget: "string", default: "03 — WISATA UNGGULAN" }
@@ -366,24 +366,24 @@ collections:
             widget: "object"
             required: false
             fields:
-               - { label: "Tagline", name: "tagline", widget: "string", default: "Portal Kecamatan Sambelia, Lombok Timur" }
-               - { label: "Hak Cipta", name: "copyright", widget: "string", default: "© 2026 Kecamatan Sambelia — Dikembangkan oleh KKN-PPM UGM Melukis Sambelia" }
-           - label: "Pesan Kosong"
-             name: "emptyStates"
-             widget: "object"
-             required: false
-             fields:
-               - { label: "Pariwisata", name: "pariwisata", widget: "string", default: "Belum ada data wisata. Data akan ditambahkan segera." }
-               - { label: "Irigasi", name: "irigasi", widget: "string", default: "Belum ada data irigasi. Data akan ditambahkan segera." }
-               - { label: "Kesehatan", name: "kesehatan", widget: "string", default: "Belum ada data kesehatan. Data akan ditambahkan segera." }
-               - { label: "UMKM", name: "umkm", widget: "string", default: "Belum ada data UMKM. Data akan ditambahkan segera." }
-               - { label: "Kegiatan", name: "kegiatan", widget: "string", default: "Belum ada kegiatan. Informasi akan ditambahkan segera." }
-               - { label: "Festival", name: "festival", widget: "string", default: "Belum ada data festival. Data akan ditambahkan segera." }
-               - { label: "Lingkungan", name: "lingkungan", widget: "string", default: "Data peta lingkungan akan diunggah." }
-               - { label: "Air & Tanah", name: "airTanah", widget: "string", default: "Data TMA akan diunggah." }
-               - { label: "Peta Data Kosong", name: "petaDataEmpty", widget: "string", default: "Belum ada data lokasi. Tim akan menambahkan segera." }
-               - { label: "Peta GIS Kosong", name: "petaGisEmpty", widget: "string", default: "Peta GIS belum tersedia." }
-               - { label: "Air Tanah Data Kosong", name: "airTanahDataEmpty", widget: "string", default: "Data TMA dari cluster air tanah akan diunggah." }
+              - { label: "Tagline", name: "tagline", widget: "string", default: "Portal Kecamatan Sambelia, Lombok Timur" }
+              - { label: "Hak Cipta", name: "copyright", widget: "string", default: "© 2026 Kecamatan Sambelia — Dikembangkan oleh KKN-PPM UGM Melukis Sambelia" }
+          - label: "Pesan Kosong"
+            name: "emptyStates"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "Pariwisata", name: "pariwisata", widget: "string", default: "Belum ada data wisata. Data akan ditambahkan segera." }
+              - { label: "Irigasi", name: "irigasi", widget: "string", default: "Belum ada data irigasi. Data akan ditambahkan segera." }
+              - { label: "Kesehatan", name: "kesehatan", widget: "string", default: "Belum ada data kesehatan. Data akan ditambahkan segera." }
+              - { label: "UMKM", name: "umkm", widget: "string", default: "Belum ada data UMKM. Data akan ditambahkan segera." }
+              - { label: "Kegiatan", name: "kegiatan", widget: "string", default: "Belum ada kegiatan. Informasi akan ditambahkan segera." }
+              - { label: "Festival", name: "festival", widget: "string", default: "Belum ada data festival. Data akan ditambahkan segera." }
+              - { label: "Lingkungan", name: "lingkungan", widget: "string", default: "Data peta lingkungan akan diunggah." }
+              - { label: "Air & Tanah", name: "airTanah", widget: "string", default: "Data TMA akan diunggah." }
+              - { label: "Peta Data Kosong", name: "petaDataEmpty", widget: "string", default: "Belum ada data lokasi. Tim akan menambahkan segera." }
+              - { label: "Peta GIS Kosong", name: "petaGisEmpty", widget: "string", default: "Peta GIS belum tersedia." }
+              - { label: "Air Tanah Data Kosong", name: "airTanahDataEmpty", widget: "string", default: "Data TMA dari cluster air tanah akan diunggah." }
 
       - label: "Peta GIS"
         name: "_gismap"

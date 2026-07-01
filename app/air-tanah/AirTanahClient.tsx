@@ -19,7 +19,7 @@ export function AirTanahClient({
   const credit = meta?.credit ?? ''
 
   return (
-    <div className="relative mx-auto max-w-content overflow-hidden px-4 py-16">
+    <div className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
       <MotifFloater motif="cincin_sambel" position="top-left" size="md" color="water" />
       <MotifFloater motif="bunga_sambel" position="bottom-right" size="sm" color="gold" />
 
@@ -38,7 +38,7 @@ export function AirTanahClient({
       ) : (
         <>
           <FadeIn>
-            <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+            <div className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
               <StatCard label="Lokasi" value={String(new Set(data.measurements.map((m) => m.location)).size)} />
               <StatCard label="Pengukuran" value={String(data.measurements.length)} />
               <StatCard label="Rata-rata TMA" value={data.measurements.length ? (data.measurements.reduce((s, m) => s + m.tmaMeters, 0) / data.measurements.length).toFixed(2) : '—'} unit="m" />

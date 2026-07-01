@@ -38,7 +38,7 @@ export default function LingkunganPage() {
         tone="green"
       />
 
-      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-16 scroll-mt-20">
+      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-10 scroll-mt-20">
         <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="olive" />
         <MotifFloater motif="cincin_sambel" position="top-left" size="sm" color="olive" />
 
@@ -49,7 +49,7 @@ export default function LingkunganPage() {
         </FadeIn>
 
         {items.length > 0 ? (
-          <StaggerContainer stagger={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {items.map((item) => (
               <StaggerItem key={item.slug}>
                 <div className="group overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover">
@@ -84,7 +84,7 @@ export default function LingkunganPage() {
             <FadeIn>
               <h2 className="mb-6 font-beautique text-display-lg text-brown-900">Peta Tematik GIS</h2>
             </FadeIn>
-            <StaggerContainer stagger={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {vegetasiFiles.map((f) => (
                 <StaggerItem key={f.url}>
                   <Link

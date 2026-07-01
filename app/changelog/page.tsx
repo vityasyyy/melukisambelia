@@ -23,7 +23,7 @@ export default function ChangelogPage() {
   return (
     <>
       <Breadcrumb items={[{ label: 'Beranda', href: '/' }, { label: 'Changelog' }]} />
-      <section className="mx-auto max-w-content px-4 py-16">
+      <section className="mx-auto max-w-content px-4 py-10">
         <FadeIn>
           <h1 className="font-beautique text-4xl text-brown-900">Changelog</h1>
           <p className="mt-2 text-ink/70">Riwayat perubahan dan pembaruan situs.</p>

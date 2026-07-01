@@ -37,7 +37,7 @@ export default function PetaPage() {
         tone="water"
       />
 
-      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-16">
+      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
         <MotifFloater motif="cincin_sambel" position="top-right" size="md" color="water" />
         <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" />
         <Suspense fallback={<MapSkeleton />}>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X, ChevronDown } from 'lucide-react'
@@ -43,25 +43,67 @@ const NAV_TOP_LEVEL = [
 export function Nav() {
   const [open, setOpen] = useState(false)
   const [openGroup, setOpenGroup] = useState<string | null>(null)
+  const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const pathname = usePathname()
+  const lastScrollY = useRef(0)
+  const ticking = useRef(false)
 
   useEffect(() => {
     if (!open) setOpenGroup(null)
   }, [open])
+
+  const handleScroll = useCallback(() => {
+    if (ticking.current) return
+    ticking.current = true
+    requestAnimationFrame(() => {
+      const y = window.scrollY
+      setScrolled(y > 40)
+      if (y > 200 && y > lastScrollY.current + 5) {
+        setHidden(true)
+      } else if (y < lastScrollY.current - 5) {
+        setHidden(true)
+        requestAnimationFrame(() => setHidden(false))
+      }
+      if (y < 40) {
+        setHidden(false)
+      }
+      lastScrollY.current = y
+      ticking.current = false
+    })
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [handleScroll])
 
   function isActive(href: string) {
     if (href === '/') return pathname === '/'
     return pathname === href || pathname.startsWith(`${href}/`)
   }
 
+  const isHome = pathname === '/'
+
   return (
-    <header className="sticky top-0 z-[1000] border-b border-tan-700/10 bg-page/90 backdrop-blur">
+    <header
+      className={cn(
+        'fixed inset-x-0 top-0 z-[1000] transition-all duration-300',
+        hidden && !open ? '-translate-y-full' : 'translate-y-0',
+        scrolled
+          ? 'border-b border-white/10 bg-brown-950/90 shadow-lg shadow-black/10 backdrop-blur-xl'
+          : isHome
+            ? 'bg-transparent'
+            : 'border-b border-tan-700/10 bg-page/80 backdrop-blur-md'
+      )}
+    >
       <nav aria-label="Navigasi utama" className="mx-auto flex max-w-content items-center justify-between px-4 py-3">
         <Link href="/" aria-label="Beranda Sambelia">
-          <Logo className="h-10 w-auto" />
+          <Logo className={cn('h-10 w-auto transition-colors duration-300', !scrolled && isHome ? 'brightness-0 invert' : 'brightness-0 invert sm:brightness-0 sm:invert')} />
         </Link>
 
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className={cn('hidden items-center gap-1 lg:flex transition-colors duration-300', !scrolled && isHome ? 'text-white/90' : 'text-ink')}>
           {NAV_TOP_LEVEL.filter((l) => l.href !== '/').map((l) => (
             <li key={l.href}>
               <Link
@@ -70,8 +112,8 @@ export function Nav() {
                 className={cn(
                   'rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
                   isActive(l.href)
-                    ? 'bg-gold-100 text-brown-900'
-                    : 'text-ink hover:bg-cream-beige hover:text-water-900'
+                    ? (scrolled || !isHome ? 'bg-gold-100 text-brown-900' : 'bg-white/20 text-white')
+                    : (scrolled || !isHome ? 'text-ink hover:bg-cream-beige hover:text-water-900' : 'text-white/80 hover:bg-white/10 hover:text-white')
                 )}
               >
                 {l.label}
@@ -89,15 +131,20 @@ export function Nav() {
                   className={cn(
                     'flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
                     groupActive
-                      ? 'bg-gold-100 text-brown-900'
-                      : 'text-ink hover:bg-cream-beige hover:text-water-900'
+                      ? (scrolled || !isHome ? 'bg-gold-100 text-brown-900' : 'bg-white/20 text-white')
+                      : (scrolled || !isHome ? 'text-ink hover:bg-cream-beige hover:text-water-900' : 'text-white/80 hover:bg-white/10 hover:text-white')
                   )}
                 >
                   {group.label}
                   <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                 </button>
                 <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-focus-within:visible group-hover:opacity-100 group-focus-within:opacity-100 max-lg:left-0 max-lg:-translate-x-0">
-                  <ul className="min-w-[180px] rounded-xl border border-tan-700/10 bg-page shadow-lg">
+                  <ul className={cn(
+                    'min-w-[180px] rounded-xl shadow-lg',
+                    scrolled || !isHome
+                      ? 'border border-tan-700/10 bg-page'
+                      : 'border border-white/10 bg-brown-950/95 backdrop-blur-xl'
+                  )}>
                     {group.items.map((item) => (
                       <li key={item.href}>
                         <Link
@@ -106,8 +153,8 @@ export function Nav() {
                           className={cn(
                             'block rounded-lg px-4 py-2 text-sm font-medium transition-colors',
                             isActive(item.href)
-                              ? 'bg-gold-100 text-brown-900'
-                              : 'text-ink hover:bg-cream-beige hover:text-water-900'
+                              ? (scrolled || !isHome ? 'bg-gold-100 text-brown-900' : 'bg-white/20 text-white')
+                              : (scrolled || !isHome ? 'text-ink hover:bg-cream-beige hover:text-water-900' : 'text-white/80 hover:bg-white/10 hover:text-white')
                           )}
                         >
                           {item.label}
@@ -123,7 +170,10 @@ export function Nav() {
 
         <button
           type="button"
-          className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-lg text-ink hover:bg-cream-beige hover:text-water-900 lg:hidden"
+          className={cn(
+            '-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-lg transition-colors lg:hidden',
+            !scrolled && isHome ? 'text-white hover:bg-white/10' : 'text-ink hover:bg-cream-beige hover:text-water-900'
+          )}
           onClick={() => setOpen(!open)}
           aria-label={open ? 'Tutup menu' : 'Buka menu'}
           aria-expanded={open}
@@ -153,44 +203,23 @@ export function Nav() {
             className="overflow-hidden border-t border-tan-700/10 bg-page lg:hidden"
           >
             <ul className="mx-auto max-w-content space-y-1 overflow-y-auto px-4 py-4 max-h-[70vh]">
-              {NAV_TOP_LEVEL.map((l, i) => {
-                if (l.href === '/') {
-                  return (
-                    <motion.li
-                      key={l.href}
-                      initial={{ opacity: 0, x: -12 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.04 }}
-                    >
-                      <Link
-                        href={l.href}
-                        aria-current={isActive(l.href) ? 'page' : undefined}
-                        className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
-                        onClick={() => { setOpen(false); setOpenGroup(null) }}
-                      >
-                        {l.label}
-                      </Link>
-                    </motion.li>
-                  )
-                }
-                return (
-                  <motion.li
-                    key={l.href}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.04 }}
+              {NAV_TOP_LEVEL.map((l, i) => (
+                <motion.li
+                  key={l.href}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.04 }}
+                >
+                  <Link
+                    href={l.href}
+                    aria-current={isActive(l.href) ? 'page' : undefined}
+                    className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
+                    onClick={() => { setOpen(false); setOpenGroup(null) }}
                   >
-                    <Link
-                      href={l.href}
-                      aria-current={isActive(l.href) ? 'page' : undefined}
-                      className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
-                      onClick={() => { setOpen(false); setOpenGroup(null) }}
-                    >
-                      {l.label}
-                    </Link>
-                  </motion.li>
-                )
-              })}
+                    {l.label}
+                  </Link>
+                </motion.li>
+              ))}
               {NAV_GROUPS.map((group, gi) => {
                 const expanded = openGroup === group.label
                 return (
