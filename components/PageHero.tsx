@@ -29,7 +29,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        'relative -mt-[60px] overflow-hidden bg-gradient-to-br py-20 md:py-28 text-center text-white',
+        'relative -mt-[63px] overflow-hidden bg-gradient-to-br py-20 md:py-28 text-center text-white',
         GRADIENTS[tone],
         className
       )}

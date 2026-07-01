@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { MapPin, Sparkles } from 'lucide-react'
 import { GradientText } from './GradientText'
 
 export function HeroAnimation({
@@ -69,34 +70,57 @@ export function HeroAnimation({
         style={{ boxShadow: 'inset 0 -100px 140px -30px rgba(15,8,5,0.95)' }}
       />
 
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[2] flex items-center justify-center opacity-[0.04]"
+        initial={reduce ? undefined : { opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 0.04, scale: 1 }}
+        transition={{ duration: 2, ease: 'easeOut' }}
+      >
+        <Image
+          src="/images/design-system/cincin_sambel.svg"
+          alt=""
+          width={600}
+          height={600}
+          className="h-[60vh] w-auto"
+          style={{ filter: 'sepia(0.9) hue-rotate(-5deg) saturate(2)' }}
+        />
+      </motion.div>
+
       <div className="relative z-10 flex max-w-4xl flex-col items-center px-4 py-16 sm:px-6 sm:py-24 md:py-32">
         <motion.div variants={container} initial="hidden" animate="visible" className="flex flex-col items-center">
           <motion.h1
             variants={item}
-            className="font-beautique text-[clamp(3rem,10vw,6.5rem)] leading-[0.95] text-white text-balance"
+            className="font-beautique text-[clamp(2.25rem,8vw,6.5rem)] leading-[0.95] text-white text-balance"
             style={{ textShadow: '0 2px 16px rgba(0,0,0,0.8), 0 0 60px rgba(0,0,0,0.3)' }}
           >
             <GradientText>Melukis</GradientText>{' '}
             <span className="text-white">Sambelia</span>
           </motion.h1>
-          <motion.p variants={item} className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg md:text-xl" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.6)' }}>
+          <motion.p variants={item} className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.6)' }}>
             {tagline}
           </motion.p>
-          <motion.div variants={item} className="mt-10 flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
+          <motion.div variants={item} className="mt-8 flex w-full flex-col items-center gap-3 sm:flex-row sm:gap-4">
             <Link
               href="/peta"
-              className="w-full rounded-full bg-water-900 px-7 py-3.5 font-medium text-white shadow-lg shadow-water-900/30 transition-all hover:bg-water-500 hover:shadow-water-900/40 sm:w-auto"
+              className="group relative inline-flex w-full items-center justify-center gap-2 rounded-full bg-water-900 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-water-900/30 transition-all hover:bg-water-500 hover:shadow-water-900/50 hover:scale-[1.02] sm:w-auto"
             >
+              <MapPin className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               Jelajahi Peta
             </Link>
             <Link
               href="/festival"
-              className="w-full rounded-full border border-white/50 px-7 py-3.5 font-medium text-white backdrop-blur-sm transition-all hover:bg-white/15 sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/40 px-7 py-3.5 text-base font-medium text-white/90 backdrop-blur-sm transition-all hover:border-white/60 hover:bg-white/15 hover:text-white sm:w-auto"
             >
+              <Sparkles className="h-4 w-4" />
               Festival Pesona
             </Link>
           </motion.div>
         </motion.div>
+      </div>
+
+      <div aria-hidden className="relative z-10 mt-auto flex w-full justify-center pb-2">
+        <div className="h-6 w-[200px] opacity-[0.06] sm:w-[340px] md:w-[480px]" style={{ backgroundImage: "url('/images/design-system/batik_sambel.svg')", backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
       </div>
     </>
   )

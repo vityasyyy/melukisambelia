@@ -3,10 +3,16 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, ChevronDown } from 'lucide-react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { Menu, ChevronDown } from 'lucide-react'
 import { Logo } from './Logo'
 import { cn } from '@/lib/utils'
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetClose,
+} from '@/components/ui/sheet'
 
 type NavGroup = {
   label: string
@@ -40,18 +46,17 @@ const NAV_TOP_LEVEL = [
   { href: '/festival', label: 'Festival' },
 ]
 
+function isActivePath(href: string, pathname: string) {
+  if (href === '/') return pathname === '/'
+  return pathname === href || pathname.startsWith(`${href}/`)
+}
+
 export function Nav() {
   const [open, setOpen] = useState(false)
   const [openGroup, setOpenGroup] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
-  const [hidden, setHidden] = useState(false)
   const pathname = usePathname()
-  const lastScrollY = useRef(0)
   const ticking = useRef(false)
-
-  useEffect(() => {
-    if (!open) setOpenGroup(null)
-  }, [open])
 
   const handleScroll = useCallback(() => {
     if (ticking.current) return
@@ -59,16 +64,6 @@ export function Nav() {
     requestAnimationFrame(() => {
       const y = window.scrollY
       setScrolled(y > 40)
-      if (y > 200 && y > lastScrollY.current + 5) {
-        setHidden(true)
-      } else if (y < lastScrollY.current - 5) {
-        setHidden(true)
-        requestAnimationFrame(() => setHidden(false))
-      }
-      if (y < 40) {
-        setHidden(false)
-      }
-      lastScrollY.current = y
       ticking.current = false
     })
   }, [])
@@ -79,31 +74,48 @@ export function Nav() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [handleScroll])
 
+  useEffect(() => {
+    if (!open) setOpenGroup(null)
+  }, [open])
+
   function isActive(href: string) {
-    if (href === '/') return pathname === '/'
-    return pathname === href || pathname.startsWith(`${href}/`)
+    return isActivePath(href, pathname)
   }
 
   const isHome = pathname === '/'
 
+  const navBg = scrolled
+    ? 'bg-brown-950/90 shadow-lg backdrop-blur-xl'
+    : isHome
+      ? 'bg-transparent'
+      : 'bg-brown-950/60 backdrop-blur-xl'
+
+  const navRounded = scrolled ? 'rounded-2xl' : ''
+  const navInset = scrolled ? 'left-3 right-3 sm:left-6 sm:right-6' : 'inset-x-0'
+
+  const textColor = (!scrolled && isHome) ? 'text-white' : 'text-white'
+  const activeBg = (scrolled || !isHome)
+    ? 'bg-white/20 text-white'
+    : 'bg-white/20 text-white'
+  const inactiveHover = (!scrolled && isHome)
+    ? 'text-white/80 hover:bg-white/10 hover:text-white'
+    : 'text-white/80 hover:bg-white/10 hover:text-white'
+
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-[1000] transition-all duration-300',
-        hidden && !open ? '-translate-y-full' : 'translate-y-0',
-        scrolled
-          ? 'border-b border-white/10 bg-brown-950/90 shadow-lg shadow-black/10 backdrop-blur-xl'
-          : isHome
-            ? 'bg-transparent'
-            : 'border-b border-tan-700/10 bg-page/80 backdrop-blur-md'
+        'fixed top-0 z-[1000] transition-all duration-500 ease-sambel',
+        navInset,
+        navRounded,
+        navBg,
       )}
     >
       <nav aria-label="Navigasi utama" className="mx-auto flex max-w-content items-center justify-between px-4 py-3">
         <Link href="/" aria-label="Beranda Sambelia">
-          <Logo className={cn('h-10 w-auto transition-colors duration-300', !scrolled && isHome ? 'brightness-0 invert' : 'brightness-0 invert sm:brightness-0 sm:invert')} />
+          <Logo className="h-10 w-auto brightness-0 invert transition-colors duration-300" />
         </Link>
 
-        <ul className={cn('hidden items-center gap-1 lg:flex transition-colors duration-300', !scrolled && isHome ? 'text-white/90' : 'text-ink')}>
+        <ul className={cn('hidden items-center gap-1 lg:flex transition-colors duration-300', textColor)}>
           {NAV_TOP_LEVEL.filter((l) => l.href !== '/').map((l) => (
             <li key={l.href}>
               <Link
@@ -111,9 +123,7 @@ export function Nav() {
                 aria-current={isActive(l.href) ? 'page' : undefined}
                 className={cn(
                   'rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
-                  isActive(l.href)
-                    ? (scrolled || !isHome ? 'bg-gold-100 text-brown-900' : 'bg-white/20 text-white')
-                    : (scrolled || !isHome ? 'text-ink hover:bg-cream-beige hover:text-water-900' : 'text-white/80 hover:bg-white/10 hover:text-white')
+                  isActive(l.href) ? activeBg : inactiveHover
                 )}
               >
                 {l.label}
@@ -130,21 +140,14 @@ export function Nav() {
                   aria-expanded={groupActive}
                   className={cn(
                     'flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
-                    groupActive
-                      ? (scrolled || !isHome ? 'bg-gold-100 text-brown-900' : 'bg-white/20 text-white')
-                      : (scrolled || !isHome ? 'text-ink hover:bg-cream-beige hover:text-water-900' : 'text-white/80 hover:bg-white/10 hover:text-white')
+                    groupActive ? activeBg : inactiveHover
                   )}
                 >
                   {group.label}
                   <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                 </button>
                 <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-focus-within:visible group-hover:opacity-100 group-focus-within:opacity-100 max-lg:left-0 max-lg:-translate-x-0">
-                  <ul className={cn(
-                    'min-w-[180px] rounded-xl shadow-lg',
-                    scrolled || !isHome
-                      ? 'border border-tan-700/10 bg-page'
-                      : 'border border-white/10 bg-brown-950/95 backdrop-blur-xl'
-                  )}>
+                  <ul className="min-w-[180px] rounded-xl shadow-lg border border-white/10 bg-brown-950/95 backdrop-blur-xl">
                     {group.items.map((item) => (
                       <li key={item.href}>
                         <Link
@@ -153,8 +156,8 @@ export function Nav() {
                           className={cn(
                             'block rounded-lg px-4 py-2 text-sm font-medium transition-colors',
                             isActive(item.href)
-                              ? (scrolled || !isHome ? 'bg-gold-100 text-brown-900' : 'bg-white/20 text-white')
-                              : (scrolled || !isHome ? 'text-ink hover:bg-cream-beige hover:text-water-900' : 'text-white/80 hover:bg-white/10 hover:text-white')
+                              ? 'bg-white/20 text-white'
+                              : 'text-white/80 hover:bg-white/10 hover:text-white'
                           )}
                         >
                           {item.label}
@@ -170,69 +173,49 @@ export function Nav() {
 
         <button
           type="button"
-          className={cn(
-            '-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-lg transition-colors lg:hidden',
-            !scrolled && isHome ? 'text-white hover:bg-white/10' : 'text-ink hover:bg-cream-beige hover:text-water-900'
-          )}
-          onClick={() => setOpen(!open)}
-          aria-label={open ? 'Tutup menu' : 'Buka menu'}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
+          className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/10 lg:hidden"
+          onClick={() => setOpen(true)}
+          aria-label="Buka menu"
         >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <Menu className="h-6 w-6" />
         </button>
       </nav>
 
-      <AnimatePresence>
-        {open && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[-1] bg-black/40 backdrop-blur-sm lg:hidden"
-              onClick={() => setOpen(false)}
-              aria-hidden
-            />
-          <motion.div
-            id="mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="overflow-hidden border-t border-tan-700/10 bg-page lg:hidden"
-          >
-            <ul className="mx-auto max-w-content space-y-1 overflow-y-auto px-4 py-4 max-h-[70vh]">
-              {NAV_TOP_LEVEL.map((l, i) => (
-                <motion.li
-                  key={l.href}
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.04 }}
-                >
-                  <Link
-                    href={l.href}
-                    aria-current={isActive(l.href) ? 'page' : undefined}
-                    className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
-                    onClick={() => { setOpen(false); setOpenGroup(null) }}
-                  >
-                    {l.label}
-                  </Link>
-                </motion.li>
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetContent side="right" className="border-l border-white/10 bg-brown-950/95 backdrop-blur-xl text-cream-light w-[85vw] max-w-sm p-0">
+          <SheetHeader className="border-b border-white/10 px-6 py-4">
+            <SheetTitle className="text-cream-light">
+              <Logo className="h-8 w-auto brightness-0 invert" />
+            </SheetTitle>
+          </SheetHeader>
+          <nav className="overflow-y-auto px-4 py-4 max-h-[70vh]">
+            <ul className="space-y-1">
+              {NAV_TOP_LEVEL.map((l) => (
+                <li key={l.href}>
+                  <SheetClose asChild>
+                    <Link
+                      href={l.href}
+                      aria-current={isActive(l.href) ? 'page' : undefined}
+                      className={cn(
+                        'flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-base font-medium transition-colors',
+                        isActive(l.href)
+                          ? 'bg-white/15 text-white'
+                          : 'text-cream-light/85 hover:bg-white/10 hover:text-white'
+                      )}
+                    >
+                      {l.label}
+                    </Link>
+                  </SheetClose>
+                </li>
               ))}
-              {NAV_GROUPS.map((group, gi) => {
+              {NAV_GROUPS.map((group) => {
                 const expanded = openGroup === group.label
                 return (
-                  <motion.li
-                    key={group.label}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: (NAV_TOP_LEVEL.length + gi) * 0.04 }}
-                  >
+                  <li key={group.label}>
                     <button
                       type="button"
                       aria-expanded={expanded}
-                      className="flex w-full min-h-[44px] items-center justify-between rounded-lg px-3 py-2.5 text-base font-medium text-ink hover:bg-cream-beige hover:text-water-900"
+                      className="flex w-full min-h-[44px] items-center justify-between rounded-lg px-3 py-2.5 text-base font-medium text-cream-light/85 hover:bg-white/10 hover:text-white"
                       onClick={() => setOpenGroup(expanded ? null : group.label)}
                     >
                       {group.label}
@@ -243,38 +226,38 @@ export function Nav() {
                         )}
                       />
                     </button>
-                    <AnimatePresence>
-                      {expanded && (
-                        <motion.ul
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-                          className="overflow-hidden"
-                        >
-                          {group.items.map((item) => (
-                            <li key={item.href}>
+                    {expanded && (
+                      <ul className="ml-3 mt-1 space-y-1 border-l border-white/10 pl-3">
+                        {group.items.map((item) => (
+                          <li key={item.href}>
+                            <SheetClose asChild>
                               <Link
                                 href={item.href}
                                 aria-current={isActive(item.href) ? 'page' : undefined}
-                                className="flex min-h-[44px] items-center rounded-lg pl-6 pr-3 py-2.5 text-sm font-medium text-ink hover:bg-cream-beige hover:text-water-900"
-                                onClick={() => { setOpen(false); setOpenGroup(null) }}
+                                className={cn(
+                                  'flex min-h-[40px] items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                                  isActive(item.href)
+                                    ? 'bg-white/15 text-white'
+                                    : 'text-cream-light/75 hover:bg-white/10 hover:text-white'
+                                )}
                               >
                                 {item.label}
                               </Link>
-                            </li>
-                          ))}
-                        </motion.ul>
-                      )}
-                    </AnimatePresence>
-                  </motion.li>
+                            </SheetClose>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
                 )
               })}
             </ul>
-          </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+          </nav>
+          <div className="border-t border-white/10 px-6 py-4">
+            <p className="text-xs text-cream-light/60">KKN-PPM UGM &middot; Sambelia</p>
+          </div>
+        </SheetContent>
+      </Sheet>
     </header>
   )
 }

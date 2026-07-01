@@ -11,7 +11,7 @@ export function KegiatanStats() {
   const empty = getSettings().emptyStates
 
   return (
-    <section className="relative bg-gold-50/20 mx-auto max-w-content overflow-hidden px-4 py-10 rounded-2xl">
+    <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
       <MotifFloater motif="bunga_sambel" position="top-right" size="lg" color="gold" />
       <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="terracotta" />
       <FadeIn>
@@ -47,6 +47,6 @@ export function KegiatanStats() {
           Tentang Sambelia →
         </Link>
       </div>
-    </section>
+    </div>
   )
 }

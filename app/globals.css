@@ -184,6 +184,20 @@
     opacity: 0.04;
   }
 
+  .batik-strip {
+    height: 32px;
+    background-image: url('/images/design-system/batik_sambel.svg');
+    background-repeat: repeat-x;
+    background-size: 600px auto;
+    background-position: center;
+    opacity: 0.06;
+  }
+
+  .brand-accent-line {
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold-500), transparent);
+  }
+
   .motif-fade {
     animation: motifFadeIn 1s ease-out both;
   }

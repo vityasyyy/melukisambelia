@@ -46,7 +46,7 @@ export function CountdownStrip({ festivals }: { festivals: Festival[] }) {
     return (
       <div className="rounded-2xl bg-gradient-to-r from-wine via-terracotta-500 to-gold-500 p-1 shadow-terracotta">
         <div className="rounded-xl bg-page px-6 py-5 text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-terracotta-500">
+          <p className="font-beautique-condensed text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-500">
             Festival Pesona Sambelia 2026
           </p>
           <p className="mt-3 font-beautique text-2xl text-brown-900">Segera diumumkan</p>
@@ -59,8 +59,8 @@ export function CountdownStrip({ festivals }: { festivals: Festival[] }) {
   return (
     <div className="rounded-2xl bg-gradient-to-r from-wine via-terracotta-500 to-gold-500 p-1 shadow-terracotta">
       <div className="rounded-xl bg-page px-6 py-5 text-center">
-        <p className="text-xs font-semibold uppercase tracking-widest text-terracotta-500">Menuju {next.f.eventName}</p>
-        <div className="mt-3 flex items-center justify-center gap-4 sm:gap-6">
+        <p className="font-beautique-condensed text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-500">Menuju {next.f.eventName}</p>
+        <div className="mt-3 flex items-center justify-center gap-3 sm:gap-6">
           {[
             { label: 'Hari', value: left.days },
             { label: 'Jam', value: left.hours },
@@ -75,7 +75,7 @@ export function CountdownStrip({ festivals }: { festivals: Festival[] }) {
               >
                 {pad(u.value)}
               </motion.div>
-              <div className="text-[10px] uppercase tracking-wide text-ink/70">{u.label}</div>
+              <div className="font-beautique-condensed text-[10px] uppercase tracking-[0.15em] text-ink/70">{u.label}</div>
             </div>
           ))}
         </div>

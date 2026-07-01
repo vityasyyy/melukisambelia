@@ -50,55 +50,57 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
         intro={pageSettings.heroIntro ?? 'Kerajinan, kuliner, dan produk lokal yang menjadi andalan masyarakat Sambelia.'}
         tone="terracotta"
       />
-      <div className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
-        <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="olive" />
-        <MotifFloater motif="cincin_sambel" position="top-left" size="sm" color="terracotta" />
-      {items.length === 0 ? (
-        <EmptyState message={emptyMessage} />
-      ) : (
-        <>
-          <div className="mb-6 flex flex-wrap gap-2">
-            {KATEGORI_OPTIONS.map((k) => (
-              <button
-                key={k}
-                onClick={() => setActiveKategori(k)}
-                className={cn(
-                  'relative inline-flex min-h-[44px] items-center rounded-full border px-4 py-2 text-xs font-semibold transition-colors',
-                  activeKategori === k
-                    ? 'border-transparent text-brown-900'
-                    : 'border-tan-700/30 bg-page text-ink/70 hover:text-ink'
-                )}
-                aria-pressed={activeKategori === k}
-              >
-                {activeKategori === k && (
-                  <motion.span
-                    layoutId="umkm-kategori-pill"
-                    className="absolute inset-0 -z-10 rounded-full bg-cream-beige shadow-sm"
-                    transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-                  />
-                )}
-                {k}
-              </button>
-            ))}
-          </div>
-          <div role="region" aria-live="polite" aria-label={`Menampilkan ${filtered.length} UMKM`}>
-          <StaggerContainer
-            key={activeKategori}
-            stagger={0.08}
-            mode="mount"
-            className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {filtered.map((u) => (
-              <StaggerItem key={u.slug}>
-                <UmkmCard item={u} onDetailClick={() => openModal(u)} />
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-          </div>
-        </>
-      )}
-      <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
-      </div>
+      <section className="relative bg-cream-warm/30">
+        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="olive" />
+          <MotifFloater motif="cincin_sambel" position="top-left" size="sm" color="terracotta" />
+        {items.length === 0 ? (
+          <EmptyState message={emptyMessage} />
+        ) : (
+          <>
+            <div className="mb-6 flex flex-wrap gap-2">
+              {KATEGORI_OPTIONS.map((k) => (
+                <button
+                  key={k}
+                  onClick={() => setActiveKategori(k)}
+                  className={cn(
+                    'relative inline-flex min-h-[44px] items-center rounded-full border px-4 py-2 text-xs font-semibold transition-colors',
+                    activeKategori === k
+                      ? 'border-transparent text-brown-900'
+                      : 'border-tan-700/30 bg-page text-ink/70 hover:text-ink'
+                  )}
+                  aria-pressed={activeKategori === k}
+                >
+                  {activeKategori === k && (
+                    <motion.span
+                      layoutId="umkm-kategori-pill"
+                      className="absolute inset-0 -z-10 rounded-full bg-cream-beige shadow-sm"
+                      transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                    />
+                  )}
+                  {k}
+                </button>
+              ))}
+            </div>
+            <div role="region" aria-live="polite" aria-label={`Menampilkan ${filtered.length} UMKM`}>
+            <StaggerContainer
+              key={activeKategori}
+              stagger={0.08}
+              mode="mount"
+              className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              {filtered.map((u) => (
+                <StaggerItem key={u.slug}>
+                  <UmkmCard item={u} onDetailClick={() => openModal(u)} />
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+            </div>
+          </>
+        )}
+        <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
+        </div>
+      </section>
     </>
   )
 }

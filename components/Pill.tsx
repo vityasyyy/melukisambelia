@@ -19,7 +19,7 @@ export function Pill({
     outline: 'border border-tan-700/40 bg-page text-ink/80',
   }
   return (
-    <span className={cn('inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold tracking-wide', variants[variant], className)}>
+    <span className={cn('inline-flex items-center rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] font-beautique-condensed', variants[variant], className)}>
       {children}
     </span>
   )

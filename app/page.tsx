@@ -14,6 +14,7 @@ import { CountdownStrip } from '@/components/CountdownStrip'
 import { FestivalTimeline } from '@/components/FestivalTimeline'
 import { UmkmCard } from '@/components/UmkmCard'
 import { MotifFloater } from '@/components/MotifFloater'
+import { MotifDivider } from '@/components/MotifDivider'
 import Link from 'next/link'
 
 const pageSettings = getPageSettings('home')
@@ -72,7 +73,7 @@ export default function Beranda() {
 
   return (
     <>
-      <section className="relative -mt-[60px] flex h-[100dvh] min-h-[600px] items-center justify-center overflow-hidden text-center">
+      <section className="relative -mt-[63px] flex h-[100dvh] min-h-[600px] items-center justify-center overflow-hidden text-center">
         <HeroAnimation src={s.heroImage} tagline={s.heroTagline} />
 
         <a
@@ -85,145 +86,167 @@ export default function Beranda() {
         </a>
       </section>
 
-      <section id="tentang" className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
-        <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="gold" />
-        <FadeIn>
-          <SectionHeader
-            kicker={hi.aboutKicker || '01 — TENTANG'}
-            title={hi.aboutTitle || 'Tentang Sambelia'}
-            intro={hi.aboutIntro || 'Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan.'}
-            tone="terracotta"
-          />
-        </FadeIn>
-        <StaggerContainer stagger={0.08} className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          <StaggerItem><StatCard label="Luas" value={s.stats.luas} /></StaggerItem>
-          <StaggerItem><StatCard label="Penduduk" value={s.stats.penduduk} /></StaggerItem>
-          <StaggerItem><StatCard label="Desa/Kelurahan" value={s.stats.desaKelurahan} /></StaggerItem>
-          <StaggerItem><StatCard label="Kabupaten" value={s.stats.kabupaten} /></StaggerItem>
-        </StaggerContainer>
-        <div className="mt-5 text-center">
-          <Link
-            href="/tentang-sambelia"
-            className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-all hover:bg-cream-beige hover:scale-[1.02]"
-          >
-            Selengkapnya →
-          </Link>
-        </div>
-      </section>
-
-      <section className="relative bg-cream-warm/20 mx-auto max-w-content overflow-hidden px-4 py-10 rounded-2xl">
-        <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="terracotta" />
-        <FadeIn>
-          <SectionHeader kicker={hi.jejakiKicker} title={hi.jejakiTitle} tone="gold" />
-        </FadeIn>
-        <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {previews.map((p) => (
-            <StaggerItem key={p.href}>
-              <DataCard href={p.href} image={p.image} title={p.title} desc={p.desc} accent={p.accent} />
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
-      </section>
-
-      {wisataUnggulan.length > 0 && (
-        <section className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
-          <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="water" />
-          <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="water" />
+      <section id="tentang" className="relative scroll-mt-16 bg-page">
+        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="gold" />
           <FadeIn>
             <SectionHeader
-              kicker={hi.wisataKicker}
-              title={hi.wisataTitle}
-              intro={hi.wisataIntro}
-              tone="water"
-            />
-          </FadeIn>
-          <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {wisataUnggulan.map((p) => (
-              <StaggerItem key={p.slug}>
-                <DataCard
-                  href={`/pariwisata/${p.slug}`}
-                  image={p.cover}
-                  title={p.title}
-                  chips={[
-                    { label: p.category, color: '#14A8E1' },
-                    { label: p.village, color: '#99BA57' },
-                  ]}
-                  desc={p.shortDesc}
-                />
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-          <div className="mt-5 text-center">
-            <Link
-              href="/pariwisata"
-              className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-all hover:bg-cream-beige hover:scale-[1.02]"
-            >
-              Lihat semua wisata →
-            </Link>
-          </div>
-        </section>
-      )}
-
-      {festival.length > 0 && (
-        <section className="relative bg-terracotta-500/5 mx-auto max-w-content overflow-hidden px-4 py-10 rounded-2xl">
-          <MotifFloater motif="cincin_sambel" position="top-left" size="md" color="gold" />
-          <MotifFloater motif="bunga_sambel" position="bottom-right" size="sm" color="terracotta" />
-          <FadeIn>
-            <SectionHeader
-              kicker={hi.festivalKicker}
-              title={hi.festivalTitle}
-              intro={hi.festivalIntro}
-              tone="gold"
-            />
-          </FadeIn>
-          <FadeIn>
-            <CountdownStrip festivals={festivalData} />
-          </FadeIn>
-          <FadeIn delay={0.1} className="mt-6">
-            <FestivalTimeline events={festival.slice(0, 2)} />
-          </FadeIn>
-          <div className="mt-5 text-center">
-            <Link
-              href="/festival"
-              className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-all hover:bg-cream-beige hover:scale-[1.02]"
-            >
-              Lihat semua festival →
-            </Link>
-          </div>
-        </section>
-      )}
-
-      {umkmSpotlight.length > 0 && (
-        <section className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
-          <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="olive" />
-          <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="terracotta" />
-          <FadeIn>
-            <SectionHeader
-              kicker={hi.umkmKicker}
-              title={hi.umkmTitle}
-              intro={hi.umkmIntro}
+              kicker={hi.aboutKicker || '01 — TENTANG'}
+              title={hi.aboutTitle || 'Tentang Sambelia'}
+              intro={hi.aboutIntro || 'Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan.'}
               tone="terracotta"
             />
           </FadeIn>
-          <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {umkmSpotlight.map((u) => (
-              <StaggerItem key={u.slug}>
-                <UmkmCard item={u} />
-              </StaggerItem>
-            ))}
+          <StaggerContainer stagger={0.08} className="grid grid-cols-2 gap-3 md:grid-cols-4">
+            <StaggerItem><StatCard label="Luas" value={s.stats.luas} /></StaggerItem>
+            <StaggerItem><StatCard label="Penduduk" value={s.stats.penduduk} /></StaggerItem>
+            <StaggerItem><StatCard label="Desa/Kelurahan" value={s.stats.desaKelurahan} /></StaggerItem>
+            <StaggerItem><StatCard label="Kabupaten" value={s.stats.kabupaten} /></StaggerItem>
           </StaggerContainer>
           <div className="mt-5 text-center">
             <Link
-              href="/umkm"
+              href="/tentang-sambelia"
               className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-all hover:bg-cream-beige hover:scale-[1.02]"
             >
-              Lihat semua UMKM →
+              Selengkapnya →
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <MotifDivider />
+
+      <section className="relative bg-cream-beige">
+        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="terracotta" />
+          <FadeIn>
+            <SectionHeader kicker={hi.jejakiKicker} title={hi.jejakiTitle} tone="gold" />
+          </FadeIn>
+          <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {previews.map((p) => (
+              <StaggerItem key={p.href}>
+                <DataCard href={p.href} image={p.image} title={p.title} desc={p.desc} accent={p.accent} />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      <MotifDivider />
+
+      {wisataUnggulan.length > 0 && (
+        <section className="relative bg-page">
+          <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+            <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="water" />
+            <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="water" />
+            <FadeIn>
+              <SectionHeader
+                kicker={hi.wisataKicker}
+                title={hi.wisataTitle}
+                intro={hi.wisataIntro}
+                tone="water"
+              />
+            </FadeIn>
+            <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {wisataUnggulan.map((p) => (
+                <StaggerItem key={p.slug}>
+                  <DataCard
+                    href={`/pariwisata/${p.slug}`}
+                    image={p.cover}
+                    title={p.title}
+                    chips={[
+                      { label: p.category, color: '#14A8E1' },
+                      { label: p.village, color: '#99BA57' },
+                    ]}
+                    desc={p.shortDesc}
+                  />
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+            <div className="mt-5 text-center">
+              <Link
+                href="/pariwisata"
+                className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-all hover:bg-cream-beige hover:scale-[1.02]"
+              >
+                Lihat semua wisata →
+              </Link>
+            </div>
           </div>
         </section>
       )}
 
-      <KegiatanStats />
+      <MotifDivider />
+
+      {festival.length > 0 && (
+        <section className="relative bg-terracotta-500/[0.06]">
+          <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10 border-l-4 border-terracotta-500/20">
+            <MotifFloater motif="cincin_sambel" position="top-left" size="md" color="gold" />
+            <MotifFloater motif="bunga_sambel" position="bottom-right" size="sm" color="terracotta" />
+            <FadeIn>
+              <SectionHeader
+                kicker={hi.festivalKicker}
+                title={hi.festivalTitle}
+                intro={hi.festivalIntro}
+                tone="gold"
+              />
+            </FadeIn>
+            <FadeIn>
+              <CountdownStrip festivals={festivalData} />
+            </FadeIn>
+            <FadeIn delay={0.1} className="mt-6">
+              <FestivalTimeline events={festival.slice(0, 2)} />
+            </FadeIn>
+            <div className="mt-5 text-center">
+              <Link
+                href="/festival"
+                className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-all hover:bg-cream-beige hover:scale-[1.02]"
+              >
+                Lihat semua festival →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      <MotifDivider />
+
+      {umkmSpotlight.length > 0 && (
+        <section className="relative bg-cream-warm/40">
+          <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+            <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="olive" />
+            <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="terracotta" />
+            <FadeIn>
+              <SectionHeader
+                kicker={hi.umkmKicker}
+                title={hi.umkmTitle}
+                intro={hi.umkmIntro}
+                tone="terracotta"
+              />
+            </FadeIn>
+            <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {umkmSpotlight.map((u) => (
+                <StaggerItem key={u.slug}>
+                  <UmkmCard item={u} />
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+            <div className="mt-5 text-center">
+              <Link
+                href="/umkm"
+                className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-all hover:bg-cream-beige hover:scale-[1.02]"
+              >
+                Lihat semua UMKM →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      <MotifDivider />
+
+      <section className="relative bg-gold-50/30">
+        <KegiatanStats />
+      </section>
     </>
   )
 }

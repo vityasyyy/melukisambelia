@@ -83,6 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="id" className={`${gontserrat.variable} ${beautique.variable} ${beautiqueCondensed.variable}`}>
       <body className="font-gontserrat bg-page text-ink antialiased min-h-screen flex flex-col">
+        <div aria-hidden className="fixed top-0 inset-x-0 z-[1001] h-[3px] bg-gradient-to-r from-transparent via-gold-500 to-transparent opacity-80" />
         <a
           href="#main"
           className="skip-link sr-only rounded-lg bg-white px-4 py-2 text-sm font-semibold text-brown-900 shadow-lg focus:not-sr-only focus:z-50"
@@ -91,7 +92,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <ScrollProgress />
         <Nav />
-        <main id="main" className="flex-1 pt-[60px]">{children}</main>
+        <main id="main" className="flex-1 pt-[63px]">{children}</main>
         <Footer />
         <BackToTop />
         <Analytics />

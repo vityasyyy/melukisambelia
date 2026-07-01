@@ -45,38 +45,40 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
         intro={pageSettings.heroIntro ?? 'Posyandu, puskesmas, dan program stunting di Sambelia.'}
         tone="olive"
       />
-      <div className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
-        <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="olive" />
-        <MotifFloater motif="cincin_sambel" position="bottom-right" size="md" color="water" />
-        <StaggerContainer stagger={0.06} className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
-          <StaggerItem><StatCard label="Posyandu" value={String(stats.posyandu)} /></StaggerItem>
-          <StaggerItem><StatCard label="Puskesmas" value={String(stats.puskesmas)} /></StaggerItem>
-          <StaggerItem><StatCard label="Kader" value={String(stats.cadres)} /></StaggerItem>
-          <StaggerItem><StatCard label="Program Stunting" value={String(stats.stunting)} /></StaggerItem>
-        </StaggerContainer>
-        {items.length === 0 ? (
-          <EmptyState message={emptyMessage} />
-        ) : (
-          <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {items.map((k) => (
-              <StaggerItem key={k.slug}>
-                <DataCard
-                  image={k.cover}
-                  title={k.facilityName}
-                  chips={[
-                    { label: k.type, color: '#667F37' },
-                    { label: k.village, color: '#99BA57' },
-                    ...(k.stuntingProgram ? [{ label: 'Stunting', color: '#E3795C' }] : []),
-                  ]}
-                  desc={`Kader: ${k.cadresCount}`}
-                  onDetailClick={() => openModal(k)}
-                />
-              </StaggerItem>
-            ))}
+      <section className="relative bg-olive/5">
+        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="olive" />
+          <MotifFloater motif="cincin_sambel" position="bottom-right" size="md" color="water" />
+          <StaggerContainer stagger={0.06} className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
+            <StaggerItem><StatCard label="Posyandu" value={String(stats.posyandu)} /></StaggerItem>
+            <StaggerItem><StatCard label="Puskesmas" value={String(stats.puskesmas)} /></StaggerItem>
+            <StaggerItem><StatCard label="Kader" value={String(stats.cadres)} /></StaggerItem>
+            <StaggerItem><StatCard label="Program Stunting" value={String(stats.stunting)} /></StaggerItem>
           </StaggerContainer>
-        )}
-        <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
-      </div>
+          {items.length === 0 ? (
+            <EmptyState message={emptyMessage} />
+          ) : (
+            <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {items.map((k) => (
+                <StaggerItem key={k.slug}>
+                  <DataCard
+                    image={k.cover}
+                    title={k.facilityName}
+                    chips={[
+                      { label: k.type, color: '#667F37' },
+                      { label: k.village, color: '#99BA57' },
+                      ...(k.stuntingProgram ? [{ label: 'Stunting', color: '#E3795C' }] : []),
+                    ]}
+                    desc={`Kader: ${k.cadresCount}`}
+                    onDetailClick={() => openModal(k)}
+                  />
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          )}
+          <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
+        </div>
+      </section>
     </>
   )
 }

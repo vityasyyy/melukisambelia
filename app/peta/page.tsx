@@ -37,21 +37,23 @@ export default function PetaPage() {
         tone="water"
       />
 
-      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
-        <MotifFloater motif="cincin_sambel" position="top-right" size="md" color="water" />
-        <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" />
-        <Suspense fallback={<MapSkeleton />}>
-          <PetaClient
-            markers={markers.map((m) => ({ ...m, googleMapsUrl: m.googleMapsUrl }))}
-            gisDescription={gis.description}
-            gisFiles={manifest.files}
-            dataSectionTitle={petaPageData.dataSectionTitle ?? 'Lokasi Titik Data'}
-            gisSectionTitle={petaPageData.gisSectionTitle ?? 'Peta Tematik GIS'}
-            emptyDataMessage={empty.petaDataEmpty ?? 'Belum ada data lokasi. Tim akan menambahkan segera.'}
-            emptyGisMessage={empty.petaGisEmpty ?? 'Peta GIS belum tersedia.'}
-            mapEmbedUrl="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d63216.0!2d116.845!3d-8.355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sid!4v1"
-          />
-        </Suspense>
+      <section className="relative bg-page">
+        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <MotifFloater motif="cincin_sambel" position="top-right" size="md" color="water" />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" />
+          <Suspense fallback={<MapSkeleton />}>
+            <PetaClient
+              markers={markers.map((m) => ({ ...m, googleMapsUrl: m.googleMapsUrl }))}
+              gisDescription={gis.description}
+              gisFiles={manifest.files}
+              dataSectionTitle={petaPageData.dataSectionTitle ?? 'Lokasi Titik Data'}
+              gisSectionTitle={petaPageData.gisSectionTitle ?? 'Peta Tematik GIS'}
+              emptyDataMessage={empty.petaDataEmpty ?? 'Belum ada data lokasi. Tim akan menambahkan segera.'}
+              emptyGisMessage={empty.petaGisEmpty ?? 'Peta GIS belum tersedia.'}
+              mapEmbedUrl="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d63216.0!2d116.845!3d-8.355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sid!4v1"
+            />
+          </Suspense>
+        </div>
       </section>
     </>
   )

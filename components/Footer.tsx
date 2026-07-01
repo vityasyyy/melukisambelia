@@ -7,9 +7,9 @@ export function Footer() {
   const footer = getFooter()
   return (
     <footer className="relative mt-20 overflow-hidden bg-wine text-cream-light">
-      <div className="absolute inset-0 -z-10 section-watermark" aria-hidden />
+      <div aria-hidden className="batik-strip opacity-[0.08] invert" />
       <div
-        className="relative h-2 bg-gradient-to-r from-terracotta-500 via-gold-500 to-water-900"
+        className="relative h-1 bg-gradient-to-r from-terracotta-500 via-gold-500 to-water-900 opacity-80"
         aria-hidden
       />
       <div className="relative mx-auto max-w-content px-4 py-10 md:py-14">
@@ -26,7 +26,7 @@ export function Footer() {
             <p className="text-sm text-cream-light/75">{s.contact.address}</p>
           </div>
           <nav aria-label="Navigasi footer">
-            <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-goldSoft">Navigasi</h2>
+            <h2 className="mb-4 font-beautique-condensed text-xs font-semibold uppercase tracking-[0.2em] text-goldSoft">Navigasi</h2>
             <ul className="space-y-2 text-sm text-cream-light/85">
               <li><Link href="/tentang-sambelia" className="transition-colors hover:text-goldSoft">Tentang Sambelia</Link></li>
               <li><Link href="/kegiatan" className="transition-colors hover:text-goldSoft">Kegiatan</Link></li>
@@ -41,7 +41,7 @@ export function Footer() {
             </ul>
           </nav>
           <div>
-            <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-goldSoft">Sosial</h2>
+            <h2 className="mb-4 font-beautique-condensed text-xs font-semibold uppercase tracking-[0.2em] text-goldSoft">Sosial</h2>
             {s.socials.instagram && (
               <p>
                 <a

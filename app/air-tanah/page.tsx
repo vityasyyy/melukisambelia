@@ -23,7 +23,9 @@ export default function AirTanahPage() {
   return (
     <>
       <PageHero kicker={ps.heroKicker ?? 'AIR & TANAH'} title={ps.heroTitle ?? 'Tinggi Muka Airtanah'} intro={ps.heroIntro ?? 'Data TMA dan DHL dari survei lapangan di Kecamatan Sambelia.'} tone="water" />
-      <AirTanahClient meta={meta} data={data} />
+      <section className="relative bg-water-50/20">
+        <AirTanahClient meta={meta} data={data} />
+      </section>
     </>
   )
 }

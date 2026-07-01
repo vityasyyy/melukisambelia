@@ -40,31 +40,33 @@ export function PariwisataListClient({ items, pageSettings, emptyMessage }: { it
         intro={pageSettings.heroIntro ?? 'Destinasi unggulan di Desa Sugian dan Desa Labuhan Pandan.'}
         tone="water"
       />
-      <div className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
-        <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="water" />
-        <MotifFloater motif="cincin_sambel" position="bottom-left" size="md" color="terracotta" />
-        {items.length === 0 ? (
-          <EmptyState message={emptyMessage} />
-        ) : (
-          <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {items.map((p) => (
-              <StaggerItem key={p.slug}>
-                <DataCard
-                  image={p.cover}
-                  title={p.title}
-                  chips={[
-                    { label: p.category, color: '#14A8E1' },
-                    { label: p.village, color: '#99BA57' },
-                  ]}
-                  desc={p.shortDesc}
-                  onDetailClick={() => openModal(p)}
-                />
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        )}
-        <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
-      </div>
+      <section className="relative bg-cream-warm/30">
+        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="water" />
+          <MotifFloater motif="cincin_sambel" position="bottom-left" size="md" color="terracotta" />
+          {items.length === 0 ? (
+            <EmptyState message={emptyMessage} />
+          ) : (
+            <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {items.map((p) => (
+                <StaggerItem key={p.slug}>
+                  <DataCard
+                    image={p.cover}
+                    title={p.title}
+                    chips={[
+                      { label: p.category, color: '#14A8E1' },
+                      { label: p.village, color: '#99BA57' },
+                    ]}
+                    desc={p.shortDesc}
+                    onDetailClick={() => openModal(p)}
+                  />
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          )}
+          <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
+        </div>
+      </section>
     </>
   )
 }

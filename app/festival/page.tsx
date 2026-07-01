@@ -7,6 +7,7 @@ import { CountdownStrip } from '@/components/CountdownStrip'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { PageHero } from '@/components/PageHero'
 import { MotifFloater } from '@/components/MotifFloater'
+import { MotifDivider } from '@/components/MotifDivider'
 import { REVALIDATE_SECONDS } from '@/lib/config'
 
 export const revalidate = REVALIDATE_SECONDS
@@ -36,27 +37,32 @@ export default function FestivalPage() {
 
   return (
     <>
-      <PageHero kicker={ps.heroKicker ?? 'FESTIVAL'} title={ps.heroTitle ?? 'Festival Pesona Sambelia'} intro={ps.heroIntro ?? 'Peresean, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia.'} tone="gold" />
+      <PageHero kicker={ps.heroKicker ?? 'FESTIVAL'} title={ps.heroTitle ?? 'Festival Pesona Sambelia'} intro={ps.heroIntro ?? 'Pereseen, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia.'} tone="gold" />
 
-      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
-        <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="gold" />
-        {events.length > 0 ? <CountdownStrip festivals={festivalData} /> : <EmptyState message={empty.festival} />}
+      <section className="relative bg-terracotta-500/[0.06]">
+        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="gold" />
+          {events.length > 0 ? <CountdownStrip festivals={festivalData} /> : <EmptyState message={empty.festival} />}
+        </div>
       </section>
 
-      <section className="relative mx-auto max-w-content overflow-hidden px-4 py-8">
-        <MotifFloater motif="cincin_sambel" position="bottom-right" size="md" color="terracotta" />
-        <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="gold" />
-        {events.length === 0 ? (
-          <EmptyState message={empty.festival} />
-        ) : (
-          <StaggerContainer stagger={0.1}>
-            <StaggerItem>
-              <FestivalTimeline events={events} />
-            </StaggerItem>
-          </StaggerContainer>
-        )}
-      </section>
+      <MotifDivider />
 
+      <section className="relative bg-page">
+        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <MotifFloater motif="cincin_sambel" position="bottom-right" size="md" color="terracotta" />
+          <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="gold" />
+          {events.length === 0 ? (
+            <EmptyState message={empty.festival} />
+          ) : (
+            <StaggerContainer stagger={0.1}>
+              <StaggerItem>
+                <FestivalTimeline events={events} />
+              </StaggerItem>
+            </StaggerContainer>
+          )}
+        </div>
+      </section>
     </>
   )
 }
