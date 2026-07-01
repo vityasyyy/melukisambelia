@@ -105,7 +105,7 @@ export default function PariwisataDetailPage({ params }: { params: { slug: strin
           className="inline-flex items-center gap-2 rounded-full bg-water-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-water-700"
         >
           <MapPin className="h-4 w-4" />
-          Lihat di Peta
+          Lihat di Google Maps
         </a>
       </div>
 

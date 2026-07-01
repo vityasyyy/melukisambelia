@@ -85,10 +85,10 @@ export function Nav() {
   const isHome = pathname === '/'
 
   const navBg = scrolled
-    ? 'bg-brown-950/92 shadow-xl backdrop-blur-xl'
+    ? 'bg-brown-950/92 shadow-[0_4px_20px_-4px_rgba(116,45,27,0.35)] backdrop-blur-xl'
     : isHome
       ? 'bg-transparent'
-      : 'bg-brown-950/70 backdrop-blur-xl border-b border-gold-500/20'
+      : 'bg-brown-950/75 backdrop-blur-xl shadow-md border-b border-gold-500/20'
 
   const navRounded = scrolled ? 'rounded-2xl' : ''
   const navInset = scrolled ? 'left-4 right-4 top-4 sm:left-6 sm:right-6' : 'inset-x-0 top-0'

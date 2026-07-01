@@ -52,7 +52,7 @@ export function Lightbox({ images, initialIndex = 0, open, onOpenChange }: Light
       <DialogPrimitive.Portal>
         <DialogOverlay className="bg-black/90" />
         <DialogPrimitive.Content
-          className="group fixed inset-0 z-[1001] flex items-center justify-center focus:outline-none"
+          className="group fixed inset-0 z-[1101] flex items-center justify-center focus:outline-none"
           onPointerDownOutside={(e) => e.preventDefault()}
           onInteractOutside={(e) => e.preventDefault()}
         >

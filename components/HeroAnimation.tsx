@@ -72,9 +72,9 @@ export function HeroAnimation({
 
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 z-[2] w-[45vw] max-w-[500px] opacity-[0.08]"
+        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 z-[2] w-[35vw] max-w-[500px] opacity-[0.06]"
         initial={reduce ? undefined : { opacity: 0, x: 100 }}
-        animate={{ opacity: 0.08, x: 0 }}
+        animate={{ opacity: 0.06, x: 0 }}
         transition={{ duration: 2.5, ease: 'easeOut' }}
       >
         <Image
@@ -84,23 +84,6 @@ export function HeroAnimation({
           height={500}
           className="w-full h-auto"
           style={{ filter: 'sepia(0.6) hue-rotate(-10deg) saturate(2.5)' }}
-        />
-      </motion.div>
-
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-[2] flex items-center justify-center opacity-[0.03]"
-        initial={reduce ? undefined : { opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 0.03, scale: 1 }}
-        transition={{ duration: 2, ease: 'easeOut' }}
-      >
-        <Image
-          src="/images/design-system/cincin_sambel.svg"
-          alt=""
-          width={600}
-          height={600}
-          className="h-[50vh] w-auto"
-          style={{ filter: 'sepia(0.9) hue-rotate(-5deg) saturate(2)' }}
         />
       </motion.div>
 
@@ -136,9 +119,16 @@ export function HeroAnimation({
         </motion.div>
       </div>
 
-      <div aria-hidden className="relative z-10 mt-auto flex w-full justify-center pb-2">
-        <div className="h-8 w-[240px] opacity-[0.08] sm:w-[380px] md:w-[520px] batik-strip shimmer-slow" />
-      </div>
+      <a
+        href="#tentang"
+        className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center text-white/70 transition-colors hover:text-white"
+        aria-label="Gulir untuk menjelajah"
+      >
+        <span className="font-beautique-condensed text-[10px] font-semibold uppercase tracking-[0.2em]">Gulir untuk menjelajah</span>
+        <svg className="mt-1 h-4 w-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </a>
     </>
   )
 }

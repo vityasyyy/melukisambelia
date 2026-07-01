@@ -140,7 +140,6 @@ export default function Beranda() {
         <section className="relative bg-page">
           <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
             <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="water" />
-            <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="water" />
             <FadeIn>
               <SectionHeader
                 kicker={hi.wisataKicker}
@@ -181,11 +180,9 @@ export default function Beranda() {
       <MotifDivider />
 
       {festival.length > 0 && (
-        <section className="relative bg-gradient-to-b from-terracotta-500/[0.06] via-cream-warm/20 to-terracotta-500/[0.06]">
-          <div className="absolute inset-0 section-watermark" aria-hidden />
+        <section className="relative bg-terracotta-50/40">
           <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
             <MotifFloater motif="cincin_sambel" position="top-left" size="md" color="gold" />
-            <MotifFloater motif="bunga_sambel" position="bottom-right" size="sm" color="terracotta" />
             <FadeIn>
               <SectionHeader
                 kicker={hi.festivalKicker}
@@ -217,10 +214,8 @@ export default function Beranda() {
 
       {umkmSpotlight.length > 0 && (
         <section className="relative bg-cream-warm/40">
-          <div className="absolute inset-0 section-watermark" aria-hidden />
           <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
             <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="olive" />
-            <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="terracotta" />
             <FadeIn>
               <SectionHeader
                 kicker={hi.umkmKicker}
@@ -252,7 +247,6 @@ export default function Beranda() {
       <MotifDivider />
 
       <section className="relative bg-gold-50/30">
-        <div className="absolute inset-0 section-watermark" aria-hidden />
         <KegiatanStats />
       </section>
     </>

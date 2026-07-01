@@ -21,7 +21,7 @@ export function PariwisataListClient({ items, pageSettings, emptyMessage }: { it
       description: item.shortDesc,
       body: item.body,
       href: petaLink({ layer: 'pariwisata', lat: item.lat, lng: item.lng }),
-      linkLabel: 'Lihat di Peta →',
+      linkLabel: 'Lihat di Google Maps →',
       lat: item.lat,
       lng: item.lng,
       chips: [

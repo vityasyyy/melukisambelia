@@ -88,7 +88,7 @@ export function DetailModalClient({
       <DialogPrimitive.Portal>
         <DialogOverlay />
         <DialogPrimitive.Content
-          className="fixed z-[1001] inset-0 flex flex-col items-stretch sm:items-center sm:justify-center p-0 sm:p-4 focus:outline-none"
+          className="fixed z-[1101] inset-0 flex flex-col items-stretch sm:items-center sm:justify-center p-0 sm:p-4 focus:outline-none"
           onPointerDownOutside={(e) => {
             const target = e.target as HTMLElement
             if (target.closest('[data-lightbox-trigger]')) return
@@ -99,14 +99,14 @@ export function DetailModalClient({
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
-            className="relative mx-auto w-full max-w-lg rounded-t-2xl sm:rounded-2xl bg-white shadow-xl max-h-[85dvh] overflow-hidden mt-auto sm:mt-0 transition-transform"
+            className="relative mx-auto w-full max-w-lg rounded-t-2xl sm:rounded-2xl bg-white shadow-xl max-h-[90dvh] overflow-hidden mt-auto sm:mt-0 transition-transform"
           >
-            <DialogPrimitive.Close className="absolute right-2 top-2 z-[1002] flex h-11 w-11 items-center justify-center rounded-full bg-cream-light/90 backdrop-blur-sm text-brown-900 transition-colors hover:bg-cream-light" aria-label="Tutup dialog">
+            <DialogPrimitive.Close className="absolute right-2 top-2 z-[1102] flex h-11 w-11 items-center justify-center rounded-full bg-cream-light/90 backdrop-blur-sm text-brown-900 transition-colors hover:bg-cream-light" aria-label="Tutup dialog">
               <X className="h-5 w-5" />
               <span className="sr-only">Tutup</span>
             </DialogPrimitive.Close>
 
-            <div className="max-h-[85dvh] overflow-y-auto overflow-x-hidden">
+            <div className="overflow-y-auto overflow-x-hidden flex-1">
               {image ? (
                 <button
                   type="button"
@@ -160,7 +160,7 @@ export function DetailModalClient({
                        className="inline-flex items-center gap-2 rounded-full bg-water-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-water-700"
                      >
                        <MapPin className="h-4 w-4" />
-                       Lihat di Peta
+                        Lihat di Google Maps
                      </a>
                   </div>
                 )}
