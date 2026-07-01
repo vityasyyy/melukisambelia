@@ -97,7 +97,7 @@ export default function Beranda() {
           <div className="mt-5 text-center">
             <Link
               href="/tentang-sambelia"
-              className="inline-flex items-center gap-1.5 rounded-full border border-tan-700/30 px-5 py-2 text-sm font-beautique text-brown-900 transition-all hover:bg-cream-beige hover:border-terracotta-500/30 hover:scale-[1.02]"
+              className="inline-flex items-center gap-1.5 rounded-full bg-brown-900 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-brown-700 hover:scale-[1.02]"
             >
               Selengkapnya
               <span className="transition-transform group-hover:translate-x-0.5">→</span>
@@ -166,7 +166,7 @@ export default function Beranda() {
             <div className="mt-5 text-center">
               <Link
                 href="/pariwisata"
-                className="inline-flex items-center gap-1.5 rounded-full border border-tan-700/30 px-5 py-2 text-sm font-beautique text-brown-900 transition-all hover:bg-cream-beige hover:border-terracotta-500/30 hover:scale-[1.02]"
+                className="inline-flex items-center gap-1.5 rounded-full bg-brown-900 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-brown-700 hover:scale-[1.02]"
               >
                 Lihat semua wisata
                 <span className="transition-transform group-hover:translate-x-0.5">→</span>
@@ -199,7 +199,7 @@ export default function Beranda() {
             <div className="mt-5 text-center">
               <Link
                 href="/festival"
-                className="inline-flex items-center gap-1.5 rounded-full border border-tan-700/30 px-5 py-2 text-sm font-beautique text-brown-900 transition-all hover:bg-cream-beige hover:border-terracotta-500/30 hover:scale-[1.02]"
+                className="inline-flex items-center gap-1.5 rounded-full bg-brown-900 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-brown-700 hover:scale-[1.02]"
               >
                 Lihat semua festival
                 <span className="transition-transform group-hover:translate-x-0.5">→</span>
@@ -212,16 +212,16 @@ export default function Beranda() {
       <MotifDivider />
 
       {umkmSpotlight.length > 0 && (
-        <section className="relative bg-cream-warm/40">
+        <section className="relative bg-cream-beige">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(240,172,109,0.06),transparent_70%)]" aria-hidden />
           <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-            <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="olive" />
+            <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="gold" />
             <FadeIn>
               <SectionHeader
                 kicker={hi.umkmKicker}
                 title={hi.umkmTitle}
                 intro={hi.umkmIntro}
-                tone="terracotta"
+                tone="gold"
               />
             </FadeIn>
             <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -234,7 +234,7 @@ export default function Beranda() {
             <div className="mt-5 text-center">
               <Link
                 href="/umkm"
-                className="inline-flex items-center gap-1.5 rounded-full border border-tan-700/30 px-5 py-2 text-sm font-beautique text-brown-900 transition-all hover:bg-cream-beige hover:border-terracotta-500/30 hover:scale-[1.02]"
+                className="inline-flex items-center gap-1.5 rounded-full bg-brown-900 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-brown-700 hover:scale-[1.02]"
               >
                 Lihat semua UMKM
                 <span className="transition-transform group-hover:translate-x-0.5">→</span>

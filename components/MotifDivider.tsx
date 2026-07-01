@@ -24,9 +24,9 @@ export function MotifDivider({
         viewport={{ once: true, margin: '-20px' }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        <div aria-hidden className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-gold-500/25 to-transparent" />
+        <div aria-hidden className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-gold-500/15 to-transparent" />
         <div aria-hidden className="batik-divider" />
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-[3px] bg-gradient-to-r from-transparent via-gold-500/25 to-transparent" />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-[3px] bg-gradient-to-r from-transparent via-gold-500/15 to-transparent" />
       </motion.div>
     )
   }

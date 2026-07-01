@@ -91,7 +91,7 @@ export function Nav() {
         'fixed z-[1000] transition-all duration-500 ease-sambel',
         scrolled
           ? 'left-4 right-4 top-3 sm:left-6 sm:right-6 sm:top-4 rounded-2xl bg-brown-950 shadow-[0_8px_32px_-8px_rgba(15,8,5,0.6)]'
-          : 'left-0 right-0 top-0 bg-brown-950'
+          : 'left-0 right-0 top-0 bg-brown-950/60 backdrop-blur-md'
       )}
     >
       {scrolled && (
@@ -135,7 +135,7 @@ export function Nav() {
                   <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                 </button>
                 <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-focus-within:visible group-hover:opacity-100 group-focus-within:opacity-100 max-lg:left-0 max-lg:-translate-x-0">
-                  <ul className="min-w-[200px] rounded-xl shadow-2xl border border-gold-500/25 bg-brown-950/98 backdrop-blur-xl overflow-hidden">
+                  <ul className="min-w-[200px] rounded-xl shadow-2xl border border-gold-500/25 bg-brown-950 overflow-hidden">
                     {group.items.map((item) => (
                       <li key={item.href}>
                         <Link
@@ -170,14 +170,17 @@ export function Nav() {
       </nav>
 
       <Sheet open={open} onOpenChange={setOpen}>
-        <SheetContent side="right" className="border-l border-gold-500/20 bg-brown-950/95 backdrop-blur-xl text-cream-light/90 w-[85vw] max-w-sm p-0">
-          <SheetHeader className="border-b border-gold-500/15 px-6 py-4">
-            <SheetTitle className="font-beautique text-lg text-gold-soft">
-              Melukis Sambelia
+        <SheetContent side="right" className="border-l border-gold-500/20 bg-brown-950 text-cream-light w-[85vw] max-w-sm p-0">
+          <div aria-hidden className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: "url('/images/design-system/batik_sambel.svg')", backgroundSize: '1200px auto', filter: 'sepia(0.5) hue-rotate(-10deg) saturate(1.8)' }} />
+          <div aria-hidden className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-water-900 via-gold-bright to-terracotta-500 opacity-80" />
+          <SheetHeader className="relative border-b border-gold-500/15 px-6 py-5">
+            <SheetTitle className="flex items-center gap-3">
+              <Logo className="h-9 w-auto brightness-0 invert" />
+              <span className="font-beautique text-lg text-gold-soft">Melukis Sambelia</span>
             </SheetTitle>
           </SheetHeader>
-          <nav className="overflow-y-auto px-4 py-4 max-h-[70vh]">
-            <ul className="space-y-1">
+          <nav className="relative overflow-y-auto px-3 py-3 max-h-[65vh]">
+            <ul className="space-y-0.5">
               {NAV_TOP_LEVEL.map((l) => (
                 <li key={l.href}>
                   <SheetClose asChild>
@@ -185,10 +188,10 @@ export function Nav() {
                       href={l.href}
                       aria-current={isActive(l.href) ? 'page' : undefined}
                       className={cn(
-                        'flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-base font-medium transition-colors',
+                        'flex min-h-[44px] items-center rounded-xl px-4 py-2.5 text-base font-medium transition-all duration-200',
                         isActive(l.href)
-                          ? 'bg-gold-500/15 text-gold-soft'
-                          : 'text-cream-light/90 hover:bg-white/10 hover:text-white'
+                          ? 'bg-gold-500/15 text-gold-soft border-l-2 border-gold-500'
+                          : 'text-cream-light/85 hover:bg-white/[0.06] hover:text-white'
                       )}
                     >
                       {l.label}
@@ -203,19 +206,22 @@ export function Nav() {
                     <button
                       type="button"
                       aria-expanded={expanded}
-                      className="flex w-full min-h-[44px] items-center justify-between rounded-lg px-3 py-2.5 text-base font-medium text-cream-light/90 hover:bg-white/10 hover:text-white"
+                      className={cn(
+                        'flex w-full min-h-[44px] items-center justify-between rounded-xl px-4 py-2.5 text-base font-medium transition-all duration-200',
+                        expanded ? 'text-gold-soft bg-white/[0.04]' : 'text-cream-light/85 hover:bg-white/[0.06] hover:text-white'
+                      )}
                       onClick={() => setOpenGroup(expanded ? null : group.label)}
                     >
                       {group.label}
                       <ChevronDown
                         className={cn(
-                          'h-4 w-4 transition-transform',
+                          'h-4 w-4 transition-transform duration-200',
                           expanded && 'rotate-180'
                         )}
                       />
                     </button>
                     {expanded && (
-                      <ul className="ml-3 mt-1 space-y-1 border-l border-gold-500/20 pl-3">
+                      <ul className="ml-4 mt-0.5 space-y-0.5 border-l border-gold-500/25 pl-3 py-1">
                         {group.items.map((item) => (
                           <li key={item.href}>
                             <SheetClose asChild>
@@ -223,10 +229,10 @@ export function Nav() {
                                 href={item.href}
                                 aria-current={isActive(item.href) ? 'page' : undefined}
                                 className={cn(
-                                  'flex min-h-[40px] items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                                  'flex min-h-[40px] items-center rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
                                   isActive(item.href)
-                                    ? 'bg-gold-500/15 text-gold-soft'
-                                    : 'text-cream-light/80 hover:bg-white/10 hover:text-white'
+                                    ? 'text-gold-soft bg-gold-500/10'
+                                    : 'text-cream-light/75 hover:bg-white/[0.06] hover:text-white'
                                 )}
                               >
                                 {item.label}
@@ -241,8 +247,8 @@ export function Nav() {
               })}
             </ul>
           </nav>
-          <div className="border-t border-gold-500/15 px-6 py-4">
-            <p className="font-beautique-condensed text-[10px] tracking-[0.2em] uppercase text-gold-soft/60">KKN-PPM UGM &middot; Sambelia</p>
+          <div className="relative border-t border-gold-500/15 px-6 py-4">
+            <p className="font-beautique-condensed text-[10px] tracking-[0.2em] uppercase text-gold-soft/50">KKN-PPM UGM &middot; Sambelia</p>
           </div>
         </SheetContent>
       </Sheet>
