@@ -23,7 +23,7 @@ export function KegiatanStats() {
             <Link
               key={c.slug}
               href={`/kegiatan/${c.slug}`}
-              className="group overflow-hidden rounded-2xl border border-tan-700/20 border-l-[3px] border-l-gold-500 bg-cream-beige/40 shadow-[0_6px_24px_-8px_rgba(116,45,27,0.22)] transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_-12px_rgba(227,121,92,0.3)] hover:border-terracotta-500/30"
+              className="group overflow-hidden rounded-2xl border-l-[3px] border-l-gold-500 bg-white/70 backdrop-blur-sm shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover hover:bg-white/90"
             >
               <div className="relative aspect-video overflow-hidden">
                 <Image src={c.cover} alt={c.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
@@ -41,10 +41,10 @@ export function KegiatanStats() {
         <p className="mt-6 text-center text-ink/70">{empty.kegiatan}</p>
       )}
       <div className="mt-6 flex flex-wrap justify-center gap-3">
-        <Link href="/kegiatan" className="inline-flex items-center gap-1.5 rounded-full border border-tan-700/30 px-5 py-2.5 text-sm font-beautique text-brown-900 transition-colors hover:bg-cream-beige">
+        <Link href="/kegiatan" className="inline-flex items-center justify-center gap-1.5 rounded-full border-2 border-brown-950/20 bg-brown-950/5 px-5 py-2.5 text-sm font-beautique text-brown-900 transition-all hover:bg-brown-950/10 hover:border-brown-950/30 hover:scale-[1.02]">
           Lihat semua kegiatan →
         </Link>
-        <Link href="/tentang-sambelia" className="inline-flex items-center gap-1.5 rounded-full border border-water-900/30 bg-water-900 px-5 py-2.5 text-sm font-beautique text-cream-light transition-colors hover:bg-water-700">
+        <Link href="/tentang-sambelia" className="inline-flex items-center justify-center gap-1.5 rounded-full bg-brown-950 px-5 py-2.5 text-sm font-beautique text-white shadow-lg transition-all hover:bg-brown-800 hover:shadow-xl hover:scale-[1.02]">
           Tentang Sambelia →
         </Link>
       </div>

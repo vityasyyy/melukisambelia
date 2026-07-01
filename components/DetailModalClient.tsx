@@ -112,9 +112,9 @@ export function DetailModalClient({
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
-              className="relative rounded-[14px] bg-page overflow-hidden max-h-[90dvh] transition-transform ring-1 ring-tan-700/15"
+              className="relative rounded-[14px] bg-page/95 backdrop-blur-sm overflow-hidden max-h-[90dvh] transition-transform ring-1 ring-tan-700/15"
             >
-              <DialogPrimitive.Close className="absolute right-3 top-3 z-[1102] flex h-10 w-10 items-center justify-center rounded-full bg-brown-950/40 text-white ring-1 ring-white/15 backdrop-blur-md transition-colors hover:bg-brown-950/60" aria-label="Tutup dialog">
+              <DialogPrimitive.Close className="absolute right-3 top-3 z-[1102] flex h-10 w-10 items-center justify-center rounded-full bg-brown-950/40 text-white ring-1 ring-white/15 backdrop-blur-md transition-all hover:bg-brown-950/60 hover:scale-105" aria-label="Tutup dialog">
                 <X className="h-4 w-4" />
                 <span className="sr-only">Tutup</span>
               </DialogPrimitive.Close>
@@ -163,7 +163,7 @@ export function DetailModalClient({
                          href={mapsLink}
                          target="_blank"
                          rel="noopener noreferrer"
-                         className="inline-flex items-center gap-2 rounded-full bg-water-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-water-700"
+                          className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-brown-950 shadow-lg transition-all hover:bg-cream-warm hover:shadow-xl hover:scale-[1.02]"
                        >
                          <MapPin className="h-4 w-4" />
                           Lihat di Google Maps
@@ -178,7 +178,7 @@ export function DetailModalClient({
                     <div className="flex justify-end">
                       <Link
                         href={href}
-                        className="rounded-full bg-terracotta-500 px-5 py-2 text-sm font-medium text-page transition-colors hover:bg-wine"
+                         className="rounded-full border-2 border-terracotta-500/50 bg-terracotta-500/10 backdrop-blur-sm px-5 py-2.5 text-sm font-semibold text-terracotta-500 transition-all hover:bg-terracotta-500/20 hover:border-terracotta-500/70 hover:scale-[1.02]"
                       >
                         {linkLabel ?? 'Lihat halaman lengkap →'}
                       </Link>

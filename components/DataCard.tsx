@@ -40,7 +40,7 @@ export function DataCard({
   )
 
   return (
-    <div className="group relative h-full flex flex-col rounded-2xl border border-tan-700/15 border-l-[3px] bg-card overflow-hidden shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover hover:border-terracotta-500/25" style={{ borderLeftColor: accent }}>
+    <div className="group relative h-full flex flex-col rounded-2xl border-l-[3px] bg-white/80 backdrop-blur-sm overflow-hidden shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover hover:bg-white" style={{ borderLeftColor: accent }}>
       <div aria-hidden className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-white/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       {onDetailClick ? (
         <button type="button" onClick={onDetailClick} className="block min-w-0 h-full w-full text-left">

@@ -4,7 +4,7 @@ import type { Umkm } from '@/lib/schemas'
 
 export function UmkmCard({ item, onDetailClick }: { item: Umkm & { slug: string }; onDetailClick?: () => void }) {
   return (
-    <div className="group relative h-full flex flex-col overflow-hidden rounded-2xl border border-tan-700/15 border-l-[3px] border-l-terracotta-500 bg-card shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover hover:border-terracotta-500/25">
+    <div className="group relative h-full flex flex-col overflow-hidden rounded-2xl border-l-[3px] border-l-terracotta-500 bg-white/80 backdrop-blur-sm shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover hover:bg-white">
       <div aria-hidden className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-white/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <button type="button" onClick={onDetailClick} className="flex min-w-0 w-full flex-1 flex-col text-left overflow-hidden rounded-2xl">
         <div className="relative aspect-video overflow-hidden rounded-t-2xl">

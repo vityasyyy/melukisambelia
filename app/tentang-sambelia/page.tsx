@@ -60,7 +60,7 @@ export default function TentangSambeliaPage() {
               </StaggerItem>
             ))}
           </StaggerContainer>
-          <div className="group mt-6 rounded-2xl border border-tan-700/15 border-l-[3px] border-l-green-500 bg-cream-beige/40 p-5 shadow-terracotta">
+          <div className="group mt-6 rounded-2xl border-l-[3px] border-l-green-500 bg-white/70 backdrop-blur-sm p-5 shadow-terracotta hover:bg-white/90 transition-all duration-300">
             <h3 className="mb-2 font-beautique text-lg text-brown-900">Letak Geografis</h3>
             <p className="text-sm leading-relaxed text-ink/70">
               {tentang.geographyProse}
@@ -89,7 +89,7 @@ export default function TentangSambeliaPage() {
           <div className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-4 -mx-4 px-4">
             {desa.map((d, i) => (
               <div key={d.slug} className="snap-center shrink-0 w-[80vw] sm:w-[420px]">
-                <div className="group relative overflow-hidden rounded-2xl border border-tan-700/15 border-l-[3px] border-l-green-500 bg-card shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover hover:border-terracotta-500/25 h-full">
+                <div className="group relative overflow-hidden rounded-2xl border-l-[3px] border-l-green-500 bg-white/70 backdrop-blur-sm shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover hover:bg-white/90 h-full">
                   <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl">
                     <Image
                       src={d.image}
@@ -131,7 +131,7 @@ export default function TentangSambeliaPage() {
           <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2">
             {tentang.potensiDesa.map((p) => (
               <StaggerItem key={p.title}>
-                <div className="group h-full rounded-2xl border border-tan-700/15 border-l-[3px] border-l-terracotta-500 bg-cream-warm/30 p-6 shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover hover:border-terracotta-500/25">
+                 <div className="group h-full rounded-2xl border-l-[3px] border-l-terracotta-500 bg-white/70 backdrop-blur-sm p-6 shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover hover:bg-white/90">
                   <div aria-hidden className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-white/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <h3 className="font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{p.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink/70">

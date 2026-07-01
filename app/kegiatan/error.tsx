@@ -11,13 +11,13 @@ export default function KegiatanError(props: { error: Error & { digest?: string 
       <div className="mt-6 flex gap-3">
         <button
           onClick={props.reset}
-          className="rounded-full bg-terracotta-900 px-6 py-3 font-medium text-page transition-colors hover:bg-terracotta-700"
+          className="rounded-full bg-brown-950 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:bg-brown-800 hover:shadow-xl hover:scale-[1.02]"
         >
           Coba Lagi
         </button>
         <Link
           href="/kegiatan"
-          className="rounded-full border border-tan-700/30 px-6 py-3 font-medium text-brown-900 transition-colors hover:bg-cream-beige"
+          className="rounded-full border-2 border-brown-950/20 bg-brown-950/5 px-6 py-3 font-semibold text-brown-900 transition-all hover:bg-brown-950/10 hover:border-brown-950/30 hover:scale-[1.02]"
         >
           Kembali ke Kegiatan
         </Link>

@@ -91,7 +91,7 @@ export function Nav() {
         'fixed z-[1000] transition-all duration-500 ease-sambel',
         scrolled
           ? 'left-4 right-4 top-3 sm:left-6 sm:right-6 sm:top-4 rounded-2xl bg-brown-950 shadow-[0_8px_32px_-8px_rgba(15,8,5,0.6)]'
-          : 'left-0 right-0 top-0 bg-brown-950/60 backdrop-blur-md'
+          : 'left-0 right-0 top-0 bg-transparent'
       )}
     >
       {scrolled && (
@@ -135,7 +135,7 @@ export function Nav() {
                   <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                 </button>
                 <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-focus-within:visible group-hover:opacity-100 group-focus-within:opacity-100 max-lg:left-0 max-lg:-translate-x-0">
-                  <ul className="min-w-[200px] rounded-xl shadow-2xl border border-gold-500/25 bg-brown-950 overflow-hidden">
+                  <ul className="min-w-[200px] rounded-xl shadow-2xl border border-gold-500/25 bg-brown-950/90 backdrop-blur-xl overflow-hidden">
                     {group.items.map((item) => (
                       <li key={item.href}>
                         <Link

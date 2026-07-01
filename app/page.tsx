@@ -97,10 +97,9 @@ export default function Beranda() {
           <div className="mt-5 text-center">
             <Link
               href="/tentang-sambelia"
-              className="inline-flex items-center gap-1.5 rounded-full bg-brown-900 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-brown-700 hover:scale-[1.02]"
+              className="inline-flex items-center justify-center gap-1.5 rounded-full bg-brown-950 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:bg-brown-800 hover:shadow-xl hover:scale-[1.02] min-h-[44px]"
             >
-              Selengkapnya
-              <span className="transition-transform group-hover:translate-x-0.5">→</span>
+              Selengkapnya →
             </Link>
           </div>
         </div>
@@ -119,7 +118,7 @@ export default function Beranda() {
             {previews.map((p, i) => (
               <div key={p.href} className="snap-center shrink-0 w-[80vw] sm:w-[420px]">
                 <a href={p.href} className="group block h-full">
-                  <div className="relative overflow-hidden rounded-2xl border border-tan-700/15 border-l-[3px] bg-card shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover hover:border-terracotta-500/25 h-full" style={{ borderLeftColor: p.accent }}>
+                  <div className="relative overflow-hidden rounded-2xl border-l-[3px] bg-white/70 backdrop-blur-sm shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover hover:bg-white/90 h-full" style={{ borderLeftColor: p.accent }}>
                     <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl">
                       <Image
                         src={p.image}
@@ -135,7 +134,7 @@ export default function Beranda() {
                       <h3 className="absolute bottom-3 left-4 right-4 z-10 font-beautique text-2xl text-white group-hover:text-gold-bright transition-colors" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}>{p.title}</h3>
                     </div>
                     {p.desc && (
-                      <div className="p-4">
+                      <div className="px-4 pt-3 pb-2">
                         <p className="text-sm leading-relaxed text-ink/70 line-clamp-2">{p.desc}</p>
                       </div>
                     )}
@@ -164,13 +163,12 @@ export default function Beranda() {
             </FadeIn>
             <WisataUnggulanClient items={wisataUnggulan} />
             <div className="mt-5 text-center">
-              <Link
-                href="/pariwisata"
-                className="inline-flex items-center gap-1.5 rounded-full bg-brown-900 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-brown-700 hover:scale-[1.02]"
-              >
-                Lihat semua wisata
-                <span className="transition-transform group-hover:translate-x-0.5">→</span>
-              </Link>
+                <Link
+                  href="/pariwisata"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-full bg-brown-950 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:bg-brown-800 hover:shadow-xl hover:scale-[1.02] min-h-[44px]"
+                >
+                  Lihat semua wisata →
+                </Link>
             </div>
           </div>
         </section>
@@ -197,13 +195,12 @@ export default function Beranda() {
               <FestivalTimeline events={festival.slice(0, 2)} />
             </FadeIn>
             <div className="mt-5 text-center">
-              <Link
-                href="/festival"
-                className="inline-flex items-center gap-1.5 rounded-full bg-brown-900 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-brown-700 hover:scale-[1.02]"
-              >
-                Lihat semua festival
-                <span className="transition-transform group-hover:translate-x-0.5">→</span>
-              </Link>
+                <Link
+                  href="/festival"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-full bg-brown-950 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:bg-brown-800 hover:shadow-xl hover:scale-[1.02] min-h-[44px]"
+                >
+                  Lihat semua festival →
+                </Link>
             </div>
           </div>
         </section>
@@ -234,10 +231,9 @@ export default function Beranda() {
             <div className="mt-5 text-center">
               <Link
                 href="/umkm"
-                className="inline-flex items-center gap-1.5 rounded-full bg-brown-900 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-brown-700 hover:scale-[1.02]"
+                className="inline-flex items-center justify-center gap-1.5 rounded-full bg-brown-950 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:bg-brown-800 hover:shadow-xl hover:scale-[1.02] min-h-[44px]"
               >
-                Lihat semua UMKM
-                <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                Lihat semua UMKM →
               </Link>
             </div>
           </div>
