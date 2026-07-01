@@ -110,7 +110,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        gontserrat: ["var(--font-gontserrat)", "sans-serif"],
+        dmSans: ["var(--font-dm-sans)", "sans-serif"],
         beautique: ["var(--font-beautique)", "sans-serif"],
         "beautique-condensed": ["var(--font-beautique-condensed)", "sans-serif"],
       },
@@ -135,19 +135,6 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        colorSweep: {
-          "0%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-          "100%": { backgroundPosition: "0% 50%" },
-        },
-        motifPulse: {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.75" },
-        },
-        motifSpin: {
-          from: { transform: "rotate(0deg)" },
-          to: { transform: "rotate(360deg)" },
-        },
       },
       transitionTimingFunction: {
         'sambel': 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
@@ -159,9 +146,6 @@ const config: Config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "color-sweep": "colorSweep 4s ease-in-out infinite",
-        "motif-pulse": "motifPulse 8s ease-in-out infinite",
-        "motif-spin": "motifSpin 60s linear infinite",
       },
     },
   },

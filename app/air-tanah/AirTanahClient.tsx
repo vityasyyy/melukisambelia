@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { StatCard } from '@/components/StatCard'
 import { FadeIn } from '@/components/FadeIn'
-import { MotifFloater } from '@/components/MotifFloater'
+
 import { petaLink } from '@/lib/links'
 import { AirTanahChart } from './AirTanahChart'
 import type { AirTanah } from '@/lib/schemas'
@@ -20,13 +20,12 @@ export function AirTanahClient({
 
   return (
     <div className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
-      <MotifFloater motif="cincin_sambel" position="top-left" size="md" color="water" />
-      <MotifFloater motif="bunga_sambel" position="bottom-right" size="sm" color="gold" />
+
 
       {data === null ? (
         <FadeIn>
-          <div className="rounded-2xl border border-tan-700/20 bg-cream-beige/40 p-6 shadow-terracotta text-center">
-            <p className="text-ink/70">Data TMA dari cluster air tanah akan diunggah.</p>
+          <div className="rounded-2xl border border-tan-700/12 bg-white p-6 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] text-center">
+            <p className="text-ink/60">Data TMA dari cluster air tanah akan diunggah.</p>
             <Link
               href={petaLink({ tab: 'air' })}
               className="mt-3 inline-block text-sm font-medium text-water-900 hover:text-water-500"
@@ -47,10 +46,10 @@ export function AirTanahClient({
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <div className="rounded-2xl border border-tan-700/20 bg-cream-beige/40 p-4 shadow-terracotta overflow-x-auto">
+            <div className="rounded-2xl border border-tan-700/12 bg-white p-4 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-tan-700/20 text-left text-xs uppercase tracking-widest text-ink/70">
+                  <tr className="border-b border-tan-700/20 text-left text-xs uppercase tracking-widest text-ink/60">
                     <th className="py-3 pr-4">Lokasi</th>
                     <th className="py-3 pr-4">Tanggal</th>
                     <th className="py-3 pr-4 text-right">TMA (m)</th>
@@ -61,7 +60,7 @@ export function AirTanahClient({
                   {data.measurements.map((m, i) => (
                     <tr key={i} className="border-b border-tan-700/10 last:border-0">
                       <td className="py-2.5 pr-4 font-medium text-brown-900">{m.location}</td>
-                      <td className="py-2.5 pr-4 text-ink/70">{m.date}</td>
+                      <td className="py-2.5 pr-4 text-ink/60">{m.date}</td>
                       <td className="py-2.5 pr-4 text-right tabular-nums">{m.tmaMeters}</td>
                       <td className="py-2.5 text-right tabular-nums">{m.dhlMsiemens}</td>
                     </tr>
@@ -72,7 +71,7 @@ export function AirTanahClient({
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <div className="mt-8 rounded-2xl border border-tan-700/20 bg-cream-beige/40 p-4 shadow-terracotta">
+            <div className="mt-8 rounded-2xl border border-tan-700/12 bg-white p-4 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)]">
               <h2 className="mb-4 font-beautique text-lg text-brown-900">Grafik TMA per Lokasi</h2>
               <AirTanahChart measurements={data.measurements} />
             </div>

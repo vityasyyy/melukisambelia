@@ -128,13 +128,22 @@
   body {
     background-color: var(--page-bg);
     color: var(--ink);
-    font-family: var(--font-gontserrat), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
     overflow-wrap: break-word;
     word-break: break-word;
   }
 
   .font-display {
-    font-family: var(--font-beautique), var(--font-gontserrat), sans-serif;
+    font-family: var(--font-beautique), var(--font-dm-sans), sans-serif;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   /* Visible keyboard focus indicator for all interactive elements */
@@ -172,17 +181,14 @@
 
   .text-gradient-festival {
     background: linear-gradient(90deg, #F9E11F 0%, #FEFDD7 25%, #F0AC6D 50%, #E3795C 75%, #F9E11F 100%);
-    background-size: 300% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: #F0AC6D;
-    animation: colorSweep 4s ease-in-out infinite;
   }
 
   .shimmer-slow {
     background-size: 200% 100%;
-    animation: shimmer 6s ease-in-out infinite;
   }
 
   .hero-vignette {
@@ -195,7 +201,6 @@
     background-attachment: scroll;
     opacity: 0.08;
     filter: sepia(0.5) hue-rotate(-10deg) saturate(1.8);
-    animation: batik-drift 90s linear infinite;
   }
 
   .batik-strip {
@@ -216,33 +221,11 @@
     background-position: center;
     opacity: 0.14;
     filter: sepia(0.6) hue-rotate(-10deg) saturate(2);
-    animation: batik-sweep 30s linear infinite;
   }
 
   .brand-accent-line {
     height: 3px;
     background: linear-gradient(90deg, transparent, var(--gold-500), transparent);
-  }
-
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-
-  @keyframes batik-sweep {
-    0% { background-position: 0 center; }
-    100% { background-position: 800px center; }
-  }
-
-  @keyframes batik-drift {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 1200px 600px; }
-  }
-
-  .img-shimmer {
-    background: linear-gradient(90deg, var(--cream-beige) 25%, var(--cream-warm) 50%, var(--cream-beige) 75%);
-    background-size: 200% 100%;
-    animation: shimmer 2s ease-in-out infinite;
   }
 
   .scrollbar-none {
@@ -251,64 +234,6 @@
   }
   .scrollbar-none::-webkit-scrollbar {
     display: none;
-  }
-
-  .motif-glow {
-    filter: brightness(1.15);
-  }
-
-  .motif-rotate {
-    animation: motif-rotate 60s linear infinite;
-  }
-
-  .motif-rotate-reverse {
-    animation: motif-rotate-reverse 55s linear infinite;
-  }
-
-  .motif-float {
-    animation: motif-float 6s ease-in-out infinite;
-  }
-
-  .motif-float-slow {
-    animation: motif-float-slow 7.5s ease-in-out infinite;
-  }
-
-  .motif-pulse {
-    animation: motif-pulse 8s ease-in-out infinite;
-  }
-
-  .motif-entrance {
-    animation: motif-entrance 1.2s ease-out both;
-  }
-
-  @keyframes motif-rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  @keyframes motif-rotate-reverse {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(-360deg); }
-  }
-
-  @keyframes motif-float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-14px); }
-  }
-
-  @keyframes motif-float-slow {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-18px); }
-  }
-
-  @keyframes motif-pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.75; }
-  }
-
-  @keyframes motif-entrance {
-    from { opacity: 0; transform: scale(0.85) translateY(12px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
   }
 
   .chip {
@@ -329,14 +254,4 @@
   .chip-olive { background-color: color-mix(in srgb, var(--olive) 10%, transparent); color: var(--olive-dark); border-color: color-mix(in srgb, var(--olive) 25%, transparent); }
   .chip-brown { background-color: color-mix(in srgb, var(--brown-700) 10%, transparent); color: var(--brown-900); border-color: color-mix(in srgb, var(--brown-700) 25%, transparent); }
 
-  @keyframes gradient-sweep {
-    0% { background-position: -200% center; }
-    100% { background-position: 200% center; }
-  }
-
-  @keyframes colorSweep {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
 }

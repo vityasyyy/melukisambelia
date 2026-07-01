@@ -17,21 +17,21 @@ export function HeroAnimation({
   const container = {
     hidden: {},
     visible: {
-      transition: { staggerChildren: reduce ? 0 : 0.12, delayChildren: reduce ? 0 : 0.2 },
+      transition: { staggerChildren: reduce ? 0 : 0.1, delayChildren: reduce ? 0 : 0.15 },
     },
   }
 
   const item = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' as const } },
+    hidden: { opacity: 0, y: 12 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: 'easeOut' as const } },
   }
 
   return (
     <>
       <motion.div
-        initial={reduce ? undefined : { scale: 1.03, opacity: 0 }}
+        initial={reduce ? undefined : { scale: 1.01, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.4, ease: 'easeOut' }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
         className="absolute inset-0"
       >
         <Image
@@ -66,63 +66,6 @@ export function HeroAnimation({
         style={{ boxShadow: 'inset 0 -100px 140px -30px rgba(15,8,5,0.95)' }}
       />
 
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 z-[2] w-[50vw] sm:w-[35vw] max-w-[500px] motif-entrance"
-      >
-        <div className="motif-glow motif-rotate" style={{ animationDuration: '60s' }}>
-          <Image
-            src="/images/design-system/cincin_sambel.svg"
-            alt=""
-            width={500}
-            height={500}
-            className="w-full h-auto"
-            style={{ filter: 'sepia(0.8) hue-rotate(-15deg) saturate(3)', opacity: 0.42 }}
-            loading="lazy"
-          />
-        </div>
-      </div>
-
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-[4vw] top-[18vh] sm:top-[20vh] z-[2] w-[22vw] sm:w-[14vw] max-w-[180px] motif-entrance"
-        style={{ animationDelay: '0.3s' }}
-      >
-        <div className="motif-glow motif-rotate-reverse" style={{ animationDuration: '50s' }}>
-          <div className="motif-float">
-            <Image
-              src="/images/design-system/bunga_sambel.svg"
-              alt=""
-              width={180}
-              height={180}
-              className="w-full h-auto"
-              style={{ filter: 'sepia(0.9) hue-rotate(-5deg) saturate(2.5)', opacity: 0.38 }}
-              loading="lazy"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-[6vw] bottom-[15vh] sm:bottom-[18vh] z-[2] w-[18vw] sm:w-[11vw] max-w-[140px] motif-entrance"
-        style={{ animationDelay: '0.7s' }}
-      >
-        <div className="motif-glow motif-rotate" style={{ animationDuration: '55s' }}>
-          <div className="motif-float-slow">
-            <Image
-              src="/images/design-system/bunga_sambel.svg"
-              alt=""
-              width={140}
-              height={140}
-              className="w-full h-auto"
-              style={{ filter: 'sepia(0.7) hue-rotate(170deg) saturate(3)', opacity: 0.35 }}
-              loading="lazy"
-            />
-          </div>
-        </div>
-      </div>
-
       <div className="relative z-10 flex w-full max-w-4xl flex-col items-center justify-center px-4 sm:px-6">
         <motion.div variants={container} initial="hidden" animate="visible" className="flex flex-col items-center">
           <motion.h1
@@ -133,7 +76,7 @@ export function HeroAnimation({
             <span className="text-white">Melukis</span>{' '}
             <span className="text-gradient-festival">Sambelia</span>
           </motion.h1>
-          <motion.p variants={item} className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg md:text-xl" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.6)' }}>
+          <motion.p variants={item} className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg md:text-xl" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.6)' }}>
             {tagline}
           </motion.p>
           <motion.div variants={item} className="mt-8 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4">

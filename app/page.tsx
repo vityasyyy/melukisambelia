@@ -13,7 +13,7 @@ import { CountdownStrip } from '@/components/CountdownStrip'
 import { FestivalTimeline } from '@/components/FestivalTimeline'
 import { UmkmCard } from '@/components/UmkmCard'
 import { WisataUnggulanClient } from '@/components/WisataUnggulanClient'
-import { MotifFloater } from '@/components/MotifFloater'
+
 import { MotifDivider } from '@/components/MotifDivider'
 import Link from 'next/link'
 
@@ -77,15 +77,16 @@ export default function Beranda() {
         <HeroAnimation src={s.heroImage} tagline={s.heroTagline} />
       </section>
 
-      <section id="tentang" className="relative z-10 scroll-mt-16 overflow-hidden bg-page">
+      <section id="tentang" aria-labelledby="tentang-heading" className="relative z-10 scroll-mt-16 overflow-hidden bg-page">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="gold" />
+
           <FadeIn>
             <SectionHeader
               kicker={hi.aboutKicker || '01 — TENTANG'}
               title={hi.aboutTitle || 'Tentang Sambelia'}
               intro={hi.aboutIntro || 'Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan.'}
               tone="terracotta"
+              headingId="tentang-heading"
             />
           </FadeIn>
           <StaggerContainer stagger={0.08} className="grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -107,18 +108,18 @@ export default function Beranda() {
 
       <MotifDivider />
 
-      <section className="relative bg-cream-beige">
+      <section aria-labelledby="jejaki-heading" className="relative bg-cream-beige">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(240,172,109,0.06),transparent_70%)]" aria-hidden />
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="terracotta" />
+
           <FadeIn>
-            <SectionHeader kicker={hi.jejakiKicker} title={hi.jejakiTitle} tone="gold" />
+            <SectionHeader kicker={hi.jejakiKicker} title={hi.jejakiTitle} tone="gold" headingId="jejaki-heading" />
           </FadeIn>
           <div className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-4 -mx-4 px-4">
             {previews.map((p, i) => (
               <div key={p.href} className="snap-center shrink-0 w-[80vw] sm:w-[420px]">
                 <a href={p.href} className="group block h-full">
-                  <div className="relative overflow-hidden rounded-2xl border-l-[3px] bg-white/70 backdrop-blur-sm shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover hover:bg-white/90 h-full" style={{ borderLeftColor: p.accent }}>
+                  <div className="relative overflow-hidden rounded-2xl border-l-[3px] bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)] h-full" style={{ borderLeftColor: p.accent }}>
                     <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl">
                       <Image
                         src={p.image}
@@ -127,15 +128,13 @@ export default function Beranda() {
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width: 640px) 80vw, 420px"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-brown-950/40 via-transparent to-transparent" />
-                      <div aria-hidden className="absolute top-3 left-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-brown-950/60 font-beautique-condensed text-sm font-bold text-gold-bright ring-1 ring-white/15 backdrop-blur-sm">
-                        {String(i + 1).padStart(2, '0')}
-                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-brown-950/30 via-transparent to-transparent" />
                       <h3 className="absolute bottom-3 left-4 right-4 z-10 font-beautique text-2xl text-white group-hover:text-gold-bright transition-colors" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}>{p.title}</h3>
                     </div>
                     {p.desc && (
-                      <div className="px-4 pt-3 pb-2">
-                        <p className="text-sm leading-relaxed text-ink/70 line-clamp-2">{p.desc}</p>
+                      <div className="px-5 pt-3 pb-4">
+                        <span className="font-beautique-condensed text-[10px] tracking-[0.2em] uppercase text-ink/40">{String(i + 1).padStart(2, '0')}</span>
+                        <p className="mt-1 text-sm leading-relaxed text-ink/60 line-clamp-2">{p.desc}</p>
                       </div>
                     )}
                   </div>
@@ -150,15 +149,16 @@ export default function Beranda() {
       <MotifDivider />
 
       {wisataUnggulan.length > 0 && (
-        <section className="relative bg-page">
+        <section aria-labelledby="wisata-heading" className="relative bg-page">
           <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-            <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="water" />
+
             <FadeIn>
               <SectionHeader
                 kicker={hi.wisataKicker}
                 title={hi.wisataTitle}
                 intro={hi.wisataIntro}
                 tone="water"
+                headingId="wisata-heading"
               />
             </FadeIn>
             <WisataUnggulanClient items={wisataUnggulan} />
@@ -177,15 +177,16 @@ export default function Beranda() {
       <MotifDivider />
 
       {festival.length > 0 && (
-        <section className="relative bg-terracotta-500/[0.08]">
+        <section aria-labelledby="festival-heading" className="relative bg-terracotta-500/[0.08]">
           <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-            <MotifFloater motif="cincin_sambel" position="top-left" size="md" color="gold" />
+
             <FadeIn>
               <SectionHeader
                 kicker={hi.festivalKicker}
                 title={hi.festivalTitle}
                 intro={hi.festivalIntro}
                 tone="gold"
+                headingId="festival-heading"
               />
             </FadeIn>
             <FadeIn>
@@ -209,16 +210,17 @@ export default function Beranda() {
       <MotifDivider />
 
       {umkmSpotlight.length > 0 && (
-        <section className="relative bg-cream-beige">
+        <section aria-labelledby="umkm-heading" className="relative bg-cream-beige">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(240,172,109,0.06),transparent_70%)]" aria-hidden />
           <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-            <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="gold" />
+
             <FadeIn>
               <SectionHeader
                 kicker={hi.umkmKicker}
                 title={hi.umkmTitle}
                 intro={hi.umkmIntro}
                 tone="gold"
+                headingId="umkm-heading"
               />
             </FadeIn>
             <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -242,7 +244,7 @@ export default function Beranda() {
 
       <MotifDivider />
 
-      <section className="relative bg-gold-50/40">
+      <section aria-label="Statistik kegiatan" className="relative bg-gold-50/40">
         <KegiatanStats />
       </section>
     </>

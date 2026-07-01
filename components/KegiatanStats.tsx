@@ -4,7 +4,7 @@ import { getCollection } from '@/lib/content'
 import { getSettings } from '@/lib/settings'
 import { FadeIn } from './FadeIn'
 import { SectionHeader } from './SectionHeader'
-import { MotifFloater } from './MotifFloater'
+
 
 export function KegiatanStats() {
   const kegiatan = getCollection('kegiatan').slice(0, 3)
@@ -12,8 +12,7 @@ export function KegiatanStats() {
 
   return (
     <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-      <MotifFloater motif="bunga_sambel" position="top-right" size="lg" color="gold" />
-      <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="terracotta" />
+
       <FadeIn>
         <SectionHeader kicker="06 — KEGIATAN" title="Kegiatan Sambelia" tone="gold" />
       </FadeIn>
@@ -23,7 +22,7 @@ export function KegiatanStats() {
             <Link
               key={c.slug}
               href={`/kegiatan/${c.slug}`}
-              className="group overflow-hidden rounded-2xl border-l-[3px] border-l-gold-500 bg-white/70 backdrop-blur-sm shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover hover:bg-white/90"
+              className="group overflow-hidden rounded-2xl border-l-[3px] border-l-gold-500 bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)]"
             >
               <div className="relative aspect-video overflow-hidden">
                 <Image src={c.cover} alt={c.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
@@ -31,7 +30,7 @@ export function KegiatanStats() {
               </div>
               <div className="min-w-0 p-4">
                 <h3 className="truncate font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{c.title}</h3>
-                <p className="mt-2 text-sm text-ink/70 line-clamp-2">{c.excerpt}</p>
+                <p className="mt-2 text-sm text-ink/60 line-clamp-2">{c.excerpt}</p>
                 <p className="mt-2 font-beautique-condensed text-[10px] tracking-widest uppercase text-ink/60">{c.author} · {c.date}</p>
               </div>
             </Link>

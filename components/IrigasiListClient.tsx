@@ -7,7 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
-import { MotifFloater } from '@/components/MotifFloater'
+
 import { petaLink } from '@/lib/links'
 import type { Irigasi } from '@/lib/schemas'
 
@@ -45,8 +45,7 @@ export function IrigasiListClient({ items, stats, pageSettings, emptyMessage }: 
       />
       <section className="relative bg-cream-beige/50">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="cincin_sambel" position="top-right" size="md" color="olive" />
-          <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" />
+
           <StaggerContainer stagger={0.06} className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
             <StaggerItem><StatCard label="Total Saluran" value={String(stats.total)} /></StaggerItem>
             <StaggerItem><StatCard label="Total Panjang" value={String(stats.totalLength)} unit="m" /></StaggerItem>
@@ -56,16 +55,16 @@ export function IrigasiListClient({ items, stats, pageSettings, emptyMessage }: 
           {items.length === 0 ? (
             <EmptyState message={emptyMessage} />
           ) : (
-            <div className="overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/40 p-3 sm:p-4 shadow-terracotta">
+            <div className="overflow-hidden rounded-2xl border border-tan-700/12 bg-white p-3 sm:p-4 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)]">
               <Accordion type="single" collapsible>
                 {items.map((i) => (
                   <AccordionItem key={i.slug} value={i.slug}>
                     <AccordionTrigger className="min-w-0">
                       <span className="truncate font-semibold text-brown-900">{i.name}</span>
-                      <span className="ml-3 shrink-0 text-xs text-ink/70">{i.saluranType} · {i.village} · {i.condition}</span>
+                      <span className="ml-3 shrink-0 text-xs text-ink/60">{i.saluranType} · {i.village} · {i.condition}</span>
                     </AccordionTrigger>
                     <AccordionContent>
-                      <p className="text-sm text-ink/70 break-words">Panjang: {i.lengthM} m · Status aliran: {i.flowStatus}</p>
+                      <p className="text-sm text-ink/60 break-words">Panjang: {i.lengthM} m · Status aliran: {i.flowStatus}</p>
                       <p className="mt-2 text-sm break-words">{i.body}</p>
                       <button
                         type="button"

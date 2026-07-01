@@ -27,6 +27,7 @@ export function SectionHeader({
   tone = 'water',
   centered = false,
   className,
+  headingId,
 }: {
   kicker: string
   title: string
@@ -34,6 +35,7 @@ export function SectionHeader({
   tone?: Tone
   centered?: boolean
   className?: string
+  headingId?: string
 }) {
   return (
     <header className={cn('mb-6', centered && 'text-center', className)}>
@@ -44,7 +46,7 @@ export function SectionHeader({
       )}>
         {kicker}
       </span>
-      <h2 className="font-beautique text-display-lg text-brown-900 text-balance">{title}</h2>
+      <h2 id={headingId} className="font-beautique text-display-lg text-brown-900 text-balance">{title}</h2>
       <div aria-hidden className={cn('mt-2 h-1 w-14 rounded-full', centered && 'mx-auto', BAR_CLASSES[tone === 'brown' ? 'brown' : tone])} />
       {intro && <p className={cn('mt-3 max-w-2xl text-sm text-ink/80 leading-relaxed', centered && 'mx-auto')}>{intro}</p>}
     </header>

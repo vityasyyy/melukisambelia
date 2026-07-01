@@ -56,14 +56,14 @@ export default function KegiatanDetailPage({ params }: { params: { slug: string 
         ← Kembali
       </Link>
 
-      <div className="relative mt-6 aspect-[21/9] overflow-hidden rounded-2xl shadow-terracotta">
+      <div className="relative mt-6 aspect-[21/9] overflow-hidden rounded-2xl shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)]">
         <Image src={item.cover} alt={item.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
       </div>
 
       <div className="mt-6">
         <Pill variant="terracotta" className="mb-3">{item.date}</Pill>
         <h1 className="font-beautique text-display-lg text-brown-900">{item.title}</h1>
-        <p className="mt-3 text-ink/70 leading-relaxed">Oleh {item.author}</p>
+        <p className="mt-3 text-ink/60 leading-relaxed">Oleh {item.author}</p>
       </div>
 
       <div className="prose prose-lg max-w-none text-ink/80">{item.body}</div>

@@ -7,8 +7,8 @@ export function PetaSection({ files }: { files: GisFile[] }) {
   if (files.length === 0) {
     return (
       <div className="py-16 text-center">
-        <p className="text-ink/70 text-sm sm:text-base">Peta untuk kategori ini belum tersedia.</p>
-        <p className="mt-2 text-xs text-ink/70">Tim GIS akan menambahkan segera.</p>
+        <p className="text-ink/60 text-sm sm:text-base">Peta untuk kategori ini belum tersedia.</p>
+        <p className="mt-2 text-xs text-ink/60">Tim GIS akan menambahkan segera.</p>
       </div>
     )
   }
@@ -18,7 +18,7 @@ export function PetaSection({ files }: { files: GisFile[] }) {
       {files.map((f) => (
         <div
           key={`${f.category}-${f.name}`}
-          className="h-full flex flex-col overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all hover:-translate-y-1 hover:shadow-terracotta-hover"
+          className="h-full flex flex-col overflow-hidden rounded-2xl border border-tan-700/12 bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)]"
         >
           {f.type === 'image' && (
             <div className="relative aspect-[4/3] w-full">
@@ -31,13 +31,13 @@ export function PetaSection({ files }: { files: GisFile[] }) {
             </div>
           )}
           {f.type === 'geojson' && (
-            <div className="flex aspect-[4/3] w-full items-center justify-center bg-gold-50 text-sm text-ink/70">
+            <div className="flex aspect-[4/3] w-full items-center justify-center bg-gold-50 text-sm text-ink/60">
               GeoJSON (ditampilkan di peta interaktif)
             </div>
           )}
           <div className="min-w-0 flex-1 p-4">
             <h3 className="truncate font-semibold text-brown-900">{f.name}</h3>
-            {f.description && <p className="mt-1 text-xs text-ink/70 line-clamp-2">{f.description}</p>}
+            {f.description && <p className="mt-1 text-xs text-ink/60 line-clamp-2">{f.description}</p>}
             <a
               href={f.url}
               target="_blank"

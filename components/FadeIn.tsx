@@ -6,8 +6,8 @@ import { ReactNode } from 'react'
 export function FadeIn({
   children,
   delay = 0,
-  duration = 0.5,
-  y = 24,
+  duration = 0.3,
+  y = 12,
   className,
   once = true,
 }: {

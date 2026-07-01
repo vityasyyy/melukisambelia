@@ -27,7 +27,7 @@ export function StaggerContainer({
       opacity: 1,
       transition: {
         staggerChildren: stagger,
-        delayChildren: 0.1,
+        delayChildren: 0.05,
       },
     },
   }
@@ -53,8 +53,8 @@ export function StaggerItem({ children, className }: { children: ReactNode; clas
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
+        hidden: { opacity: 0, y: 10 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: 'easeOut' as const } },
       }}
       className={className}
     >

@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next'
-import localFont from 'next/font/local'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from '@/lib/config'
@@ -9,15 +8,14 @@ import { Footer } from '@/components/Footer'
 import { ScrollProgress } from '@/components/ScrollProgress'
 import { BackToTop } from '@/components/BackToTop'
 
-const gontserrat = localFont({
-  src: [
-    { path: '../public/fonts/gontserrat/Gontserrat-Regular.ttf', weight: '400', style: 'normal' },
-    { path: '../public/fonts/gontserrat/Gontserrat-Medium.ttf', weight: '500', style: 'normal' },
-    { path: '../public/fonts/gontserrat/Gontserrat-Bold.ttf', weight: '700', style: 'normal' },
-    { path: '../public/fonts/gontserrat/Gontserrat-ExtraBold.ttf', weight: '800', style: 'normal' },
-  ],
-  variable: '--font-gontserrat',
+import localFont from 'next/font/local'
+import { DM_Sans } from 'next/font/google'
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-dm-sans',
   display: 'swap',
+  weight: ['400', '500', '700'],
 })
 
 const beautique = localFont({
@@ -81,8 +79,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className={`${gontserrat.variable} ${beautique.variable} ${beautiqueCondensed.variable}`}>
-      <body className="font-gontserrat bg-page text-ink antialiased min-h-screen flex flex-col">
+    <html lang="id" className={`${dmSans.variable} ${beautique.variable} ${beautiqueCondensed.variable}`}>
+      <body className="font-dmSans bg-page text-ink antialiased min-h-screen flex flex-col">
         <a
           href="#main"
           className="skip-link sr-only rounded-lg bg-white px-4 py-2 text-sm font-semibold text-brown-900 shadow-lg focus:not-sr-only focus:z-50"

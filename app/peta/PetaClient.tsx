@@ -63,7 +63,7 @@ export function PetaClient({
 
   return (
     <>
-      <div className="mb-8 overflow-hidden rounded-2xl border border-tan-700/20 shadow-terracotta">
+      <div className="mb-8 overflow-hidden rounded-2xl border border-tan-700/12 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)]">
         <iframe
           src={dynamicEmbedUrl}
           className="w-full h-[60vh]"
@@ -102,7 +102,7 @@ export function PetaClient({
                   <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {items.map((m) => (
                       <FadeIn key={`${m.layer}-${m.slug}`}>
-                        <div className="rounded-xl border border-tan-700/20 bg-cream-beige/40 p-4 shadow-terracotta transition-all hover:-translate-y-0.5 hover:shadow-terracotta-hover">
+                        <div className="rounded-xl border border-tan-700/12 bg-white p-4 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)]">
                           <div className="font-semibold text-brown-900">{m.title}</div>
                           <a
                             href={m.googleMapsUrl || `https://www.google.com/maps?q=${m.lat},${m.lng}`}
@@ -128,7 +128,7 @@ export function PetaClient({
           <h2 className="mb-6 font-beautique text-display-lg text-brown-900">{gisSectionTitle}</h2>
         </FadeIn>
         <FadeIn>
-          <p className="mb-6 text-ink/70">{gisDescription || 'Peta tematik Kecamatan Sambelia.'}</p>
+          <p className="mb-6 text-ink/60">{gisDescription || 'Peta tematik Kecamatan Sambelia.'}</p>
         </FadeIn>
         {(Object.keys(GIS_CATEGORY_LABELS) as Array<keyof typeof GIS_CATEGORY_LABELS>).map((cat) => {
           const files = gisByCategory(cat)

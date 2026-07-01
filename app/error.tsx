@@ -11,9 +11,9 @@ export default function Error({
 }) {
   return (
     <section className="flex min-h-[60vh] flex-col items-center justify-center px-4 py-20 text-center">
-      <div className="relative w-full max-w-lg rounded-[2rem] border-l-[3px] border-l-terracotta-500 bg-white/70 backdrop-blur-sm p-10 shadow-terracotta">
+      <div className="relative w-full max-w-lg rounded-[2rem] border-l-[3px] border-l-terracotta-500 bg-white p-10 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)]">
         <h1 className="font-beautique text-5xl text-brown-900">Ups!</h1>
-        <p className="mt-2 text-ink/70">Terjadi kesalahan saat memuat halaman.</p>
+        <p className="mt-2 text-ink/60">Terjadi kesalahan saat memuat halaman.</p>
         <p className="mt-1 text-xs text-ink/60">{error.message}</p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <button

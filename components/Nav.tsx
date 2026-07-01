@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown } from 'lucide-react'
 import { Logo } from './Logo'
 import { cn } from '@/lib/utils'
 import {
@@ -83,12 +83,13 @@ export function Nav() {
   }
 
   const activeLink = 'text-gold-bright after:absolute after:bottom-0.5 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:w-3/4 after:rounded-full after:bg-gold-500'
-  const inactiveLink = 'text-white/85 hover:text-white hover:bg-white/10'
+  const inactiveLink = 'text-white hover:bg-white/10'
 
   return (
     <header
       className={cn(
         'fixed z-[1000] transition-all duration-500 ease-sambel',
+        open && 'hidden',
         scrolled
           ? 'left-4 right-4 top-3 sm:left-6 sm:right-6 sm:top-4 rounded-2xl bg-brown-950 shadow-[0_8px_32px_-8px_rgba(15,8,5,0.6)]'
           : 'left-0 right-0 top-0 bg-transparent'
@@ -100,7 +101,7 @@ export function Nav() {
       <nav aria-label="Navigasi utama" className="mx-auto flex max-w-content items-center justify-between px-4 py-3">
         <Link href="/" aria-label="Beranda Sambelia" className="flex items-center gap-2.5">
           <Logo className="h-10 w-auto brightness-0 invert transition-colors duration-300" />
-          <span className="inline-block font-beautique text-lg text-white/90">Melukis Sambelia</span>
+          <span className="inline-block font-beautique text-lg text-white">Melukis Sambelia</span>
         </Link>
 
         <ul className={cn('hidden items-center gap-1 lg:flex text-white')}>
@@ -135,7 +136,7 @@ export function Nav() {
                   <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                 </button>
                 <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-focus-within:visible group-hover:opacity-100 group-focus-within:opacity-100 max-lg:left-0 max-lg:-translate-x-0">
-                  <ul className="min-w-[200px] rounded-xl shadow-2xl border border-gold-500/25 bg-brown-950/90 backdrop-blur-xl overflow-hidden">
+                  <ul className="min-w-[200px] rounded-xl shadow-2xl border border-gold-500/25 bg-brown-950 overflow-hidden">
                     {group.items.map((item) => (
                       <li key={item.href}>
                         <Link
@@ -145,7 +146,7 @@ export function Nav() {
                             'block px-4 py-2.5 text-sm font-medium transition-colors',
                             isActive(item.href)
                               ? 'bg-gold-500/15 text-gold-soft'
-                              : 'text-white/75 hover:bg-white/10 hover:text-white'
+                              : 'text-white hover:bg-white/10 hover:text-white'
                           )}
                         >
                           {item.label}
@@ -161,7 +162,7 @@ export function Nav() {
 
         <button
           type="button"
-          className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-lg text-white/85 transition-colors hover:bg-white/10 lg:hidden"
+          className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/10 lg:hidden"
           onClick={() => setOpen(true)}
           aria-label="Buka menu"
         >
@@ -178,6 +179,10 @@ export function Nav() {
               <Logo className="h-9 w-auto brightness-0 invert" />
               <span className="font-beautique text-lg text-gold-soft">Melukis Sambelia</span>
             </SheetTitle>
+            <SheetClose className="absolute right-4 top-4 rounded-lg h-12 w-12 inline-flex items-center justify-center text-cream-light transition-colors hover:bg-white/10 hover:text-white focus:ring-2 focus:ring-water-500">
+              <X className="h-6 w-6" />
+              <span className="sr-only">Tutup menu</span>
+            </SheetClose>
           </SheetHeader>
           <nav className="relative overflow-y-auto px-3 py-3 max-h-[65vh]">
             <ul className="space-y-0.5">
@@ -191,7 +196,7 @@ export function Nav() {
                         'flex min-h-[44px] items-center rounded-xl px-4 py-2.5 text-base font-medium transition-all duration-200',
                         isActive(l.href)
                           ? 'bg-gold-500/15 text-gold-soft border-l-2 border-gold-500'
-                          : 'text-cream-light/85 hover:bg-white/[0.06] hover:text-white'
+                          : 'text-cream-light hover:bg-white/[0.06] hover:text-white'
                       )}
                     >
                       {l.label}
@@ -208,7 +213,7 @@ export function Nav() {
                       aria-expanded={expanded}
                       className={cn(
                         'flex w-full min-h-[44px] items-center justify-between rounded-xl px-4 py-2.5 text-base font-medium transition-all duration-200',
-                        expanded ? 'text-gold-soft bg-white/[0.04]' : 'text-cream-light/85 hover:bg-white/[0.06] hover:text-white'
+                        expanded ? 'text-gold-soft bg-white/[0.04]' : 'text-cream-light hover:bg-white/[0.06] hover:text-white'
                       )}
                       onClick={() => setOpenGroup(expanded ? null : group.label)}
                     >
@@ -232,7 +237,7 @@ export function Nav() {
                                   'flex min-h-[40px] items-center rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
                                   isActive(item.href)
                                     ? 'text-gold-soft bg-gold-500/10'
-                                    : 'text-cream-light/75 hover:bg-white/[0.06] hover:text-white'
+                                    : 'text-cream-light hover:bg-white/[0.06] hover:text-white'
                                 )}
                               >
                                 {item.label}

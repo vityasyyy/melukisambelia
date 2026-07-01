@@ -7,7 +7,7 @@ import { getGisManifest } from '@/lib/gis'
 import { PageHero } from '@/components/PageHero'
 import { PetaClient } from './PetaClient'
 import { MapSkeleton } from '@/components/Skeleton'
-import { MotifFloater } from '@/components/MotifFloater'
+
 
 export const revalidate = REVALIDATE_SECONDS
 
@@ -39,8 +39,7 @@ export default function PetaPage() {
 
       <section className="relative bg-page">
         <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="cincin_sambel" position="top-right" size="md" color="water" />
-          <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" />
+
           <Suspense fallback={<MapSkeleton />}>
             <PetaClient
               markers={markers.map((m) => ({ ...m, googleMapsUrl: m.googleMapsUrl }))}

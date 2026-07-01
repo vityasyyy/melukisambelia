@@ -6,7 +6,7 @@ import { EmptyState } from '@/components/EmptyState'
 import { CountdownStrip } from '@/components/CountdownStrip'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { PageHero } from '@/components/PageHero'
-import { MotifFloater } from '@/components/MotifFloater'
+
 import { MotifDivider } from '@/components/MotifDivider'
 import { REVALIDATE_SECONDS } from '@/lib/config'
 
@@ -41,7 +41,7 @@ export default function FestivalPage() {
 
       <section className="relative bg-terracotta-500/[0.06]">
         <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="gold" />
+
           {events.length > 0 ? <CountdownStrip festivals={festivalData} /> : <EmptyState message={empty.festival} />}
         </div>
       </section>
@@ -50,8 +50,7 @@ export default function FestivalPage() {
 
       <section className="relative bg-page">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="cincin_sambel" position="bottom-right" size="md" color="terracotta" />
-          <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="gold" />
+
           {events.length === 0 ? (
             <EmptyState message={empty.festival} />
           ) : (

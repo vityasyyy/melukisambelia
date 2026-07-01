@@ -9,7 +9,7 @@ import { getPageSettings, getEmptyStates } from '@/lib/settings'
 import { FadeIn } from '@/components/FadeIn'
 import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
-import { MotifFloater } from '@/components/MotifFloater'
+
 import { MotifDivider } from '@/components/MotifDivider'
 import { EmptyState } from '@/components/EmptyState'
 
@@ -41,8 +41,7 @@ export default function LingkunganPage() {
 
       <section className="relative bg-cream-beige/50">
         <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10 scroll-mt-20">
-          <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="olive" />
-          <MotifFloater motif="cincin_sambel" position="top-left" size="sm" color="olive" />
+
 
           <FadeIn>
             <h2 className="mb-6 font-beautique text-display-lg text-brown-900">
@@ -54,7 +53,7 @@ export default function LingkunganPage() {
             <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {items.map((item) => (
                 <StaggerItem key={item.slug}>
-                  <div className="group overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover">
+                  <div className="group overflow-hidden rounded-2xl border border-tan-700/12 bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)]">
                     <div className="relative aspect-video overflow-hidden bg-green-50">
                       <Image
                         src={item.cover}
@@ -71,7 +70,7 @@ export default function LingkunganPage() {
                       <h3 className="mt-2 font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">
                         {item.title}
                       </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-ink/70 line-clamp-3">{item.description}</p>
+                      <p className="mt-2 text-sm leading-relaxed text-ink/60 line-clamp-3">{item.description}</p>
                     </div>
                   </div>
                 </StaggerItem>
@@ -105,7 +104,7 @@ export default function LingkunganPage() {
                   <StaggerItem key={f.url}>
                     <Link
                       href="/peta?tab=vegetasi"
-                      className="group overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover"
+                      className="group overflow-hidden rounded-2xl border border-tan-700/12 bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)]"
                     >
                       <div className="relative aspect-video overflow-hidden bg-green-50">
                         {f.type === 'image' && (
@@ -126,7 +125,7 @@ export default function LingkunganPage() {
                       </div>
                       <div className="p-5">
                         <h3 className="font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{f.name}</h3>
-                        {f.description && <p className="mt-2 text-sm leading-relaxed text-ink/70">{f.description}</p>}
+                        {f.description && <p className="mt-2 text-sm leading-relaxed text-ink/60">{f.description}</p>}
                       </div>
                     </Link>
                   </StaggerItem>
