@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { REVALIDATE_SECONDS } from '@/lib/config'
 import { getSettings, getDesa, getTentang, getPageSettings } from '@/lib/settings'
 import { SectionHeader } from '@/components/SectionHeader'
-import { StatCard } from '@/components/StatCard'
+import { CountUpStat } from '@/components/CountUpStat'
 import { FadeIn } from '@/components/FadeIn'
 import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
@@ -43,7 +43,7 @@ export default function TentangSambeliaPage() {
       />
 
       <section className="relative bg-page scroll-mt-20">
-        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
           <MotifFloater motif="cincin_sambel" position="top-right" size="md" color="terracotta" />
           <FadeIn>
             <SectionHeader
@@ -56,16 +56,16 @@ export default function TentangSambeliaPage() {
           <StaggerContainer stagger={0.06} className="grid grid-cols-2 gap-3 md:grid-cols-4">
             {geography.map((g) => (
               <StaggerItem key={g.label}>
-                <StatCard label={g.label} value={g.value} />
+                <CountUpStat label={g.label} value={g.value} />
               </StaggerItem>
             ))}
           </StaggerContainer>
-          <div className="mt-6 rounded-2xl border border-tan-700/20 bg-cream-beige/40 p-5 shadow-terracotta">
-            <h3 className="mb-2 font-semibold text-brown-900">Letak Geografis</h3>
+          <div className="group mt-6 rounded-2xl border border-tan-700/15 border-l-[3px] border-l-green-500 bg-cream-beige/40 p-5 shadow-terracotta">
+            <h3 className="mb-2 font-beautique text-lg text-brown-900">Letak Geografis</h3>
             <p className="text-sm leading-relaxed text-ink/70">
               {tentang.geographyProse}
             </p>
-            <p className="mt-3 text-xs text-ink/70">
+            <p className="mt-3 text-xs text-ink/60">
               Data geografi berdasarkan profil Kecamatan Sambelia.
             </p>
           </div>
@@ -86,34 +86,39 @@ export default function TentangSambeliaPage() {
               tone="water"
             />
           </FadeIn>
-          <StaggerContainer stagger={0.1} className="grid gap-5 md:grid-cols-2">
-            {desa.map((d) => (
-              <StaggerItem key={d.slug}>
-                <div className="group overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover">
-                  <div className="relative aspect-video overflow-hidden">
+          <div className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-4 -mx-4 px-4">
+            {desa.map((d, i) => (
+              <div key={d.slug} className="snap-center shrink-0 w-[80vw] sm:w-[420px]">
+                <div className="group relative overflow-hidden rounded-2xl border border-tan-700/15 border-l-[3px] border-l-green-500 bg-card shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover hover:border-terracotta-500/25 h-full">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl">
                     <Image
                       src={d.image}
                       alt={d.name}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      sizes="(max-width: 640px) 80vw, 420px"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brown-950/50 via-transparent to-transparent" />
+                    <div aria-hidden className="absolute top-3 left-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-brown-950/60 font-beautique-condensed text-sm font-bold text-gold-bright ring-1 ring-white/15 backdrop-blur-sm">
+                      {String(i + 1).padStart(2, '0')}
+                    </div>
+                    <h3 className="absolute bottom-3 left-4 right-4 z-10 font-beautique text-2xl text-white group-hover:text-gold-bright transition-colors" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}>{d.name}</h3>
                   </div>
                   <div className="p-4">
-                    <h3 className="font-beautique text-2xl text-brown-900">{d.name}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink/70">{d.description}</p>
+                    <p className="text-sm leading-relaxed text-ink/70">{d.description}</p>
                   </div>
                 </div>
-              </StaggerItem>
+              </div>
             ))}
-          </StaggerContainer>
+          </div>
+          <p className="mt-3 text-center text-xs font-beautique-condensed uppercase tracking-[0.15em] text-ink/50">Geser horizontal untuk menjelajah →</p>
         </div>
       </section>
 
       <MotifDivider />
 
       <section className="relative bg-page">
-        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10 scroll-mt-20">
+        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10 scroll-mt-20">
           <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="olive" />
           <FadeIn>
             <SectionHeader
@@ -126,8 +131,9 @@ export default function TentangSambeliaPage() {
           <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2">
             {tentang.potensiDesa.map((p) => (
               <StaggerItem key={p.title}>
-                <div className="h-full rounded-2xl border border-tan-700/20 bg-cream-warm/30 p-6 shadow-terracotta">
-                  <h3 className="font-semibold text-lg text-brown-900">{p.title}</h3>
+                <div className="group h-full rounded-2xl border border-tan-700/15 border-l-[3px] border-l-terracotta-500 bg-cream-warm/30 p-6 shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover hover:border-terracotta-500/25">
+                  <div aria-hidden className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-white/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <h3 className="font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{p.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink/70">
                     {p.description}
                   </p>

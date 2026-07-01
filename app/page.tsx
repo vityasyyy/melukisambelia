@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
-import { ChevronDown } from 'lucide-react'
 import { getSettings, getJejakiCards, getPageSettings } from '@/lib/settings'
 import { getCollection } from '@/lib/content'
 import { SITE_URL, REVALIDATE_SECONDS } from '@/lib/config'
-import { StatCard } from '@/components/StatCard'
+import { CountUpStat } from '@/components/CountUpStat'
 import { DataCard } from '@/components/DataCard'
 import { SectionHeader } from '@/components/SectionHeader'
 import { KegiatanStats } from '@/components/KegiatanStats'
@@ -13,6 +12,7 @@ import { HeroAnimation } from '@/components/HeroAnimation'
 import { CountdownStrip } from '@/components/CountdownStrip'
 import { FestivalTimeline } from '@/components/FestivalTimeline'
 import { UmkmCard } from '@/components/UmkmCard'
+import { WisataUnggulanClient } from '@/components/WisataUnggulanClient'
 import { MotifFloater } from '@/components/MotifFloater'
 import { MotifDivider } from '@/components/MotifDivider'
 import Link from 'next/link'
@@ -73,21 +73,13 @@ export default function Beranda() {
 
   return (
     <>
-      <section className="relative -mt-[63px] flex h-[100dvh] min-h-[600px] items-center justify-center overflow-hidden text-center">
+      <section className="sticky top-0 z-0 -mt-[63px] flex h-[100dvh] min-h-[600px] items-center justify-center overflow-hidden text-center">
         <HeroAnimation src={s.heroImage} tagline={s.heroTagline} />
-
-        <a
-          href="#tentang"
-          className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center text-white/70 transition-colors hover:text-white"
-          aria-label={hi.scrollPrompt || 'Gulir untuk menjelajah'}
-        >
-          <span className="mb-1 font-beautique-condensed text-[10px] font-semibold uppercase tracking-[0.2em]">{hi.scrollPrompt || 'Gulir untuk menjelajah'}</span>
-          <ChevronDown className="h-5 w-5 animate-bounce" />
-        </a>
       </section>
 
-      <section id="tentang" className="relative scroll-mt-16 bg-page">
-        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+      <section id="tentang" className="relative z-10 -mt-4 scroll-mt-16 overflow-hidden rounded-t-[1.5rem] bg-page">
+        <div className="absolute inset-0 section-watermark" aria-hidden />
+        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
           <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="gold" />
           <FadeIn>
             <SectionHeader
@@ -98,10 +90,10 @@ export default function Beranda() {
             />
           </FadeIn>
           <StaggerContainer stagger={0.08} className="grid grid-cols-2 gap-3 md:grid-cols-4">
-            <StaggerItem><StatCard label="Luas" value={s.stats.luas} /></StaggerItem>
-            <StaggerItem><StatCard label="Penduduk" value={s.stats.penduduk} /></StaggerItem>
-            <StaggerItem><StatCard label="Desa/Kelurahan" value={s.stats.desaKelurahan} /></StaggerItem>
-            <StaggerItem><StatCard label="Kabupaten" value={s.stats.kabupaten} /></StaggerItem>
+            <StaggerItem><CountUpStat label="Luas" value={s.stats.luas} /></StaggerItem>
+            <StaggerItem><CountUpStat label="Penduduk" value={s.stats.penduduk} /></StaggerItem>
+            <StaggerItem><CountUpStat label="Desa/Kelurahan" value={s.stats.desaKelurahan} /></StaggerItem>
+            <StaggerItem><CountUpStat label="Kabupaten" value={s.stats.kabupaten} /></StaggerItem>
           </StaggerContainer>
           <div className="mt-5 text-center">
             <Link
@@ -118,7 +110,7 @@ export default function Beranda() {
       <MotifDivider />
 
       <section className="relative bg-cream-beige">
-        <div className="absolute inset-0 section-watermark" aria-hidden />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(240,172,109,0.06),transparent_70%)]" aria-hidden />
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
           <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="terracotta" />
           <FadeIn>
@@ -138,7 +130,7 @@ export default function Beranda() {
 
       {wisataUnggulan.length > 0 && (
         <section className="relative bg-page">
-          <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
             <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="water" />
             <FadeIn>
               <SectionHeader
@@ -148,22 +140,7 @@ export default function Beranda() {
                 tone="water"
               />
             </FadeIn>
-            <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {wisataUnggulan.map((p) => (
-                <StaggerItem key={p.slug}>
-                  <DataCard
-                    href={`/pariwisata/${p.slug}`}
-                    image={p.cover}
-                    title={p.title}
-                    chips={[
-                      { label: p.category, color: '#14A8E1' },
-                      { label: p.village, color: '#99BA57' },
-                    ]}
-                    desc={p.shortDesc}
-                  />
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+            <WisataUnggulanClient items={wisataUnggulan} />
             <div className="mt-5 text-center">
               <Link
                 href="/pariwisata"
@@ -180,7 +157,7 @@ export default function Beranda() {
       <MotifDivider />
 
       {festival.length > 0 && (
-        <section className="relative bg-terracotta-50/40">
+        <section className="relative bg-terracotta-500/[0.08]">
           <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
             <MotifFloater motif="cincin_sambel" position="top-left" size="md" color="gold" />
             <FadeIn>
@@ -214,6 +191,7 @@ export default function Beranda() {
 
       {umkmSpotlight.length > 0 && (
         <section className="relative bg-cream-warm/40">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(240,172,109,0.06),transparent_70%)]" aria-hidden />
           <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
             <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="olive" />
             <FadeIn>
@@ -246,7 +224,7 @@ export default function Beranda() {
 
       <MotifDivider />
 
-      <section className="relative bg-gold-50/30">
+      <section className="relative bg-gold-50/40">
         <KegiatanStats />
       </section>
     </>

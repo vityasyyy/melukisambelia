@@ -24,11 +24,11 @@ const SIZE_CLASSES: Record<Size, string> = {
 }
 
 const COLOR_FILTERS: Record<MotifColor, string> = {
-  terracotta: 'sepia(0.6) hue-rotate(-10deg) saturate(2.5)',
-  gold: 'sepia(0.9) hue-rotate(-5deg) saturate(2)',
-  water: 'sepia(0.4) hue-rotate(170deg) saturate(2.5)',
-  olive: 'sepia(0.6) hue-rotate(60deg) saturate(2)',
-  brown: 'sepia(0.8) saturate(2)',
+  terracotta: 'sepia(0.7) hue-rotate(-10deg) saturate(3)',
+  gold: 'sepia(0.9) hue-rotate(-5deg) saturate(2.5)',
+  water: 'sepia(0.5) hue-rotate(170deg) saturate(3)',
+  olive: 'sepia(0.7) hue-rotate(60deg) saturate(2.5)',
+  brown: 'sepia(0.9) saturate(2.5)',
 }
 
 const FLOAT_VARIANTS = {
@@ -41,7 +41,7 @@ export function MotifFloater({
   position = 'top-right',
   size = 'md',
   color = 'gold',
-  opacity = 0.12,
+  opacity = 0.20,
 }: {
   motif?: Motif
   position?: Position
@@ -62,6 +62,16 @@ export function MotifFloater({
       transition={{ duration: 0.9, ease: 'easeOut' }}
       style={reduce ? { opacity } : undefined}
     >
+      <motion.div
+        className="relative w-full h-full motif-glow"
+        animate={reduce ? undefined : { rotate: 360 }}
+        transition={reduce ? undefined : { rotate: { duration: 60, repeat: Infinity, ease: 'linear' } }}
+      >
+        <motion.div
+          className="relative w-full h-full"
+          animate={reduce ? undefined : { opacity: [1, 0.75, 1] }}
+          transition={reduce ? undefined : { opacity: { duration: 8, repeat: Infinity, ease: 'easeInOut' } }}
+        >
       {isImage ? (
         <Image
           src="/images/design-system/ornament-gold.png"
@@ -81,6 +91,8 @@ export function MotifFloater({
           style={{ filter: COLOR_FILTERS[color], opacity }}
         />
       )}
+        </motion.div>
+      </motion.div>
     </motion.div>
   )
 }

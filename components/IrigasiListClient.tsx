@@ -27,9 +27,9 @@ export function IrigasiListClient({ items, stats, pageSettings, emptyMessage }: 
       lng: item.lng,
       mapTitle: item.name,
       chips: [
-        { label: item.saluranType, color: '#99BA57' },
-        { label: item.village, color: '#14A8E1' },
-        { label: item.condition, color: item.condition === 'Baik' ? '#667F37' : '#E3795C' },
+        { label: item.saluranType, tone: 'green' },
+        { label: item.village, tone: 'water' },
+        { label: item.condition, tone: item.condition === 'Baik' ? 'olive' : 'terracotta' },
       ],
     })
     setOpen(true)
@@ -44,7 +44,7 @@ export function IrigasiListClient({ items, stats, pageSettings, emptyMessage }: 
         tone="green"
       />
       <section className="relative bg-cream-beige/50">
-        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
           <MotifFloater motif="cincin_sambel" position="top-right" size="md" color="olive" />
           <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" />
           <StaggerContainer stagger={0.06} className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">

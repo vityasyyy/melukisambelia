@@ -63,7 +63,7 @@ export function Nav() {
     ticking.current = true
     requestAnimationFrame(() => {
       const y = window.scrollY
-      setScrolled(y > 40)
+      setScrolled(y > 80)
       ticking.current = false
     })
   }, [])
@@ -82,28 +82,21 @@ export function Nav() {
     return isActivePath(href, pathname)
   }
 
-  const isHome = pathname === '/'
-
   const navBg = scrolled
-    ? 'bg-brown-950/92 shadow-[0_4px_20px_-4px_rgba(116,45,27,0.35)] backdrop-blur-xl'
-    : isHome
-      ? 'bg-transparent'
-      : 'bg-brown-950/75 backdrop-blur-xl shadow-md border-b border-gold-500/20'
+    ? 'bg-brown-950/95 backdrop-blur-xl shadow-[0_4px_24px_-8px_rgba(15,8,5,0.5)]'
+    : 'bg-transparent'
 
-  const navRounded = scrolled ? 'rounded-2xl' : ''
-  const navInset = scrolled ? 'left-4 right-4 top-4 sm:left-6 sm:right-6' : 'inset-x-0 top-0'
+  const navInset = 'left-0 right-0 top-0'
 
-  const activeLink = 'text-gold-soft after:absolute after:bottom-0.5 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:w-3/4 after:rounded-full after:bg-gold-500'
-  const inactiveLink = 'text-white/75 hover:text-white hover:bg-white/10'
+  const activeLink = 'text-gold-bright after:absolute after:bottom-0.5 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:w-3/4 after:rounded-full after:bg-gold-500'
+  const inactiveLink = 'text-white/85 hover:text-white hover:bg-white/10'
 
   return (
     <header
       className={cn(
         'fixed z-[1000] transition-all duration-500 ease-sambel',
         navInset,
-        navRounded,
         navBg,
-        scrolled && '[&>::after]:absolute [&>::after]:bottom-0 [&>::after]:left-6 [&>::after]:right-6 [&>::after]:h-px [&>::after]:bg-gradient-to-r [&>::after]:from-transparent [&>::after]:via-gold-500/40 [&>::after]:to-transparent sm:[&>::after]:left-8 sm:[&>::after]:right-8',
       )}
     >
       <nav aria-label="Navigasi utama" className="mx-auto flex max-w-content items-center justify-between px-4 py-3">
@@ -143,7 +136,7 @@ export function Nav() {
                   <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                 </button>
                 <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-focus-within:visible group-hover:opacity-100 group-focus-within:opacity-100 max-lg:left-0 max-lg:-translate-x-0">
-                  <ul className="min-w-[200px] rounded-xl shadow-2xl border border-gold-500/20 bg-brown-950/95 backdrop-blur-xl overflow-hidden">
+                  <ul className="min-w-[200px] rounded-xl shadow-2xl border border-gold-500/25 bg-brown-950/98 backdrop-blur-xl overflow-hidden">
                     {group.items.map((item) => (
                       <li key={item.href}>
                         <Link
@@ -169,7 +162,7 @@ export function Nav() {
 
         <button
           type="button"
-          className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/10 lg:hidden"
+          className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-lg text-white/85 transition-colors hover:bg-white/10 lg:hidden"
           onClick={() => setOpen(true)}
           aria-label="Buka menu"
         >
@@ -178,7 +171,7 @@ export function Nav() {
       </nav>
 
       <Sheet open={open} onOpenChange={setOpen}>
-        <SheetContent side="right" className="border-l border-gold-500/20 bg-brown-950/95 backdrop-blur-xl text-cream-light w-[85vw] max-w-sm p-0">
+        <SheetContent side="right" className="border-l border-gold-500/20 bg-brown-950/95 backdrop-blur-xl text-cream-light/90 w-[85vw] max-w-sm p-0">
           <SheetHeader className="border-b border-gold-500/15 px-6 py-4">
             <SheetTitle className="text-cream-light">
               <Logo className="h-8 w-auto brightness-0 invert" />
@@ -196,7 +189,7 @@ export function Nav() {
                         'flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-base font-medium transition-colors',
                         isActive(l.href)
                           ? 'bg-gold-500/15 text-gold-soft'
-                          : 'text-cream-light/85 hover:bg-white/10 hover:text-white'
+                          : 'text-cream-light/90 hover:bg-white/10 hover:text-white'
                       )}
                     >
                       {l.label}
@@ -211,7 +204,7 @@ export function Nav() {
                     <button
                       type="button"
                       aria-expanded={expanded}
-                      className="flex w-full min-h-[44px] items-center justify-between rounded-lg px-3 py-2.5 text-base font-medium text-cream-light/85 hover:bg-white/10 hover:text-white"
+                      className="flex w-full min-h-[44px] items-center justify-between rounded-lg px-3 py-2.5 text-base font-medium text-cream-light/90 hover:bg-white/10 hover:text-white"
                       onClick={() => setOpenGroup(expanded ? null : group.label)}
                     >
                       {group.label}
@@ -234,7 +227,7 @@ export function Nav() {
                                   'flex min-h-[40px] items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                                   isActive(item.href)
                                     ? 'bg-gold-500/15 text-gold-soft'
-                                    : 'text-cream-light/75 hover:bg-white/10 hover:text-white'
+                                    : 'text-cream-light/80 hover:bg-white/10 hover:text-white'
                                 )}
                               >
                                 {item.label}

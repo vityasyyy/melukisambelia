@@ -1,6 +1,7 @@
 export function StatCard({ label, value, unit }: { label: string; value: string; unit?: string }) {
   return (
-    <div className="h-full flex flex-col items-center justify-center min-w-0 rounded-2xl border border-tan-700/20 bg-cream-beige/60 p-3 sm:p-5 text-center shadow-terracotta transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_-5px_rgba(240,172,109,0.15)]">
+    <div className="group relative h-full flex flex-col items-center justify-center min-w-0 rounded-2xl border border-tan-700/15 border-l-[3px] border-l-gold-500 bg-cream-beige/60 p-3 sm:p-5 text-center shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover">
+      <div aria-hidden className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-white/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <div className="font-beautique text-2xl sm:text-3xl md:text-4xl text-water-900 break-words">
         {value}
         {unit && <span className="ml-1 text-sm font-beautique-condensed text-ink/80">{unit}</span>}

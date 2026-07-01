@@ -24,9 +24,9 @@ export function MotifDivider({
         viewport={{ once: true, margin: '-20px' }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
+        <div aria-hidden className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-gold-500/25 to-transparent" />
         <div aria-hidden className="batik-divider" />
-        <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-500/15 to-transparent" />
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold-500/15 to-transparent" />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-[3px] bg-gradient-to-r from-transparent via-gold-500/25 to-transparent" />
       </motion.div>
     )
   }
@@ -38,7 +38,7 @@ export function MotifDivider({
         whileInView={reduce || !animate ? undefined : { opacity: 1, scale: 1, y: 0 }}
         viewport={{ once: true, margin: '-40px' }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        style={{ opacity: reduce ? 0.15 : undefined }}
+        style={{ opacity: reduce ? 0.25 : undefined }}
       >
         <Image
           src={`/images/design-system/${motif}.svg`}
@@ -46,7 +46,7 @@ export function MotifDivider({
           width={100}
           height={34}
           aria-hidden
-          className="opacity-15"
+          className="opacity-25"
         />
       </motion.div>
     </div>

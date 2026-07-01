@@ -4,6 +4,7 @@ import { useState, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { MapPin, X } from 'lucide-react'
+import { motion } from 'framer-motion'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import {
   Dialog,
@@ -11,16 +12,20 @@ import {
   DialogTitle,
   DialogDescription,
 } from '@/components/ui/dialog'
+import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 import { Lightbox } from '@/components/Lightbox'
+import { ChipRow, type ChipData, type ChipTone } from '@/components/Chip'
+import { useReducedMotion } from 'framer-motion'
 
-export type Chip = { label: string; color?: string }
+export type Chip = ChipData
+export type { ChipTone }
 
 export type DetailModalData = {
   title: string
   image?: string
   gallery?: { src: string; alt: string }[]
-  chips?: Chip[]
+  chips?: ChipData[]
   description?: string
   body?: React.ReactNode
   href?: string
@@ -44,6 +49,7 @@ export function DetailModalClient({
   const touchStartY = useRef(0)
   const touchCurrentY = useRef(0)
   const modalRef = useRef<HTMLDivElement>(null)
+  const reduce = useReducedMotion()
 
   if (!data) return null
   const { title, image, gallery, chips, description, body, href, linkLabel, lat, lng, googleMapsUrl } = data
@@ -94,19 +100,26 @@ export function DetailModalClient({
             if (target.closest('[data-lightbox-trigger]')) return
           }}
         >
-          <div
-            ref={modalRef}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-            className="relative mx-auto w-full max-w-lg rounded-t-2xl sm:rounded-2xl bg-white shadow-xl max-h-[90dvh] overflow-hidden mt-auto sm:mt-0 transition-transform"
+          <motion.div
+            initial={reduce ? undefined : { opacity: 0, scale: 0.96, y: 16 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="mx-auto w-full max-w-lg mt-auto sm:mt-0"
           >
-            <DialogPrimitive.Close className="absolute right-2 top-2 z-[1102] flex h-11 w-11 items-center justify-center rounded-full bg-cream-light/90 backdrop-blur-sm text-brown-900 transition-colors hover:bg-cream-light" aria-label="Tutup dialog">
-              <X className="h-5 w-5" />
-              <span className="sr-only">Tutup</span>
-            </DialogPrimitive.Close>
+          <div className="rounded-2xl p-[1.5px] bg-gradient-to-br from-terracotta-500 via-gold-500 to-water-900 shadow-[0_24px_64px_-16px_rgba(15,8,5,0.5)]">
+            <div
+              ref={modalRef}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              className="relative rounded-[14px] bg-page overflow-hidden max-h-[90dvh] transition-transform ring-1 ring-tan-700/15"
+            >
+              <DialogPrimitive.Close className="absolute right-3 top-3 z-[1102] flex h-10 w-10 items-center justify-center rounded-full bg-brown-950/40 text-white ring-1 ring-white/15 backdrop-blur-md transition-colors hover:bg-brown-950/60" aria-label="Tutup dialog">
+                <X className="h-4 w-4" />
+                <span className="sr-only">Tutup</span>
+              </DialogPrimitive.Close>
 
-            <div className="overflow-y-auto overflow-x-hidden flex-1">
+            <div className="overflow-y-auto overflow-x-hidden flex-1 scrollbar-none">
               {image ? (
                 <button
                   type="button"
@@ -114,70 +127,69 @@ export function DetailModalClient({
                   className="relative aspect-[16/10] w-full overflow-hidden cursor-pointer block"
                 >
                   <Image src={image} alt={title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 512px" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brown-950/80 via-brown-950/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
                     <DialogTitle className="font-beautique text-xl sm:text-2xl text-white break-words" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.7)' }}>{title}</DialogTitle>
-                    {description && <DialogDescription className="mt-1 text-sm text-white/95 line-clamp-2" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}>{description}</DialogDescription>}
+                    {description && <DialogDescription className="mt-1 text-sm text-white/90 line-clamp-2" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}>{description}</DialogDescription>}
                   </div>
                 </button>
               ) : (
                 <div className="relative bg-gradient-to-r from-terracotta-500 to-gold-500 px-4 pt-12 pb-4 sm:px-6 sm:pt-14 sm:pb-6">
                   <DialogTitle className="font-beautique text-xl sm:text-2xl text-white break-words">{title}</DialogTitle>
-                  {description && <DialogDescription className="mt-1 text-sm text-white/95">{description}</DialogDescription>}
+                  {description && <DialogDescription className="mt-1 text-sm text-white/90">{description}</DialogDescription>}
                 </div>
               )}
 
               <div className="p-4 sm:p-6">
                 {chips && chips.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5">
-                    {chips.map((c) => (
-                      <span
-                        key={c.label}
-                        className="rounded-full px-2.5 py-0.5 text-xs font-medium"
-                        style={
-                          c.color
-                            ? { backgroundColor: c.color + '18', color: c.color, border: `1px solid ${c.color}30` }
-                            : undefined
-                        }
-                      >
-                        {c.label}
-                      </span>
-                    ))}
-                  </div>
+                  <ChipRow chips={chips} />
                 )}
 
-                {body && <div className={cn('prose prose-sm mt-4 max-w-none text-ink/80 prose-headings:text-brown-900 prose-p:text-ink/70 break-words', !image && 'mt-2')}>{body}</div>}
+                {body && (
+                  <>
+                    {chips && chips.length > 0 && <Separator className="my-4 bg-tan-700/15" />}
+                    <div className={cn('prose prose-sm max-w-none text-ink/80 prose-headings:text-brown-900 prose-headings:font-beautique prose-p:text-ink/70 break-words', !image && !chips?.length && 'mt-0', image && !chips?.length && 'mt-4')}>{body}</div>
+                  </>
+                )}
 
                 {hasMap && (
-                  <div className="mt-6">
-                    <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-brown-900">
-                      <MapPin className="h-3.5 w-3.5" /> Lokasi
+                  <>
+                    <Separator className="my-5 bg-tan-700/15" />
+                    <div>
+                      <div className="mb-2 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] font-beautique-condensed text-brown-900">
+                        <MapPin className="h-3.5 w-3.5" /> Lokasi
+                      </div>
+                      <a
+                         href={mapsLink}
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         className="inline-flex items-center gap-2 rounded-full bg-water-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-water-700"
+                       >
+                         <MapPin className="h-4 w-4" />
+                          Lihat di Google Maps
+                       </a>
                     </div>
-                    <a
-                       href={mapsLink}
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       className="inline-flex items-center gap-2 rounded-full bg-water-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-water-700"
-                     >
-                       <MapPin className="h-4 w-4" />
-                        Lihat di Google Maps
-                     </a>
-                  </div>
+                  </>
                 )}
 
                 {href && (
-                  <div className="mt-6 flex justify-end">
-                    <Link
-                      href={href}
-                      className="rounded-full bg-terracotta-500 px-5 py-2 text-sm font-medium text-page transition-colors hover:bg-wine"
-                    >
-                      {linkLabel ?? 'Lihat halaman lengkap →'}
-                    </Link>
-                  </div>
+                  <>
+                    <Separator className="my-5 bg-tan-700/15" />
+                    <div className="flex justify-end">
+                      <Link
+                        href={href}
+                        className="rounded-full bg-terracotta-500 px-5 py-2 text-sm font-medium text-page transition-colors hover:bg-wine"
+                      >
+                        {linkLabel ?? 'Lihat halaman lengkap →'}
+                      </Link>
+                    </div>
+                  </>
                 )}
               </div>
             </div>
+            </div>
           </div>
+          </motion.div>
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>
     </Dialog>

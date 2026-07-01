@@ -49,7 +49,7 @@ export default function FestivalPage() {
       <MotifDivider />
 
       <section className="relative bg-page">
-        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
           <MotifFloater motif="cincin_sambel" position="bottom-right" size="md" color="terracotta" />
           <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="gold" />
           {events.length === 0 ? (

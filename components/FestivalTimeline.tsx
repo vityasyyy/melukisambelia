@@ -7,7 +7,8 @@ export function FestivalTimeline({ events }: { events: (Festival & { slug: strin
       {events.map((e) => (
         <li key={e.slug} className="group relative">
           <span className="absolute left-0 top-1 h-4 w-4 -translate-x-1/2 rounded-full bg-terracotta-500 ring-4 ring-terracotta-500/20" />
-          <div className="overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_-5px_rgba(240,172,109,0.15)] hover:border-terracotta-500/30">
+          <div className="relative overflow-hidden rounded-2xl border border-tan-700/20 border-l-[3px] border-l-gold-500 bg-cream-beige/50 shadow-[0_6px_24px_-8px_rgba(116,45,27,0.22)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_-12px_rgba(227,121,92,0.3)] hover:border-terracotta-500/30">
+            <div aria-hidden className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-white/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             <div className="relative aspect-video overflow-hidden">
               <Image
                 src={e.cover}

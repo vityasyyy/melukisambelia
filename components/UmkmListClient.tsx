@@ -22,10 +22,10 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
 
   const openModal = (item: (typeof items)[number]) => {
     const chips: DetailModalData['chips'] = [
-      { label: item.kategori, color: '#F0AC6D' },
-      { label: item.village, color: '#14A8E1' },
+      { label: item.kategori, tone: 'gold' },
+      { label: item.village, tone: 'water' },
     ]
-    if (item.contact) chips.push({ label: item.contact, color: '#667F37' })
+    if (item.contact) chips.push({ label: item.contact, tone: 'olive' })
 
     setModalData({
       title: item.name,
@@ -51,7 +51,7 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
         tone="terracotta"
       />
       <section className="relative bg-cream-warm/30">
-        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
           <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="olive" />
           <MotifFloater motif="cincin_sambel" position="top-left" size="sm" color="terracotta" />
         {items.length === 0 ? (

@@ -47,8 +47,8 @@ export default function KegiatanPage() {
                     image={c.cover}
                     title={c.title}
                     chips={[
-                      { label: c.author, color: '#742D1B' },
-                      { label: c.date, color: '#AF7E4F' },
+                      { label: c.author, tone: 'brown' },
+                      { label: c.date, tone: 'gold' },
                     ]}
                     desc={c.excerpt}
                   />

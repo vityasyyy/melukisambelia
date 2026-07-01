@@ -6,10 +6,10 @@ export function Footer() {
   const s = getSettings()
   const footer = getFooter()
   return (
-    <footer className="relative mt-20 overflow-hidden bg-wine text-cream-light">
-      <div aria-hidden className="batik-strip opacity-[0.10] invert shimmer-slow" />
+    <footer className="relative overflow-hidden bg-wine text-cream-light">
+      <div aria-hidden className="batik-strip opacity-[0.18] invert" />
       <div
-        className="relative h-1 bg-gradient-to-r from-terracotta-500 via-gold-500 to-water-900 opacity-80"
+        className="relative h-[3px] bg-gradient-to-r from-water-900 via-gold-bright to-terracotta-500 opacity-90"
         aria-hidden
       />
       <div className="relative mx-auto max-w-content px-4 py-10 md:py-14">
@@ -21,6 +21,7 @@ export function Footer() {
               width={180}
               height={54}
               className="brightness-110"
+              style={{ height: 'auto', width: 'auto' }}
             />
             <p className="mt-4 text-sm text-cream-light/85">{footer.tagline}</p>
             <p className="text-sm text-cream-light/75">{s.contact.address}</p>

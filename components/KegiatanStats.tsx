@@ -23,7 +23,7 @@ export function KegiatanStats() {
             <Link
               key={c.slug}
               href={`/kegiatan/${c.slug}`}
-              className="group overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/40 shadow-terracotta transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_-5px_rgba(240,172,109,0.15)] hover:border-terracotta-500/30"
+              className="group overflow-hidden rounded-2xl border border-tan-700/20 border-l-[3px] border-l-gold-500 bg-cream-beige/40 shadow-[0_6px_24px_-8px_rgba(116,45,27,0.22)] transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_-12px_rgba(227,121,92,0.3)] hover:border-terracotta-500/30"
             >
               <div className="relative aspect-video overflow-hidden">
                 <Image src={c.cover} alt={c.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />

@@ -17,10 +17,10 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
 
   const openModal = (item: (typeof items)[number]) => {
     const chips: DetailModalData['chips'] = [
-      { label: item.type, color: '#667F37' },
-      { label: item.village, color: '#99BA57' },
+      { label: item.type, tone: 'olive' },
+      { label: item.village, tone: 'green' },
     ]
-    if (item.stuntingProgram) chips.push({ label: 'Stunting', color: '#E3795C' })
+    if (item.stuntingProgram) chips.push({ label: 'Stunting', tone: 'terracotta' })
 
     setModalData({
       title: item.facilityName,
@@ -46,7 +46,7 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
         tone="olive"
       />
       <section className="relative bg-olive/5">
-        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
           <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="olive" />
           <MotifFloater motif="cincin_sambel" position="bottom-right" size="md" color="water" />
           <StaggerContainer stagger={0.06} className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
@@ -65,9 +65,9 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
                     image={k.cover}
                     title={k.facilityName}
                     chips={[
-                      { label: k.type, color: '#667F37' },
-                      { label: k.village, color: '#99BA57' },
-                      ...(k.stuntingProgram ? [{ label: 'Stunting', color: '#E3795C' }] : []),
+                      { label: k.type, tone: 'olive' },
+                      { label: k.village, tone: 'green' },
+                      ...(k.stuntingProgram ? [{ label: 'Stunting', tone: 'terracotta' as const }] : []),
                     ]}
                     desc={`Kader: ${k.cadresCount}`}
                     onDetailClick={() => openModal(k)}

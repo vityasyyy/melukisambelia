@@ -44,7 +44,7 @@ export function CountdownStrip({ festivals }: { festivals: Festival[] }) {
 
   if (!next) {
     return (
-      <div className="rounded-2xl bg-gradient-to-r from-wine via-terracotta-500 to-gold-500 p-1 shadow-terracotta">
+      <div className="rounded-2xl bg-gradient-to-r from-terracotta-700 via-gold-bright to-water-700 p-1 shadow-[0_8px_24px_-8px_rgba(227,121,92,0.3)]">
         <div className="rounded-xl bg-page px-6 py-5 text-center">
           <p className="font-beautique-condensed text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-500">
             Festival Pesona Sambelia 2026
@@ -57,7 +57,7 @@ export function CountdownStrip({ festivals }: { festivals: Festival[] }) {
   }
 
   return (
-    <div className="rounded-2xl bg-gradient-to-r from-wine via-terracotta-500 to-gold-500 p-1 shadow-terracotta">
+    <div className="rounded-2xl bg-gradient-to-r from-terracotta-700 via-gold-bright to-water-700 p-1 shadow-[0_8px_24px_-8px_rgba(227,121,92,0.3)]">
       <div className="rounded-xl bg-page px-6 py-5 text-center">
         <p className="font-beautique-condensed text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-500">Menuju {next.f.eventName}</p>
         <div className="mt-3 flex items-center justify-center gap-3 sm:gap-6">
