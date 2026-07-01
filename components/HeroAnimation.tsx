@@ -2,182 +2,8 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { MapPin, Sparkles } from 'lucide-react'
-
-type MotifConfig = {
-  src: string
-  alt: string
-  width: number
-  height: number
-  className: string
-  filter: string
-  opacity: number
-  rotateDuration: number
-  rotateDir: number
-  floatDuration?: number
-  floatRange?: number
-  delay: number
-}
-
-const RINGS: MotifConfig[] = [
-  {
-    src: '/images/design-system/cincin_sambel.svg',
-    alt: '',
-    width: 500,
-    height: 500,
-    className: 'absolute right-0 top-1/2 -translate-y-1/2 z-[2] w-[35vw] max-w-[500px]',
-    filter: 'sepia(0.8) hue-rotate(-15deg) saturate(3)',
-    opacity: 0.14,
-    rotateDuration: 60,
-    rotateDir: 1,
-    delay: 0,
-  },
-  {
-    src: '/images/design-system/cincin_sambel.svg',
-    alt: '',
-    width: 400,
-    height: 400,
-    className: 'absolute left-[-8vw] bottom-[5vh] z-[1] w-[28vw] max-w-[400px]',
-    filter: 'sepia(0.6) hue-rotate(170deg) saturate(3)',
-    opacity: 0.08,
-    rotateDuration: 90,
-    rotateDir: -1,
-    delay: 0.5,
-  },
-  {
-    src: '/images/design-system/cincin_sambel.svg',
-    alt: '',
-    width: 300,
-    height: 300,
-    className: 'absolute right-[10vw] top-[8vh] z-[1] w-[20vw] max-w-[300px]',
-    filter: 'sepia(0.7) hue-rotate(60deg) saturate(2.5)',
-    opacity: 0.06,
-    rotateDuration: 75,
-    rotateDir: 1,
-    delay: 1,
-  },
-]
-
-const FLOWERS: MotifConfig[] = [
-  {
-    src: '/images/design-system/bunga_sambel.svg',
-    alt: '',
-    width: 180,
-    height: 180,
-    className: 'absolute left-[8vw] top-[20vh] z-[2] w-[14vw] max-w-[180px]',
-    filter: 'sepia(0.9) hue-rotate(-5deg) saturate(2.5)',
-    opacity: 0.12,
-    rotateDuration: 50,
-    rotateDir: 1,
-    floatDuration: 6,
-    floatRange: 16,
-    delay: 0.3,
-  },
-  {
-    src: '/images/design-system/bunga_sambel.svg',
-    alt: '',
-    width: 140,
-    height: 140,
-    className: 'absolute right-[15vw] bottom-[18vh] z-[2] w-[11vw] max-w-[140px]',
-    filter: 'sepia(0.7) hue-rotate(170deg) saturate(3)',
-    opacity: 0.10,
-    rotateDuration: 55,
-    rotateDir: -1,
-    floatDuration: 7,
-    floatRange: 20,
-    delay: 0.8,
-  },
-  {
-    src: '/images/design-system/bunga_sambel.svg',
-    alt: '',
-    width: 120,
-    height: 120,
-    className: 'absolute left-[20vw] bottom-[12vh] z-[1] w-[9vw] max-w-[120px]',
-    filter: 'sepia(0.8) hue-rotate(60deg) saturate(2.5)',
-    opacity: 0.08,
-    rotateDuration: 45,
-    rotateDir: 1,
-    floatDuration: 5,
-    floatRange: 14,
-    delay: 1.2,
-  },
-  {
-    src: '/images/design-system/bunga_sambel.svg',
-    alt: '',
-    width: 100,
-    height: 100,
-    className: 'absolute right-[6vw] top-[25vh] z-[1] w-[8vw] max-w-[100px]',
-    filter: 'sepia(0.9) saturate(2.5)',
-    opacity: 0.07,
-    rotateDuration: 40,
-    rotateDir: -1,
-    floatDuration: 8,
-    floatRange: 18,
-    delay: 1.5,
-  },
-  {
-    src: '/images/design-system/bunga_sambel.svg',
-    alt: '',
-    width: 90,
-    height: 90,
-    className: 'absolute left-[40vw] top-[15vh] z-[1] w-[7vw] max-w-[90px]',
-    filter: 'sepia(0.7) hue-rotate(-10deg) saturate(3)',
-    opacity: 0.06,
-    rotateDuration: 48,
-    rotateDir: 1,
-    floatDuration: 6.5,
-    floatRange: 12,
-    delay: 1.8,
-  },
-]
-
-function Motif({ config, reduce }: { config: MotifConfig; reduce: boolean | null }) {
-  return (
-    <motion.div
-      aria-hidden
-      className={config.className}
-      initial={reduce ? undefined : { opacity: 0, scale: 0.85 }}
-      animate={reduce ? { opacity: config.opacity } : { opacity: config.opacity, scale: 1 }}
-      transition={{ duration: 2, ease: 'easeOut', delay: config.delay }}
-    >
-      <motion.div
-        className="relative w-full h-full motif-glow"
-        animate={reduce ? undefined : { rotate: 360 * config.rotateDir }}
-        transition={reduce ? undefined : { rotate: { duration: config.rotateDuration, repeat: Infinity, ease: 'linear' } }}
-      >
-        {config.floatDuration && !reduce && (
-          <motion.div
-            className="relative w-full h-full"
-            animate={{ y: [0, -(config.floatRange ?? 16), 0] }}
-            transition={{ duration: config.floatDuration, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            <Image
-              src={config.src}
-              alt={config.alt}
-              width={config.width}
-              height={config.height}
-              className="w-full h-auto"
-              style={{ filter: config.filter }}
-              loading="lazy"
-            />
-          </motion.div>
-        )}
-        {(!config.floatDuration || reduce) && (
-          <Image
-            src={config.src}
-            alt={config.alt}
-            width={config.width}
-            height={config.height}
-            className="w-full h-auto"
-            style={{ filter: config.filter }}
-            loading="lazy"
-          />
-        )}
-      </motion.div>
-    </motion.div>
-  )
-}
 
 export function HeroAnimation({
   src,
@@ -187,10 +13,6 @@ export function HeroAnimation({
   tagline: string
 }) {
   const reduce = useReducedMotion()
-  const { scrollY } = useScroll()
-  const heroY = useTransform(scrollY, [0, 600], reduce ? [0, 0] : [0, 150])
-  const heroOpacity = useTransform(scrollY, [0, 400], reduce ? [1, 1] : [1, 0.3])
-  const heroScale = useTransform(scrollY, [0, 600], reduce ? [1, 1] : [1, 1.08])
 
   const container = {
     hidden: {},
@@ -211,7 +33,6 @@ export function HeroAnimation({
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.4, ease: 'easeOut' }}
         className="absolute inset-0"
-        style={{ y: heroY, scale: heroScale, opacity: heroOpacity, willChange: 'transform,opacity' }}
       >
         <Image
           src={src ?? '/images/content/personstanding.webp'}
@@ -245,12 +66,62 @@ export function HeroAnimation({
         style={{ boxShadow: 'inset 0 -100px 140px -30px rgba(15,8,5,0.95)' }}
       />
 
-      {RINGS.map((r, i) => (
-        <Motif key={`ring-${i}`} config={r} reduce={reduce} />
-      ))}
-      {FLOWERS.map((f, i) => (
-        <Motif key={`flower-${i}`} config={f} reduce={reduce} />
-      ))}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 z-[2] w-[50vw] sm:w-[35vw] max-w-[500px] motif-entrance"
+      >
+        <div className="motif-glow motif-rotate" style={{ animationDuration: '60s' }}>
+          <Image
+            src="/images/design-system/cincin_sambel.svg"
+            alt=""
+            width={500}
+            height={500}
+            className="w-full h-auto"
+            style={{ filter: 'sepia(0.8) hue-rotate(-15deg) saturate(3)', opacity: 0.42 }}
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-[4vw] top-[18vh] sm:top-[20vh] z-[2] w-[22vw] sm:w-[14vw] max-w-[180px] motif-entrance"
+        style={{ animationDelay: '0.3s' }}
+      >
+        <div className="motif-glow motif-rotate-reverse" style={{ animationDuration: '50s' }}>
+          <div className="motif-float">
+            <Image
+              src="/images/design-system/bunga_sambel.svg"
+              alt=""
+              width={180}
+              height={180}
+              className="w-full h-auto"
+              style={{ filter: 'sepia(0.9) hue-rotate(-5deg) saturate(2.5)', opacity: 0.38 }}
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-[6vw] bottom-[15vh] sm:bottom-[18vh] z-[2] w-[18vw] sm:w-[11vw] max-w-[140px] motif-entrance"
+        style={{ animationDelay: '0.7s' }}
+      >
+        <div className="motif-glow motif-rotate" style={{ animationDuration: '55s' }}>
+          <div className="motif-float-slow">
+            <Image
+              src="/images/design-system/bunga_sambel.svg"
+              alt=""
+              width={140}
+              height={140}
+              className="w-full h-auto"
+              style={{ filter: 'sepia(0.7) hue-rotate(170deg) saturate(3)', opacity: 0.35 }}
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
 
       <div className="relative z-10 flex w-full max-w-4xl flex-col items-center justify-center px-4 sm:px-6">
         <motion.div variants={container} initial="hidden" animate="visible" className="flex flex-col items-center">
@@ -265,17 +136,17 @@ export function HeroAnimation({
           <motion.p variants={item} className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg md:text-xl" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.6)' }}>
             {tagline}
           </motion.p>
-          <motion.div variants={item} className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4">
+          <motion.div variants={item} className="mt-8 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4">
             <Link
               href="/peta"
-              className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-water-900 to-water-700 px-7 py-3.5 text-base font-semibold text-white shadow-[0_6px_24px_rgba(8,115,185,0.4)] transition-all hover:shadow-[0_8px_32px_rgba(8,115,185,0.5)] hover:scale-[1.02]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-brown-950 shadow-lg transition-all hover:bg-cream-warm hover:shadow-xl hover:scale-[1.02] min-h-[48px]"
             >
-              <MapPin className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              <MapPin className="h-4 w-4" />
               Jelajahi Peta
             </Link>
             <Link
               href="/festival"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-gold-500/50 bg-white/10 px-7 py-3.5 text-base font-medium text-gold-soft backdrop-blur-sm transition-all hover:border-gold-500/70 hover:bg-white/15 hover:text-gold-bright sm:w-auto"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/40 bg-white/10 backdrop-blur-sm px-7 py-3.5 text-base font-medium text-white transition-all hover:bg-white/20 hover:border-white/60 min-h-[48px]"
             >
               <Sparkles className="h-4 w-4" />
               Festival Pesona

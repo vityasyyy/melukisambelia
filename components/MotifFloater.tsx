@@ -31,17 +31,12 @@ const COLOR_FILTERS: Record<MotifColor, string> = {
   brown: 'sepia(0.9) saturate(2.5)',
 }
 
-const FLOAT_VARIANTS = {
-  hidden: { opacity: 0, scale: 0.85, y: 12 },
-  visible: { opacity: 1, scale: 1, y: 0 },
-}
-
 export function MotifFloater({
   motif = 'bunga_sambel',
   position = 'top-right',
   size = 'md',
   color = 'gold',
-  opacity = 0.20,
+  opacity = 0.45,
 }: {
   motif?: Motif
   position?: Position
@@ -55,44 +50,33 @@ export function MotifFloater({
   return (
     <motion.div
       aria-hidden
-      className={`pointer-events-none absolute z-0 ${POSITION_CLASSES[position]} ${SIZE_CLASSES[size]}`}
-      initial={reduce ? undefined : FLOAT_VARIANTS.hidden}
-      whileInView={reduce ? undefined : FLOAT_VARIANTS.visible}
+      className={`pointer-events-none absolute z-0 ${POSITION_CLASSES[position]} ${SIZE_CLASSES[size]} motif-entrance`}
+      initial={reduce ? undefined : { opacity: 0, scale: 0.85, y: 12 }}
+      whileInView={reduce ? undefined : { opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, margin: '-20px' }}
       transition={{ duration: 0.9, ease: 'easeOut' }}
-      style={reduce ? { opacity } : undefined}
     >
-      <motion.div
-        className="relative w-full h-full motif-glow"
-        animate={reduce ? undefined : { rotate: 360 }}
-        transition={reduce ? undefined : { rotate: { duration: 60, repeat: Infinity, ease: 'linear' } }}
-      >
-        <motion.div
-          className="relative w-full h-full"
-          animate={reduce ? undefined : { opacity: [1, 0.75, 1] }}
-          transition={reduce ? undefined : { opacity: { duration: 8, repeat: Infinity, ease: 'easeInOut' } }}
-        >
-      {isImage ? (
-        <Image
-          src="/images/design-system/ornament-gold.png"
-          alt=""
-          fill
-          className="object-contain"
-          sizes="(max-width: 640px) 80px, 144px"
-          style={{ filter: COLOR_FILTERS[color], opacity }}
-        />
-      ) : (
-        <Image
-          src={`/images/design-system/${motif}.svg`}
-          alt=""
-          fill
-          className="object-contain"
-          sizes="(max-width: 640px) 80px, 144px"
-          style={{ filter: COLOR_FILTERS[color], opacity }}
-        />
-      )}
-        </motion.div>
-      </motion.div>
+      <div className="relative w-full h-full motif-glow motif-rotate" style={{ animationDuration: '60s' }}>
+        {isImage ? (
+          <Image
+            src="/images/design-system/ornament-gold.png"
+            alt=""
+            fill
+            className="object-contain"
+            sizes="(max-width: 640px) 80px, 144px"
+            style={{ filter: COLOR_FILTERS[color], opacity }}
+          />
+        ) : (
+          <Image
+            src={`/images/design-system/${motif}.svg`}
+            alt=""
+            fill
+            className="object-contain"
+            sizes="(max-width: 640px) 80px, 144px"
+            style={{ filter: COLOR_FILTERS[color], opacity }}
+          />
+        )}
+      </div>
     </motion.div>
   )
 }

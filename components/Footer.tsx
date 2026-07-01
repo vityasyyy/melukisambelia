@@ -7,7 +7,6 @@ export function Footer() {
   const footer = getFooter()
   return (
     <footer className="relative overflow-hidden bg-wine text-cream-light">
-      <div aria-hidden className="batik-strip opacity-[0.18] invert" />
       <div
         className="relative h-[3px] bg-gradient-to-r from-water-900 via-gold-bright to-terracotta-500 opacity-90"
         aria-hidden

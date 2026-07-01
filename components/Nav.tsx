@@ -82,12 +82,6 @@ export function Nav() {
     return isActivePath(href, pathname)
   }
 
-  const navBg = scrolled
-    ? 'bg-brown-950/95 backdrop-blur-xl shadow-[0_4px_24px_-8px_rgba(15,8,5,0.5)]'
-    : 'bg-transparent'
-
-  const navInset = 'left-0 right-0 top-0'
-
   const activeLink = 'text-gold-bright after:absolute after:bottom-0.5 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:w-3/4 after:rounded-full after:bg-gold-500'
   const inactiveLink = 'text-white/85 hover:text-white hover:bg-white/10'
 
@@ -95,13 +89,18 @@ export function Nav() {
     <header
       className={cn(
         'fixed z-[1000] transition-all duration-500 ease-sambel',
-        navInset,
-        navBg,
+        scrolled
+          ? 'left-4 right-4 top-3 sm:left-6 sm:right-6 sm:top-4 rounded-2xl bg-brown-950 shadow-[0_8px_32px_-8px_rgba(15,8,5,0.6)]'
+          : 'left-0 right-0 top-0 bg-brown-950'
       )}
     >
+      {scrolled && (
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-[2px] rounded-b-2xl bg-gradient-to-r from-transparent via-gold-500/40 to-transparent" />
+      )}
       <nav aria-label="Navigasi utama" className="mx-auto flex max-w-content items-center justify-between px-4 py-3">
-        <Link href="/" aria-label="Beranda Sambelia" className="flex items-center gap-2">
+        <Link href="/" aria-label="Beranda Sambelia" className="flex items-center gap-2.5">
           <Logo className="h-10 w-auto brightness-0 invert transition-colors duration-300" />
+          <span className="inline-block font-beautique text-lg text-white/90">Melukis Sambelia</span>
         </Link>
 
         <ul className={cn('hidden items-center gap-1 lg:flex text-white')}>
@@ -173,8 +172,8 @@ export function Nav() {
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent side="right" className="border-l border-gold-500/20 bg-brown-950/95 backdrop-blur-xl text-cream-light/90 w-[85vw] max-w-sm p-0">
           <SheetHeader className="border-b border-gold-500/15 px-6 py-4">
-            <SheetTitle className="text-cream-light">
-              <Logo className="h-8 w-auto brightness-0 invert" />
+            <SheetTitle className="font-beautique text-lg text-gold-soft">
+              Melukis Sambelia
             </SheetTitle>
           </SheetHeader>
           <nav className="overflow-y-auto px-4 py-4 max-h-[70vh]">

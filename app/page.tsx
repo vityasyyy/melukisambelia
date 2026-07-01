@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { getSettings, getJejakiCards, getPageSettings } from '@/lib/settings'
 import { getCollection } from '@/lib/content'
 import { SITE_URL, REVALIDATE_SECONDS } from '@/lib/config'
 import { CountUpStat } from '@/components/CountUpStat'
-import { DataCard } from '@/components/DataCard'
 import { SectionHeader } from '@/components/SectionHeader'
 import { KegiatanStats } from '@/components/KegiatanStats'
 import { FadeIn } from '@/components/FadeIn'
@@ -73,12 +73,11 @@ export default function Beranda() {
 
   return (
     <>
-      <section className="sticky top-0 z-0 -mt-[63px] flex h-[100dvh] min-h-[600px] items-center justify-center overflow-hidden text-center">
+      <section className="relative z-0 -mt-[63px] flex h-[100dvh] min-h-[600px] items-center justify-center overflow-hidden text-center">
         <HeroAnimation src={s.heroImage} tagline={s.heroTagline} />
       </section>
 
-      <section id="tentang" className="relative z-10 -mt-4 scroll-mt-16 overflow-hidden rounded-t-[1.5rem] bg-page">
-        <div className="absolute inset-0 section-watermark" aria-hidden />
+      <section id="tentang" className="relative z-10 scroll-mt-16 overflow-hidden bg-page">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
           <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="gold" />
           <FadeIn>
@@ -116,13 +115,36 @@ export default function Beranda() {
           <FadeIn>
             <SectionHeader kicker={hi.jejakiKicker} title={hi.jejakiTitle} tone="gold" />
           </FadeIn>
-          <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {previews.map((p) => (
-              <StaggerItem key={p.href}>
-                <DataCard href={p.href} image={p.image} title={p.title} desc={p.desc} accent={p.accent} />
-              </StaggerItem>
+          <div className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-4 -mx-4 px-4">
+            {previews.map((p, i) => (
+              <div key={p.href} className="snap-center shrink-0 w-[80vw] sm:w-[420px]">
+                <a href={p.href} className="group block h-full">
+                  <div className="relative overflow-hidden rounded-2xl border border-tan-700/15 border-l-[3px] bg-card shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-terracotta-hover hover:border-terracotta-500/25 h-full" style={{ borderLeftColor: p.accent }}>
+                    <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl">
+                      <Image
+                        src={p.image}
+                        alt={p.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 640px) 80vw, 420px"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-brown-950/40 via-transparent to-transparent" />
+                      <div aria-hidden className="absolute top-3 left-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-brown-950/60 font-beautique-condensed text-sm font-bold text-gold-bright ring-1 ring-white/15 backdrop-blur-sm">
+                        {String(i + 1).padStart(2, '0')}
+                      </div>
+                      <h3 className="absolute bottom-3 left-4 right-4 z-10 font-beautique text-2xl text-white group-hover:text-gold-bright transition-colors" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}>{p.title}</h3>
+                    </div>
+                    {p.desc && (
+                      <div className="p-4">
+                        <p className="text-sm leading-relaxed text-ink/70 line-clamp-2">{p.desc}</p>
+                      </div>
+                    )}
+                  </div>
+                </a>
+              </div>
             ))}
-          </StaggerContainer>
+          </div>
+          <p className="mt-3 text-center text-xs font-beautique-condensed uppercase tracking-[0.15em] text-ink/50">Geser horizontal untuk menjelajah →</p>
         </div>
       </section>
 

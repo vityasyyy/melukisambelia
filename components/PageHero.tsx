@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { GradientText } from '@/components/GradientText'
 import { FadeIn } from '@/components/FadeIn'
 import { cn } from '@/lib/utils'
@@ -48,8 +48,6 @@ export function PageHero({
   tone?: Tone
   className?: string
 }) {
-  const reduce = useReducedMotion()
-
   return (
     <section
       className={cn(
@@ -58,6 +56,7 @@ export function PageHero({
         className
       )}
     >
+      <div aria-hidden className="absolute inset-0 section-watermark" />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -71,84 +70,59 @@ export function PageHero({
 
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 z-[1] w-[30vw] max-w-[350px]"
-        initial={reduce ? undefined : { opacity: 0, x: 80 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1.8, ease: 'easeOut' }}
+        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 z-[1] w-[30vw] max-w-[350px] motif-entrance"
       >
-        <motion.div
-          className="motif-glow"
-          animate={reduce ? undefined : { rotate: 360 }}
-          transition={reduce ? undefined : { rotate: { duration: 60, repeat: Infinity, ease: 'linear' } }}
-        >
+        <div className="motif-glow motif-rotate" style={{ animationDuration: '60s' }}>
           <Image
             src="/images/design-system/cincin_sambel.svg"
             alt=""
             width={500}
             height={500}
             className="w-full h-auto"
-            style={{ filter: RING_FILTERS[tone], opacity: 0.08 }}
+            style={{ filter: RING_FILTERS[tone], opacity: 0.38 }}
             loading="lazy"
           />
-        </motion.div>
+        </div>
       </motion.div>
 
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute left-[4vw] top-[18%] z-[1] w-[14vw] max-w-[160px]"
-        initial={reduce ? undefined : { opacity: 0, scale: 0.85 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.6, ease: 'easeOut', delay: 0.4 }}
+        className="pointer-events-none absolute left-[4vw] top-[18%] z-[1] w-[14vw] max-w-[160px] motif-entrance"
+        style={{ animationDelay: '0.4s' }}
       >
-        <motion.div
-          className="motif-glow"
-          animate={reduce ? undefined : { rotate: 360 }}
-          transition={reduce ? undefined : { rotate: { duration: 50, repeat: Infinity, ease: 'linear' } }}
-        >
-          <motion.div
-            animate={reduce ? undefined : { y: [0, -14, 0] }}
-            transition={reduce ? undefined : { y: { duration: 6, repeat: Infinity, ease: 'easeInOut' } }}
-          >
+        <div className="motif-glow motif-rotate-reverse" style={{ animationDuration: '50s' }}>
+          <div className="motif-float">
             <Image
               src="/images/design-system/bunga_sambel.svg"
               alt=""
               width={200}
               height={200}
               className="w-full h-auto"
-              style={{ filter: RING_FILTERS[tone], opacity: 0.10 }}
+              style={{ filter: RING_FILTERS[tone], opacity: 0.38 }}
               loading="lazy"
             />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </motion.div>
 
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute right-[6vw] bottom-[15%] z-[1] w-[11vw] max-w-[130px]"
-        initial={reduce ? undefined : { opacity: 0, scale: 0.85 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.6, ease: 'easeOut', delay: 0.7 }}
+        className="pointer-events-none absolute right-[6vw] bottom-[15%] z-[1] w-[11vw] max-w-[130px] motif-entrance"
+        style={{ animationDelay: '0.7s' }}
       >
-        <motion.div
-          className="motif-glow"
-          animate={reduce ? undefined : { rotate: -360 }}
-          transition={reduce ? undefined : { rotate: { duration: 55, repeat: Infinity, ease: 'linear' } }}
-        >
-          <motion.div
-            animate={reduce ? undefined : { y: [0, 16, 0] }}
-            transition={reduce ? undefined : { y: { duration: 7, repeat: Infinity, ease: 'easeInOut' } }}
-          >
+        <div className="motif-glow motif-rotate" style={{ animationDuration: '55s' }}>
+          <div className="motif-float-slow">
             <Image
               src="/images/design-system/bunga_sambel.svg"
               alt=""
               width={160}
               height={160}
               className="w-full h-auto"
-              style={{ filter: RING_FILTERS[tone], opacity: 0.07 }}
+              style={{ filter: RING_FILTERS[tone], opacity: 0.35 }}
               loading="lazy"
             />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </motion.div>
 
       <div className={cn('absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r opacity-90 z-[2]', BAND_CLASSES[tone])} aria-hidden />
