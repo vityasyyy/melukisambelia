@@ -132,6 +132,16 @@
     overflow-wrap: break-word;
     word-break: break-word;
   }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 150px 150px;
+  }
   .font-display {
     font-family: var(--font-beautique), var(--font-gontserrat), sans-serif;
   }
@@ -193,6 +203,16 @@
     opacity: 0.06;
   }
 
+  .batik-divider {
+    height: 36px;
+    background-image: url('/images/design-system/batik_sambel.svg');
+    background-repeat: repeat-x;
+    background-size: 800px auto;
+    background-position: center;
+    opacity: 0.10;
+    animation: batik-sweep 20s linear infinite;
+  }
+
   .brand-accent-line {
     height: 3px;
     background: linear-gradient(90deg, transparent, var(--gold-500), transparent);
@@ -210,6 +230,11 @@
   @keyframes shimmer {
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
+  }
+
+  @keyframes batik-sweep {
+    0% { background-position: 0 center; }
+    100% { background-position: 800px center; }
   }
 
   .img-shimmer {

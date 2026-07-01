@@ -81,7 +81,7 @@ export default function Beranda() {
           className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center text-white/70 transition-colors hover:text-white"
           aria-label={hi.scrollPrompt || 'Gulir untuk menjelajah'}
         >
-          <span className="mb-1 text-[10px] font-medium uppercase tracking-widest">{hi.scrollPrompt || 'Gulir untuk menjelajah'}</span>
+          <span className="mb-1 font-beautique-condensed text-[10px] font-semibold uppercase tracking-[0.2em]">{hi.scrollPrompt || 'Gulir untuk menjelajah'}</span>
           <ChevronDown className="h-5 w-5 animate-bounce" />
         </a>
       </section>
@@ -106,9 +106,10 @@ export default function Beranda() {
           <div className="mt-5 text-center">
             <Link
               href="/tentang-sambelia"
-              className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-all hover:bg-cream-beige hover:scale-[1.02]"
+              className="inline-flex items-center gap-1.5 rounded-full border border-tan-700/30 px-5 py-2 text-sm font-beautique text-brown-900 transition-all hover:bg-cream-beige hover:border-terracotta-500/30 hover:scale-[1.02]"
             >
-              Selengkapnya →
+              Selengkapnya
+              <span className="transition-transform group-hover:translate-x-0.5">→</span>
             </Link>
           </div>
         </div>
@@ -117,7 +118,8 @@ export default function Beranda() {
       <MotifDivider />
 
       <section className="relative bg-cream-beige">
-        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+        <div className="absolute inset-0 section-watermark" aria-hidden />
+        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
           <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="terracotta" />
           <FadeIn>
             <SectionHeader kicker={hi.jejakiKicker} title={hi.jejakiTitle} tone="gold" />
@@ -166,9 +168,10 @@ export default function Beranda() {
             <div className="mt-5 text-center">
               <Link
                 href="/pariwisata"
-                className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-all hover:bg-cream-beige hover:scale-[1.02]"
+                className="inline-flex items-center gap-1.5 rounded-full border border-tan-700/30 px-5 py-2 text-sm font-beautique text-brown-900 transition-all hover:bg-cream-beige hover:border-terracotta-500/30 hover:scale-[1.02]"
               >
-                Lihat semua wisata →
+                Lihat semua wisata
+                <span className="transition-transform group-hover:translate-x-0.5">→</span>
               </Link>
             </div>
           </div>
@@ -178,8 +181,9 @@ export default function Beranda() {
       <MotifDivider />
 
       {festival.length > 0 && (
-        <section className="relative bg-terracotta-500/[0.06]">
-          <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10 border-l-4 border-terracotta-500/20">
+        <section className="relative bg-gradient-to-b from-terracotta-500/[0.06] via-cream-warm/20 to-terracotta-500/[0.06]">
+          <div className="absolute inset-0 section-watermark" aria-hidden />
+          <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
             <MotifFloater motif="cincin_sambel" position="top-left" size="md" color="gold" />
             <MotifFloater motif="bunga_sambel" position="bottom-right" size="sm" color="terracotta" />
             <FadeIn>
@@ -199,9 +203,10 @@ export default function Beranda() {
             <div className="mt-5 text-center">
               <Link
                 href="/festival"
-                className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-all hover:bg-cream-beige hover:scale-[1.02]"
+                className="inline-flex items-center gap-1.5 rounded-full border border-tan-700/30 px-5 py-2 text-sm font-beautique text-brown-900 transition-all hover:bg-cream-beige hover:border-terracotta-500/30 hover:scale-[1.02]"
               >
-                Lihat semua festival →
+                Lihat semua festival
+                <span className="transition-transform group-hover:translate-x-0.5">→</span>
               </Link>
             </div>
           </div>
@@ -212,7 +217,8 @@ export default function Beranda() {
 
       {umkmSpotlight.length > 0 && (
         <section className="relative bg-cream-warm/40">
-          <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <div className="absolute inset-0 section-watermark" aria-hidden />
+          <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
             <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="olive" />
             <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="terracotta" />
             <FadeIn>
@@ -233,9 +239,10 @@ export default function Beranda() {
             <div className="mt-5 text-center">
               <Link
                 href="/umkm"
-                className="inline-block rounded-full border border-tan-700/30 px-5 py-2 text-sm font-medium text-brown-900 transition-all hover:bg-cream-beige hover:scale-[1.02]"
+                className="inline-flex items-center gap-1.5 rounded-full border border-tan-700/30 px-5 py-2 text-sm font-beautique text-brown-900 transition-all hover:bg-cream-beige hover:border-terracotta-500/30 hover:scale-[1.02]"
               >
-                Lihat semua UMKM →
+                Lihat semua UMKM
+                <span className="transition-transform group-hover:translate-x-0.5">→</span>
               </Link>
             </div>
           </div>
@@ -245,6 +252,7 @@ export default function Beranda() {
       <MotifDivider />
 
       <section className="relative bg-gold-50/30">
+        <div className="absolute inset-0 section-watermark" aria-hidden />
         <KegiatanStats />
       </section>
     </>

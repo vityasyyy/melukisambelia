@@ -42,7 +42,7 @@ export function PageHero({
       />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-500/30 to-transparent" aria-hidden />
       <FadeIn className="relative z-10 mx-auto max-w-content px-4">
-        <p className="text-xs font-semibold uppercase tracking-widest text-white/80" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>{kicker}</p>
+        <p className="font-beautique-condensed text-xs font-semibold uppercase tracking-[0.2em] text-white/80" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>{kicker}</p>
         <h1
           className="mt-2 font-beautique text-display-lg break-words"
           style={{ textShadow: '0 4px 16px rgba(0,0,0,0.5), 0 0 40px rgba(0,0,0,0.2)' }}

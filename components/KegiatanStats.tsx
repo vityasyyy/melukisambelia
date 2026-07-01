@@ -23,15 +23,16 @@ export function KegiatanStats() {
             <Link
               key={c.slug}
               href={`/kegiatan/${c.slug}`}
-              className="group overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/40 shadow-terracotta transition-all hover:-translate-y-1 hover:shadow-terracotta-hover"
+              className="group overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/40 shadow-terracotta transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_-5px_rgba(240,172,109,0.15)] hover:border-terracotta-500/30"
             >
               <div className="relative aspect-video overflow-hidden">
                 <Image src={c.cover} alt={c.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+                <div aria-hidden className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-brown-950/20 to-transparent" />
               </div>
               <div className="min-w-0 p-4">
                 <h3 className="truncate font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{c.title}</h3>
                 <p className="mt-2 text-sm text-ink/70 line-clamp-2">{c.excerpt}</p>
-                <p className="mt-2 text-xs text-ink/60">{c.author} · {c.date}</p>
+                <p className="mt-2 font-beautique-condensed text-[10px] tracking-widest uppercase text-ink/60">{c.author} · {c.date}</p>
               </div>
             </Link>
           ))}
@@ -40,10 +41,10 @@ export function KegiatanStats() {
         <p className="mt-6 text-center text-ink/70">{empty.kegiatan}</p>
       )}
       <div className="mt-6 flex flex-wrap justify-center gap-3">
-        <Link href="/kegiatan" className="inline-block rounded-full border border-tan-700/30 px-5 py-2.5 text-sm font-medium text-brown-900 transition-colors hover:bg-cream-beige">
+        <Link href="/kegiatan" className="inline-flex items-center gap-1.5 rounded-full border border-tan-700/30 px-5 py-2.5 text-sm font-beautique text-brown-900 transition-colors hover:bg-cream-beige">
           Lihat semua kegiatan →
         </Link>
-        <Link href="/tentang-sambelia" className="inline-block rounded-full border border-water-900/30 bg-water-900 px-5 py-2.5 text-sm font-medium text-cream-light transition-colors hover:bg-water-700">
+        <Link href="/tentang-sambelia" className="inline-flex items-center gap-1.5 rounded-full border border-water-900/30 bg-water-900 px-5 py-2.5 text-sm font-beautique text-cream-light transition-colors hover:bg-water-700">
           Tentang Sambelia →
         </Link>
       </div>

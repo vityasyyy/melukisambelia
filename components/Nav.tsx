@@ -85,45 +85,41 @@ export function Nav() {
   const isHome = pathname === '/'
 
   const navBg = scrolled
-    ? 'bg-brown-950/90 shadow-lg backdrop-blur-xl'
+    ? 'bg-brown-950/92 shadow-xl backdrop-blur-xl'
     : isHome
       ? 'bg-transparent'
-      : 'bg-brown-950/60 backdrop-blur-xl'
+      : 'bg-brown-950/70 backdrop-blur-xl border-b border-gold-500/20'
 
   const navRounded = scrolled ? 'rounded-2xl' : ''
-  const navInset = scrolled ? 'left-3 right-3 sm:left-6 sm:right-6' : 'inset-x-0'
+  const navInset = scrolled ? 'left-4 right-4 top-4 sm:left-6 sm:right-6' : 'inset-x-0 top-0'
 
-  const textColor = (!scrolled && isHome) ? 'text-white' : 'text-white'
-  const activeBg = (scrolled || !isHome)
-    ? 'bg-white/20 text-white'
-    : 'bg-white/20 text-white'
-  const inactiveHover = (!scrolled && isHome)
-    ? 'text-white/80 hover:bg-white/10 hover:text-white'
-    : 'text-white/80 hover:bg-white/10 hover:text-white'
+  const activeLink = 'text-gold-soft after:absolute after:bottom-0.5 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:w-3/4 after:rounded-full after:bg-gold-500'
+  const inactiveLink = 'text-white/75 hover:text-white hover:bg-white/10'
 
   return (
     <header
       className={cn(
-        'fixed top-0 z-[1000] transition-all duration-500 ease-sambel',
+        'fixed z-[1000] transition-all duration-500 ease-sambel',
         navInset,
         navRounded,
         navBg,
+        scrolled && '[&>::after]:absolute [&>::after]:bottom-0 [&>::after]:left-6 [&>::after]:right-6 [&>::after]:h-px [&>::after]:bg-gradient-to-r [&>::after]:from-transparent [&>::after]:via-gold-500/40 [&>::after]:to-transparent sm:[&>::after]:left-8 sm:[&>::after]:right-8',
       )}
     >
       <nav aria-label="Navigasi utama" className="mx-auto flex max-w-content items-center justify-between px-4 py-3">
-        <Link href="/" aria-label="Beranda Sambelia">
+        <Link href="/" aria-label="Beranda Sambelia" className="flex items-center gap-2">
           <Logo className="h-10 w-auto brightness-0 invert transition-colors duration-300" />
         </Link>
 
-        <ul className={cn('hidden items-center gap-1 lg:flex transition-colors duration-300', textColor)}>
+        <ul className={cn('hidden items-center gap-1 lg:flex text-white')}>
           {NAV_TOP_LEVEL.filter((l) => l.href !== '/').map((l) => (
             <li key={l.href}>
               <Link
                 href={l.href}
                 aria-current={isActive(l.href) ? 'page' : undefined}
                 className={cn(
-                  'rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
-                  isActive(l.href) ? activeBg : inactiveHover
+                  'relative rounded-full px-3.5 py-1.5 text-sm font-medium transition-all duration-200',
+                  isActive(l.href) ? activeLink : inactiveLink
                 )}
               >
                 {l.label}
@@ -139,25 +135,25 @@ export function Nav() {
                   aria-haspopup="true"
                   aria-expanded={groupActive}
                   className={cn(
-                    'flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
-                    groupActive ? activeBg : inactiveHover
+                    'flex items-center gap-1 rounded-full px-3.5 py-1.5 text-sm font-medium transition-all duration-200',
+                    groupActive ? activeLink : inactiveLink
                   )}
                 >
                   {group.label}
                   <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                 </button>
                 <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-focus-within:visible group-hover:opacity-100 group-focus-within:opacity-100 max-lg:left-0 max-lg:-translate-x-0">
-                  <ul className="min-w-[180px] rounded-xl shadow-lg border border-white/10 bg-brown-950/95 backdrop-blur-xl">
+                  <ul className="min-w-[200px] rounded-xl shadow-2xl border border-gold-500/20 bg-brown-950/95 backdrop-blur-xl overflow-hidden">
                     {group.items.map((item) => (
                       <li key={item.href}>
                         <Link
                           href={item.href}
                           aria-current={isActive(item.href) ? 'page' : undefined}
                           className={cn(
-                            'block rounded-lg px-4 py-2 text-sm font-medium transition-colors',
+                            'block px-4 py-2.5 text-sm font-medium transition-colors',
                             isActive(item.href)
-                              ? 'bg-white/20 text-white'
-                              : 'text-white/80 hover:bg-white/10 hover:text-white'
+                              ? 'bg-gold-500/15 text-gold-soft'
+                              : 'text-white/75 hover:bg-white/10 hover:text-white'
                           )}
                         >
                           {item.label}
@@ -182,8 +178,8 @@ export function Nav() {
       </nav>
 
       <Sheet open={open} onOpenChange={setOpen}>
-        <SheetContent side="right" className="border-l border-white/10 bg-brown-950/95 backdrop-blur-xl text-cream-light w-[85vw] max-w-sm p-0">
-          <SheetHeader className="border-b border-white/10 px-6 py-4">
+        <SheetContent side="right" className="border-l border-gold-500/20 bg-brown-950/95 backdrop-blur-xl text-cream-light w-[85vw] max-w-sm p-0">
+          <SheetHeader className="border-b border-gold-500/15 px-6 py-4">
             <SheetTitle className="text-cream-light">
               <Logo className="h-8 w-auto brightness-0 invert" />
             </SheetTitle>
@@ -199,7 +195,7 @@ export function Nav() {
                       className={cn(
                         'flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-base font-medium transition-colors',
                         isActive(l.href)
-                          ? 'bg-white/15 text-white'
+                          ? 'bg-gold-500/15 text-gold-soft'
                           : 'text-cream-light/85 hover:bg-white/10 hover:text-white'
                       )}
                     >
@@ -227,7 +223,7 @@ export function Nav() {
                       />
                     </button>
                     {expanded && (
-                      <ul className="ml-3 mt-1 space-y-1 border-l border-white/10 pl-3">
+                      <ul className="ml-3 mt-1 space-y-1 border-l border-gold-500/20 pl-3">
                         {group.items.map((item) => (
                           <li key={item.href}>
                             <SheetClose asChild>
@@ -237,7 +233,7 @@ export function Nav() {
                                 className={cn(
                                   'flex min-h-[40px] items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                                   isActive(item.href)
-                                    ? 'bg-white/15 text-white'
+                                    ? 'bg-gold-500/15 text-gold-soft'
                                     : 'text-cream-light/75 hover:bg-white/10 hover:text-white'
                                 )}
                               >
@@ -253,8 +249,8 @@ export function Nav() {
               })}
             </ul>
           </nav>
-          <div className="border-t border-white/10 px-6 py-4">
-            <p className="text-xs text-cream-light/60">KKN-PPM UGM &middot; Sambelia</p>
+          <div className="border-t border-gold-500/15 px-6 py-4">
+            <p className="font-beautique-condensed text-[10px] tracking-[0.2em] uppercase text-gold-soft/60">KKN-PPM UGM &middot; Sambelia</p>
           </div>
         </SheetContent>
       </Sheet>

@@ -21,7 +21,7 @@ export function DataCard({
   const inner = (
     <>
       <div className="relative aspect-video overflow-hidden">
-        <div className="absolute inset-x-0 top-0 h-1 z-10" style={{ backgroundColor: accent }} />
+        <div className="absolute inset-x-0 top-0 h-[2px] z-10" style={{ backgroundColor: accent }} />
         <Image
           src={image}
           alt={title}
@@ -29,15 +29,16 @@ export function DataCard({
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, 33vw"
         />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-brown-950/20 to-transparent" />
       </div>
       <div className="min-w-0 flex-1 p-4">
-        <h3 className="truncate font-semibold text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{title}</h3>
+        <h3 className="truncate font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{title}</h3>
         {chips.length > 0 && (
           <div className="mt-1.5 flex flex-wrap gap-1.5">
             {chips.map((c) => (
               <span
                 key={c.label}
-                className="rounded-full px-2.5 py-0.5 text-xs font-medium"
+                className="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.1em] font-beautique-condensed"
                 style={
                   c.color
                     ? { backgroundColor: c.color + '18', color: c.color, border: `1px solid ${c.color}30` }
@@ -55,7 +56,7 @@ export function DataCard({
   )
 
   return (
-    <div className="group relative h-full flex flex-col rounded-2xl border border-tan-700/20 bg-cream-beige/50 overflow-hidden shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-lg hover:shadow-terracotta/20 hover:border-terracotta-500/30 hover:scale-[1.01]">
+    <div className="group relative h-full flex flex-col rounded-2xl border border-tan-700/20 bg-cream-beige/50 overflow-hidden shadow-terracotta transition-all duration-300 ease-sambel hover:-translate-y-1 hover:shadow-[0_0_30px_-5px_rgba(240,172,109,0.15)] hover:border-terracotta-500/30 hover:scale-[1.01]">
       {onDetailClick ? (
         <button type="button" onClick={onDetailClick} className="block min-w-0 h-full w-full text-left">
           {inner}

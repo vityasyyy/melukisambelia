@@ -6,8 +6,8 @@ export function FestivalTimeline({ events }: { events: (Festival & { slug: strin
     <ol className="relative space-y-8 border-l-2 border-terracotta-500 pl-6 sm:pl-8">
       {events.map((e) => (
         <li key={e.slug} className="group relative">
-          <span className="absolute left-0 top-1 h-4 w-4 -translate-x-1/2 rounded-full bg-terracotta-500" />
-          <div className="overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all hover:-translate-y-1 hover:shadow-terracotta-hover">
+          <span className="absolute left-0 top-1 h-4 w-4 -translate-x-1/2 rounded-full bg-terracotta-500 ring-4 ring-terracotta-500/20" />
+          <div className="overflow-hidden rounded-2xl border border-tan-700/20 bg-cream-beige/50 shadow-terracotta transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_-5px_rgba(240,172,109,0.15)] hover:border-terracotta-500/30">
             <div className="relative aspect-video overflow-hidden">
               <Image
                 src={e.cover}
@@ -16,10 +16,11 @@ export function FestivalTimeline({ events }: { events: (Festival & { slug: strin
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
+              <div aria-hidden className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-brown-950/20 to-transparent" />
             </div>
             <div className="p-4 sm:p-5">
               <h2 className="font-beautique text-xl sm:text-2xl text-brown-900">{e.eventName}</h2>
-              <p className="text-sm text-terracotta-500 font-medium">{e.schedule} · {e.venue}</p>
+              <p className="font-beautique-condensed text-sm text-terracotta-500 tracking-wide">{e.schedule} · {e.venue}</p>
               <p className="mt-2 text-sm text-ink/70 line-clamp-3">{e.description}</p>
               {e.registrationUrl && (
                 <a

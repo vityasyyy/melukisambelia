@@ -72,9 +72,26 @@ export function HeroAnimation({
 
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[2] flex items-center justify-center opacity-[0.04]"
+        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 z-[2] w-[45vw] max-w-[500px] opacity-[0.08]"
+        initial={reduce ? undefined : { opacity: 0, x: 100 }}
+        animate={{ opacity: 0.08, x: 0 }}
+        transition={{ duration: 2.5, ease: 'easeOut' }}
+      >
+        <Image
+          src="/images/design-system/cincin_sambel.svg"
+          alt=""
+          width={500}
+          height={500}
+          className="w-full h-auto"
+          style={{ filter: 'sepia(0.6) hue-rotate(-10deg) saturate(2.5)' }}
+        />
+      </motion.div>
+
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[2] flex items-center justify-center opacity-[0.03]"
         initial={reduce ? undefined : { opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 0.04, scale: 1 }}
+        animate={{ opacity: 0.03, scale: 1 }}
         transition={{ duration: 2, ease: 'easeOut' }}
       >
         <Image
@@ -82,7 +99,7 @@ export function HeroAnimation({
           alt=""
           width={600}
           height={600}
-          className="h-[60vh] w-auto"
+          className="h-[50vh] w-auto"
           style={{ filter: 'sepia(0.9) hue-rotate(-5deg) saturate(2)' }}
         />
       </motion.div>
@@ -97,7 +114,7 @@ export function HeroAnimation({
             <GradientText>Melukis</GradientText>{' '}
             <span className="text-white">Sambelia</span>
           </motion.h1>
-          <motion.p variants={item} className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.6)' }}>
+          <motion.p variants={item} className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg md:text-xl" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.6)' }}>
             {tagline}
           </motion.p>
           <motion.div variants={item} className="mt-8 flex w-full flex-col items-center gap-3 sm:flex-row sm:gap-4">
@@ -110,7 +127,7 @@ export function HeroAnimation({
             </Link>
             <Link
               href="/festival"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/40 px-7 py-3.5 text-base font-medium text-white/90 backdrop-blur-sm transition-all hover:border-white/60 hover:bg-white/15 hover:text-white sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/30 px-7 py-3.5 text-base font-medium text-white/90 backdrop-blur-sm transition-all hover:border-gold-500/50 hover:bg-white/15 hover:text-gold-soft sm:w-auto"
             >
               <Sparkles className="h-4 w-4" />
               Festival Pesona
@@ -120,7 +137,7 @@ export function HeroAnimation({
       </div>
 
       <div aria-hidden className="relative z-10 mt-auto flex w-full justify-center pb-2">
-        <div className="h-6 w-[200px] opacity-[0.06] sm:w-[340px] md:w-[480px]" style={{ backgroundImage: "url('/images/design-system/batik_sambel.svg')", backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
+        <div className="h-8 w-[240px] opacity-[0.08] sm:w-[380px] md:w-[520px] batik-strip shimmer-slow" />
       </div>
     </>
   )
