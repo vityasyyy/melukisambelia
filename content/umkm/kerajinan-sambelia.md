@@ -3,9 +3,11 @@ name: Kerajinan Anyaman Sambelia
 owner: Kelompok Anyaman Desa Sugian
 kategori: Kerajinan
 village: Sugian
-contact: ''
-cover: /images/content/sugian-group43.png
-gallery: []
+contact: "6281345678"
+cover: /images/hero-placeholder.svg
+gallery:
+  - /images/hero-placeholder.svg
+  - /images/hero-placeholder.svg
 lat: -8.355
 lng: 116.845
 ---
