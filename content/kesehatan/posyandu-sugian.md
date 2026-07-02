@@ -4,7 +4,7 @@ type: Posyandu
 village: Sugian
 cadresCount: 8
 stuntingProgram: true
-cover: /images/content/sugian-group43.png
+cover: /images/hero-placeholder.svg
 lat: -8.355
 lng: 116.845
 ---
