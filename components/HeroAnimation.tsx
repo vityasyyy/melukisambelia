@@ -99,7 +99,7 @@ export function HeroAnimation({
               width={140}
               height={140}
               className="w-full h-auto"
-              style={{ filter: 'sepia(0.7) hue-rotate(170deg) saturate(3)', opacity: 0.5 }}
+              style={{ filter: 'sepia(0.85) hue-rotate(-5deg) saturate(2.8)', opacity: 0.5 }}
               loading="lazy"
             />
           </div>

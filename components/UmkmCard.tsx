@@ -20,7 +20,7 @@ export function UmkmCard({ item, onDetailClick }: { item: Umkm & { slug: string 
           <div aria-hidden className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-brown-950/20 to-transparent" />
         </div>
         <div className="min-w-0 flex-1 p-4">
-          <h3 className="truncate font-beautique text-lg text-brown-900">{item.name}</h3>
+          <h3 className="truncate font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{item.name}</h3>
           <p className="truncate text-sm text-ink/60">{item.owner}</p>
           <ChipRow
             className="mt-1.5"
@@ -29,7 +29,7 @@ export function UmkmCard({ item, onDetailClick }: { item: Umkm & { slug: string 
               { label: item.village, tone: 'water' },
             ]}
           />
-          {item.contact && <p className="mt-1.5 truncate text-xs text-ink/50">{item.contact}</p>}
+          {item.contact && <p className="mt-1.5 truncate text-xs text-ink/60">{item.contact}</p>}
         </div>
       </button>
     </div>

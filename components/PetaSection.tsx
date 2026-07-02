@@ -18,7 +18,8 @@ export function PetaSection({ files }: { files: GisFile[] }) {
       {files.map((f) => (
         <div
           key={`${f.category}-${f.name}`}
-          className="h-full flex flex-col overflow-hidden rounded-2xl border border-tan-700/12 bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)]"
+          className="glass-card glass-accent-top group h-full flex flex-col overflow-hidden"
+          style={{ '--accent-color': '#99BA57' } as React.CSSProperties}
         >
           {f.type === 'image' && (
             <div className="relative aspect-[4/3] w-full">

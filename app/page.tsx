@@ -79,7 +79,7 @@ export default function Beranda() {
       </section>
 
       <section id="tentang" aria-labelledby="tentang-heading" className="relative z-10 scroll-mt-16 overflow-hidden bg-page">
-          <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="terracotta" opacity={0.5} />
+          <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="terracotta" opacity={0.5} />
           <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="olive" opacity={0.5} />
         <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
 
@@ -113,7 +113,7 @@ export default function Beranda() {
 
       <section aria-labelledby="jejaki-heading" className="relative overflow-hidden bg-cream-beige">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(240,172,109,0.06),transparent_70%)]" aria-hidden />
-          <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="gold" opacity={0.5} />
+          <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="gold" opacity={0.5} />
           <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="water" opacity={0.5} />
         <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
 
@@ -156,7 +156,7 @@ export default function Beranda() {
       {wisataUnggulan.length > 0 && (
         <section aria-labelledby="wisata-heading" className="relative overflow-hidden bg-page">
             <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="water" opacity={0.5} />
-            <MotifFloater motif="cincin_sambel" position="bottom-left" size="md" color="gold" opacity={0.5} />
+            <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" opacity={0.5} />
           <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
 
             <FadeIn>
@@ -185,7 +185,7 @@ export default function Beranda() {
 
       {festival.length > 0 && (
         <section aria-labelledby="festival-heading" className="relative overflow-hidden bg-terracotta-500/[0.08]">
-            <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="terracotta" opacity={0.5} />
+            <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="terracotta" opacity={0.5} />
             <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" opacity={0.5} />
           <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
 
@@ -222,7 +222,7 @@ export default function Beranda() {
         <section aria-labelledby="umkm-heading" className="relative overflow-hidden bg-cream-beige">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(240,172,109,0.06),transparent_70%)]" aria-hidden />
             <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="terracotta" opacity={0.5} />
-            <MotifFloater motif="cincin_sambel" position="bottom-right" size="sm" color="gold" opacity={0.5} />
+            <MotifFloater motif="bunga_sambel" position="bottom-right" size="sm" color="gold" opacity={0.5} />
           <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
 
             <FadeIn>
@@ -256,7 +256,7 @@ export default function Beranda() {
       <MotifDivider />
 
       <section aria-label="Statistik kegiatan" className="relative overflow-hidden bg-gold-50/40">
-          <MotifFloater motif="cincin_sambel" position="top-left" size="sm" color="gold" opacity={0.5} />
+          <MotifFloater motif="bunga_sambel" position="top-left" size="sm" color="gold" opacity={0.5} />
           <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="terracotta" opacity={0.5} />
         <KegiatanStats />
       </section>

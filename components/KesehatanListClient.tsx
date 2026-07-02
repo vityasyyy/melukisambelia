@@ -50,7 +50,7 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
         tone="olive"
       />
       <section className="relative overflow-hidden bg-olive/5">
-          <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="gold" opacity={0.5} />
+          <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="gold" opacity={0.5} />
           <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="olive" opacity={0.5} />
         <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
 

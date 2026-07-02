@@ -67,7 +67,7 @@ export function PetaClient({
 
   return (
     <>
-      <div className="mb-8 overflow-hidden rounded-2xl border border-tan-700/12 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)]">
+      <div className="mb-8 glass-card overflow-hidden">
         <iframe
           src={dynamicEmbedUrl}
           className="w-full h-[60vh]"
@@ -106,7 +106,7 @@ export function PetaClient({
                   <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {items.map((m) => (
                       <FadeIn key={`${m.layer}-${m.slug}`}>
-                        <div className="rounded-xl border border-tan-700/12 bg-white p-4 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)]">
+                        <div className="glass-card glass-accent-top overflow-hidden p-4" style={{ '--accent-color': '#14A8E1' } as React.CSSProperties}>
                           <div className="font-semibold text-brown-900">{m.title}</div>
                           <a
                             href={m.googleMapsUrl || `https://www.google.com/maps?q=${m.lat},${m.lng}`}

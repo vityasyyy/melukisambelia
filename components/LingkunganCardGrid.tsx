@@ -23,12 +23,12 @@ export type HubSection = {
   icon?: string
 }
 
-const TONE_BORDER: Record<string, string> = {
-  green: 'border-green-500',
-  water: 'border-water-500',
-  terracotta: 'border-terracotta-500',
-  olive: 'border-olive',
-  gold: 'border-gold-500',
+const TONE_ACCENT: Record<string, string> = {
+  green: '#99BA57',
+  water: '#14A8E1',
+  terracotta: '#E3795C',
+  olive: '#68794A',
+  gold: '#F0AC6D',
 }
 
 const TONE_BG: Record<string, string> = {
@@ -37,14 +37,6 @@ const TONE_BG: Record<string, string> = {
   terracotta: 'bg-terracotta-50',
   olive: 'bg-olive/10',
   gold: 'bg-gold-50',
-}
-
-const TONE_TEXT: Record<string, string> = {
-  green: 'text-green-900',
-  water: 'text-water-900',
-  terracotta: 'text-terracotta-900',
-  olive: 'text-olive-dark',
-  gold: 'text-brown-900',
 }
 
 export function AnalysisList({ items }: { items: LingkunganItem[] }) {
@@ -92,10 +84,11 @@ export function HubSectionList({ sections }: { sections: HubSection[] }) {
       {sections.map((section) => (
         <div
           key={section.href}
-          className={`group relative flex flex-col gap-2 rounded-2xl border-l-4 ${TONE_BORDER[section.tone]} bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md`}
+          className="glass-card glass-accent-left group relative flex flex-col gap-2 p-4 h-full"
+          style={{ '--accent-color': TONE_ACCENT[section.tone] } as React.CSSProperties}
         >
           <Link href={section.href} className="absolute inset-0 z-10" aria-label={section.title} />
-          <h3 className={`font-beautique text-lg ${TONE_TEXT[section.tone]}`}>
+          <h3 className="font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">
             {section.title}
           </h3>
           <p className="text-sm leading-relaxed text-ink/60">{section.description}</p>

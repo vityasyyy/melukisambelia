@@ -21,13 +21,12 @@ export function AirTanahClient({
 
   return (
     <div className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
-      <MotifFloater motif="bunga_sambel" position="top-right" size="lg" color="water" opacity={0.85} />
-      <MotifFloater motif="cincin_sambel" position="bottom-left" size="md" color="gold" opacity={0.5} />
-      <MotifFloater motif="cincin_sambel" position="center-right" size="sm" color="olive" opacity={0.5} />
+      <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="water" opacity={0.5} />
+      <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" opacity={0.5} />
 
       {data === null ? (
         <FadeIn>
-          <div className="glass-card p-6 text-center">
+          <div className="glass-card glass-accent-top p-6 text-center" style={{ '--accent-color': '#14A8E1' } as React.CSSProperties}>
             <p className="text-ink/60">Data TMA dari cluster air tanah akan diunggah.</p>
             <Link
               href={petaLink({ tab: 'air' })}
@@ -49,7 +48,7 @@ export function AirTanahClient({
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <div className="glass-card overflow-x-auto p-4">
+            <div className="glass-card glass-accent-top overflow-x-auto p-4" style={{ '--accent-color': '#14A8E1' } as React.CSSProperties}>
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-tan-700/20 text-left text-xs uppercase tracking-widest text-ink/60">
@@ -74,7 +73,7 @@ export function AirTanahClient({
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <div className="mt-8 glass-card p-4">
+            <div className="mt-8 glass-card glass-accent-top p-4" style={{ '--accent-color': '#14A8E1' } as React.CSSProperties}>
               <h2 className="mb-4 font-beautique text-lg text-brown-900">Grafik TMA per Lokasi</h2>
               <AirTanahChart measurements={data.measurements} />
             </div>

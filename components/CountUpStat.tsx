@@ -34,8 +34,7 @@ export function CountUpStat({ label, value }: { label: string; value: string }) 
 
   if (!hasDigits(value)) {
     return (
-      <div className="group relative h-full flex flex-col min-w-0 rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 p-5 sm:p-6 text-center shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:-translate-y-0.5 hover:bg-white/80 hover:backdrop-blur-lg hover:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.12)]">
-        <div className="absolute inset-x-0 top-0 h-[2px] rounded-t-2xl bg-gradient-to-r from-transparent via-gold-500 to-transparent" aria-hidden />
+      <div className="glass-card glass-accent-top group relative h-full flex flex-col min-w-0 p-5 sm:p-6 text-center" style={{ '--accent-color': '#F0AC6D' } as React.CSSProperties}>
         <div className="font-beautique text-2xl sm:text-3xl md:text-4xl text-water-900 break-words">
           {value}
         </div>
@@ -50,8 +49,7 @@ export function CountUpStat({ label, value }: { label: string; value: string }) 
   const prefix = value.startsWith('±') ? '±' : ''
 
   return (
-    <div className="group relative h-full flex flex-col min-w-0 rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 p-5 sm:p-6 text-center shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:-translate-y-0.5 hover:bg-white/80 hover:backdrop-blur-lg hover:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.12)]">
-      <div className="absolute inset-x-0 top-0 h-[2px] rounded-t-2xl bg-gradient-to-r from-transparent via-gold-500 to-transparent" aria-hidden />
+    <div className="glass-card glass-accent-top group relative h-full flex flex-col min-w-0 p-5 sm:p-6 text-center" style={{ '--accent-color': '#F0AC6D' } as React.CSSProperties}>
       <div className="font-beautique text-2xl sm:text-3xl md:text-4xl text-water-900 break-words">
         {prefix}<AnimatedNumber value={numValue} reducedMotion={reducedMotion ?? false} />{suffix && <span className="ml-1 text-sm font-beautique-condensed text-ink/60">{suffix}</span>}
       </div>

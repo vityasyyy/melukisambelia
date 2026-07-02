@@ -47,7 +47,7 @@ export function PariwisataListClient({ items, pageSettings, emptyMessage }: { it
         tone="water"
       />
       <section className="relative overflow-hidden bg-cream-warm/30">
-          <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="water" opacity={0.5} />
+          <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="water" opacity={0.5} />
           <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" opacity={0.5} />
         <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
 

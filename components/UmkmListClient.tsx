@@ -54,7 +54,7 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
       />
       <section className="relative overflow-hidden bg-cream-warm/30">
           <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="terracotta" opacity={0.5} />
-          <MotifFloater motif="cincin_sambel" position="bottom-right" size="sm" color="gold" opacity={0.5} />
+          <MotifFloater motif="bunga_sambel" position="bottom-right" size="sm" color="gold" opacity={0.5} />
         <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
 
           <SectionHeader

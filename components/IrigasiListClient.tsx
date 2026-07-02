@@ -48,7 +48,7 @@ export function IrigasiListClient({ items, stats, pageSettings, emptyMessage }: 
       />
       <section className="relative overflow-hidden bg-cream-beige/50">
           <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="olive" opacity={0.5} />
-          <MotifFloater motif="cincin_sambel" position="bottom-left" size="md" color="terracotta" opacity={0.5} />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="terracotta" opacity={0.5} />
         <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
 
           <SectionHeader
@@ -67,7 +67,7 @@ export function IrigasiListClient({ items, stats, pageSettings, emptyMessage }: 
           {items.length === 0 ? (
             <EmptyState message={emptyMessage} />
           ) : (
-            <div className="glass-card overflow-hidden p-3 sm:p-4">
+            <div className="glass-card glass-accent-top overflow-hidden p-3 sm:p-4" style={{ '--accent-color': '#99BA57' } as React.CSSProperties}>
               <Accordion type="single" collapsible>
                 {items.map((i) => (
                   <AccordionItem key={i.slug} value={i.slug}>
