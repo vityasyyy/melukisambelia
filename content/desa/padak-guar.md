@@ -1,5 +1,5 @@
 ---
-name: Sambelia
-description: Desa Sambelia
+name: Senanggalih
+description: Desa Senanggalih
 image: /images/hero-placeholder.svg
 ---
