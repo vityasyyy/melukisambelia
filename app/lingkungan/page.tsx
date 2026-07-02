@@ -7,6 +7,7 @@ import { GIS_CATEGORY_LABELS } from '@/lib/gis-manifest'
 import { getCollection } from '@/lib/content'
 import { getPageSettings, getEmptyStates } from '@/lib/settings'
 import { FadeIn } from '@/components/FadeIn'
+import { SectionHeader } from '@/components/SectionHeader'
 import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 
@@ -42,28 +43,31 @@ export default function LingkunganPage() {
 
       <section className="relative bg-cream-beige/50">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10 scroll-mt-20">
-          <MotifFloater motif="bunga_sambel" position="bottom-right" color="olive" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="top-left" color="olive" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="center-left" color="water" size="sm" />
+          <MotifFloater motif="bunga_sambel" position="bottom-right" color="olive" size="lg" opacity={0.85} />
+          <MotifFloater motif="bunga_sambel" position="top-left" color="olive" size="lg" opacity={0.85} />
+          <MotifFloater motif="bunga_sambel" position="center-left" color="water" size="sm" opacity={0.8} />
 
           <FadeIn>
-            <h2 className="mb-6 font-beautique text-display-lg text-brown-900">
-              {ps.dataSectionTitle ?? 'Analisis Lingkungan'}
-            </h2>
+            <SectionHeader
+              kicker={ps.sectionKicker ?? 'LINGKUNGAN'}
+              title={ps.sectionTitle ?? 'Analisis Lingkungan'}
+              intro={ps.sectionIntro ?? 'Data analisis lingkungan dan peta tematik Kecamatan Sambelia.'}
+              tone="green"
+            />
           </FadeIn>
 
           {items.length > 0 ? (
             <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {items.map((item) => (
-                <StaggerItem key={item.slug}>
-                  <div className="group overflow-hidden rounded-2xl border border-tan-700/12 bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)]">
-                    <div className="relative aspect-video overflow-hidden bg-green-50">
+              {items.map((item, i) => (
+                <StaggerItem key={item.slug} className={i === 0 ? 'sm:col-span-2 lg:col-span-2' : undefined}>
+                  <div className="glass-card glass-accent-top group overflow-hidden" style={{ '--accent-color': '#99BA57' } as React.CSSProperties}>
+                    <div className="relative aspect-video overflow-hidden rounded-t-2xl bg-green-50">
                       <Image
                         src={item.cover}
                         alt={item.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        sizes={i === 0 ? '(max-width: 1024px) 100vw, 66vw' : '(max-width: 640px) 100vw, 33vw'}
                       />
                     </div>
                     <div className="p-5">
@@ -107,9 +111,10 @@ export default function LingkunganPage() {
                   <StaggerItem key={f.url}>
                     <Link
                       href="/peta?tab=vegetasi"
-                      className="group overflow-hidden rounded-2xl border border-tan-700/12 bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)]"
+                      className="glass-card glass-accent-top group overflow-hidden"
+                      style={{ '--accent-color': '#99BA57' } as React.CSSProperties}
                     >
-                      <div className="relative aspect-video overflow-hidden bg-green-50">
+                      <div className="relative aspect-video overflow-hidden rounded-t-2xl bg-green-50">
                         {f.type === 'image' && (
                           <Image
                             src={f.url}

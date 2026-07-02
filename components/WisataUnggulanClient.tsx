@@ -35,9 +35,9 @@ export function WisataUnggulanClient({ items }: { items: (Pariwisata & { slug: s
 
   return (
     <>
-      <StaggerContainer stagger={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((p) => (
-          <StaggerItem key={p.slug}>
+      <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((p, i) => (
+          <StaggerItem key={p.slug} className={i === 0 ? 'sm:col-span-2 lg:col-span-2' : undefined}>
             <DataCard
               image={p.cover}
               title={p.title}
@@ -47,6 +47,8 @@ export function WisataUnggulanClient({ items }: { items: (Pariwisata & { slug: s
               ]}
               desc={p.shortDesc}
               onDetailClick={() => openModal(p)}
+              featured={i === 0}
+              accent="#14A8E1"
             />
           </StaggerItem>
         ))}

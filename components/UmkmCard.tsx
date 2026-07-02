@@ -4,8 +4,11 @@ import type { Umkm } from '@/lib/schemas'
 
 export function UmkmCard({ item, onDetailClick }: { item: Umkm & { slug: string }; onDetailClick?: () => void }) {
   return (
-    <div className="group relative h-full flex flex-col overflow-hidden rounded-2xl border-l-[3px] border-l-terracotta-500 bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)]">
-      <button type="button" onClick={onDetailClick} className="flex min-w-0 w-full flex-1 flex-col text-left overflow-hidden rounded-2xl">
+    <div
+      className="glass-card glass-accent-top group relative h-full flex flex-col overflow-hidden"
+      style={{ '--accent-color': '#E3795C' } as React.CSSProperties}
+    >
+      <button type="button" onClick={onDetailClick} className="flex min-w-0 w-full flex-1 flex-col text-left overflow-hidden">
         <div className="relative aspect-video overflow-hidden rounded-t-2xl">
           <Image
             src={item.cover}

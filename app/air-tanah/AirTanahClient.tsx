@@ -27,7 +27,7 @@ export function AirTanahClient({
 
       {data === null ? (
         <FadeIn>
-          <div className="rounded-2xl border border-tan-700/12 bg-white p-6 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] text-center">
+          <div className="glass-card p-6 text-center">
             <p className="text-ink/60">Data TMA dari cluster air tanah akan diunggah.</p>
             <Link
               href={petaLink({ tab: 'air' })}
@@ -41,15 +41,15 @@ export function AirTanahClient({
         <>
           <FadeIn>
             <div className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
-              <StatCard label="Lokasi" value={String(new Set(data.measurements.map((m) => m.location)).size)} />
-              <StatCard label="Pengukuran" value={String(data.measurements.length)} />
-              <StatCard label="Rata-rata TMA" value={data.measurements.length ? (data.measurements.reduce((s, m) => s + m.tmaMeters, 0) / data.measurements.length).toFixed(2) : '—'} unit="m" />
-              <StatCard label="Rata-rata DHL" value={data.measurements.length ? (data.measurements.reduce((s, m) => s + m.dhlMsiemens, 0) / data.measurements.length).toFixed(1) : '—'} unit="mS" />
+              <StatCard label="Lokasi" value={String(new Set(data.measurements.map((m) => m.location)).size)} accentColor="#14A8E1" />
+              <StatCard label="Pengukuran" value={String(data.measurements.length)} accentColor="#14A8E1" />
+              <StatCard label="Rata-rata TMA" value={data.measurements.length ? (data.measurements.reduce((s, m) => s + m.tmaMeters, 0) / data.measurements.length).toFixed(2) : '—'} unit="m" accentColor="#14A8E1" />
+              <StatCard label="Rata-rata DHL" value={data.measurements.length ? (data.measurements.reduce((s, m) => s + m.dhlMsiemens, 0) / data.measurements.length).toFixed(1) : '—'} unit="mS" accentColor="#14A8E1" />
             </div>
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <div className="rounded-2xl border border-tan-700/12 bg-white p-4 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] overflow-x-auto">
+            <div className="glass-card overflow-x-auto p-4">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-tan-700/20 text-left text-xs uppercase tracking-widest text-ink/60">
@@ -74,7 +74,7 @@ export function AirTanahClient({
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <div className="mt-8 rounded-2xl border border-tan-700/12 bg-white p-4 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)]">
+            <div className="mt-8 glass-card p-4">
               <h2 className="mb-4 font-beautique text-lg text-brown-900">Grafik TMA per Lokasi</h2>
               <AirTanahChart measurements={data.measurements} />
             </div>

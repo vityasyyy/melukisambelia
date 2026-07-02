@@ -3,16 +3,19 @@ import { cn } from '@/lib/utils'
 export function ContentCard({
   className,
   children,
+  accentColor = '#F0AC6D',
 }: {
   className?: string
   children: React.ReactNode
+  accentColor?: string
 }) {
   return (
     <div
       className={cn(
-        'group relative h-full flex flex-col overflow-hidden rounded-2xl border border-tan-700/12 bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)]',
+        'glass-card glass-accent-top group relative h-full flex flex-col overflow-hidden',
         className
       )}
+      style={{ '--accent-color': accentColor } as React.CSSProperties}
     >
       {children}
     </div>

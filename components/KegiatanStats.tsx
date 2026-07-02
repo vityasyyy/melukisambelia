@@ -21,15 +21,16 @@ export function KegiatanStats() {
         <SectionHeader kicker="06 — KEGIATAN" title="Kegiatan Sambelia" tone="gold" />
       </FadeIn>
       {kegiatan.length > 0 ? (
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {kegiatan.map((c) => (
+        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {kegiatan.map((c, i) => (
             <Link
               key={c.slug}
               href={`/kegiatan/${c.slug}`}
-              className="group overflow-hidden rounded-2xl border-l-[3px] border-l-gold-500 bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)]"
+              className={`glass-card glass-accent-top group relative overflow-hidden ${i === 0 ? 'sm:col-span-2 lg:col-span-2' : ''}`}
+              style={{ '--accent-color': '#F0AC6D' } as React.CSSProperties}
             >
-              <div className="relative aspect-video overflow-hidden">
-                <Image src={c.cover} alt={c.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+              <div className="relative aspect-video overflow-hidden rounded-t-2xl">
+                <Image src={c.cover} alt={c.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes={i === 0 ? '(max-width: 1024px) 100vw, 66vw' : '(max-width: 640px) 100vw, 33vw'} />
                 <div aria-hidden className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-brown-950/20 to-transparent" />
               </div>
               <div className="min-w-0 p-4">

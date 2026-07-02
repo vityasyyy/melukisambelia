@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { UmkmCard } from '@/components/UmkmCard'
 import { EmptyState } from '@/components/EmptyState'
 import { PageHero } from '@/components/PageHero'
+import { SectionHeader } from '@/components/SectionHeader'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 import { MotifFloater } from '@/components/MotifFloater'
@@ -53,9 +54,16 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
       />
       <section className="relative bg-cream-warm/30">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="top-right" color="terracotta" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="bottom-left" color="gold" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="center-right" color="olive" size="sm" />
+          <MotifFloater motif="bunga_sambel" position="top-right" color="terracotta" size="lg" opacity={0.85} />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" color="gold" size="lg" opacity={0.85} />
+          <MotifFloater motif="bunga_sambel" position="center-right" color="olive" size="sm" opacity={0.8} />
+
+          <SectionHeader
+            kicker={pageSettings.sectionKicker ?? 'UMKM'}
+            title={pageSettings.sectionTitle ?? 'UMKM Lokal Sambelia'}
+            intro={pageSettings.sectionIntro ?? 'Kerajinan, kuliner, dan produk lokal yang menjadi andalan masyarakat Sambelia.'}
+            tone="terracotta"
+          />
 
         {items.length === 0 ? (
           <EmptyState message={emptyMessage} />
@@ -92,8 +100,8 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
               mode="mount"
               className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
             >
-              {filtered.map((u) => (
-                <StaggerItem key={u.slug}>
+              {filtered.map((u, i) => (
+                <StaggerItem key={u.slug} className={i === 0 ? 'sm:col-span-2 lg:col-span-2' : undefined}>
                   <UmkmCard item={u} onDetailClick={() => openModal(u)} />
                 </StaggerItem>
               ))}

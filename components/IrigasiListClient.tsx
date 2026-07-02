@@ -5,6 +5,7 @@ import { StatCard } from '@/components/StatCard'
 import { EmptyState } from '@/components/EmptyState'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { PageHero } from '@/components/PageHero'
+import { SectionHeader } from '@/components/SectionHeader'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 import { MotifFloater } from '@/components/MotifFloater'
@@ -46,20 +47,27 @@ export function IrigasiListClient({ items, stats, pageSettings, emptyMessage }: 
       />
       <section className="relative bg-cream-beige/50">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="bottom-left" color="olive" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="top-right" color="gold" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="center-left" color="water" size="sm" />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" color="olive" size="lg" opacity={0.85} />
+          <MotifFloater motif="bunga_sambel" position="top-right" color="gold" size="lg" opacity={0.85} />
+          <MotifFloater motif="bunga_sambel" position="center-left" color="water" size="sm" opacity={0.8} />
+
+          <SectionHeader
+            kicker={pageSettings.sectionKicker ?? 'IRIGASI'}
+            title={pageSettings.sectionTitle ?? 'Data Saluran Irigasi'}
+            intro={pageSettings.sectionIntro ?? 'Saluran irigasi di Kecamatan Sambelia dan kondisinya.'}
+            tone="green"
+          />
 
           <StaggerContainer stagger={0.06} className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
-            <StaggerItem><StatCard label="Total Saluran" value={String(stats.total)} /></StaggerItem>
-            <StaggerItem><StatCard label="Total Panjang" value={String(stats.totalLength)} unit="m" /></StaggerItem>
-            <StaggerItem><StatCard label="Kondisi Baik" value={String(stats.good)} /></StaggerItem>
-            <StaggerItem><StatCard label="Rusak" value={String(stats.damaged)} /></StaggerItem>
+            <StaggerItem><StatCard label="Total Saluran" value={String(stats.total)} accentColor="#99BA57" /></StaggerItem>
+            <StaggerItem><StatCard label="Total Panjang" value={String(stats.totalLength)} unit="m" accentColor="#99BA57" /></StaggerItem>
+            <StaggerItem><StatCard label="Kondisi Baik" value={String(stats.good)} accentColor="#99BA57" /></StaggerItem>
+            <StaggerItem><StatCard label="Rusak" value={String(stats.damaged)} accentColor="#99BA57" /></StaggerItem>
           </StaggerContainer>
           {items.length === 0 ? (
             <EmptyState message={emptyMessage} />
           ) : (
-            <div className="overflow-hidden rounded-2xl border border-tan-700/12 bg-white p-3 sm:p-4 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)]">
+            <div className="glass-card overflow-hidden p-3 sm:p-4">
               <Accordion type="single" collapsible>
                 {items.map((i) => (
                   <AccordionItem key={i.slug} value={i.slug}>

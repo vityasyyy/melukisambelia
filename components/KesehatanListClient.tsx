@@ -2,9 +2,10 @@
 
 import { useState } from 'react'
 import { StatCard } from '@/components/StatCard'
-import { EmptyState } from '@/components/EmptyState'
 import { DataCard } from '@/components/DataCard'
+import { EmptyState } from '@/components/EmptyState'
 import { PageHero } from '@/components/PageHero'
+import { SectionHeader } from '@/components/SectionHeader'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 import { MotifFloater } from '@/components/MotifFloater'
@@ -48,22 +49,29 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
       />
       <section className="relative bg-olive/5">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="top-right" color="olive" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="bottom-left" color="water" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="center-right" color="gold" size="sm" />
+          <MotifFloater motif="bunga_sambel" position="top-right" color="olive" size="lg" opacity={0.85} />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" color="water" size="lg" opacity={0.85} />
+          <MotifFloater motif="bunga_sambel" position="center-right" color="gold" size="sm" opacity={0.8} />
+
+          <SectionHeader
+            kicker={pageSettings.sectionKicker ?? 'KESEHATAN'}
+            title={pageSettings.sectionTitle ?? 'Fasilitas & Program Kesehatan'}
+            intro={pageSettings.sectionIntro ?? 'Posyandu, puskesmas, dan program stunting di Sambelia.'}
+            tone="olive"
+          />
 
           <StaggerContainer stagger={0.06} className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
-            <StaggerItem><StatCard label="Posyandu" value={String(stats.posyandu)} /></StaggerItem>
-            <StaggerItem><StatCard label="Puskesmas" value={String(stats.puskesmas)} /></StaggerItem>
-            <StaggerItem><StatCard label="Kader" value={String(stats.cadres)} /></StaggerItem>
-            <StaggerItem><StatCard label="Program Stunting" value={String(stats.stunting)} /></StaggerItem>
+            <StaggerItem><StatCard label="Posyandu" value={String(stats.posyandu)} accentColor="#68794A" /></StaggerItem>
+            <StaggerItem><StatCard label="Puskesmas" value={String(stats.puskesmas)} accentColor="#68794A" /></StaggerItem>
+            <StaggerItem><StatCard label="Kader" value={String(stats.cadres)} accentColor="#68794A" /></StaggerItem>
+            <StaggerItem><StatCard label="Program Stunting" value={String(stats.stunting)} accentColor="#68794A" /></StaggerItem>
           </StaggerContainer>
           {items.length === 0 ? (
             <EmptyState message={emptyMessage} />
           ) : (
             <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {items.map((k) => (
-                <StaggerItem key={k.slug}>
+              {items.map((k, i) => (
+                <StaggerItem key={k.slug} className={i === 0 ? 'sm:col-span-2 lg:col-span-2' : undefined}>
                   <DataCard
                     image={k.cover}
                     title={k.facilityName}
@@ -74,6 +82,8 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
                     ]}
                     desc={`Kader: ${k.cadresCount}`}
                     onDetailClick={() => openModal(k)}
+                    featured={i === 0}
+                    accent="#68794A"
                   />
                 </StaggerItem>
               ))}

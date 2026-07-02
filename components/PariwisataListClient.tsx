@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { DataCard } from '@/components/DataCard'
 import { EmptyState } from '@/components/EmptyState'
 import { PageHero } from '@/components/PageHero'
+import { SectionHeader } from '@/components/SectionHeader'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { MotifFloater } from '@/components/MotifFloater'
 
@@ -47,16 +48,23 @@ export function PariwisataListClient({ items, pageSettings, emptyMessage }: { it
       />
       <section className="relative bg-cream-warm/30">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="bottom-right" color="water" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="top-left" color="terracotta" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="center-left" color="water" size="sm" />
+          <MotifFloater motif="bunga_sambel" position="bottom-right" color="water" size="lg" opacity={0.85} />
+          <MotifFloater motif="bunga_sambel" position="top-left" color="terracotta" size="lg" opacity={0.85} />
+          <MotifFloater motif="bunga_sambel" position="center-left" color="water" size="sm" opacity={0.8} />
+
+          <SectionHeader
+            kicker={pageSettings.sectionKicker ?? 'PARIWISATA'}
+            title={pageSettings.sectionTitle ?? 'Destinasi Wisata'}
+            intro={pageSettings.sectionIntro ?? 'Jelajahi destinasi wisata unggulan di Kecamatan Sambelia.'}
+            tone="water"
+          />
 
           {items.length === 0 ? (
             <EmptyState message={emptyMessage} />
           ) : (
             <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {items.map((p) => (
-                <StaggerItem key={p.slug}>
+              {items.map((p, i) => (
+                <StaggerItem key={p.slug} className={i === 0 ? 'sm:col-span-2 lg:col-span-2' : undefined}>
                   <DataCard
                     image={p.cover}
                     title={p.title}
@@ -66,6 +74,8 @@ export function PariwisataListClient({ items, pageSettings, emptyMessage }: { it
                     ]}
                     desc={p.shortDesc}
                     onDetailClick={() => openModal(p)}
+                    featured={i === 0}
+                    accent="#14A8E1"
                   />
                 </StaggerItem>
               ))}

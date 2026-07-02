@@ -42,7 +42,7 @@ export default function Beranda() {
   const pariwisata = getCollection('pariwisata')
   const irigasi = getCollection('irigasi').slice(0, 1)
   const kesehatan = getCollection('kesehatan').slice(0, 1)
-  const festival = getCollection('festival')
+  const festival = [...getCollection('festival')].sort((a, b) => new Date(a.schedule).getTime() - new Date(b.schedule).getTime())
   const umkm = getCollection('umkm')
 
   const previews = jejaki.map((card) => {
@@ -126,7 +126,7 @@ export default function Beranda() {
             {previews.map((p, i) => (
               <div key={p.href} className="snap-center shrink-0 w-[80vw] sm:w-[420px]">
                 <a href={p.href} className="group block h-full">
-                  <div className="relative overflow-hidden rounded-2xl border-l-[3px] bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)] h-full" style={{ borderLeftColor: p.accent }}>
+                  <div className="glass-card glass-accent-left relative overflow-hidden h-full" style={{ '--accent-color': p.accent } as React.CSSProperties}>
                     <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl">
                       <Image
                         src={p.image}

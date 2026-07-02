@@ -87,6 +87,9 @@ export const pageHeroSchema = z.object({
   heroIntro: z.string().default(''),
   seoTitle: z.string().default(''),
   seoDescription: z.string().default(''),
+  sectionKicker: z.string().optional(),
+  sectionTitle: z.string().optional(),
+  sectionIntro: z.string().optional(),
 })
 
 export const tentangPageSchema = pageHeroSchema.extend({
@@ -110,6 +113,9 @@ export const petaPageSchema = pageHeroSchema.extend({
 export const lingkunganPageSchema = pageHeroSchema.extend({
   dataSectionTitle: z.string().default('Analisis Lingkungan'),
   linkToPeta: z.string().default('Lihat di Peta Interaktif →'),
+  sectionKicker: z.string().optional(),
+  sectionTitle: z.string().optional(),
+  sectionIntro: z.string().optional(),
 })
 
 export const settingsSchema = z.object({

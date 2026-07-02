@@ -22,7 +22,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function FestivalPage() {
-  const events = getCollection('festival')
+  const rawEvents = getCollection('festival')
+  const events = [...rawEvents].sort((a, b) => {
+    const dateA = new Date(a.schedule)
+    const dateB = new Date(b.schedule)
+    return dateA.getTime() - dateB.getTime()
+  })
   const ps = getPageSettings('festival')
   const empty = getEmptyStates()
   const festivalData = events.map((f) => ({
