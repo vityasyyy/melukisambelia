@@ -81,7 +81,7 @@ export function PageHero({
             width={500}
             height={500}
             className="w-full h-auto"
-            style={{ filter: RING_FILTERS[tone], opacity: 0.38 }}
+            style={{ filter: RING_FILTERS[tone], opacity: 0.5 }}
             loading="lazy"
           />
         </div>
@@ -100,7 +100,7 @@ export function PageHero({
               width={200}
               height={200}
               className="w-full h-auto"
-              style={{ filter: RING_FILTERS[tone], opacity: 0.38 }}
+              style={{ filter: RING_FILTERS[tone], opacity: 0.5 }}
               loading="lazy"
             />
           </div>
@@ -120,7 +120,7 @@ export function PageHero({
               width={160}
               height={160}
               className="w-full h-auto"
-              style={{ filter: RING_FILTERS[tone], opacity: 0.35 }}
+              style={{ filter: RING_FILTERS[tone], opacity: 0.5 }}
               loading="lazy"
             />
           </div>

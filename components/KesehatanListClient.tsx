@@ -48,8 +48,8 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
       />
       <section className="relative bg-olive/5">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="top-right" color="olive" size="md" />
-          <MotifFloater motif="cincin_sambel" position="bottom-left" color="water" size="sm" />
+          <MotifFloater motif="bunga_sambel" position="top-right" color="olive" size="lg" />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" color="water" size="md" />
 
           <StaggerContainer stagger={0.06} className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
             <StaggerItem><StatCard label="Posyandu" value={String(stats.posyandu)} /></StaggerItem>

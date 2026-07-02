@@ -14,7 +14,7 @@ export function KegiatanStats() {
   return (
     <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
       <MotifFloater motif="bunga_sambel" position="top-left" color="gold" size="lg" />
-      <MotifFloater motif="cincin_sambel" position="bottom-right" color="terracotta" size="sm" />
+      <MotifFloater motif="bunga_sambel" position="bottom-right" color="terracotta" size="md" />
 
       <FadeIn>
         <SectionHeader kicker="06 — KEGIATAN" title="Kegiatan Sambelia" tone="gold" />

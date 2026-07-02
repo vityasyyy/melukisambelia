@@ -53,8 +53,8 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
       />
       <section className="relative bg-cream-warm/30">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="top-right" color="terracotta" size="md" />
-          <MotifFloater motif="cincin_sambel" position="bottom-left" color="gold" size="sm" />
+          <MotifFloater motif="bunga_sambel" position="top-right" color="terracotta" size="lg" />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" color="gold" size="md" />
 
         {items.length === 0 ? (
           <EmptyState message={emptyMessage} />

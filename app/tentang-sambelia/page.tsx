@@ -45,8 +45,8 @@ export default function TentangSambeliaPage() {
 
       <section className="relative bg-page scroll-mt-20">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="top-right" color="olive" size="md" />
-          <MotifFloater motif="cincin_sambel" position="bottom-left" color="terracotta" size="sm" />
+          <MotifFloater motif="bunga_sambel" position="top-right" color="olive" size="lg" />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" color="terracotta" size="md" />
           <FadeIn>
             <SectionHeader
               kicker={ps.sectionGeografiKicker ?? '01 — GEOGRAFI'}
@@ -78,8 +78,8 @@ export default function TentangSambeliaPage() {
 
       <section className="relative bg-cream-warm/30">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10 scroll-mt-20">
-          <MotifFloater motif="bunga_sambel" position="bottom-left" color="water" size="md" />
-          <MotifFloater motif="cincin_sambel" position="top-right" color="olive" size="sm" />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" color="water" size="lg" />
+          <MotifFloater motif="bunga_sambel" position="top-right" color="olive" size="md" />
 
           <FadeIn>
             <SectionHeader

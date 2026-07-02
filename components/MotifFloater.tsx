@@ -36,7 +36,7 @@ export function MotifFloater({
   position = 'top-right',
   size = 'md',
   color = 'gold',
-  opacity = 0.4,
+  opacity = 0.55,
 }: {
   motif?: Motif
   position?: Position

@@ -25,7 +25,7 @@ export function FestivalTimeline({ events }: { events: (Festival & { slug: strin
 
   return (
     <>
-      <ol className="relative space-y-8">
+      <ol className="relative space-y-6 sm:space-y-8">
         {events.map((e, i) => (
           <li key={e.slug} className="group relative">
             <div aria-hidden className="absolute left-[11px] top-3 bottom-0 w-px bg-gradient-to-b from-terracotta-500/60 via-terracotta-500/30 to-transparent" />
@@ -35,20 +35,20 @@ export function FestivalTimeline({ events }: { events: (Festival & { slug: strin
             <button
               type="button"
               onClick={() => openDetail(e)}
-              className="ml-8 w-full text-left group/card"
+              className="ml-8 block text-left group/card"
             >
               <div className="rounded-2xl border border-tan-700/12 bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)] hover:-translate-y-0.5 overflow-hidden">
                 <div className="flex flex-col sm:flex-row">
-                  <div className="relative w-full sm:w-56 sm:min-w-[14rem] sm:h-auto aspect-[16/10] sm:aspect-auto overflow-hidden flex-shrink-0">
+                  <div className="relative w-full sm:w-44 shrink-0 aspect-[16/10] sm:aspect-auto sm:h-auto overflow-hidden">
                     <Image
                       src={e.cover}
                       alt={e.eventName}
                       fill
                       className="object-cover transition-transform duration-500 group-hover/card:scale-105"
-                      sizes="(max-width: 640px) 100vw, 224px"
+                      sizes="(max-width: 640px) 100vw, 176px"
                     />
                   </div>
-                  <div className="flex flex-1 flex-col justify-between p-4 sm:p-5 min-w-0">
+                  <div className="flex-1 min-w-0 p-4 sm:p-5">
                     <div>
                       <span className="font-beautique-condensed text-[10px] tracking-[0.2em] uppercase text-terracotta-500">
                         {String(i + 1).padStart(2, '0')}
