@@ -4,7 +4,7 @@ type: Bidan
 village: Labuhan Pandan
 cadresCount: 2
 stuntingProgram: true
-cover: /images/content/personstanding.webp
+cover: /images/hero-placeholder.svg
 lat: -8.341
 lng: 116.859
 ---
