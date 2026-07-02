@@ -6,6 +6,7 @@ import { DataCard } from '@/components/DataCard'
 import { EmptyState } from '@/components/EmptyState'
 
 import { PageHero } from '@/components/PageHero'
+import { MotifFloater } from '@/components/MotifFloater'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -32,8 +33,8 @@ export default function KegiatanPage() {
       />
 
       <section className="relative bg-cream-beige/50">
-        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-
+        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <MotifFloater motif="bunga_sambel" position="bottom-right" color="gold" size="md" opacity={0.3} />
 
           {items.length === 0 ? (
             <EmptyState message={empty.kegiatan} />

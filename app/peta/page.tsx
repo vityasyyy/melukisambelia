@@ -7,6 +7,7 @@ import { getGisManifest } from '@/lib/gis'
 import { PageHero } from '@/components/PageHero'
 import { PetaClient } from './PetaClient'
 import { MapSkeleton } from '@/components/Skeleton'
+import { MotifFloater } from '@/components/MotifFloater'
 
 
 export const revalidate = REVALIDATE_SECONDS
@@ -38,7 +39,8 @@ export default function PetaPage() {
       />
 
       <section className="relative bg-page">
-        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <MotifFloater motif="bunga_sambel" position="bottom-left" color="water" size="lg" opacity={0.2} />
 
           <Suspense fallback={<MapSkeleton />}>
             <PetaClient

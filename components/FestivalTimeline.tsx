@@ -1,48 +1,79 @@
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
 import type { Festival } from '@/lib/schemas'
+import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 
 export function FestivalTimeline({ events }: { events: (Festival & { slug: string })[] }) {
+  const [modalData, setModalData] = useState<DetailModalData | null>(null)
+  const [modalOpen, setModalOpen] = useState(false)
+
+  function openDetail(e: Festival & { slug: string }) {
+    setModalData({
+      title: e.eventName,
+      image: e.cover,
+      description: `${e.schedule} · ${e.venue}`,
+      body: e.body ? <div dangerouslySetInnerHTML={{ __html: e.body }} /> : undefined,
+      chips: [
+        { label: e.schedule, tone: 'terracotta' as const },
+        { label: e.venue, tone: 'water' as const },
+      ],
+    })
+    setModalOpen(true)
+  }
+
   return (
     <>
-      <div className="relative">
-        <div aria-hidden className="absolute left-0 right-0 top-[0.75rem] h-[2px] bg-terracotta-500/25" />
-        <div className="relative flex gap-6 overflow-x-auto scrollbar-none pb-4 -mx-4 px-4 snap-x snap-mandatory">
-          {events.map((e) => (
-            <div key={e.slug} className="snap-center shrink-0 w-[300px] sm:w-[340px]">
-              <div className="mb-3 flex items-center gap-2">
-                <span aria-hidden className="relative z-10 flex h-3.5 w-3.5 rounded-full bg-terracotta-500 ring-[3px] ring-page" />
-              </div>
-              <div className="group relative overflow-hidden rounded-2xl border border-tan-700/12 bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)]">
-                <div className="relative aspect-[3/2] overflow-hidden rounded-t-2xl">
+      <ol className="relative space-y-8">
+        {events.map((e, i) => (
+          <li key={e.slug} className="group relative">
+            <div aria-hidden className="absolute left-[11px] top-3 bottom-0 w-px bg-gradient-to-b from-terracotta-500/60 via-terracotta-500/30 to-transparent" />
+            <span aria-hidden className="absolute left-0 top-2 z-10 flex h-[23px] w-[23px] items-center justify-center rounded-full border-[3px] border-page bg-terracotta-500">
+              <span className="h-2 w-2 rounded-full bg-page" />
+            </span>
+            <button
+              type="button"
+              onClick={() => openDetail(e)}
+              className="ml-8 w-full text-left group/card"
+            >
+              <div className="flex flex-col sm:flex-row gap-0 sm:gap-5 overflow-hidden rounded-2xl border border-tan-700/12 bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)] hover:-translate-y-0.5 h-full">
+                <div className="relative w-full sm:w-56 sm:min-w-[14rem] aspect-[16/10] sm:aspect-auto overflow-hidden rounded-t-2xl sm:rounded-t-none sm:rounded-l-2xl flex-shrink-0">
                   <Image
                     src={e.cover}
                     alt={e.eventName}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 300px, 340px"
+                    className="object-cover transition-transform duration-500 group-hover/card:scale-105"
+                    sizes="(max-width: 640px) 100vw, 224px"
                   />
+                  <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-transparent to-brown-950/5 sm:hidden" />
                 </div>
-                <div className="p-4 sm:p-5">
-                  <h2 className="font-beautique text-lg text-brown-900">{e.eventName}</h2>
-                  <p className="mt-1 font-beautique-condensed text-xs tracking-wide text-terracotta-500">{e.schedule} · {e.venue}</p>
-                  <p className="mt-2 text-sm text-ink/60 line-clamp-2 leading-relaxed">{e.description}</p>
+                <div className="flex flex-1 flex-col justify-between p-4 sm:p-5">
+                  <div>
+                    <span className="font-beautique-condensed text-[10px] tracking-[0.2em] uppercase text-terracotta-500">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="mt-0.5 font-beautique text-lg text-brown-900 group-hover/card:text-terracotta-500 transition-colors">{e.eventName}</h3>
+                    <p className="mt-1 font-beautique-condensed text-xs tracking-wide text-ink/60">{e.schedule} · {e.venue}</p>
+                    <p className="mt-2 text-sm text-ink/60 leading-relaxed line-clamp-2">{e.description}</p>
+                  </div>
                   {e.registrationUrl && (
-                    <a
-                      href={e.registrationUrl}
-                      className="mt-3 inline-block rounded-full bg-terracotta-500 px-3.5 py-1.5 text-xs font-medium text-page transition-colors hover:bg-wine"
-                    >
-                      Daftar
-                    </a>
+                    <div className="mt-3">
+                      <span className="inline-block rounded-full bg-terracotta-500 px-3.5 py-1.5 text-xs font-medium text-page transition-colors group-hover/card:bg-wine">
+                        Daftar
+                      </span>
+                    </div>
                   )}
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      {events.length > 1 && (
-        <p className="mt-2 text-center text-xs font-beautique-condensed uppercase tracking-[0.15em] text-ink/50">Geser horizontal untuk menjelajah →</p>
-      )}
+            </button>
+            {i < events.length - 1 && (
+              <div aria-hidden className="absolute left-[11px] bottom-0 h-4 w-px bg-terracotta-500/20" />
+            )}
+          </li>
+        ))}
+      </ol>
+      <DetailModal open={modalOpen} onOpenChange={setModalOpen} data={modalData} />
     </>
   )
 }

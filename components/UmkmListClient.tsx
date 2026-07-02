@@ -7,6 +7,7 @@ import { EmptyState } from '@/components/EmptyState'
 import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
+import { MotifFloater } from '@/components/MotifFloater'
 
 import { petaLink } from '@/lib/links'
 import { cn } from '@/lib/utils'
@@ -52,6 +53,7 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
       />
       <section className="relative bg-cream-warm/30">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <MotifFloater motif="bunga_sambel" position="top-right" color="terracotta" size="md" opacity={0.25} />
 
         {items.length === 0 ? (
           <EmptyState message={emptyMessage} />

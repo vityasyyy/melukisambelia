@@ -7,6 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
+import { MotifFloater } from '@/components/MotifFloater'
 
 import { petaLink } from '@/lib/links'
 import type { Irigasi } from '@/lib/schemas'
@@ -45,6 +46,7 @@ export function IrigasiListClient({ items, stats, pageSettings, emptyMessage }: 
       />
       <section className="relative bg-cream-beige/50">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <MotifFloater motif="bunga_sambel" position="bottom-left" color="olive" size="md" opacity={0.25} />
 
           <StaggerContainer stagger={0.06} className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
             <StaggerItem><StatCard label="Total Saluran" value={String(stats.total)} /></StaggerItem>

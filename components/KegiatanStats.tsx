@@ -4,6 +4,7 @@ import { getCollection } from '@/lib/content'
 import { getSettings } from '@/lib/settings'
 import { FadeIn } from './FadeIn'
 import { SectionHeader } from './SectionHeader'
+import { MotifFloater } from './MotifFloater'
 
 
 export function KegiatanStats() {
@@ -11,7 +12,8 @@ export function KegiatanStats() {
   const empty = getSettings().emptyStates
 
   return (
-    <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+    <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+      <MotifFloater motif="bunga_sambel" position="top-left" color="gold" size="md" opacity={0.25} />
 
       <FadeIn>
         <SectionHeader kicker="06 — KEGIATAN" title="Kegiatan Sambelia" tone="gold" />

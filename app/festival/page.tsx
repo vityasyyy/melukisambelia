@@ -4,10 +4,11 @@ import { getPageSettings, getEmptyStates } from '@/lib/settings'
 import { FestivalTimeline } from '@/components/FestivalTimeline'
 import { EmptyState } from '@/components/EmptyState'
 import { CountdownStrip } from '@/components/CountdownStrip'
-import { StaggerContainer, StaggerItem } from '@/components/Stagger'
+import { FadeIn } from '@/components/FadeIn'
 import { PageHero } from '@/components/PageHero'
 
 import { MotifDivider } from '@/components/MotifDivider'
+import { MotifFloater } from '@/components/MotifFloater'
 import { REVALIDATE_SECONDS } from '@/lib/config'
 
 export const revalidate = REVALIDATE_SECONDS
@@ -50,15 +51,14 @@ export default function FestivalPage() {
 
       <section className="relative bg-page">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="gold" />
 
           {events.length === 0 ? (
             <EmptyState message={empty.festival} />
           ) : (
-            <StaggerContainer stagger={0.1}>
-              <StaggerItem>
-                <FestivalTimeline events={events} />
-              </StaggerItem>
-            </StaggerContainer>
+            <FadeIn>
+              <FestivalTimeline events={events} />
+            </FadeIn>
           )}
         </div>
       </section>

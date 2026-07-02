@@ -8,6 +8,7 @@ import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 
 import { MotifDivider } from '@/components/MotifDivider'
+import { MotifFloater } from '@/components/MotifFloater'
 import Image from 'next/image'
 
 export const revalidate = REVALIDATE_SECONDS
@@ -44,7 +45,7 @@ export default function TentangSambeliaPage() {
 
       <section className="relative bg-page scroll-mt-20">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-
+          <MotifFloater motif="bunga_sambel" position="top-right" color="olive" size="md" opacity={0.3} />
           <FadeIn>
             <SectionHeader
               kicker={ps.sectionGeografiKicker ?? '01 — GEOGRAFI'}
@@ -75,7 +76,8 @@ export default function TentangSambeliaPage() {
       <MotifDivider />
 
       <section className="relative bg-cream-warm/30">
-        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10 scroll-mt-20">
+        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10 scroll-mt-20">
+          <MotifFloater motif="bunga_sambel" position="bottom-left" color="water" size="md" opacity={0.3} />
 
           <FadeIn>
             <SectionHeader

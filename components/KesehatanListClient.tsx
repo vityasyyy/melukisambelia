@@ -7,6 +7,7 @@ import { DataCard } from '@/components/DataCard'
 import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
+import { MotifFloater } from '@/components/MotifFloater'
 
 import { petaLink } from '@/lib/links'
 import type { Kesehatan } from '@/lib/schemas'
@@ -47,6 +48,7 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
       />
       <section className="relative bg-olive/5">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <MotifFloater motif="bunga_sambel" position="top-right" color="olive" size="md" opacity={0.25} />
 
           <StaggerContainer stagger={0.06} className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
             <StaggerItem><StatCard label="Posyandu" value={String(stats.posyandu)} /></StaggerItem>

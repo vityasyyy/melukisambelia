@@ -171,13 +171,13 @@ export function Nav() {
       </nav>
 
       <Sheet open={open} onOpenChange={setOpen}>
-        <SheetContent side="right" className="border-l border-gold-500/20 bg-brown-950 text-cream-light w-[85vw] max-w-sm p-0">
-          <div aria-hidden className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: "url('/images/design-system/batik_sambel.svg')", backgroundSize: '1200px auto', filter: 'sepia(0.5) hue-rotate(-10deg) saturate(1.8)' }} />
+        <SheetContent side="right" className="border-l border-gold-500/20 bg-brown-900 text-white w-[85vw] max-w-sm p-0">
+          <div aria-hidden className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url('/images/design-system/batik_sambel.svg')", backgroundSize: '1200px auto', filter: 'sepia(0.5) hue-rotate(-10deg) saturate(1.8)' }} />
           <div aria-hidden className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-water-900 via-gold-bright to-terracotta-500 opacity-80" />
           <SheetHeader className="relative border-b border-gold-500/15 px-6 py-5">
             <SheetTitle className="flex items-center gap-3">
               <Logo className="h-9 w-auto brightness-0 invert" />
-              <span className="font-beautique text-lg text-gold-soft">Melukis Sambelia</span>
+              <span className="font-beautique text-lg text-white">Melukis Sambelia</span>
             </SheetTitle>
             <SheetClose className="absolute right-4 top-4 rounded-lg h-12 w-12 inline-flex items-center justify-center text-cream-light transition-colors hover:bg-white/10 hover:text-white focus:ring-2 focus:ring-water-500">
               <X className="h-6 w-6" />
@@ -196,7 +196,7 @@ export function Nav() {
                         'flex min-h-[44px] items-center rounded-xl px-4 py-2.5 text-base font-medium transition-all duration-200',
                         isActive(l.href)
                           ? 'bg-gold-500/15 text-gold-soft border-l-2 border-gold-500'
-                          : 'text-cream-light hover:bg-white/[0.06] hover:text-white'
+                          : 'text-white hover:bg-white/[0.06]'
                       )}
                     >
                       {l.label}
@@ -213,7 +213,7 @@ export function Nav() {
                       aria-expanded={expanded}
                       className={cn(
                         'flex w-full min-h-[44px] items-center justify-between rounded-xl px-4 py-2.5 text-base font-medium transition-all duration-200',
-                        expanded ? 'text-gold-soft bg-white/[0.04]' : 'text-cream-light hover:bg-white/[0.06] hover:text-white'
+                        expanded ? 'text-gold-soft bg-white/[0.04]' : 'text-white hover:bg-white/[0.06]'
                       )}
                       onClick={() => setOpenGroup(expanded ? null : group.label)}
                     >
@@ -237,7 +237,7 @@ export function Nav() {
                                   'flex min-h-[40px] items-center rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
                                   isActive(item.href)
                                     ? 'text-gold-soft bg-gold-500/10'
-                                    : 'text-cream-light hover:bg-white/[0.06] hover:text-white'
+                                    : 'text-white hover:bg-white/[0.06]'
                                 )}
                               >
                                 {item.label}

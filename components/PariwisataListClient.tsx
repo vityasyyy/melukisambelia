@@ -5,6 +5,7 @@ import { DataCard } from '@/components/DataCard'
 import { EmptyState } from '@/components/EmptyState'
 import { PageHero } from '@/components/PageHero'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
+import { MotifFloater } from '@/components/MotifFloater'
 
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 import { petaLink } from '@/lib/links'
@@ -46,6 +47,7 @@ export function PariwisataListClient({ items, pageSettings, emptyMessage }: { it
       />
       <section className="relative bg-cream-warm/30">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <MotifFloater motif="bunga_sambel" position="bottom-right" color="water" size="md" opacity={0.25} />
 
           {items.length === 0 ? (
             <EmptyState message={emptyMessage} />

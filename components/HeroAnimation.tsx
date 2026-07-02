@@ -66,6 +66,36 @@ export function HeroAnimation({
         style={{ boxShadow: 'inset 0 -100px 140px -30px rgba(15,8,5,0.95)' }}
       />
 
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-[4vw] top-[18vh] sm:top-[20vh] z-[2] w-[22vw] sm:w-[14vw] max-w-[180px]"
+      >
+        <Image
+          src="/images/design-system/bunga_sambel.svg"
+          alt=""
+          width={180}
+          height={180}
+          className="w-full h-auto"
+          style={{ filter: 'sepia(0.9) hue-rotate(-5deg) saturate(2.5)', opacity: 0.38 }}
+          loading="lazy"
+        />
+      </div>
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-[6vw] bottom-[15vh] sm:bottom-[18vh] z-[2] w-[18vw] sm:w-[11vw] max-w-[140px]"
+      >
+        <Image
+          src="/images/design-system/bunga_sambel.svg"
+          alt=""
+          width={140}
+          height={140}
+          className="w-full h-auto"
+          style={{ filter: 'sepia(0.7) hue-rotate(170deg) saturate(3)', opacity: 0.35 }}
+          loading="lazy"
+        />
+      </div>
+
       <div className="relative z-10 flex w-full max-w-4xl flex-col items-center justify-center px-4 sm:px-6">
         <motion.div variants={container} initial="hidden" animate="visible" className="flex flex-col items-center">
           <motion.h1

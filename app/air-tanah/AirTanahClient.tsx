@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { StatCard } from '@/components/StatCard'
 import { FadeIn } from '@/components/FadeIn'
+import { MotifFloater } from '@/components/MotifFloater'
 
 import { petaLink } from '@/lib/links'
 import { AirTanahChart } from './AirTanahChart'
@@ -20,7 +21,7 @@ export function AirTanahClient({
 
   return (
     <div className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
-
+      <MotifFloater motif="bunga_sambel" position="top-right" color="water" size="md" opacity={0.25} />
 
       {data === null ? (
         <FadeIn>
