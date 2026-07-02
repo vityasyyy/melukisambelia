@@ -1,8 +1,9 @@
 ---
-title: "Peta Indeks Vegetasi (NDVI)"
+title: Peta Indeks Vegetasi (NDVI)
 category: Vegetasi
-cover: /images/content/kegiatan-ekowisata.svg
-description: "Analisis indeks vegetasi NDVI di Kecamatan Sambelia menggunakan citra satelit untuk mengidentifikasi tingkat kerapatan tanaman."
+cover: /images/hero-placeholder.svg
+description: Analisis indeks vegetasi NDVI di Kecamatan Sambelia menggunakan
+  citra satelit untuk mengidentifikasi tingkat kerapatan tanaman.
 order: 1
 ---
 
