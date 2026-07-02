@@ -35,19 +35,22 @@ export function FestivalTimeline({ events }: { events: (Festival & { slug: strin
             <button
               type="button"
               onClick={() => openDetail(e)}
-              className="ml-8 block text-left group/card"
+              className="ml-8 block w-[calc(100%-2rem)] text-left group/card"
             >
               <div className="rounded-2xl border border-tan-700/12 bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)] hover:-translate-y-0.5 overflow-hidden">
+                {/* Mobile: stacked, Desktop: side-by-side */}
                 <div className="flex flex-col sm:flex-row">
-                  <div className="relative w-full sm:w-44 shrink-0 aspect-[16/10] sm:aspect-auto sm:h-auto overflow-hidden">
+                  {/* Image */}
+                  <div className="relative w-full sm:w-56 sm:min-w-[14rem] shrink-0 aspect-[16/10] sm:aspect-auto overflow-hidden">
                     <Image
                       src={e.cover}
                       alt={e.eventName}
                       fill
                       className="object-cover transition-transform duration-500 group-hover/card:scale-105"
-                      sizes="(max-width: 640px) 100vw, 176px"
+                      sizes="(max-width: 640px) 100vw, 224px"
                     />
                   </div>
+                  {/* Text */}
                   <div className="flex-1 min-w-0 p-4 sm:p-5">
                     <div>
                       <span className="font-beautique-condensed text-[10px] tracking-[0.2em] uppercase text-terracotta-500">

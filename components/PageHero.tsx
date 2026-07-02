@@ -81,7 +81,7 @@ export function PageHero({
             width={500}
             height={500}
             className="w-full h-auto"
-            style={{ filter: RING_FILTERS[tone], opacity: 0.5 }}
+            style={{ filter: RING_FILTERS[tone], opacity: 0.6 }}
             loading="lazy"
           />
         </div>
@@ -100,7 +100,7 @@ export function PageHero({
               width={200}
               height={200}
               className="w-full h-auto"
-              style={{ filter: RING_FILTERS[tone], opacity: 0.5 }}
+              style={{ filter: RING_FILTERS[tone], opacity: 0.6 }}
               loading="lazy"
             />
           </div>
@@ -109,18 +109,18 @@ export function PageHero({
 
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute right-[6vw] bottom-[15%] z-[1] w-[11vw] max-w-[130px] motif-entrance"
-        style={{ animationDelay: '0.7s' }}
+        className="pointer-events-none absolute left-[4vw] top-[18%] z-[1] w-[14vw] max-w-[160px] motif-entrance"
+        style={{ animationDelay: '0.4s' }}
       >
-        <div className="motif-glow motif-rotate" style={{ animationDuration: '55s' }}>
-          <div className="motif-float-slow">
+        <div className="motif-glow motif-rotate-reverse" style={{ animationDuration: '50s' }}>
+          <div className="motif-float">
             <Image
               src="/images/design-system/bunga_sambel.svg"
               alt=""
-              width={160}
-              height={160}
+              width={200}
+              height={200}
               className="w-full h-auto"
-              style={{ filter: RING_FILTERS[tone], opacity: 0.5 }}
+              style={{ filter: RING_FILTERS[tone], opacity: 0.6 }}
               loading="lazy"
             />
           </div>

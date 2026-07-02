@@ -48,7 +48,8 @@ export function PariwisataListClient({ items, pageSettings, emptyMessage }: { it
       <section className="relative bg-cream-warm/30">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
           <MotifFloater motif="bunga_sambel" position="bottom-right" color="water" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="top-left" color="terracotta" size="md" />
+          <MotifFloater motif="bunga_sambel" position="top-left" color="terracotta" size="lg" />
+          <MotifFloater motif="bunga_sambel" position="center-left" color="water" size="sm" />
 
           {items.length === 0 ? (
             <EmptyState message={emptyMessage} />

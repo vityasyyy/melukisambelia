@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 
 type Motif = 'cincin_sambel' | 'bunga_sambel' | 'ornament-gold'
 type Position = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right'
-type Size = 'sm' | 'md' | 'lg'
+type Size = 'sm' | 'md' | 'lg' | 'xl'
 type MotifColor = 'terracotta' | 'gold' | 'water' | 'olive' | 'brown'
 
 const POSITION_CLASSES: Record<Position, string> = {
@@ -18,9 +18,10 @@ const POSITION_CLASSES: Record<Position, string> = {
 }
 
 const SIZE_CLASSES: Record<Size, string> = {
-  sm: 'w-20 h-20 sm:w-28 sm:h-28',
-  md: 'w-28 h-28 sm:w-36 sm:h-36',
-  lg: 'w-36 h-36 sm:w-48 sm:h-48',
+  sm: 'w-28 h-28 sm:w-36 sm:h-36',
+  md: 'w-36 h-36 sm:w-44 sm:h-44',
+  lg: 'w-44 h-44 sm:w-56 sm:h-56',
+  xl: 'w-56 h-56 sm:w-64 sm:h-64',
 }
 
 const COLOR_FILTERS: Record<MotifColor, string> = {
@@ -36,7 +37,7 @@ export function MotifFloater({
   position = 'top-right',
   size = 'md',
   color = 'gold',
-  opacity = 0.55,
+  opacity = 0.7,
 }: {
   motif?: Motif
   position?: Position
@@ -65,7 +66,7 @@ export function MotifFloater({
               alt=""
               fill
               className="object-contain"
-              sizes="(max-width: 640px) 80px, 144px"
+              sizes="(max-width: 640px) 112px, 224px"
               style={{ filter: COLOR_FILTERS[color], opacity }}
             />
           </div>
@@ -76,7 +77,7 @@ export function MotifFloater({
             alt=""
             fill
             className="object-contain"
-            sizes="(max-width: 640px) 80px, 144px"
+            sizes="(max-width: 640px) 112px, 224px"
             style={{ filter: COLOR_FILTERS[color], opacity }}
           />
         )}

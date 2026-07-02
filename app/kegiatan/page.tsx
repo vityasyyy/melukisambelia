@@ -35,7 +35,8 @@ export default function KegiatanPage() {
       <section className="relative bg-cream-beige/50">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
           <MotifFloater motif="bunga_sambel" position="bottom-right" color="gold" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="top-left" color="olive" size="md" />
+          <MotifFloater motif="bunga_sambel" position="top-left" color="olive" size="lg" />
+          <MotifFloater motif="bunga_sambel" position="center-right" color="terracotta" size="sm" />
 
           {items.length === 0 ? (
             <EmptyState message={empty.kegiatan} />
