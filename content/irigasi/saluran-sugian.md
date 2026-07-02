@@ -5,7 +5,7 @@ village: Sugian
 condition: Baik
 lengthM: 2500
 flowStatus: Mengalir
-cover: /images/content/irigasi-saluran.svg
+cover: /images/hero-placeholder.svg
 lat: -8.35
 lng: 116.84
 ---
