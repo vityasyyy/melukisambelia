@@ -1,5 +1,5 @@
 ---
-name: Paok Motong
+name: Bagik Manis
 description: Desa dengan potensi pertanian dan perikanan di Kecamatan Sambelia.
-image: /images/content/sugian-group44.png
+image: /images/hero-placeholder.svg
 ---
