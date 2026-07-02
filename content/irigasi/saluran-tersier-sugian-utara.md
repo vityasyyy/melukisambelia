@@ -5,7 +5,7 @@ village: Sugian
 condition: Rusak Berat
 lengthM: 800
 flowStatus: Kering
-cover: /images/content/personstanding.webp
+cover: /images/hero-placeholder.svg
 lat: -8.347
 lng: 116.838
 ---
