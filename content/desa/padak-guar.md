@@ -1,5 +1,5 @@
 ---
-name: Padak Guar
-description: Desa Padak Guar
+name: Sambelia
+description: Desa Sambelia
 image: /images/hero-placeholder.svg
 ---
