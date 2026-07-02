@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { DataCard } from '@/components/DataCard'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
+import { getAlternatingSpan, isAlternatingFeatured } from '@/lib/utils'
 import { petaLink } from '@/lib/links'
 import type { Pariwisata } from '@/lib/schemas'
 
@@ -37,7 +38,7 @@ export function WisataUnggulanClient({ items }: { items: (Pariwisata & { slug: s
     <>
       <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((p, i) => (
-          <StaggerItem key={p.slug} className={i === 0 ? 'sm:col-span-2 lg:col-span-2' : undefined}>
+          <StaggerItem key={p.slug} className={getAlternatingSpan(i, items.length)}>
             <DataCard
               image={p.cover}
               title={p.title}
@@ -47,7 +48,7 @@ export function WisataUnggulanClient({ items }: { items: (Pariwisata & { slug: s
               ]}
               desc={p.shortDesc}
               onDetailClick={() => openModal(p)}
-              featured={i === 0}
+              featured={isAlternatingFeatured(i, items.length)}
               accent="#14A8E1"
             />
           </StaggerItem>

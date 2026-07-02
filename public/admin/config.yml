@@ -267,6 +267,9 @@ collections:
                   - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Destinasi unggulan di Kecamatan Sambelia." }
                   - { label: "SEO Title", name: "seoTitle", widget: "string", default: "Pariwisata Sambelia" }
                   - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Destinasi wisata unggulan di Kecamatan Sambelia, Lombok Timur." }
+                  - { label: "Section Kicker", name: "sectionKicker", widget: "string", required: false }
+                  - { label: "Section Title", name: "sectionTitle", widget: "string", required: false }
+                  - { label: "Section Intro", name: "sectionIntro", widget: "text", required: false }
               - label: "Irigasi"
                 name: "irigasi"
                 widget: "object"
@@ -277,6 +280,9 @@ collections:
                   - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Saluran irigasi di Kecamatan Sambelia dan kondisinya." }
                   - { label: "SEO Title", name: "seoTitle", widget: "string", default: "Data Irigasi Sambelia" }
                   - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Data saluran irigasi, kondisi saluran, dan peta titik rawan kekeringan di Kecamatan Sambelia." }
+                  - { label: "Section Kicker", name: "sectionKicker", widget: "string", required: false }
+                  - { label: "Section Title", name: "sectionTitle", widget: "string", required: false }
+                  - { label: "Section Intro", name: "sectionIntro", widget: "text", required: false }
               - label: "Kesehatan"
                 name: "kesehatan"
                 widget: "object"
@@ -287,6 +293,9 @@ collections:
                   - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Posyandu, puskesmas, dan program stunting di Sambelia." }
                   - { label: "SEO Title", name: "seoTitle", widget: "string", default: "Kesehatan Sambelia" }
                   - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Fasilitas kesehatan, posyandu, puskesmas, bidan, dan program stunting di Kecamatan Sambelia." }
+                  - { label: "Section Kicker", name: "sectionKicker", widget: "string", required: false }
+                  - { label: "Section Title", name: "sectionTitle", widget: "string", required: false }
+                  - { label: "Section Intro", name: "sectionIntro", widget: "text", required: false }
               - label: "UMKM"
                 name: "umkm"
                 widget: "object"
@@ -297,6 +306,9 @@ collections:
                   - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Kerajinan, kuliner, dan produk lokal yang menjadi andalan masyarakat Sambelia." }
                   - { label: "SEO Title", name: "seoTitle", widget: "string", default: "UMKM Lokal Sambelia" }
                   - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Produk kerajinan, kuliner, pertanian, dan UMKM lokal Kecamatan Sambelia, termasuk peyek mangrove." }
+                  - { label: "Section Kicker", name: "sectionKicker", widget: "string", required: false }
+                  - { label: "Section Title", name: "sectionTitle", widget: "string", required: false }
+                  - { label: "Section Intro", name: "sectionIntro", widget: "text", required: false }
               - label: "Peta"
                 name: "peta"
                 widget: "object"
@@ -351,6 +363,9 @@ collections:
                   - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia." }
                   - { label: "SEO Title", name: "seoTitle", widget: "string", default: "Kegiatan Sambelia" }
                   - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia." }
+                  - { label: "Section Kicker", name: "sectionKicker", widget: "string", required: false }
+                  - { label: "Section Title", name: "sectionTitle", widget: "string", required: false }
+                  - { label: "Section Intro", name: "sectionIntro", widget: "text", required: false }
           - label: "Kartu Jejaki"
             name: "jejakiCards"
             widget: "list"
@@ -360,7 +375,7 @@ collections:
               - { label: "Judul", name: "title", widget: "string" }
               - { label: "Deskripsi", name: "desc", widget: "string" }
               - { label: "Warna Aksen", name: "accent", widget: "string" }
-              - { label: "Gambar", name: "image", widget: "string", required: false }
+              - { label: "Gambar", name: "image", widget: "image", required: false }
           - label: "Footer"
             name: "footer"
             widget: "object"
@@ -454,3 +469,24 @@ collections:
             fields:
               - { label: "Judul", name: "title", widget: "string" }
               - { label: "Deskripsi", name: "description", widget: "text" }
+
+  - name: "gis_manifest"
+    label: "GIS Peta Tematik"
+    files:
+      - label: "Manifest Peta GIS"
+        name: "gis_manifest"
+        file: "content/_gis_manifest.md"
+        fields:
+          - { label: "Judul", name: "title", widget: "string", default: "Peta GIS Kecamatan Sambelia" }
+          - { label: "Deskripsi", name: "description", widget: "text", required: false }
+          - { label: "Kredit", name: "credit", widget: "string", required: false }
+          - label: "File Peta"
+            name: "files"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Tipe", name: "type", widget: "select", options: ["image", "pdf", "geojson"] }
+              - { label: "Kategori", name: "category", widget: "select", options: ["umum", "air", "irigasi", "vegetasi"] }
+              - { label: "Nama", name: "name", widget: "string" }
+              - { label: "File URL", name: "url", widget: "image" }
+              - { label: "Deskripsi", name: "description", widget: "string", required: false }

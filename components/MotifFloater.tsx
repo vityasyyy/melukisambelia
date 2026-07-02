@@ -18,10 +18,10 @@ const POSITION_CLASSES: Record<Position, string> = {
 }
 
 const SIZE_CLASSES: Record<Size, string> = {
-  sm: 'w-28 h-28 sm:w-36 sm:h-36',
-  md: 'w-36 h-36 sm:w-44 sm:h-44',
-  lg: 'w-44 h-44 sm:w-56 sm:h-56',
-  xl: 'w-56 h-56 sm:w-64 sm:h-64',
+  sm: 'w-28 h-28 sm:w-36 sm:h-36 lg:w-40 lg:h-40',
+  md: 'w-36 h-36 sm:w-44 sm:h-44 lg:w-48 lg:h-48',
+  lg: 'w-44 h-44 sm:w-56 sm:h-56 lg:w-60 lg:h-60',
+  xl: 'w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72',
 }
 
 const COLOR_FILTERS: Record<MotifColor, string> = {
@@ -52,7 +52,7 @@ export function MotifFloater({
   return (
     <motion.div
       aria-hidden
-      className={`pointer-events-none absolute z-0 ${POSITION_CLASSES[position]} ${SIZE_CLASSES[size]} motif-entrance`}
+      className={`pointer-events-none absolute z-0 ${POSITION_CLASSES[position]} ${SIZE_CLASSES[size]}`}
       initial={reduce ? undefined : { opacity: 0, scale: 0.85, y: 12 }}
       whileInView={reduce ? undefined : { opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, margin: '-20px' }}

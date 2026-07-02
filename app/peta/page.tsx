@@ -40,9 +40,11 @@ export default function PetaPage() {
 
       <section className="relative bg-page">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="bottom-left" color="water" size="lg" />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" color="terracotta" size="lg" />
           <MotifFloater motif="bunga_sambel" position="top-right" color="gold" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="center-left" color="olive" size="sm" />
+          <MotifFloater motif="bunga_sambel" position="center-left" color="gold" size="sm" />
+          <MotifFloater motif="bunga_sambel" position="top-left" color="terracotta" size="md" opacity={0.7} />
+          <MotifFloater motif="bunga_sambel" position="bottom-right" color="gold" size="md" opacity={0.7} />
 
           <Suspense fallback={<MapSkeleton />}>
             <PetaClient

@@ -59,6 +59,8 @@ export default function FestivalPage() {
           <MotifFloater motif="bunga_sambel" position="top-left" size="lg" color="gold" />
           <MotifFloater motif="bunga_sambel" position="bottom-right" size="lg" color="terracotta" />
           <MotifFloater motif="bunga_sambel" position="center-left" size="sm" color="gold" />
+          <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="terracotta" opacity={0.7} />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" opacity={0.7} />
 
           {events.length === 0 ? (
             <EmptyState message={empty.festival} />

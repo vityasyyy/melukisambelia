@@ -10,6 +10,7 @@ import { MotifFloater } from '@/components/MotifFloater'
 
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 import { petaLink } from '@/lib/links'
+import { getAlternatingSpan, isAlternatingFeatured } from '@/lib/utils'
 import type { Pariwisata } from '@/lib/schemas'
 
 export function PariwisataListClient({ items, pageSettings, emptyMessage }: { items: (Pariwisata & { slug: string })[]; pageSettings: Record<string, string>; emptyMessage: string }) {
@@ -48,9 +49,11 @@ export function PariwisataListClient({ items, pageSettings, emptyMessage }: { it
       />
       <section className="relative bg-cream-warm/30">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="bottom-right" color="water" size="lg" opacity={0.85} />
-          <MotifFloater motif="bunga_sambel" position="top-left" color="terracotta" size="lg" opacity={0.85} />
-          <MotifFloater motif="bunga_sambel" position="center-left" color="water" size="sm" opacity={0.8} />
+          <MotifFloater motif="bunga_sambel" position="top-right" color="terracotta" size="lg" opacity={0.85} />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" color="gold" size="lg" opacity={0.85} />
+          <MotifFloater motif="bunga_sambel" position="center-left" color="terracotta" size="sm" opacity={0.8} />
+          <MotifFloater motif="bunga_sambel" position="top-left" color="gold" size="md" opacity={0.7} />
+          <MotifFloater motif="bunga_sambel" position="bottom-right" color="terracotta" size="md" opacity={0.7} />
 
           <SectionHeader
             kicker={pageSettings.sectionKicker ?? 'PARIWISATA'}
@@ -64,7 +67,7 @@ export function PariwisataListClient({ items, pageSettings, emptyMessage }: { it
           ) : (
             <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {items.map((p, i) => (
-                <StaggerItem key={p.slug} className={i === 0 ? 'sm:col-span-2 lg:col-span-2' : undefined}>
+                <StaggerItem key={p.slug} className={getAlternatingSpan(i, items.length)}>
                   <DataCard
                     image={p.cover}
                     title={p.title}
@@ -74,7 +77,7 @@ export function PariwisataListClient({ items, pageSettings, emptyMessage }: { it
                     ]}
                     desc={p.shortDesc}
                     onDetailClick={() => openModal(p)}
-                    featured={i === 0}
+                    featured={isAlternatingFeatured(i, items.length)}
                     accent="#14A8E1"
                   />
                 </StaggerItem>

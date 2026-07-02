@@ -12,6 +12,7 @@ import { MotifFloater } from '@/components/MotifFloater'
 
 import { petaLink } from '@/lib/links'
 import { cn } from '@/lib/utils'
+import { getAlternatingSpan } from '@/lib/utils'
 import type { Umkm } from '@/lib/schemas'
 
 const KATEGORI_OPTIONS = ['Semua', 'Kuliner', 'Jasa', 'Kerajinan', 'Pertanian', 'Perikanan', 'Lainnya'] as const
@@ -56,7 +57,9 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
           <MotifFloater motif="bunga_sambel" position="top-right" color="terracotta" size="lg" opacity={0.85} />
           <MotifFloater motif="bunga_sambel" position="bottom-left" color="gold" size="lg" opacity={0.85} />
-          <MotifFloater motif="bunga_sambel" position="center-right" color="olive" size="sm" opacity={0.8} />
+          <MotifFloater motif="bunga_sambel" position="center-right" color="terracotta" size="sm" opacity={0.8} />
+          <MotifFloater motif="bunga_sambel" position="top-left" color="gold" size="md" opacity={0.7} />
+          <MotifFloater motif="bunga_sambel" position="bottom-right" color="terracotta" size="md" opacity={0.7} />
 
           <SectionHeader
             kicker={pageSettings.sectionKicker ?? 'UMKM'}
@@ -101,7 +104,7 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
               className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
             >
               {filtered.map((u, i) => (
-                <StaggerItem key={u.slug} className={i === 0 ? 'sm:col-span-2 lg:col-span-2' : undefined}>
+                <StaggerItem key={u.slug} className={getAlternatingSpan(i, filtered.length)}>
                   <UmkmCard item={u} onDetailClick={() => openModal(u)} />
                 </StaggerItem>
               ))}

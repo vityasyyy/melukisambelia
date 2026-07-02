@@ -48,6 +48,8 @@ export default function TentangSambeliaPage() {
           <MotifFloater motif="bunga_sambel" position="top-right" color="olive" size="lg" />
           <MotifFloater motif="bunga_sambel" position="bottom-left" color="terracotta" size="lg" />
           <MotifFloater motif="bunga_sambel" position="center-left" color="gold" size="sm" />
+          <MotifFloater motif="bunga_sambel" position="top-left" color="terracotta" size="md" opacity={0.7} />
+          <MotifFloater motif="bunga_sambel" position="bottom-right" color="gold" size="md" opacity={0.7} />
           <FadeIn>
             <SectionHeader
               kicker={ps.sectionGeografiKicker ?? '01 — GEOGRAFI'}
@@ -82,6 +84,8 @@ export default function TentangSambeliaPage() {
           <MotifFloater motif="bunga_sambel" position="bottom-left" color="water" size="lg" />
           <MotifFloater motif="bunga_sambel" position="top-right" color="olive" size="lg" />
           <MotifFloater motif="bunga_sambel" position="center-right" color="terracotta" size="sm" />
+          <MotifFloater motif="bunga_sambel" position="top-left" color="gold" size="md" opacity={0.7} />
+          <MotifFloater motif="bunga_sambel" position="bottom-right" color="olive" size="md" opacity={0.7} />
 
           <FadeIn>
             <SectionHeader

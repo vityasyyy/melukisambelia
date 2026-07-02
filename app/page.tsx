@@ -82,7 +82,9 @@ export default function Beranda() {
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
           <MotifFloater motif="bunga_sambel" position="top-right" size="lg" color="gold" />
           <MotifFloater motif="bunga_sambel" position="bottom-left" size="lg" color="terracotta" />
-          <MotifFloater motif="bunga_sambel" position="center-left" size="sm" color="olive" />
+          <MotifFloater motif="bunga_sambel" position="center-left" size="sm" color="terracotta" />
+          <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="gold" opacity={0.7} />
+          <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="terracotta" opacity={0.7} />
 
           <FadeIn>
             <SectionHeader
@@ -118,6 +120,8 @@ export default function Beranda() {
           <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="terracotta" />
           <MotifFloater motif="bunga_sambel" position="top-right" size="lg" color="gold" />
           <MotifFloater motif="bunga_sambel" position="center-right" size="sm" color="terracotta" />
+          <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="gold" opacity={0.7} />
+          <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="terracotta" opacity={0.7} />
 
           <FadeIn>
             <SectionHeader kicker={hi.jejakiKicker} title={hi.jejakiTitle} tone="gold" headingId="jejaki-heading" />
@@ -158,9 +162,11 @@ export default function Beranda() {
       {wisataUnggulan.length > 0 && (
         <section aria-labelledby="wisata-heading" className="relative bg-page">
           <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-            <MotifFloater motif="bunga_sambel" position="top-right" size="lg" color="water" />
+            <MotifFloater motif="bunga_sambel" position="top-right" size="lg" color="terracotta" />
             <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" />
-            <MotifFloater motif="bunga_sambel" position="center-left" size="sm" color="water" />
+            <MotifFloater motif="bunga_sambel" position="center-left" size="sm" color="terracotta" />
+            <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="gold" opacity={0.7} />
+            <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="terracotta" opacity={0.7} />
 
             <FadeIn>
               <SectionHeader
@@ -192,6 +198,8 @@ export default function Beranda() {
             <MotifFloater motif="bunga_sambel" position="top-left" size="lg" color="gold" />
             <MotifFloater motif="bunga_sambel" position="bottom-right" size="lg" color="terracotta" />
             <MotifFloater motif="bunga_sambel" position="center-right" size="sm" color="gold" />
+            <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="terracotta" opacity={0.7} />
+            <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" opacity={0.7} />
 
             <FadeIn>
               <SectionHeader
@@ -227,8 +235,10 @@ export default function Beranda() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(240,172,109,0.06),transparent_70%)]" aria-hidden />
           <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
             <MotifFloater motif="bunga_sambel" position="bottom-right" size="lg" color="gold" />
-            <MotifFloater motif="bunga_sambel" position="top-left" size="lg" color="olive" />
+            <MotifFloater motif="bunga_sambel" position="top-left" size="lg" color="terracotta" />
             <MotifFloater motif="bunga_sambel" position="center-right" size="sm" color="terracotta" />
+            <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="gold" opacity={0.7} />
+            <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="terracotta" opacity={0.7} />
 
             <FadeIn>
               <SectionHeader

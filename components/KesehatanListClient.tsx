@@ -11,6 +11,7 @@ import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 import { MotifFloater } from '@/components/MotifFloater'
 
 import { petaLink } from '@/lib/links'
+import { getAlternatingSpan, isAlternatingFeatured } from '@/lib/utils'
 import type { Kesehatan } from '@/lib/schemas'
 
 export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }: { items: (Kesehatan & { slug: string })[]; stats: { posyandu: number; puskesmas: number; cadres: number; stunting: number }; pageSettings: Record<string, string>; emptyMessage: string }) {
@@ -49,9 +50,11 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
       />
       <section className="relative bg-olive/5">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="top-right" color="olive" size="lg" opacity={0.85} />
-          <MotifFloater motif="bunga_sambel" position="bottom-left" color="water" size="lg" opacity={0.85} />
+          <MotifFloater motif="bunga_sambel" position="top-right" color="gold" size="lg" opacity={0.85} />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" color="terracotta" size="lg" opacity={0.85} />
           <MotifFloater motif="bunga_sambel" position="center-right" color="gold" size="sm" opacity={0.8} />
+          <MotifFloater motif="bunga_sambel" position="top-left" color="terracotta" size="md" opacity={0.7} />
+          <MotifFloater motif="bunga_sambel" position="bottom-right" color="gold" size="md" opacity={0.7} />
 
           <SectionHeader
             kicker={pageSettings.sectionKicker ?? 'KESEHATAN'}
@@ -71,7 +74,7 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
           ) : (
             <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {items.map((k, i) => (
-                <StaggerItem key={k.slug} className={i === 0 ? 'sm:col-span-2 lg:col-span-2' : undefined}>
+                <StaggerItem key={k.slug} className={getAlternatingSpan(i, items.length)}>
                   <DataCard
                     image={k.cover}
                     title={k.facilityName}
@@ -82,7 +85,7 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
                     ]}
                     desc={`Kader: ${k.cadresCount}`}
                     onDetailClick={() => openModal(k)}
-                    featured={i === 0}
+                    featured={isAlternatingFeatured(i, items.length)}
                     accent="#68794A"
                   />
                 </StaggerItem>

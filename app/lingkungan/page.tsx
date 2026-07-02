@@ -14,6 +14,7 @@ import { StaggerContainer, StaggerItem } from '@/components/Stagger'
 import { MotifDivider } from '@/components/MotifDivider'
 import { MotifFloater } from '@/components/MotifFloater'
 import { EmptyState } from '@/components/EmptyState'
+import { getAlternatingSpan } from '@/lib/utils'
 
 export const revalidate = REVALIDATE_SECONDS
 
@@ -43,9 +44,11 @@ export default function LingkunganPage() {
 
       <section className="relative bg-cream-beige/50">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10 scroll-mt-20">
-          <MotifFloater motif="bunga_sambel" position="bottom-right" color="olive" size="lg" opacity={0.85} />
-          <MotifFloater motif="bunga_sambel" position="top-left" color="olive" size="lg" opacity={0.85} />
-          <MotifFloater motif="bunga_sambel" position="center-left" color="water" size="sm" opacity={0.8} />
+          <MotifFloater motif="bunga_sambel" position="bottom-right" color="terracotta" size="lg" opacity={0.85} />
+          <MotifFloater motif="bunga_sambel" position="top-left" color="gold" size="lg" opacity={0.85} />
+          <MotifFloater motif="bunga_sambel" position="center-left" color="terracotta" size="sm" opacity={0.8} />
+          <MotifFloater motif="bunga_sambel" position="top-right" color="gold" size="md" opacity={0.7} />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" color="terracotta" size="md" opacity={0.7} />
 
           <FadeIn>
             <SectionHeader
@@ -59,7 +62,7 @@ export default function LingkunganPage() {
           {items.length > 0 ? (
             <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {items.map((item, i) => (
-                <StaggerItem key={item.slug} className={i === 0 ? 'sm:col-span-2 lg:col-span-2' : undefined}>
+                <StaggerItem key={item.slug} className={getAlternatingSpan(i, items.length)}>
                   <div className="glass-card glass-accent-top group overflow-hidden" style={{ '--accent-color': '#99BA57' } as React.CSSProperties}>
                     <div className="relative aspect-video overflow-hidden rounded-t-2xl bg-green-50">
                       <Image
