@@ -45,8 +45,8 @@ export default function FestivalPage() {
     <>
       <PageHero kicker={ps.heroKicker ?? 'FESTIVAL'} title={ps.heroTitle ?? 'Festival Pesona Sambelia'} intro={ps.heroIntro ?? 'Pereseen, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia.'} tone="gold" />
 
-      <section className="relative bg-terracotta-500/[0.06]">
-        <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+      <section className="relative overflow-hidden bg-terracotta-500/[0.06]">
+        <div className="mx-auto max-w-content px-4 py-8 md:py-10">
 
           {events.length > 0 ? <CountdownStrip festivals={festivalData} /> : <EmptyState message={empty.festival} />}
         </div>
@@ -54,13 +54,10 @@ export default function FestivalPage() {
 
       <MotifDivider />
 
-      <section className="relative bg-page">
-        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="top-left" size="lg" color="gold" />
-          <MotifFloater motif="bunga_sambel" position="bottom-right" size="lg" color="terracotta" />
-          <MotifFloater motif="bunga_sambel" position="center-left" size="sm" color="gold" />
-          <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="terracotta" opacity={0.7} />
-          <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" opacity={0.7} />
+      <section className="relative overflow-hidden bg-page">
+          <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="terracotta" opacity={0.5} />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" opacity={0.5} />
+        <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
 
           {events.length === 0 ? (
             <EmptyState message={empty.festival} />

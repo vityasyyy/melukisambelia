@@ -43,13 +43,10 @@ export default function TentangSambeliaPage() {
         tone="brown"
       />
 
-      <section className="relative bg-page scroll-mt-20">
-        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="top-right" color="olive" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="bottom-left" color="terracotta" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="center-left" color="gold" size="sm" />
-          <MotifFloater motif="bunga_sambel" position="top-left" color="terracotta" size="md" opacity={0.7} />
-          <MotifFloater motif="bunga_sambel" position="bottom-right" color="gold" size="md" opacity={0.7} />
+      <section className="relative overflow-hidden bg-page scroll-mt-20">
+          <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="olive" opacity={0.5} />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="terracotta" opacity={0.5} />
+        <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
           <FadeIn>
             <SectionHeader
               kicker={ps.sectionGeografiKicker ?? '01 — GEOGRAFI'}
@@ -79,13 +76,10 @@ export default function TentangSambeliaPage() {
 
       <MotifDivider />
 
-      <section className="relative bg-cream-warm/30">
-        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10 scroll-mt-20">
-          <MotifFloater motif="bunga_sambel" position="bottom-left" color="water" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="top-right" color="olive" size="lg" />
-          <MotifFloater motif="bunga_sambel" position="center-right" color="terracotta" size="sm" />
-          <MotifFloater motif="bunga_sambel" position="top-left" color="gold" size="md" opacity={0.7} />
-          <MotifFloater motif="bunga_sambel" position="bottom-right" color="olive" size="md" opacity={0.7} />
+      <section className="relative overflow-hidden bg-cream-warm/30">
+          <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="water" opacity={0.5} />
+          <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="gold" opacity={0.5} />
+        <div className="relative mx-auto max-w-content px-4 py-8 md:py-10 scroll-mt-20">
 
           <FadeIn>
             <SectionHeader
@@ -126,8 +120,10 @@ export default function TentangSambeliaPage() {
 
       <MotifDivider />
 
-      <section className="relative bg-page">
-        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10 scroll-mt-20">
+      <section className="relative overflow-hidden bg-page">
+          <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="terracotta" opacity={0.5} />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="olive" opacity={0.5} />
+        <div className="relative mx-auto max-w-content px-4 py-8 md:py-10 scroll-mt-20">
 
           <FadeIn>
             <SectionHeader

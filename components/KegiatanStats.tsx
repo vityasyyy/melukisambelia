@@ -1,10 +1,9 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { getCollection } from '@/lib/content'
 import { getSettings } from '@/lib/settings'
 import { FadeIn } from './FadeIn'
 import { SectionHeader } from './SectionHeader'
-import { MotifFloater } from './MotifFloater'
+import { KegiatanCardGrid } from './KegiatanCardGrid'
 
 
 export function KegiatanStats() {
@@ -12,34 +11,13 @@ export function KegiatanStats() {
   const empty = getSettings().emptyStates
 
   return (
-    <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-      <MotifFloater motif="bunga_sambel" position="top-left" color="gold" size="lg" />
-      <MotifFloater motif="bunga_sambel" position="bottom-right" color="terracotta" size="lg" />
-      <MotifFloater motif="bunga_sambel" position="center-right" color="olive" size="sm" />
-
+    <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
       <FadeIn>
         <SectionHeader kicker="06 — KEGIATAN" title="Kegiatan Sambelia" tone="gold" />
       </FadeIn>
       {kegiatan.length > 0 ? (
-        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {kegiatan.map((c, i) => (
-            <Link
-              key={c.slug}
-              href={`/kegiatan/${c.slug}`}
-              className={`glass-card glass-accent-top group relative overflow-hidden ${i === 0 ? 'sm:col-span-2 lg:col-span-2' : ''}`}
-              style={{ '--accent-color': '#F0AC6D' } as React.CSSProperties}
-            >
-              <div className="relative aspect-video overflow-hidden rounded-t-2xl">
-                <Image src={c.cover} alt={c.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes={i === 0 ? '(max-width: 1024px) 100vw, 66vw' : '(max-width: 640px) 100vw, 33vw'} />
-                <div aria-hidden className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-brown-950/20 to-transparent" />
-              </div>
-              <div className="min-w-0 p-4">
-                <h3 className="truncate font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{c.title}</h3>
-                <p className="mt-2 text-sm text-ink/60 line-clamp-2">{c.excerpt}</p>
-                <p className="mt-2 font-beautique-condensed text-[10px] tracking-widest uppercase text-ink/60">{c.author} · {c.date}</p>
-              </div>
-            </Link>
-          ))}
+        <div className="mt-6">
+          <KegiatanCardGrid items={kegiatan} />
         </div>
       ) : (
         <p className="mt-6 text-center text-ink/70">{empty.kegiatan}</p>
@@ -48,7 +26,7 @@ export function KegiatanStats() {
         <Link href="/kegiatan" className="inline-flex items-center justify-center gap-1.5 rounded-full border-2 border-brown-950/20 bg-brown-950/5 px-5 py-2.5 text-sm font-beautique text-brown-900 transition-all hover:bg-brown-950/10 hover:border-brown-950/30 hover:scale-[1.02]">
           Lihat semua kegiatan →
         </Link>
-        <Link href="/tentang-sambelia" className="inline-flex items-center justify-center gap-1.5 rounded-full bg-brown-950 px-5 py-2.5 text-sm font-beautique text-white shadow-lg transition-all hover:bg-brown-800 hover:shadow-xl hover:scale-[1.02]">
+        <Link href="/tentang-sambelia" className="inline-flex items-center justify-center gap-1.5 rounded-full bg-brown-950 px-5 py-2.5 text-sm font-beautique text-white shadow-lg transition-all hover:bg-brown-800 hover:shadow-xl hover:scale-[1.02] min-h-[44px]">
           Tentang Sambelia →
         </Link>
       </div>

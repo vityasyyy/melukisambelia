@@ -52,13 +52,10 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
         intro={pageSettings.heroIntro ?? 'Kerajinan, kuliner, dan produk lokal yang menjadi andalan masyarakat Sambelia.'}
         tone="terracotta"
       />
-      <section className="relative bg-cream-warm/30">
-        <div className="relative mx-auto max-w-4xl overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="top-right" color="terracotta" size="lg" opacity={0.85} />
-          <MotifFloater motif="bunga_sambel" position="bottom-left" color="gold" size="lg" opacity={0.85} />
-          <MotifFloater motif="bunga_sambel" position="center-right" color="terracotta" size="sm" opacity={0.8} />
-          <MotifFloater motif="bunga_sambel" position="top-left" color="gold" size="md" opacity={0.7} />
-          <MotifFloater motif="bunga_sambel" position="bottom-right" color="terracotta" size="md" opacity={0.7} />
+      <section className="relative overflow-hidden bg-cream-warm/30">
+          <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="terracotta" opacity={0.5} />
+          <MotifFloater motif="cincin_sambel" position="bottom-right" size="sm" color="gold" opacity={0.5} />
+        <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
 
           <SectionHeader
             kicker={pageSettings.sectionKicker ?? 'UMKM'}

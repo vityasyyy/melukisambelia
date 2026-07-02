@@ -21,9 +21,9 @@ export function AirTanahClient({
 
   return (
     <div className="relative mx-auto max-w-content overflow-hidden px-4 py-10">
-      <MotifFloater motif="bunga_sambel" position="top-right" color="water" size="lg" />
-      <MotifFloater motif="bunga_sambel" position="bottom-left" color="gold" size="lg" />
-      <MotifFloater motif="bunga_sambel" position="center-right" color="olive" size="sm" />
+      <MotifFloater motif="bunga_sambel" position="top-right" size="lg" color="water" opacity={0.85} />
+      <MotifFloater motif="cincin_sambel" position="bottom-left" size="md" color="gold" opacity={0.5} />
+      <MotifFloater motif="cincin_sambel" position="center-right" size="sm" color="olive" opacity={0.5} />
 
       {data === null ? (
         <FadeIn>

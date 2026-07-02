@@ -49,13 +49,10 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
         intro={pageSettings.heroIntro ?? 'Posyandu, puskesmas, dan program stunting di Sambelia.'}
         tone="olive"
       />
-      <section className="relative bg-olive/5">
-        <div className="relative mx-auto max-w-4xl overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="top-right" color="gold" size="lg" opacity={0.85} />
-          <MotifFloater motif="bunga_sambel" position="bottom-left" color="terracotta" size="lg" opacity={0.85} />
-          <MotifFloater motif="bunga_sambel" position="center-right" color="gold" size="sm" opacity={0.8} />
-          <MotifFloater motif="bunga_sambel" position="top-left" color="terracotta" size="md" opacity={0.7} />
-          <MotifFloater motif="bunga_sambel" position="bottom-right" color="gold" size="md" opacity={0.7} />
+      <section className="relative overflow-hidden bg-olive/5">
+          <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="gold" opacity={0.5} />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="olive" opacity={0.5} />
+        <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
 
           <SectionHeader
             kicker={pageSettings.sectionKicker ?? 'KESEHATAN'}

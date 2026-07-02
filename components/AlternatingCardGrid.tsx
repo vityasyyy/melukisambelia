@@ -52,7 +52,7 @@ export function AlternatingCardGrid({
                 </div>
                 <div className="sm:col-span-2 lg:col-span-2 flex flex-col gap-4">
                   {group.smalls.map((s) => (
-                    <div key={s.index}>
+                    <div key={s.index} className="flex-1 min-h-0">
                       {renderItem(s.item, s.index, false)}
                     </div>
                   ))}
@@ -62,7 +62,7 @@ export function AlternatingCardGrid({
               <>
                 <div className="sm:col-span-2 lg:col-span-2 flex flex-col gap-4">
                   {group.smalls.map((s) => (
-                    <div key={s.index}>
+                    <div key={s.index} className="flex-1 min-h-0">
                       {renderItem(s.item, s.index, false)}
                     </div>
                   ))}
