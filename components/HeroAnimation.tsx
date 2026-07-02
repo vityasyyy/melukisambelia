@@ -68,32 +68,42 @@ export function HeroAnimation({
 
       <div
         aria-hidden
-        className="pointer-events-none absolute left-[4vw] top-[18vh] sm:top-[20vh] z-[2] w-[22vw] sm:w-[14vw] max-w-[180px]"
+        className="pointer-events-none absolute left-[4vw] top-[18vh] sm:top-[20vh] z-[2] w-[22vw] sm:w-[14vw] max-w-[180px] motif-entrance"
+        style={{ animationDelay: '0.3s' }}
       >
-        <Image
-          src="/images/design-system/bunga_sambel.svg"
-          alt=""
-          width={180}
-          height={180}
-          className="w-full h-auto"
-          style={{ filter: 'sepia(0.9) hue-rotate(-5deg) saturate(2.5)', opacity: 0.38 }}
-          loading="lazy"
-        />
+        <div className="motif-glow motif-rotate-reverse" style={{ animationDuration: '50s' }}>
+          <div className="motif-float">
+            <Image
+              src="/images/design-system/bunga_sambel.svg"
+              alt=""
+              width={180}
+              height={180}
+              className="w-full h-auto"
+              style={{ filter: 'sepia(0.9) hue-rotate(-5deg) saturate(2.5)', opacity: 0.38 }}
+              loading="lazy"
+            />
+          </div>
+        </div>
       </div>
 
       <div
         aria-hidden
-        className="pointer-events-none absolute right-[6vw] bottom-[15vh] sm:bottom-[18vh] z-[2] w-[18vw] sm:w-[11vw] max-w-[140px]"
+        className="pointer-events-none absolute right-[6vw] bottom-[15vh] sm:bottom-[18vh] z-[2] w-[18vw] sm:w-[11vw] max-w-[140px] motif-entrance"
+        style={{ animationDelay: '0.7s' }}
       >
-        <Image
-          src="/images/design-system/bunga_sambel.svg"
-          alt=""
-          width={140}
-          height={140}
-          className="w-full h-auto"
-          style={{ filter: 'sepia(0.7) hue-rotate(170deg) saturate(3)', opacity: 0.35 }}
-          loading="lazy"
-        />
+        <div className="motif-glow motif-rotate" style={{ animationDuration: '55s' }}>
+          <div className="motif-float-slow">
+            <Image
+              src="/images/design-system/bunga_sambel.svg"
+              alt=""
+              width={140}
+              height={140}
+              className="w-full h-auto"
+              style={{ filter: 'sepia(0.7) hue-rotate(170deg) saturate(3)', opacity: 0.35 }}
+              loading="lazy"
+            />
+          </div>
+        </div>
       </div>
 
       <div className="relative z-10 flex w-full max-w-4xl flex-col items-center justify-center px-4 sm:px-6">

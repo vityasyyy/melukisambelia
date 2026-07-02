@@ -171,7 +171,7 @@ export function Nav() {
       </nav>
 
       <Sheet open={open} onOpenChange={setOpen}>
-        <SheetContent side="right" className="border-l border-gold-500/20 bg-brown-900 text-white w-[85vw] max-w-sm p-0">
+        <SheetContent side="right" className="border-l border-gold-500/20 bg-brown-950 text-cream-light w-[85vw] max-w-sm p-0">
           <div aria-hidden className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url('/images/design-system/batik_sambel.svg')", backgroundSize: '1200px auto', filter: 'sepia(0.5) hue-rotate(-10deg) saturate(1.8)' }} />
           <div aria-hidden className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-water-900 via-gold-bright to-terracotta-500 opacity-80" />
           <SheetHeader className="relative border-b border-gold-500/15 px-6 py-5">

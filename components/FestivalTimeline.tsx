@@ -25,7 +25,7 @@ export function FestivalTimeline({ events }: { events: (Festival & { slug: strin
 
   return (
     <>
-      <ol className="relative space-y-8">
+      <ol className="relative space-y-8 overflow-hidden">
         {events.map((e, i) => (
           <li key={e.slug} className="group relative">
             <div aria-hidden className="absolute left-[11px] top-3 bottom-0 w-px bg-gradient-to-b from-terracotta-500/60 via-terracotta-500/30 to-transparent" />
@@ -37,18 +37,17 @@ export function FestivalTimeline({ events }: { events: (Festival & { slug: strin
               onClick={() => openDetail(e)}
               className="ml-8 w-full text-left group/card"
             >
-              <div className="flex flex-col sm:flex-row gap-0 sm:gap-5 overflow-hidden rounded-2xl border border-tan-700/12 bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)] hover:-translate-y-0.5 h-full">
-                <div className="relative w-full sm:w-56 sm:min-w-[14rem] aspect-[16/10] sm:aspect-auto overflow-hidden rounded-t-2xl sm:rounded-t-none sm:rounded-l-2xl flex-shrink-0">
+              <div className="flex flex-col sm:flex-row gap-0 sm:gap-5 rounded-2xl border border-tan-700/12 bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-300 ease-sambel hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.1)] hover:-translate-y-0.5 overflow-hidden">
+                <div className="relative w-full sm:w-56 sm:min-w-[14rem] sm:h-auto aspect-[16/10] sm:aspect-auto overflow-hidden flex-shrink-0">
                   <Image
                     src={e.cover}
                     alt={e.eventName}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover/card:scale-105"
+                    className="object-cover transition-transform duration-500 group-hover/card:scale-105 sm:h-full"
                     sizes="(max-width: 640px) 100vw, 224px"
                   />
-                  <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-transparent to-brown-950/5 sm:hidden" />
                 </div>
-                <div className="flex flex-1 flex-col justify-between p-4 sm:p-5">
+                <div className="flex flex-1 flex-col justify-between p-4 sm:p-5 min-w-0">
                   <div>
                     <span className="font-beautique-condensed text-[10px] tracking-[0.2em] uppercase text-terracotta-500">
                       {String(i + 1).padStart(2, '0')}

@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { motion, useReducedMotion } from 'framer-motion'
 
 type Motif = 'cincin_sambel' | 'bunga_sambel' | 'ornament-gold'
 type Position = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right'
@@ -43,26 +44,35 @@ export function MotifFloater({
   color?: MotifColor
   opacity?: number
 }) {
+  const reduce = useReducedMotion()
   const isImage = motif === 'ornament-gold'
+  const isFlower = motif === 'bunga_sambel'
 
   return (
-    <div
+    <motion.div
       aria-hidden
-      className={`pointer-events-none absolute z-0 ${POSITION_CLASSES[position]} ${SIZE_CLASSES[size]}`}
+      className={`pointer-events-none absolute z-0 ${POSITION_CLASSES[position]} ${SIZE_CLASSES[size]} motif-entrance`}
+      initial={reduce ? undefined : { opacity: 0, scale: 0.85, y: 12 }}
+      whileInView={reduce ? undefined : { opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: true, margin: '-20px' }}
+      transition={{ duration: 0.9, ease: 'easeOut' }}
     >
-      <div className="relative w-full h-full" style={{ filter: 'brightness(1.05)' }}>
-        {isImage ? (
+      <div className={`relative w-full h-full motif-glow ${isFlower ? 'motif-rotate-reverse' : 'motif-rotate'}`} style={{ animationDuration: isFlower ? '50s' : '60s' }}>
+        {isFlower && (
+          <div className="motif-float">
+            <Image
+              src={`/images/design-system/${motif}.svg`}
+              alt=""
+              fill
+              className="object-contain"
+              sizes="(max-width: 640px) 80px, 144px"
+              style={{ filter: COLOR_FILTERS[color], opacity }}
+            />
+          </div>
+        )}
+        {!isFlower && (
           <Image
-            src="/images/design-system/ornament-gold.png"
-            alt=""
-            fill
-            className="object-contain"
-            sizes="(max-width: 640px) 80px, 144px"
-            style={{ filter: COLOR_FILTERS[color], opacity }}
-          />
-        ) : (
-          <Image
-            src={`/images/design-system/${motif}.svg`}
+            src={isImage ? '/images/design-system/ornament-gold.png' : `/images/design-system/${motif}.svg`}
             alt=""
             fill
             className="object-contain"
@@ -71,6 +81,6 @@ export function MotifFloater({
           />
         )}
       </div>
-    </div>
+    </motion.div>
   )
 }
