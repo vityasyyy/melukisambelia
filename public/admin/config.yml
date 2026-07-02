@@ -4,7 +4,7 @@ backend:
   name: github
   repo: vityasyyy/melukisambelia
   branch: main
-  base_url: https://melukisambelia.vercel.app
+  base_url: https://melukisambelia.site
   auth_endpoint: /api/auth
   pkce: true
 
@@ -22,18 +22,76 @@ collections:
     format: "yaml-frontmatter"
     fields:
       - { label: "Judul", name: "title", widget: "string" }
-      - { label: "Kategori", name: "category", widget: "select", options: ["Pantai", "Budaya", "Desa Wisata", "Air", "Trekking"] }
-      - { label: "Desa", name: "village", widget: "select", options: ["Sugian", "Labuhan Pandan", "Sambelia", "Rarang", "Sambelia Rarang Selatan", "Tembayar", "Paok Motong", "lainnya"] }
+      - {
+          label: "Kategori",
+          name: "category",
+          widget: "select",
+          options: ["Pantai", "Budaya", "Desa Wisata", "Air", "Trekking"],
+        }
+      - {
+          label: "Desa",
+          name: "village",
+          widget: "select",
+          options:
+            [
+              "Sugian",
+              "Labuhan Pandan",
+              "Sambelia",
+              "Rarang",
+              "Sambelia Rarang Selatan",
+              "Tembayar",
+              "Paok Motong",
+              "lainnya",
+            ],
+        }
       - { label: "Cover", name: "cover", widget: "image" }
-      - { label: "Galeri", name: "gallery", widget: "list", field: { name: "image", label: "Gambar", widget: "image" }, required: false }
+      - {
+          label: "Galeri",
+          name: "gallery",
+          widget: "list",
+          field: { name: "image", label: "Gambar", widget: "image" },
+          required: false,
+        }
       - { label: "Deskripsi Singkat", name: "shortDesc", widget: "string" }
       - { label: "Konten", name: "body", widget: "markdown" }
-      - { label: "Latitude", name: "lat", widget: "number", value_type: "float" }
-      - { label: "Longitude", name: "lng", widget: "number", value_type: "float" }
-      - { label: "Fasilitas", name: "facilities", widget: "list", required: false }
-      - { label: "Catatan Akses", name: "accessNotes", widget: "string", required: false }
-      - { label: "Link Google Maps (opsional)", name: "googleMapsUrl", widget: "string", required: false, hint: "Paste link Google Maps jika lokasi tidak tepat di koordinat" }
-      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }
+      - {
+          label: "Latitude",
+          name: "lat",
+          widget: "number",
+          value_type: "float",
+        }
+      - {
+          label: "Longitude",
+          name: "lng",
+          widget: "number",
+          value_type: "float",
+        }
+      - {
+          label: "Fasilitas",
+          name: "facilities",
+          widget: "list",
+          required: false,
+        }
+      - {
+          label: "Catatan Akses",
+          name: "accessNotes",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Link Google Maps (opsional)",
+          name: "googleMapsUrl",
+          widget: "string",
+          required: false,
+          hint: "Paste link Google Maps jika lokasi tidak tepat di koordinat",
+        }
+      - {
+          label: "Urutan",
+          name: "order",
+          widget: "number",
+          required: false,
+          hint: "Angka lebih kecil tampil lebih dulu",
+        }
 
   - name: "irigasi"
     label: "Irigasi"
@@ -45,17 +103,69 @@ collections:
     format: "yaml-frontmatter"
     fields:
       - { label: "Nama Saluran", name: "name", widget: "string" }
-      - { label: "Tipe", name: "saluranType", widget: "select", options: ["Primer", "Sekunder", "Tersier"] }
-      - { label: "Desa", name: "village", widget: "select", options: ["Sugian", "Labuhan Pandan", "Sambelia", "Rarang", "Sambelia Rarang Selatan", "Tembayar", "Paok Motong", "lainnya"] }
-      - { label: "Kondisi", name: "condition", widget: "select", options: ["Baik", "Rusak Ringan", "Rusak Berat"] }
+      - {
+          label: "Tipe",
+          name: "saluranType",
+          widget: "select",
+          options: ["Primer", "Sekunder", "Tersier"],
+        }
+      - {
+          label: "Desa",
+          name: "village",
+          widget: "select",
+          options:
+            [
+              "Sugian",
+              "Labuhan Pandan",
+              "Sambelia",
+              "Rarang",
+              "Sambelia Rarang Selatan",
+              "Tembayar",
+              "Paok Motong",
+              "lainnya",
+            ],
+        }
+      - {
+          label: "Kondisi",
+          name: "condition",
+          widget: "select",
+          options: ["Baik", "Rusak Ringan", "Rusak Berat"],
+        }
       - { label: "Panjang (m)", name: "lengthM", widget: "number" }
-      - { label: "Status Aliran", name: "flowStatus", widget: "select", options: ["Mengalir", "Kering", "Mengalir Sebagian"] }
+      - {
+          label: "Status Aliran",
+          name: "flowStatus",
+          widget: "select",
+          options: ["Mengalir", "Kering", "Mengalir Sebagian"],
+        }
       - { label: "Cover", name: "cover", widget: "image" }
       - { label: "Konten", name: "body", widget: "markdown" }
-      - { label: "Latitude", name: "lat", widget: "number", value_type: "float" }
-      - { label: "Longitude", name: "lng", widget: "number", value_type: "float" }
-      - { label: "Link Google Maps (opsional)", name: "googleMapsUrl", widget: "string", required: false, hint: "Paste link Google Maps jika lokasi tidak tepat di koordinat" }
-      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }
+      - {
+          label: "Latitude",
+          name: "lat",
+          widget: "number",
+          value_type: "float",
+        }
+      - {
+          label: "Longitude",
+          name: "lng",
+          widget: "number",
+          value_type: "float",
+        }
+      - {
+          label: "Link Google Maps (opsional)",
+          name: "googleMapsUrl",
+          widget: "string",
+          required: false,
+          hint: "Paste link Google Maps jika lokasi tidak tepat di koordinat",
+        }
+      - {
+          label: "Urutan",
+          name: "order",
+          widget: "number",
+          required: false,
+          hint: "Angka lebih kecil tampil lebih dulu",
+        }
 
   - name: "kesehatan"
     label: "Kesehatan"
@@ -67,16 +177,62 @@ collections:
     format: "yaml-frontmatter"
     fields:
       - { label: "Nama Fasilitas", name: "facilityName", widget: "string" }
-      - { label: "Tipe", name: "type", widget: "select", options: ["Posyandu", "Puskesmas", "Bidan", "Polides"] }
-      - { label: "Desa", name: "village", widget: "select", options: ["Sugian", "Labuhan Pandan", "Sambelia", "Rarang", "Sambelia Rarang Selatan", "Tembayar", "Paok Motong", "lainnya"] }
+      - {
+          label: "Tipe",
+          name: "type",
+          widget: "select",
+          options: ["Posyandu", "Puskesmas", "Bidan", "Polides"],
+        }
+      - {
+          label: "Desa",
+          name: "village",
+          widget: "select",
+          options:
+            [
+              "Sugian",
+              "Labuhan Pandan",
+              "Sambelia",
+              "Rarang",
+              "Sambelia Rarang Selatan",
+              "Tembayar",
+              "Paok Motong",
+              "lainnya",
+            ],
+        }
       - { label: "Jumlah Kader", name: "cadresCount", widget: "number" }
-      - { label: "Program Stunting", name: "stuntingProgram", widget: "boolean" }
+      - {
+          label: "Program Stunting",
+          name: "stuntingProgram",
+          widget: "boolean",
+        }
       - { label: "Cover", name: "cover", widget: "image" }
       - { label: "Konten", name: "body", widget: "markdown" }
-      - { label: "Latitude", name: "lat", widget: "number", value_type: "float" }
-      - { label: "Longitude", name: "lng", widget: "number", value_type: "float" }
-      - { label: "Link Google Maps (opsional)", name: "googleMapsUrl", widget: "string", required: false, hint: "Paste link Google Maps jika lokasi tidak tepat di koordinat" }
-      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }
+      - {
+          label: "Latitude",
+          name: "lat",
+          widget: "number",
+          value_type: "float",
+        }
+      - {
+          label: "Longitude",
+          name: "lng",
+          widget: "number",
+          value_type: "float",
+        }
+      - {
+          label: "Link Google Maps (opsional)",
+          name: "googleMapsUrl",
+          widget: "string",
+          required: false,
+          hint: "Paste link Google Maps jika lokasi tidak tepat di koordinat",
+        }
+      - {
+          label: "Urutan",
+          name: "order",
+          widget: "number",
+          required: false,
+          hint: "Angka lebih kecil tampil lebih dulu",
+        }
 
   - name: "festival"
     label: "Festival"
@@ -88,12 +244,28 @@ collections:
     format: "yaml-frontmatter"
     fields:
       - { label: "Nama Acara", name: "eventName", widget: "string" }
-      - { label: "Jadwal", name: "schedule", widget: "datetime", date_only: true }
+      - {
+          label: "Jadwal",
+          name: "schedule",
+          widget: "datetime",
+          date_only: true,
+        }
       - { label: "Lokasi", name: "venue", widget: "string" }
       - { label: "Deskripsi", name: "description", widget: "string" }
       - { label: "Cover", name: "cover", widget: "image" }
-      - { label: "URL Pendaftaran", name: "registrationUrl", widget: "string", required: false }
-      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }
+      - {
+          label: "URL Pendaftaran",
+          name: "registrationUrl",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Urutan",
+          name: "order",
+          widget: "number",
+          required: false,
+          hint: "Angka lebih kecil tampil lebih dulu",
+        }
       - { label: "Konten", name: "body", widget: "markdown" }
 
   - name: "kegiatan"
@@ -111,7 +283,13 @@ collections:
       - { label: "Cover", name: "cover", widget: "image" }
       - { label: "Ringkasan", name: "excerpt", widget: "string" }
       - { label: "Konten", name: "body", widget: "markdown" }
-      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }
+      - {
+          label: "Urutan",
+          name: "order",
+          widget: "number",
+          required: false,
+          hint: "Angka lebih kecil tampil lebih dulu",
+        }
 
   - name: "lingkungan"
     label: "Lingkungan"
@@ -123,11 +301,22 @@ collections:
     format: "yaml-frontmatter"
     fields:
       - { label: "Judul", name: "title", widget: "string" }
-      - { label: "Kategori", name: "category", widget: "select", options: ["Vegetasi", "Erosi", "Blue Carbon", "Lainnya"] }
+      - {
+          label: "Kategori",
+          name: "category",
+          widget: "select",
+          options: ["Vegetasi", "Erosi", "Blue Carbon", "Lainnya"],
+        }
       - { label: "Cover", name: "cover", widget: "image" }
       - { label: "Deskripsi Singkat", name: "description", widget: "string" }
       - { label: "Konten", name: "body", widget: "markdown" }
-      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }
+      - {
+          label: "Urutan",
+          name: "order",
+          widget: "number",
+          required: false,
+          hint: "Angka lebih kecil tampil lebih dulu",
+        }
 
   - name: "umkm"
     label: "UMKM"
@@ -140,16 +329,72 @@ collections:
     fields:
       - { label: "Nama UMKM", name: "name", widget: "string" }
       - { label: "Pemilik", name: "owner", widget: "string" }
-      - { label: "Kategori", name: "kategori", widget: "select", options: ["Kuliner", "Jasa", "Kerajinan", "Pertanian", "Perikanan", "Lainnya"] }
-      - { label: "Desa", name: "village", widget: "select", options: ["Sugian", "Labuhan Pandan", "Sambelia", "Rarang", "Sambelia Rarang Selatan", "Tembayar", "Paok Motong", "lainnya"] }
+      - {
+          label: "Kategori",
+          name: "kategori",
+          widget: "select",
+          options:
+            [
+              "Kuliner",
+              "Jasa",
+              "Kerajinan",
+              "Pertanian",
+              "Perikanan",
+              "Lainnya",
+            ],
+        }
+      - {
+          label: "Desa",
+          name: "village",
+          widget: "select",
+          options:
+            [
+              "Sugian",
+              "Labuhan Pandan",
+              "Sambelia",
+              "Rarang",
+              "Sambelia Rarang Selatan",
+              "Tembayar",
+              "Paok Motong",
+              "lainnya",
+            ],
+        }
       - { label: "Kontak", name: "contact", widget: "string" }
       - { label: "Cover", name: "cover", widget: "image" }
-      - { label: "Galeri", name: "gallery", widget: "list", field: { name: "image", label: "Gambar", widget: "image" }, required: false }
+      - {
+          label: "Galeri",
+          name: "gallery",
+          widget: "list",
+          field: { name: "image", label: "Gambar", widget: "image" },
+          required: false,
+        }
       - { label: "Konten", name: "body", widget: "markdown" }
-      - { label: "Latitude", name: "lat", widget: "number", value_type: "float" }
-      - { label: "Longitude", name: "lng", widget: "number", value_type: "float" }
-      - { label: "Link Google Maps (opsional)", name: "googleMapsUrl", widget: "string", required: false, hint: "Paste link Google Maps jika lokasi tidak tepat di koordinat" }
-      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }
+      - {
+          label: "Latitude",
+          name: "lat",
+          widget: "number",
+          value_type: "float",
+        }
+      - {
+          label: "Longitude",
+          name: "lng",
+          widget: "number",
+          value_type: "float",
+        }
+      - {
+          label: "Link Google Maps (opsional)",
+          name: "googleMapsUrl",
+          widget: "string",
+          required: false,
+          hint: "Paste link Google Maps jika lokasi tidak tepat di koordinat",
+        }
+      - {
+          label: "Urutan",
+          name: "order",
+          widget: "number",
+          required: false,
+          hint: "Angka lebih kecil tampil lebih dulu",
+        }
 
   - name: "airtanah"
     label: "Air & Tanah"
@@ -158,18 +403,48 @@ collections:
         name: "air_tanah"
         file: "content/air-tanah/air-tanah.md"
         fields:
-          - { label: "Judul", name: "title", widget: "string", default: "Air & Tanah" }
-          - { label: "Deskripsi", name: "description", widget: "text", required: false }
-          - { label: "Kredit", name: "credit", widget: "string", required: false }
+          - {
+              label: "Judul",
+              name: "title",
+              widget: "string",
+              default: "Air & Tanah",
+            }
+          - {
+              label: "Deskripsi",
+              name: "description",
+              widget: "text",
+              required: false,
+            }
+          - {
+              label: "Kredit",
+              name: "credit",
+              widget: "string",
+              required: false,
+            }
           - label: "Pengukuran TMA & DHL"
             name: "measurements"
             widget: "list"
             required: false
             fields:
               - { label: "Lokasi", name: "location", widget: "string" }
-              - { label: "Tanggal", name: "date", widget: "datetime", date_only: true }
-              - { label: "TMA (m)", name: "tmaMeters", widget: "number", value_type: "float" }
-              - { label: "DHL (mS)", name: "dhlMsiemens", widget: "number", value_type: "float" }
+              - {
+                  label: "Tanggal",
+                  name: "date",
+                  widget: "datetime",
+                  date_only: true,
+                }
+              - {
+                  label: "TMA (m)",
+                  name: "tmaMeters",
+                  widget: "number",
+                  value_type: "float",
+                }
+              - {
+                  label: "DHL (mS)",
+                  name: "dhlMsiemens",
+                  widget: "number",
+                  value_type: "float",
+                }
 
   - name: "settings"
     label: "Pengaturan Situs"
@@ -186,43 +461,146 @@ collections:
             fields:
               - { label: "Luas", name: "luas", widget: "string" }
               - { label: "Penduduk", name: "penduduk", widget: "string" }
-              - { label: "Desa/Kelurahan", name: "desaKelurahan", widget: "string" }
+              - {
+                  label: "Desa/Kelurahan",
+                  name: "desaKelurahan",
+                  widget: "string",
+                }
               - { label: "Kabupaten", name: "kabupaten", widget: "string" }
-          - { label: "Tanggal Festival", name: "festivalDates", widget: "string" }
+          - {
+              label: "Tanggal Festival",
+              name: "festivalDates",
+              widget: "string",
+            }
           - label: "Sosial"
             name: "socials"
             widget: "object"
             fields:
-              - { label: "Instagram", name: "instagram", widget: "string", required: false }
-              - { label: "TikTok", name: "tiktok", widget: "string", required: false }
+              - {
+                  label: "Instagram",
+                  name: "instagram",
+                  widget: "string",
+                  required: false,
+                }
+              - {
+                  label: "TikTok",
+                  name: "tiktok",
+                  widget: "string",
+                  required: false,
+                }
           - label: "Kontak"
             name: "contact"
             widget: "object"
             fields:
               - { label: "Email", name: "email", widget: "string" }
-              - { label: "Telepon", name: "phone", widget: "string", required: false }
+              - {
+                  label: "Telepon",
+                  name: "phone",
+                  widget: "string",
+                  required: false,
+                }
               - { label: "Alamat", name: "address", widget: "string" }
           - label: "Intro Beranda (Section 01-05)"
             name: "homepageIntros"
             widget: "object"
             required: false
             fields:
-              - { label: "01 — Kicker (Tentang)", name: "aboutKicker", widget: "string", default: "01 — TENTANG" }
-              - { label: "01 — Judul (Tentang)", name: "aboutTitle", widget: "string", default: "Tentang Sambelia" }
-              - { label: "01 — Intro (Tentang)", name: "aboutIntro", widget: "text", default: "Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan." }
-              - { label: "Scroll Prompt", name: "scrollPrompt", widget: "string", default: "Gulir untuk menjelajah" }
-              - { label: "02 — Kicker (Jejaki)", name: "jejakiKicker", widget: "string", default: "02 — JEJAKI" }
-              - { label: "02 — Judul (Jejaki)", name: "jejakiTitle", widget: "string", default: "Jejaki Sambelia" }
-              - { label: "02 — Intro (Jejaki)", name: "jejakiIntro", widget: "string", required: false }
-              - { label: "03 — Kicker (Wisata)", name: "wisataKicker", widget: "string", default: "03 — WISATA UNGGULAN" }
-              - { label: "03 — Judul (Wisata)", name: "wisataTitle", widget: "string", default: "Destinasi Pilihan" }
-              - { label: "03 — Intro (Wisata)", name: "wisataIntro", widget: "text", default: "Destinasi wisata unggulan di Desa Sugian dan Labuhan Pandan." }
-              - { label: "04 — Kicker (Festival)", name: "festivalKicker", widget: "string", default: "04 — FESTIVAL" }
-              - { label: "04 — Judul (Festival)", name: "festivalTitle", widget: "string", default: "Festival Pesona Sambelia" }
-              - { label: "04 — Intro (Festival)", name: "festivalIntro", widget: "text", default: "Peresean, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia." }
-              - { label: "05 — Kicker (UMKM)", name: "umkmKicker", widget: "string", default: "05 — UMKM" }
-              - { label: "05 — Judul (UMKM)", name: "umkmTitle", widget: "string", default: "UMKM Spotlight" }
-              - { label: "05 — Intro (UMKM)", name: "umkmIntro", widget: "text", default: "Kerajinan, kuliner, dan produk lokal andalan masyarakat Sambelia." }
+              - {
+                  label: "01 — Kicker (Tentang)",
+                  name: "aboutKicker",
+                  widget: "string",
+                  default: "01 — TENTANG",
+                }
+              - {
+                  label: "01 — Judul (Tentang)",
+                  name: "aboutTitle",
+                  widget: "string",
+                  default: "Tentang Sambelia",
+                }
+              - {
+                  label: "01 — Intro (Tentang)",
+                  name: "aboutIntro",
+                  widget: "text",
+                  default: "Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — fokus pemberdayaan pariwisata berkelanjutan dan kawasan agropolitan.",
+                }
+              - {
+                  label: "Scroll Prompt",
+                  name: "scrollPrompt",
+                  widget: "string",
+                  default: "Gulir untuk menjelajah",
+                }
+              - {
+                  label: "02 — Kicker (Jejaki)",
+                  name: "jejakiKicker",
+                  widget: "string",
+                  default: "02 — JEJAKI",
+                }
+              - {
+                  label: "02 — Judul (Jejaki)",
+                  name: "jejakiTitle",
+                  widget: "string",
+                  default: "Jejaki Sambelia",
+                }
+              - {
+                  label: "02 — Intro (Jejaki)",
+                  name: "jejakiIntro",
+                  widget: "string",
+                  required: false,
+                }
+              - {
+                  label: "03 — Kicker (Wisata)",
+                  name: "wisataKicker",
+                  widget: "string",
+                  default: "03 — WISATA UNGGULAN",
+                }
+              - {
+                  label: "03 — Judul (Wisata)",
+                  name: "wisataTitle",
+                  widget: "string",
+                  default: "Destinasi Pilihan",
+                }
+              - {
+                  label: "03 — Intro (Wisata)",
+                  name: "wisataIntro",
+                  widget: "text",
+                  default: "Destinasi wisata unggulan di Desa Sugian dan Labuhan Pandan.",
+                }
+              - {
+                  label: "04 — Kicker (Festival)",
+                  name: "festivalKicker",
+                  widget: "string",
+                  default: "04 — FESTIVAL",
+                }
+              - {
+                  label: "04 — Judul (Festival)",
+                  name: "festivalTitle",
+                  widget: "string",
+                  default: "Festival Pesona Sambelia",
+                }
+              - {
+                  label: "04 — Intro (Festival)",
+                  name: "festivalIntro",
+                  widget: "text",
+                  default: "Peresean, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia.",
+                }
+              - {
+                  label: "05 — Kicker (UMKM)",
+                  name: "umkmKicker",
+                  widget: "string",
+                  default: "05 — UMKM",
+                }
+              - {
+                  label: "05 — Judul (UMKM)",
+                  name: "umkmTitle",
+                  widget: "string",
+                  default: "UMKM Spotlight",
+                }
+              - {
+                  label: "05 — Intro (UMKM)",
+                  name: "umkmIntro",
+                  widget: "text",
+                  default: "Kerajinan, kuliner, dan produk lokal andalan masyarakat Sambelia.",
+                }
           - label: "Halaman"
             name: "pages"
             widget: "object"
@@ -233,139 +611,554 @@ collections:
                 widget: "object"
                 required: false
                 fields:
-                  - { label: "Hero Kicker", name: "heroKicker", widget: "string", default: "01 — TENTANG" }
-                  - { label: "Hero Title", name: "heroTitle", widget: "string", default: "Tentang Sambelia" }
-                  - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — pariwisata, pertanian, dan warisan budaya Sasak." }
-                  - { label: "SEO Title", name: "seoTitle", widget: "string", default: "Beranda" }
-                  - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Portal informasi Kecamatan Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa." }
+                  - {
+                      label: "Hero Kicker",
+                      name: "heroKicker",
+                      widget: "string",
+                      default: "01 — TENTANG",
+                    }
+                  - {
+                      label: "Hero Title",
+                      name: "heroTitle",
+                      widget: "string",
+                      default: "Tentang Sambelia",
+                    }
+                  - {
+                      label: "Hero Intro",
+                      name: "heroIntro",
+                      widget: "text",
+                      default: "Kecamatan Sambelia, Kabupaten Lombok Timur, NTB — pariwisata, pertanian, dan warisan budaya Sasak.",
+                    }
+                  - {
+                      label: "SEO Title",
+                      name: "seoTitle",
+                      widget: "string",
+                      default: "Beranda",
+                    }
+                  - {
+                      label: "SEO Description",
+                      name: "seoDescription",
+                      widget: "text",
+                      default: "Portal informasi Kecamatan Sambelia: pariwisata, irigasi, kesehatan, UMKM, peta tematik, dan informasi desa.",
+                    }
               - label: "Tentang"
                 name: "tentang"
                 widget: "object"
                 required: false
                 fields:
-                  - { label: "Hero Kicker", name: "heroKicker", widget: "string", default: "TENTANG" }
-                  - { label: "Hero Title", name: "heroTitle", widget: "string", default: "Sambelia" }
-                  - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Kecamatan Sambelia, Kabupaten Lombok Timur, Nusa Tenggara Barat — pariwisata, pertanian, dan warisan budaya Sasak." }
-                  - { label: "SEO Title", name: "seoTitle", widget: "string", default: "Tentang Sambelia" }
-                  - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Profil Kecamatan Sambelia, Kabupaten Lombok Timur: geografi, demografi, desa, dan potensi daerah." }
-                  - { label: "01 — Kicker Geografi", name: "sectionGeografiKicker", widget: "string", default: "01 — GEOGRAFI" }
-                  - { label: "01 — Judul Geografi", name: "sectionGeografiTitle", widget: "string", default: "Geografi & Demografi" }
-                  - { label: "01 — Intro Geografi", name: "sectionGeografiIntro", widget: "text", default: "Letak, luas, dan penduduk Kecamatan Sambelia." }
-                  - { label: "02 — Kicker Desa", name: "sectionDesaKicker", widget: "string", default: "02 — DESA & KELURAHAN" }
-                  - { label: "02 — Judul Desa", name: "sectionDesaTitle", widget: "string", default: "Desa & Kelurahan" }
-                  - { label: "02 — Intro Desa", name: "sectionDesaIntro", widget: "text", default: "Desa-desa dan kelurahan yang ada di Kecamatan Sambelia." }
-                  - { label: "03 — Kicker Potensi", name: "sectionPotensiKicker", widget: "string", default: "03 — POTENSI DESA" }
-                  - { label: "03 — Judul Potensi", name: "sectionPotensiTitle", widget: "string", default: "Potensi Desa" }
-                  - { label: "03 — Intro Potensi", name: "sectionPotensiIntro", widget: "text", default: "Potensi unggulan Kecamatan Sambelia: wisata bahari, pertanian, dan kerajinan khas Sasak." }
+                  - {
+                      label: "Hero Kicker",
+                      name: "heroKicker",
+                      widget: "string",
+                      default: "TENTANG",
+                    }
+                  - {
+                      label: "Hero Title",
+                      name: "heroTitle",
+                      widget: "string",
+                      default: "Sambelia",
+                    }
+                  - {
+                      label: "Hero Intro",
+                      name: "heroIntro",
+                      widget: "text",
+                      default: "Kecamatan Sambelia, Kabupaten Lombok Timur, Nusa Tenggara Barat — pariwisata, pertanian, dan warisan budaya Sasak.",
+                    }
+                  - {
+                      label: "SEO Title",
+                      name: "seoTitle",
+                      widget: "string",
+                      default: "Tentang Sambelia",
+                    }
+                  - {
+                      label: "SEO Description",
+                      name: "seoDescription",
+                      widget: "text",
+                      default: "Profil Kecamatan Sambelia, Kabupaten Lombok Timur: geografi, demografi, desa, dan potensi daerah.",
+                    }
+                  - {
+                      label: "01 — Kicker Geografi",
+                      name: "sectionGeografiKicker",
+                      widget: "string",
+                      default: "01 — GEOGRAFI",
+                    }
+                  - {
+                      label: "01 — Judul Geografi",
+                      name: "sectionGeografiTitle",
+                      widget: "string",
+                      default: "Geografi & Demografi",
+                    }
+                  - {
+                      label: "01 — Intro Geografi",
+                      name: "sectionGeografiIntro",
+                      widget: "text",
+                      default: "Letak, luas, dan penduduk Kecamatan Sambelia.",
+                    }
+                  - {
+                      label: "02 — Kicker Desa",
+                      name: "sectionDesaKicker",
+                      widget: "string",
+                      default: "02 — DESA & KELURAHAN",
+                    }
+                  - {
+                      label: "02 — Judul Desa",
+                      name: "sectionDesaTitle",
+                      widget: "string",
+                      default: "Desa & Kelurahan",
+                    }
+                  - {
+                      label: "02 — Intro Desa",
+                      name: "sectionDesaIntro",
+                      widget: "text",
+                      default: "Desa-desa dan kelurahan yang ada di Kecamatan Sambelia.",
+                    }
+                  - {
+                      label: "03 — Kicker Potensi",
+                      name: "sectionPotensiKicker",
+                      widget: "string",
+                      default: "03 — POTENSI DESA",
+                    }
+                  - {
+                      label: "03 — Judul Potensi",
+                      name: "sectionPotensiTitle",
+                      widget: "string",
+                      default: "Potensi Desa",
+                    }
+                  - {
+                      label: "03 — Intro Potensi",
+                      name: "sectionPotensiIntro",
+                      widget: "text",
+                      default: "Potensi unggulan Kecamatan Sambelia: wisata bahari, pertanian, dan kerajinan khas Sasak.",
+                    }
               - label: "Pariwisata"
                 name: "pariwisata"
                 widget: "object"
                 required: false
                 fields:
-                  - { label: "Hero Kicker", name: "heroKicker", widget: "string", default: "PARIWISATA" }
-                  - { label: "Hero Title", name: "heroTitle", widget: "string", default: "Potensi Wisata Sambelia" }
-                  - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Destinasi unggulan di Kecamatan Sambelia." }
-                  - { label: "SEO Title", name: "seoTitle", widget: "string", default: "Pariwisata Sambelia" }
-                  - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Destinasi wisata unggulan di Kecamatan Sambelia, Lombok Timur." }
-                  - { label: "Section Kicker", name: "sectionKicker", widget: "string", required: false }
-                  - { label: "Section Title", name: "sectionTitle", widget: "string", required: false }
-                  - { label: "Section Intro", name: "sectionIntro", widget: "text", required: false }
+                  - {
+                      label: "Hero Kicker",
+                      name: "heroKicker",
+                      widget: "string",
+                      default: "PARIWISATA",
+                    }
+                  - {
+                      label: "Hero Title",
+                      name: "heroTitle",
+                      widget: "string",
+                      default: "Potensi Wisata Sambelia",
+                    }
+                  - {
+                      label: "Hero Intro",
+                      name: "heroIntro",
+                      widget: "text",
+                      default: "Destinasi unggulan di Kecamatan Sambelia.",
+                    }
+                  - {
+                      label: "SEO Title",
+                      name: "seoTitle",
+                      widget: "string",
+                      default: "Pariwisata Sambelia",
+                    }
+                  - {
+                      label: "SEO Description",
+                      name: "seoDescription",
+                      widget: "text",
+                      default: "Destinasi wisata unggulan di Kecamatan Sambelia, Lombok Timur.",
+                    }
+                  - {
+                      label: "Section Kicker",
+                      name: "sectionKicker",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Section Title",
+                      name: "sectionTitle",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Section Intro",
+                      name: "sectionIntro",
+                      widget: "text",
+                      required: false,
+                    }
               - label: "Irigasi"
                 name: "irigasi"
                 widget: "object"
                 required: false
                 fields:
-                  - { label: "Hero Kicker", name: "heroKicker", widget: "string", default: "IRIGASI" }
-                  - { label: "Hero Title", name: "heroTitle", widget: "string", default: "Data Saluran Irigasi" }
-                  - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Saluran irigasi di Kecamatan Sambelia dan kondisinya." }
-                  - { label: "SEO Title", name: "seoTitle", widget: "string", default: "Data Irigasi Sambelia" }
-                  - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Data saluran irigasi, kondisi saluran, dan peta titik rawan kekeringan di Kecamatan Sambelia." }
-                  - { label: "Section Kicker", name: "sectionKicker", widget: "string", required: false }
-                  - { label: "Section Title", name: "sectionTitle", widget: "string", required: false }
-                  - { label: "Section Intro", name: "sectionIntro", widget: "text", required: false }
+                  - {
+                      label: "Hero Kicker",
+                      name: "heroKicker",
+                      widget: "string",
+                      default: "IRIGASI",
+                    }
+                  - {
+                      label: "Hero Title",
+                      name: "heroTitle",
+                      widget: "string",
+                      default: "Data Saluran Irigasi",
+                    }
+                  - {
+                      label: "Hero Intro",
+                      name: "heroIntro",
+                      widget: "text",
+                      default: "Saluran irigasi di Kecamatan Sambelia dan kondisinya.",
+                    }
+                  - {
+                      label: "SEO Title",
+                      name: "seoTitle",
+                      widget: "string",
+                      default: "Data Irigasi Sambelia",
+                    }
+                  - {
+                      label: "SEO Description",
+                      name: "seoDescription",
+                      widget: "text",
+                      default: "Data saluran irigasi, kondisi saluran, dan peta titik rawan kekeringan di Kecamatan Sambelia.",
+                    }
+                  - {
+                      label: "Section Kicker",
+                      name: "sectionKicker",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Section Title",
+                      name: "sectionTitle",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Section Intro",
+                      name: "sectionIntro",
+                      widget: "text",
+                      required: false,
+                    }
               - label: "Kesehatan"
                 name: "kesehatan"
                 widget: "object"
                 required: false
                 fields:
-                  - { label: "Hero Kicker", name: "heroKicker", widget: "string", default: "KESEHATAN" }
-                  - { label: "Hero Title", name: "heroTitle", widget: "string", default: "Fasilitas & Program Kesehatan" }
-                  - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Posyandu, puskesmas, dan program stunting di Sambelia." }
-                  - { label: "SEO Title", name: "seoTitle", widget: "string", default: "Kesehatan Sambelia" }
-                  - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Fasilitas kesehatan, posyandu, puskesmas, bidan, dan program stunting di Kecamatan Sambelia." }
-                  - { label: "Section Kicker", name: "sectionKicker", widget: "string", required: false }
-                  - { label: "Section Title", name: "sectionTitle", widget: "string", required: false }
-                  - { label: "Section Intro", name: "sectionIntro", widget: "text", required: false }
+                  - {
+                      label: "Hero Kicker",
+                      name: "heroKicker",
+                      widget: "string",
+                      default: "KESEHATAN",
+                    }
+                  - {
+                      label: "Hero Title",
+                      name: "heroTitle",
+                      widget: "string",
+                      default: "Fasilitas & Program Kesehatan",
+                    }
+                  - {
+                      label: "Hero Intro",
+                      name: "heroIntro",
+                      widget: "text",
+                      default: "Posyandu, puskesmas, dan program stunting di Sambelia.",
+                    }
+                  - {
+                      label: "SEO Title",
+                      name: "seoTitle",
+                      widget: "string",
+                      default: "Kesehatan Sambelia",
+                    }
+                  - {
+                      label: "SEO Description",
+                      name: "seoDescription",
+                      widget: "text",
+                      default: "Fasilitas kesehatan, posyandu, puskesmas, bidan, dan program stunting di Kecamatan Sambelia.",
+                    }
+                  - {
+                      label: "Section Kicker",
+                      name: "sectionKicker",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Section Title",
+                      name: "sectionTitle",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Section Intro",
+                      name: "sectionIntro",
+                      widget: "text",
+                      required: false,
+                    }
               - label: "UMKM"
                 name: "umkm"
                 widget: "object"
                 required: false
                 fields:
-                  - { label: "Hero Kicker", name: "heroKicker", widget: "string", default: "UMKM" }
-                  - { label: "Hero Title", name: "heroTitle", widget: "string", default: "UMKM Lokal Sambelia" }
-                  - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Kerajinan, kuliner, dan produk lokal yang menjadi andalan masyarakat Sambelia." }
-                  - { label: "SEO Title", name: "seoTitle", widget: "string", default: "UMKM Lokal Sambelia" }
-                  - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Produk kerajinan, kuliner, pertanian, dan UMKM lokal Kecamatan Sambelia, termasuk peyek mangrove." }
-                  - { label: "Section Kicker", name: "sectionKicker", widget: "string", required: false }
-                  - { label: "Section Title", name: "sectionTitle", widget: "string", required: false }
-                  - { label: "Section Intro", name: "sectionIntro", widget: "text", required: false }
+                  - {
+                      label: "Hero Kicker",
+                      name: "heroKicker",
+                      widget: "string",
+                      default: "UMKM",
+                    }
+                  - {
+                      label: "Hero Title",
+                      name: "heroTitle",
+                      widget: "string",
+                      default: "UMKM Lokal Sambelia",
+                    }
+                  - {
+                      label: "Hero Intro",
+                      name: "heroIntro",
+                      widget: "text",
+                      default: "Kerajinan, kuliner, dan produk lokal yang menjadi andalan masyarakat Sambelia.",
+                    }
+                  - {
+                      label: "SEO Title",
+                      name: "seoTitle",
+                      widget: "string",
+                      default: "UMKM Lokal Sambelia",
+                    }
+                  - {
+                      label: "SEO Description",
+                      name: "seoDescription",
+                      widget: "text",
+                      default: "Produk kerajinan, kuliner, pertanian, dan UMKM lokal Kecamatan Sambelia, termasuk peyek mangrove.",
+                    }
+                  - {
+                      label: "Section Kicker",
+                      name: "sectionKicker",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Section Title",
+                      name: "sectionTitle",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Section Intro",
+                      name: "sectionIntro",
+                      widget: "text",
+                      required: false,
+                    }
               - label: "Peta"
                 name: "peta"
                 widget: "object"
                 required: false
                 fields:
-                  - { label: "Hero Kicker", name: "heroKicker", widget: "string", default: "PETA" }
-                  - { label: "Hero Title", name: "heroTitle", widget: "string", default: "Peta Sambelia" }
-                  - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Jelajahi titik wisata, irigasi, kesehatan, UMKM, serta peta tematik air, vegetasi, erosi, dan blue carbon." }
-                  - { label: "SEO Title", name: "seoTitle", widget: "string", default: "Peta Sambelia" }
-                  - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Peta interaktif wisata, irigasi, kesehatan, UMKM, dan peta tematik air, vegetasi, erosi, serta blue carbon Sambelia." }
-                  - { label: "Judul Section Data", name: "dataSectionTitle", widget: "string", default: "Lokasi Titik Data" }
-                  - { label: "Judul Section GIS", name: "gisSectionTitle", widget: "string", default: "Peta Tematik GIS" }
+                  - {
+                      label: "Hero Kicker",
+                      name: "heroKicker",
+                      widget: "string",
+                      default: "PETA",
+                    }
+                  - {
+                      label: "Hero Title",
+                      name: "heroTitle",
+                      widget: "string",
+                      default: "Peta Sambelia",
+                    }
+                  - {
+                      label: "Hero Intro",
+                      name: "heroIntro",
+                      widget: "text",
+                      default: "Jelajahi titik wisata, irigasi, kesehatan, UMKM, serta peta tematik air, vegetasi, erosi, dan blue carbon.",
+                    }
+                  - {
+                      label: "SEO Title",
+                      name: "seoTitle",
+                      widget: "string",
+                      default: "Peta Sambelia",
+                    }
+                  - {
+                      label: "SEO Description",
+                      name: "seoDescription",
+                      widget: "text",
+                      default: "Peta interaktif wisata, irigasi, kesehatan, UMKM, dan peta tematik air, vegetasi, erosi, serta blue carbon Sambelia.",
+                    }
+                  - {
+                      label: "Judul Section Data",
+                      name: "dataSectionTitle",
+                      widget: "string",
+                      default: "Lokasi Titik Data",
+                    }
+                  - {
+                      label: "Judul Section GIS",
+                      name: "gisSectionTitle",
+                      widget: "string",
+                      default: "Peta Tematik GIS",
+                    }
               - label: "Lingkungan"
                 name: "lingkungan"
                 widget: "object"
                 required: false
                 fields:
-                  - { label: "Hero Kicker", name: "heroKicker", widget: "string", default: "LINGKUNGAN" }
-                  - { label: "Hero Title", name: "heroTitle", widget: "string", default: "Vegetasi, Erosi & Blue Carbon" }
-                  - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Analisis lingkungan Kecamatan Sambelia: indeks vegetasi, tingkat erosi, dan sebaran blue carbon di wilayah pesisir dan daratan." }
-                  - { label: "SEO Title", name: "seoTitle", widget: "string", default: "Lingkungan" }
-                  - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Peta indeks vegetasi, erosi, dan distribusi blue carbon di Kecamatan Sambelia." }
-                  - { label: "Judul Section Data", name: "dataSectionTitle", widget: "string", default: "Analisis Lingkungan" }
-                  - { label: "Link ke Peta", name: "linkToPeta", widget: "string", default: "Lihat di Peta Interaktif →" }
+                  - {
+                      label: "Hero Kicker",
+                      name: "heroKicker",
+                      widget: "string",
+                      default: "LINGKUNGAN",
+                    }
+                  - {
+                      label: "Hero Title",
+                      name: "heroTitle",
+                      widget: "string",
+                      default: "Vegetasi, Erosi & Blue Carbon",
+                    }
+                  - {
+                      label: "Hero Intro",
+                      name: "heroIntro",
+                      widget: "text",
+                      default: "Analisis lingkungan Kecamatan Sambelia: indeks vegetasi, tingkat erosi, dan sebaran blue carbon di wilayah pesisir dan daratan.",
+                    }
+                  - {
+                      label: "SEO Title",
+                      name: "seoTitle",
+                      widget: "string",
+                      default: "Lingkungan",
+                    }
+                  - {
+                      label: "SEO Description",
+                      name: "seoDescription",
+                      widget: "text",
+                      default: "Peta indeks vegetasi, erosi, dan distribusi blue carbon di Kecamatan Sambelia.",
+                    }
+                  - {
+                      label: "Judul Section Data",
+                      name: "dataSectionTitle",
+                      widget: "string",
+                      default: "Analisis Lingkungan",
+                    }
+                  - {
+                      label: "Link ke Peta",
+                      name: "linkToPeta",
+                      widget: "string",
+                      default: "Lihat di Peta Interaktif →",
+                    }
               - label: "Air & Tanah"
                 name: "airTanah"
                 widget: "object"
                 required: false
                 fields:
-                  - { label: "Hero Kicker", name: "heroKicker", widget: "string", default: "AIR & TANAH" }
-                  - { label: "Hero Title", name: "heroTitle", widget: "string", default: "Tinggi Muka Airtanah" }
-                  - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Data TMA dan DHL dari survei lapangan di Kecamatan Sambelia." }
-                  - { label: "SEO Title", name: "seoTitle", widget: "string", default: "Air & Tanah" }
-                  - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Data Tinggi Muka Airtanah (TMA) dan kualitas air Kecamatan Sambelia." }
+                  - {
+                      label: "Hero Kicker",
+                      name: "heroKicker",
+                      widget: "string",
+                      default: "AIR & TANAH",
+                    }
+                  - {
+                      label: "Hero Title",
+                      name: "heroTitle",
+                      widget: "string",
+                      default: "Tinggi Muka Airtanah",
+                    }
+                  - {
+                      label: "Hero Intro",
+                      name: "heroIntro",
+                      widget: "text",
+                      default: "Data TMA dan DHL dari survei lapangan di Kecamatan Sambelia.",
+                    }
+                  - {
+                      label: "SEO Title",
+                      name: "seoTitle",
+                      widget: "string",
+                      default: "Air & Tanah",
+                    }
+                  - {
+                      label: "SEO Description",
+                      name: "seoDescription",
+                      widget: "text",
+                      default: "Data Tinggi Muka Airtanah (TMA) dan kualitas air Kecamatan Sambelia.",
+                    }
               - label: "Festival"
                 name: "festival"
                 widget: "object"
                 required: false
                 fields:
-                  - { label: "Hero Kicker", name: "heroKicker", widget: "string", default: "FESTIVAL" }
-                  - { label: "Hero Title", name: "heroTitle", widget: "string", default: "Festival Pesona Sambelia" }
-                  - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Peresean, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia." }
-                  - { label: "SEO Title", name: "seoTitle", widget: "string", default: "Festival Pesona Sambelia" }
-                  - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Jadwal dan informasi Festival Pesona Sambelia: Peresean, Pawai Dulangan, Gendang Beleq, dan warisan budaya Sasak lainnya." }
+                  - {
+                      label: "Hero Kicker",
+                      name: "heroKicker",
+                      widget: "string",
+                      default: "FESTIVAL",
+                    }
+                  - {
+                      label: "Hero Title",
+                      name: "heroTitle",
+                      widget: "string",
+                      default: "Festival Pesona Sambelia",
+                    }
+                  - {
+                      label: "Hero Intro",
+                      name: "heroIntro",
+                      widget: "text",
+                      default: "Peresean, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia.",
+                    }
+                  - {
+                      label: "SEO Title",
+                      name: "seoTitle",
+                      widget: "string",
+                      default: "Festival Pesona Sambelia",
+                    }
+                  - {
+                      label: "SEO Description",
+                      name: "seoDescription",
+                      widget: "text",
+                      default: "Jadwal dan informasi Festival Pesona Sambelia: Peresean, Pawai Dulangan, Gendang Beleq, dan warisan budaya Sasak lainnya.",
+                    }
               - label: "Kegiatan"
                 name: "kegiatan"
                 widget: "object"
                 required: false
                 fields:
-                  - { label: "Hero Kicker", name: "heroKicker", widget: "string", default: "KEGIATAN" }
-                  - { label: "Hero Title", name: "heroTitle", widget: "string", default: "Kegiatan Sambelia" }
-                  - { label: "Hero Intro", name: "heroIntro", widget: "text", default: "Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia." }
-                  - { label: "SEO Title", name: "seoTitle", widget: "string", default: "Kegiatan Sambelia" }
-                  - { label: "SEO Description", name: "seoDescription", widget: "text", default: "Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia." }
-                  - { label: "Section Kicker", name: "sectionKicker", widget: "string", required: false }
-                  - { label: "Section Title", name: "sectionTitle", widget: "string", required: false }
-                  - { label: "Section Intro", name: "sectionIntro", widget: "text", required: false }
+                  - {
+                      label: "Hero Kicker",
+                      name: "heroKicker",
+                      widget: "string",
+                      default: "KEGIATAN",
+                    }
+                  - {
+                      label: "Hero Title",
+                      name: "heroTitle",
+                      widget: "string",
+                      default: "Kegiatan Sambelia",
+                    }
+                  - {
+                      label: "Hero Intro",
+                      name: "heroIntro",
+                      widget: "text",
+                      default: "Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia.",
+                    }
+                  - {
+                      label: "SEO Title",
+                      name: "seoTitle",
+                      widget: "string",
+                      default: "Kegiatan Sambelia",
+                    }
+                  - {
+                      label: "SEO Description",
+                      name: "seoDescription",
+                      widget: "text",
+                      default: "Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia.",
+                    }
+                  - {
+                      label: "Section Kicker",
+                      name: "sectionKicker",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Section Title",
+                      name: "sectionTitle",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Section Intro",
+                      name: "sectionIntro",
+                      widget: "text",
+                      required: false,
+                    }
           - label: "Kartu Jejaki"
             name: "jejakiCards"
             widget: "list"
@@ -375,70 +1168,190 @@ collections:
               - { label: "Judul", name: "title", widget: "string" }
               - { label: "Deskripsi", name: "desc", widget: "string" }
               - { label: "Warna Aksen", name: "accent", widget: "string" }
-              - { label: "Gambar", name: "image", widget: "image", required: false }
+              - {
+                  label: "Gambar",
+                  name: "image",
+                  widget: "image",
+                  required: false,
+                }
           - label: "Footer"
             name: "footer"
             widget: "object"
             required: false
             fields:
-              - { label: "Tagline", name: "tagline", widget: "string", default: "Portal Kecamatan Sambelia, Lombok Timur" }
-              - { label: "Hak Cipta", name: "copyright", widget: "string", default: "© 2026 Kecamatan Sambelia — Dikembangkan oleh KKN-PPM UGM Melukis Sambelia" }
+              - {
+                  label: "Tagline",
+                  name: "tagline",
+                  widget: "string",
+                  default: "Portal Kecamatan Sambelia, Lombok Timur",
+                }
+              - {
+                  label: "Hak Cipta",
+                  name: "copyright",
+                  widget: "string",
+                  default: "© 2026 Kecamatan Sambelia — Dikembangkan oleh KKN-PPM UGM Melukis Sambelia",
+                }
           - label: "Pesan Kosong"
             name: "emptyStates"
             widget: "object"
             required: false
             fields:
-              - { label: "Pariwisata", name: "pariwisata", widget: "string", default: "Belum ada data wisata. Data akan ditambahkan segera." }
-              - { label: "Irigasi", name: "irigasi", widget: "string", default: "Belum ada data irigasi. Data akan ditambahkan segera." }
-              - { label: "Kesehatan", name: "kesehatan", widget: "string", default: "Belum ada data kesehatan. Data akan ditambahkan segera." }
-              - { label: "UMKM", name: "umkm", widget: "string", default: "Belum ada data UMKM. Data akan ditambahkan segera." }
-              - { label: "Kegiatan", name: "kegiatan", widget: "string", default: "Belum ada kegiatan. Informasi akan ditambahkan segera." }
-              - { label: "Festival", name: "festival", widget: "string", default: "Belum ada data festival. Data akan ditambahkan segera." }
-              - { label: "Lingkungan", name: "lingkungan", widget: "string", default: "Data peta lingkungan akan diunggah." }
-              - { label: "Air & Tanah", name: "airTanah", widget: "string", default: "Data TMA akan diunggah." }
-              - { label: "Peta Data Kosong", name: "petaDataEmpty", widget: "string", default: "Belum ada data lokasi. Tim akan menambahkan segera." }
-              - { label: "Peta GIS Kosong", name: "petaGisEmpty", widget: "string", default: "Peta GIS belum tersedia." }
-              - { label: "Air Tanah Data Kosong", name: "airTanahDataEmpty", widget: "string", default: "Data TMA dari cluster air tanah akan diunggah." }
+              - {
+                  label: "Pariwisata",
+                  name: "pariwisata",
+                  widget: "string",
+                  default: "Belum ada data wisata. Data akan ditambahkan segera.",
+                }
+              - {
+                  label: "Irigasi",
+                  name: "irigasi",
+                  widget: "string",
+                  default: "Belum ada data irigasi. Data akan ditambahkan segera.",
+                }
+              - {
+                  label: "Kesehatan",
+                  name: "kesehatan",
+                  widget: "string",
+                  default: "Belum ada data kesehatan. Data akan ditambahkan segera.",
+                }
+              - {
+                  label: "UMKM",
+                  name: "umkm",
+                  widget: "string",
+                  default: "Belum ada data UMKM. Data akan ditambahkan segera.",
+                }
+              - {
+                  label: "Kegiatan",
+                  name: "kegiatan",
+                  widget: "string",
+                  default: "Belum ada kegiatan. Informasi akan ditambahkan segera.",
+                }
+              - {
+                  label: "Festival",
+                  name: "festival",
+                  widget: "string",
+                  default: "Belum ada data festival. Data akan ditambahkan segera.",
+                }
+              - {
+                  label: "Lingkungan",
+                  name: "lingkungan",
+                  widget: "string",
+                  default: "Data peta lingkungan akan diunggah.",
+                }
+              - {
+                  label: "Air & Tanah",
+                  name: "airTanah",
+                  widget: "string",
+                  default: "Data TMA akan diunggah.",
+                }
+              - {
+                  label: "Peta Data Kosong",
+                  name: "petaDataEmpty",
+                  widget: "string",
+                  default: "Belum ada data lokasi. Tim akan menambahkan segera.",
+                }
+              - {
+                  label: "Peta GIS Kosong",
+                  name: "petaGisEmpty",
+                  widget: "string",
+                  default: "Peta GIS belum tersedia.",
+                }
+              - {
+                  label: "Air Tanah Data Kosong",
+                  name: "airTanahDataEmpty",
+                  widget: "string",
+                  default: "Data TMA dari cluster air tanah akan diunggah.",
+                }
 
       - label: "Peta GIS"
         name: "_gismap"
         file: "content/_gismap.md"
         fields:
           - { label: "Judul", name: "title", widget: "string" }
-          - { label: "Deskripsi", name: "description", widget: "string", required: false }
-          - { label: "Kredit", name: "credit", widget: "string", required: false }
+          - {
+              label: "Deskripsi",
+              name: "description",
+              widget: "string",
+              required: false,
+            }
+          - {
+              label: "Kredit",
+              name: "credit",
+              widget: "string",
+              required: false,
+            }
 
       - label: "GIS — Umum"
         name: "_gis_umum"
         file: "content/_gis_umum.md"
         fields:
           - { label: "Judul", name: "title", widget: "string" }
-          - { label: "Deskripsi", name: "description", widget: "text", required: false }
-          - { label: "Kredit", name: "credit", widget: "string", required: false }
+          - {
+              label: "Deskripsi",
+              name: "description",
+              widget: "text",
+              required: false,
+            }
+          - {
+              label: "Kredit",
+              name: "credit",
+              widget: "string",
+              required: false,
+            }
 
       - label: "GIS — Air"
         name: "_gis_air"
         file: "content/_gis_air.md"
         fields:
           - { label: "Judul", name: "title", widget: "string" }
-          - { label: "Deskripsi", name: "description", widget: "text", required: false }
-          - { label: "Kredit", name: "credit", widget: "string", required: false }
+          - {
+              label: "Deskripsi",
+              name: "description",
+              widget: "text",
+              required: false,
+            }
+          - {
+              label: "Kredit",
+              name: "credit",
+              widget: "string",
+              required: false,
+            }
 
       - label: "GIS — Irigasi"
         name: "_gis_irigasi"
         file: "content/_gis_irigasi.md"
         fields:
           - { label: "Judul", name: "title", widget: "string" }
-          - { label: "Deskripsi", name: "description", widget: "text", required: false }
-          - { label: "Kredit", name: "credit", widget: "string", required: false }
+          - {
+              label: "Deskripsi",
+              name: "description",
+              widget: "text",
+              required: false,
+            }
+          - {
+              label: "Kredit",
+              name: "credit",
+              widget: "string",
+              required: false,
+            }
 
       - label: "GIS — Vegetasi"
         name: "_gis_vegetasi"
         file: "content/_gis_vegetasi.md"
         fields:
           - { label: "Judul", name: "title", widget: "string" }
-          - { label: "Deskripsi", name: "description", widget: "text", required: false }
-          - { label: "Kredit", name: "credit", widget: "string", required: false }
+          - {
+              label: "Deskripsi",
+              name: "description",
+              widget: "text",
+              required: false,
+            }
+          - {
+              label: "Kredit",
+              name: "credit",
+              widget: "string",
+              required: false,
+            }
 
   - name: "desa"
     label: "Desa & Kelurahan"
@@ -452,7 +1365,13 @@ collections:
       - { label: "Nama Desa", name: "name", widget: "string" }
       - { label: "Deskripsi", name: "description", widget: "text" }
       - { label: "Gambar", name: "image", widget: "image" }
-      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }
+      - {
+          label: "Urutan",
+          name: "order",
+          widget: "number",
+          required: false,
+          hint: "Angka lebih kecil tampil lebih dulu",
+        }
 
   - name: "tentang"
     label: "Tentang Sambelia"
@@ -477,16 +1396,47 @@ collections:
         name: "gis_manifest"
         file: "content/_gis_manifest.md"
         fields:
-          - { label: "Judul", name: "title", widget: "string", default: "Peta GIS Kecamatan Sambelia" }
-          - { label: "Deskripsi", name: "description", widget: "text", required: false }
-          - { label: "Kredit", name: "credit", widget: "string", required: false }
+          - {
+              label: "Judul",
+              name: "title",
+              widget: "string",
+              default: "Peta GIS Kecamatan Sambelia",
+            }
+          - {
+              label: "Deskripsi",
+              name: "description",
+              widget: "text",
+              required: false,
+            }
+          - {
+              label: "Kredit",
+              name: "credit",
+              widget: "string",
+              required: false,
+            }
           - label: "File Peta"
             name: "files"
             widget: "list"
             required: false
             fields:
-              - { label: "Tipe", name: "type", widget: "select", options: ["image", "pdf", "geojson"] }
-              - { label: "Kategori", name: "category", widget: "select", options: ["umum", "air", "irigasi", "vegetasi"] }
+              - {
+                  label: "Tipe",
+                  name: "type",
+                  widget: "select",
+                  options: ["image", "pdf", "geojson"],
+                }
+              - {
+                  label: "Kategori",
+                  name: "category",
+                  widget: "select",
+                  options: ["umum", "air", "irigasi", "vegetasi"],
+                }
               - { label: "Nama", name: "name", widget: "string" }
               - { label: "File URL", name: "url", widget: "image" }
-              - { label: "Deskripsi", name: "description", widget: "string", required: false }
+              - {
+                  label: "Deskripsi",
+                  name: "description",
+                  widget: "string",
+                  required: false,
+                }
+
