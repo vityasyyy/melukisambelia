@@ -55,7 +55,7 @@ export default function KegiatanPage() {
           {items.length === 0 ? (
             <EmptyState message={empty.kegiatan} />
           ) : (
-            <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
               {items.map((c, i) => (
                 <StaggerItem key={c.slug} className={getAlternatingSpan(i, items.length)}>
                   <DataCard

@@ -109,7 +109,7 @@ export default function LingkunganPage() {
               <FadeIn>
                 <h2 className="mb-6 font-beautique text-display-lg text-brown-900">Peta Tematik GIS</h2>
               </FadeIn>
-              <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
                 {vegetasiFiles.map((f) => (
                   <StaggerItem key={f.url}>
                     <Link

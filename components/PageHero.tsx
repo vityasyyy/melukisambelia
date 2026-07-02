@@ -26,13 +26,13 @@ const BAND_CLASSES: Record<Tone, string> = {
   brown: 'from-transparent via-brown-700 to-transparent',
 }
 
-const RING_FILTERS: Record<Tone, string> = {
-  water: 'sepia(0.5) hue-rotate(170deg) saturate(3)',
-  terracotta: 'sepia(0.7) hue-rotate(-10deg) saturate(3)',
-  green: 'sepia(0.7) hue-rotate(60deg) saturate(2.5)',
-  gold: 'sepia(0.9) hue-rotate(-5deg) saturate(2.5)',
-  olive: 'sepia(0.7) hue-rotate(60deg) saturate(2.5)',
-  brown: 'sepia(0.9) saturate(2.5)',
+const MOTIF_FILTERS: Record<Tone, string> = {
+  water: 'sepia(0.6) hue-rotate(170deg) saturate(3.5)',
+  terracotta: 'sepia(0.8) hue-rotate(-10deg) saturate(3.5)',
+  green: 'sepia(0.8) hue-rotate(60deg) saturate(3)',
+  gold: 'sepia(0.9) hue-rotate(-5deg) saturate(3)',
+  olive: 'sepia(0.8) hue-rotate(60deg) saturate(3)',
+  brown: 'sepia(0.9) hue-rotate(10deg) saturate(3)',
 }
 
 export function PageHero({
@@ -70,57 +70,88 @@ export function PageHero({
         style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 30%, rgba(244,232,208,0.18) 0%, transparent 70%)' }}
       />
 
+      {/* Ring — right side, rotating */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 z-[1] w-[30vw] max-w-[350px] motif-entrance"
+        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 z-[1] w-[30vw] max-w-[350px]"
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.9, ease: 'easeOut' }}
       >
-        <div className="motif-glow motif-rotate" style={{ animationDuration: '60s' }}>
+        <div className="motif-glow motif-rotate" style={{ animationDuration: '60s', transform: 'translate3d(0,0,0)' }}>
           <Image
             src="/images/design-system/cincin_sambel.svg"
             alt=""
             width={500}
             height={500}
             className="w-full h-auto"
-            style={{ filter: RING_FILTERS[tone], opacity: 0.6 }}
+            style={{ filter: MOTIF_FILTERS[tone], opacity: 0.65 }}
             loading="lazy"
           />
         </div>
       </motion.div>
 
+      {/* Ring — bottom-right, rotating */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute left-[4vw] top-[18%] z-[1] w-[14vw] max-w-[160px] motif-entrance"
-        style={{ animationDelay: '0.4s' }}
+        className="pointer-events-none absolute right-[6vw] bottom-[12vh] z-[1] w-[18vw] max-w-[140px]"
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.9, ease: 'easeOut', delay: 0.3 }}
       >
-        <div className="motif-glow motif-rotate-reverse" style={{ animationDuration: '50s' }}>
-          <div className="motif-float">
+        <div className="motif-glow motif-rotate" style={{ animationDuration: '70s', transform: 'translate3d(0,0,0)' }}>
+          <Image
+            src="/images/design-system/cincin_sambel.svg"
+            alt=""
+            width={300}
+            height={300}
+            className="w-full h-auto"
+            style={{ filter: MOTIF_FILTERS[tone], opacity: 0.5 }}
+            loading="lazy"
+          />
+        </div>
+      </motion.div>
+
+      {/* Flower — left side, rotating + floating */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute left-[4vw] top-[18vh] sm:top-[20vh] z-[1] w-[22vw] sm:w-[14vw] max-w-[180px]"
+        initial={{ opacity: 0, scale: 0.85, y: 12 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.9, ease: 'easeOut', delay: 0.2 }}
+      >
+        <div className="motif-glow motif-rotate-reverse" style={{ animationDuration: '50s', transform: 'translate3d(0,0,0)' }}>
+          <div className="motif-float" style={{ transform: 'translate3d(0,0,0)' }}>
             <Image
               src="/images/design-system/bunga_sambel.svg"
               alt=""
               width={200}
               height={200}
               className="w-full h-auto"
-              style={{ filter: RING_FILTERS[tone], opacity: 0.6 }}
+              style={{ filter: MOTIF_FILTERS[tone], opacity: 0.75 }}
               loading="lazy"
             />
           </div>
         </div>
       </motion.div>
 
+      {/* Flower — top-right, rotating + floating */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute left-[4vw] top-[18%] z-[1] w-[14vw] max-w-[160px] motif-entrance"
-        style={{ animationDelay: '0.4s' }}
+        className="pointer-events-none absolute right-[8vw] top-[10vh] z-[1] w-[14vw] max-w-[120px]"
+        initial={{ opacity: 0, scale: 0.85, y: 12 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.9, ease: 'easeOut', delay: 0.5 }}
       >
-        <div className="motif-glow motif-rotate-reverse" style={{ animationDuration: '50s' }}>
-          <div className="motif-float">
+        <div className="motif-glow motif-rotate" style={{ animationDuration: '45s', transform: 'translate3d(0,0,0)' }}>
+          <div className="motif-float" style={{ transform: 'translate3d(0,0,0)' }}>
             <Image
               src="/images/design-system/bunga_sambel.svg"
               alt=""
-              width={200}
-              height={200}
+              width={160}
+              height={160}
               className="w-full h-auto"
-              style={{ filter: RING_FILTERS[tone], opacity: 0.6 }}
+              style={{ filter: MOTIF_FILTERS[tone], opacity: 0.65 }}
               loading="lazy"
             />
           </div>

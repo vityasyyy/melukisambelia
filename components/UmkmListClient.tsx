@@ -101,7 +101,7 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
               key={activeKategori}
               stagger={0.08}
               mode="mount"
-              className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+              className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr"
             >
               {filtered.map((u, i) => (
                 <StaggerItem key={u.slug} className={getAlternatingSpan(i, filtered.length)}>

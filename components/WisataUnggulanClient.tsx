@@ -36,7 +36,7 @@ export function WisataUnggulanClient({ items }: { items: (Pariwisata & { slug: s
 
   return (
     <>
-      <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
         {items.map((p, i) => (
           <StaggerItem key={p.slug} className={getAlternatingSpan(i, items.length)}>
             <DataCard

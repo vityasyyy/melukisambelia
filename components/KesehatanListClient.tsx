@@ -72,7 +72,7 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
           {items.length === 0 ? (
             <EmptyState message={emptyMessage} />
           ) : (
-            <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
               {items.map((k, i) => (
                 <StaggerItem key={k.slug} className={getAlternatingSpan(i, items.length)}>
                   <DataCard
