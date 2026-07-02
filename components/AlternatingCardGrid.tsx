@@ -11,6 +11,8 @@ export function AlternatingCardGrid({
   renderItem: (item: unknown, index: number, featured: boolean) => ReactNode
   className?: string
 }) {
+  if (items.length === 0) return null
+
   if (items.length <= 2) {
     return (
       <div className={`grid gap-5 sm:grid-cols-2 ${className}`}>
@@ -23,52 +25,78 @@ export function AlternatingCardGrid({
     )
   }
 
-  const groups: { big: unknown; bigIndex: number; smalls: { item: unknown; index: number }[]; bigFirst: boolean }[] = []
-  for (let i = 0; i < items.length; i += 3) {
-    const chunk = items.slice(i, i + 3)
-    const groupIndex = Math.floor(i / 3)
-    const bigFirst = groupIndex % 2 === 0
-    groups.push({
-      big: chunk[0],
-      bigIndex: i,
-      smalls: chunk.slice(1).map((item, si) => ({ item, index: i + 1 + si })),
-      bigFirst,
-    })
+  const groups: { featured: unknown; featuredIndex: number; smalls: { item: unknown; index: number }[]; featuredFirst: boolean }[] = []
+  let idx = 0
+  while (idx < items.length) {
+    const remaining = items.length - idx
+    if (remaining === 1) {
+      groups.push({ featured: items[idx], featuredIndex: idx, smalls: [], featuredFirst: true })
+      idx += 1
+    } else if (remaining === 2) {
+      groups.push({ featured: items[idx], featuredIndex: idx, smalls: [{ item: items[idx + 1], index: idx + 1 }], featuredFirst: true })
+      idx += 2
+    } else if (remaining === 4) {
+      groups.push({ featured: items[idx], featuredIndex: idx, smalls: [{ item: items[idx + 1], index: idx + 1 }, { item: items[idx + 2], index: idx + 2 }], featuredFirst: groups.length % 2 === 0 })
+      groups.push({ featured: items[idx + 3], featuredIndex: idx + 3, smalls: [], featuredFirst: groups.length % 2 === 0 })
+      idx += 4
+    } else {
+      const featuredFirst = groups.length % 2 === 0
+      groups.push({
+        featured: items[idx],
+        featuredIndex: idx,
+        smalls: [
+          { item: items[idx + 1], index: idx + 1 },
+          { item: items[idx + 2], index: idx + 2 },
+        ],
+        featuredFirst,
+      })
+      idx += 3
+    }
   }
 
   return (
     <div className={`flex flex-col gap-5 ${className}`}>
-      {groups.map((group, gi) => (
-        <div key={gi} className="grid grid-cols-1 lg:grid-cols-5 gap-5">
-          {group.bigFirst ? (
-            <>
-              <div className="lg:col-span-3">
-                {renderItem(group.big, group.bigIndex, true)}
-              </div>
-              <div className="lg:col-span-2 flex flex-col gap-5">
-                {group.smalls.map((s) => (
-                  <div key={s.index}>
-                    {renderItem(s.item, s.index, false)}
-                  </div>
-                ))}
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="lg:col-span-2 flex flex-col gap-5">
-                {group.smalls.map((s) => (
-                  <div key={s.index}>
-                    {renderItem(s.item, s.index, false)}
-                  </div>
-                ))}
-              </div>
-              <div className="lg:col-span-3">
-                {renderItem(group.big, group.bigIndex, true)}
-              </div>
-            </>
-          )}
-        </div>
-      ))}
+      {groups.map((group, gi) => {
+        if (group.smalls.length === 0) {
+          return (
+            <div key={gi}>
+              {renderItem(group.featured, group.featuredIndex, true)}
+            </div>
+          )
+        }
+
+        return (
+          <div key={gi} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+            {group.featuredFirst ? (
+              <>
+                <div className="sm:col-span-2 lg:col-span-3">
+                  {renderItem(group.featured, group.featuredIndex, true)}
+                </div>
+                <div className="sm:col-span-2 lg:col-span-2 flex flex-col gap-5">
+                  {group.smalls.map((s) => (
+                    <div key={s.index}>
+                      {renderItem(s.item, s.index, false)}
+                    </div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="sm:col-span-2 lg:col-span-2 flex flex-col gap-5">
+                  {group.smalls.map((s) => (
+                    <div key={s.index}>
+                      {renderItem(s.item, s.index, false)}
+                    </div>
+                  ))}
+                </div>
+                <div className="sm:col-span-2 lg:col-span-3">
+                  {renderItem(group.featured, group.featuredIndex, true)}
+                </div>
+              </>
+            )}
+          </div>
+        )
+      })}
     </div>
   )
 }

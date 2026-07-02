@@ -240,7 +240,7 @@
   }
 
   .motif-glow {
-    filter: brightness(1.4) drop-shadow(0 2px 12px rgba(0,0,0,0.12));
+    filter: brightness(1.5) drop-shadow(0 4px 18px rgba(0,0,0,0.18));
     will-change: transform;
   }
 
