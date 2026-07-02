@@ -5,7 +5,7 @@ village: Labuhan Pandan
 condition: Rusak Ringan
 lengthM: 1800
 flowStatus: Mengalir Sebagian
-cover: /images/content/peopleplaying.webp
+cover: /images/hero-placeholder.svg
 lat: -8.342
 lng: 116.857
 ---
