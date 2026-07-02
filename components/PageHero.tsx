@@ -61,7 +61,7 @@ export function PageHero({
       <div aria-hidden className="absolute inset-0 section-watermark" />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 z-[2]"
         style={{ boxShadow: 'inset 0 -80px 120px -30px rgba(26,17,13,0.6)' }}
       />
       <div
@@ -69,23 +69,28 @@ export function PageHero({
         className="pointer-events-none absolute inset-0 z-[1]"
         style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 30%, rgba(244,232,208,0.18) 0%, transparent 70%)' }}
       />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 50%, transparent 0%, rgba(26,17,13,0.25) 100%)' }}
+      />
 
       {/* Ring — right side, rotating */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 z-[1] w-[30vw] max-w-[350px]"
+        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 z-0 w-[30vw] max-w-[350px]"
         initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.9, ease: 'easeOut' }}
       >
-        <div className="motif-glow motif-rotate" style={{ animationDuration: '60s', transform: 'translate3d(0,0,0)' }}>
+        <div className="relative motif-glow motif-rotate" style={{ animationDuration: '60s', transform: 'translate3d(0,0,0)' }}>
           <Image
             src="/images/design-system/cincin_sambel.svg"
             alt=""
             width={500}
             height={500}
             className="w-full h-auto"
-            style={{ filter: MOTIF_FILTERS[tone], opacity: 0.7 }}
+            style={{ filter: MOTIF_FILTERS[tone], opacity: 0.35 }}
             loading="lazy"
           />
         </div>
@@ -94,20 +99,20 @@ export function PageHero({
       {/* Flower — left side, rotating + floating */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute left-[4vw] top-[18vh] sm:top-[20vh] z-[1] w-[22vw] sm:w-[14vw] max-w-[180px]"
+        className="pointer-events-none absolute left-[4vw] top-[18vh] sm:top-[20vh] z-0 w-[22vw] sm:w-[14vw] max-w-[180px]"
         initial={{ opacity: 0, scale: 0.85, y: 12 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.9, ease: 'easeOut', delay: 0.2 }}
       >
-        <div className="motif-glow motif-rotate-reverse" style={{ animationDuration: '50s', transform: 'translate3d(0,0,0)' }}>
-          <div className="motif-float" style={{ transform: 'translate3d(0,0,0)' }}>
+        <div className="relative motif-glow motif-rotate-reverse" style={{ animationDuration: '50s', transform: 'translate3d(0,0,0)' }}>
+          <div className="relative motif-float" style={{ transform: 'translate3d(0,0,0)' }}>
             <Image
               src="/images/design-system/bunga_sambel.svg"
               alt=""
               width={200}
               height={200}
               className="w-full h-auto"
-              style={{ filter: MOTIF_FILTERS[tone], opacity: 0.75 }}
+              style={{ filter: MOTIF_FILTERS[tone], opacity: 0.4 }}
               loading="lazy"
             />
           </div>
@@ -117,27 +122,27 @@ export function PageHero({
       {/* Flower — top-right, rotating + floating */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute right-[8vw] top-[10vh] z-[1] w-[14vw] max-w-[120px]"
+        className="pointer-events-none absolute right-[8vw] top-[10vh] z-0 w-[14vw] max-w-[120px]"
         initial={{ opacity: 0, scale: 0.85, y: 12 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.9, ease: 'easeOut', delay: 0.5 }}
       >
-        <div className="motif-glow motif-rotate" style={{ animationDuration: '45s', transform: 'translate3d(0,0,0)' }}>
-          <div className="motif-float" style={{ transform: 'translate3d(0,0,0)' }}>
+        <div className="relative motif-glow motif-rotate" style={{ animationDuration: '45s', transform: 'translate3d(0,0,0)' }}>
+          <div className="relative motif-float" style={{ transform: 'translate3d(0,0,0)' }}>
             <Image
               src="/images/design-system/bunga_sambel.svg"
               alt=""
               width={160}
               height={160}
               className="w-full h-auto"
-              style={{ filter: MOTIF_FILTERS[tone], opacity: 0.65 }}
+              style={{ filter: MOTIF_FILTERS[tone], opacity: 0.3 }}
               loading="lazy"
             />
           </div>
         </div>
       </motion.div>
 
-      <div className={cn('absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r opacity-90 z-[2]', BAND_CLASSES[tone])} aria-hidden />
+      <div className={cn('absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r opacity-90 z-[3]', BAND_CLASSES[tone])} aria-hidden />
       <FadeIn className="relative z-10 mx-auto max-w-content px-4">
         <p className="font-beautique-condensed text-xs font-semibold uppercase tracking-[0.2em] text-white" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>{kicker}</p>
         <h1

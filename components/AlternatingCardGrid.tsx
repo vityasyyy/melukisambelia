@@ -2,6 +2,11 @@
 
 import { ReactNode } from 'react'
 
+type CardGroup =
+  | { type: 'single'; item: unknown; index: number; featured: boolean }
+  | { type: 'pair'; items: [unknown, unknown]; indices: [number, number]; featured: [boolean, boolean] }
+  | { type: 'trio'; featured: unknown; featuredIndex: number; smalls: { item: unknown; index: number }[]; featuredFirst: boolean }
+
 export function AlternatingCardGrid({
   items,
   renderItem,
@@ -13,66 +18,39 @@ export function AlternatingCardGrid({
 }) {
   if (items.length === 0) return null
 
-  if (items.length <= 2) {
-    return (
-      <div className={`grid gap-5 sm:grid-cols-2 ${className}`}>
-        {items.map((item, i) => (
-          <div key={i} className={i === 0 ? 'sm:col-span-2' : undefined}>
-            {renderItem(item, i, i === 0)}
-          </div>
-        ))}
-      </div>
-    )
-  }
-
-  const groups: { featured: unknown; featuredIndex: number; smalls: { item: unknown; index: number }[]; featuredFirst: boolean }[] = []
-  let idx = 0
-  while (idx < items.length) {
-    const remaining = items.length - idx
-    if (remaining === 1) {
-      groups.push({ featured: items[idx], featuredIndex: idx, smalls: [], featuredFirst: true })
-      idx += 1
-    } else if (remaining === 2) {
-      groups.push({ featured: items[idx], featuredIndex: idx, smalls: [{ item: items[idx + 1], index: idx + 1 }], featuredFirst: true })
-      idx += 2
-    } else if (remaining === 4) {
-      groups.push({ featured: items[idx], featuredIndex: idx, smalls: [{ item: items[idx + 1], index: idx + 1 }, { item: items[idx + 2], index: idx + 2 }], featuredFirst: groups.length % 2 === 0 })
-      groups.push({ featured: items[idx + 3], featuredIndex: idx + 3, smalls: [], featuredFirst: groups.length % 2 === 0 })
-      idx += 4
-    } else {
-      const featuredFirst = groups.length % 2 === 0
-      groups.push({
-        featured: items[idx],
-        featuredIndex: idx,
-        smalls: [
-          { item: items[idx + 1], index: idx + 1 },
-          { item: items[idx + 2], index: idx + 2 },
-        ],
-        featuredFirst,
-      })
-      idx += 3
-    }
-  }
+  const groups = buildGroups(items)
 
   return (
-    <div className={`flex flex-col gap-5 ${className}`}>
+    <div className={`flex flex-col gap-4 ${className}`}>
       {groups.map((group, gi) => {
-        if (group.smalls.length === 0) {
+        if (group.type === 'single') {
           return (
             <div key={gi}>
-              {renderItem(group.featured, group.featuredIndex, true)}
+              {renderItem(group.item, group.index, group.featured)}
+            </div>
+          )
+        }
+
+        if (group.type === 'pair') {
+          return (
+            <div key={gi} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {group.items.map((item, i) => (
+                <div key={group.indices[i]}>
+                  {renderItem(item, group.indices[i], group.featured[i])}
+                </div>
+              ))}
             </div>
           )
         }
 
         return (
-          <div key={gi} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          <div key={gi} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {group.featuredFirst ? (
               <>
                 <div className="sm:col-span-2 lg:col-span-3">
                   {renderItem(group.featured, group.featuredIndex, true)}
                 </div>
-                <div className="sm:col-span-2 lg:col-span-2 flex flex-col gap-5">
+                <div className="sm:col-span-2 lg:col-span-2 flex flex-col gap-4">
                   {group.smalls.map((s) => (
                     <div key={s.index}>
                       {renderItem(s.item, s.index, false)}
@@ -82,7 +60,7 @@ export function AlternatingCardGrid({
               </>
             ) : (
               <>
-                <div className="sm:col-span-2 lg:col-span-2 flex flex-col gap-5">
+                <div className="sm:col-span-2 lg:col-span-2 flex flex-col gap-4">
                   {group.smalls.map((s) => (
                     <div key={s.index}>
                       {renderItem(s.item, s.index, false)}
@@ -99,4 +77,58 @@ export function AlternatingCardGrid({
       })}
     </div>
   )
+}
+
+function buildGroups(items: unknown[]): CardGroup[] {
+  const groups: CardGroup[] = []
+  let idx = 0
+  let groupIndex = 0
+
+  while (idx < items.length) {
+    const remaining = items.length - idx
+
+    if (remaining === 1) {
+      groups.push({ type: 'single', item: items[idx], index: idx, featured: true })
+      idx += 1
+    } else if (remaining === 2) {
+      groups.push({
+        type: 'pair',
+        items: [items[idx], items[idx + 1]],
+        indices: [idx, idx + 1],
+        featured: [true, true],
+      })
+      idx += 2
+    } else if (remaining === 4) {
+      const featuredFirst = groupIndex % 2 === 0
+      groups.push({
+        type: 'trio',
+        featured: items[idx],
+        featuredIndex: idx,
+        smalls: [
+          { item: items[idx + 1], index: idx + 1 },
+          { item: items[idx + 2], index: idx + 2 },
+        ],
+        featuredFirst,
+      })
+      groups.push({ type: 'single', item: items[idx + 3], index: idx + 3, featured: true })
+      idx += 4
+    } else {
+      const featuredFirst = groupIndex % 2 === 0
+      groups.push({
+        type: 'trio',
+        featured: items[idx],
+        featuredIndex: idx,
+        smalls: [
+          { item: items[idx + 1], index: idx + 1 },
+          { item: items[idx + 2], index: idx + 2 },
+        ],
+        featuredFirst,
+      })
+      idx += 3
+    }
+
+    groupIndex += 1
+  }
+
+  return groups
 }

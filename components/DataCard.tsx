@@ -33,7 +33,7 @@ export function DataCard({
         />
         <div aria-hidden className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-brown-950/20 to-transparent" />
       </div>
-      <div className="min-w-0 flex-1 p-5">
+      <div className="min-w-0 flex-1 p-4">
         <h3 className="truncate font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{title}</h3>
         {chips.length > 0 && <ChipRow chips={chips} className="mt-1.5" />}
         {desc && <p className="mt-2.5 text-sm text-ink/60 leading-relaxed line-clamp-2">{desc}</p>}

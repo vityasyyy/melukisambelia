@@ -56,10 +56,11 @@ export function MotifFloater({
       initial={reduce ? undefined : { opacity: 0, scale: 0.85, y: 12 }}
       animate={reduce ? undefined : { opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.9, ease: 'easeOut' }}
+      style={reduce ? { opacity: 0.7 } : undefined}
     >
       <div className={`relative w-full h-full motif-glow ${isFlower ? 'motif-rotate-reverse' : 'motif-rotate'}`} style={{ animationDuration: isFlower ? '50s' : '60s', transform: 'translate3d(0,0,0)' }}>
         {isFlower && (
-          <div className="motif-float" style={{ transform: 'translate3d(0,0,0)' }}>
+          <div className="relative motif-float" style={{ transform: 'translate3d(0,0,0)' }}>
             <Image
               src={`/images/design-system/${motif}.svg`}
               alt=""

@@ -12,6 +12,7 @@ import { MotifFloater } from '@/components/MotifFloater'
 
 import { petaLink } from '@/lib/links'
 import type { Irigasi } from '@/lib/schemas'
+import Link from 'next/link'
 
 export function IrigasiListClient({ items, stats, pageSettings, emptyMessage }: { items: (Irigasi & { slug: string })[]; stats: { total: number; totalLength: number; good: number; damaged: number }; pageSettings: Record<string, string>; emptyMessage: string }) {
   const [modalData, setModalData] = useState<DetailModalData | null>(null)
@@ -93,6 +94,14 @@ export function IrigasiListClient({ items, stats, pageSettings, emptyMessage }: 
               </Accordion>
             </div>
           )}
+          <div className="mt-8 text-center">
+            <Link
+              href="/peta?layer=irigasi"
+              className="inline-block rounded-full bg-green-700 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-green-900"
+            >
+              Lihat semua di Peta Interaktif →
+            </Link>
+          </div>
           <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
         </div>
       </section>

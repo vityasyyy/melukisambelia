@@ -3,14 +3,14 @@ import { REVALIDATE_SECONDS } from '@/lib/config'
 import Link from 'next/link'
 import { getGisManifest } from '@/lib/gis'
 import { getCollection } from '@/lib/content'
-import { getPageSettings, getEmptyStates } from '@/lib/settings'
+import { getPageSettings } from '@/lib/settings'
 import { FadeIn } from '@/components/FadeIn'
 import { SectionHeader } from '@/components/SectionHeader'
 import { PageHero } from '@/components/PageHero'
 import { MotifDivider } from '@/components/MotifDivider'
 import { MotifFloater } from '@/components/MotifFloater'
-import { EmptyState } from '@/components/EmptyState'
-import { LingkunganCardGrid, GisCardGrid } from '@/components/LingkunganCardGrid'
+import { HubSectionList, AnalysisList, GisCardGrid } from '@/components/LingkunganCardGrid'
+import type { HubSection } from '@/components/LingkunganCardGrid'
 
 export const revalidate = REVALIDATE_SECONDS
 
@@ -26,15 +26,48 @@ export default function LingkunganPage() {
   const items = getCollection('lingkungan')
   const manifest = getGisManifest()
   const ps = getPageSettings('lingkungan')
-  const empty = getEmptyStates()
   const vegetasiFiles = manifest.files.filter((f) => f.category === 'vegetasi')
+
+  const hubSections: HubSection[] = [
+    {
+      title: 'Air & Tanah',
+      description: 'Data kualitas air, tingkat muka air tanah, dan peta Iso-DHL.',
+      href: '/air-tanah',
+      petaHref: '/peta?tab=air',
+      tone: 'water',
+    },
+    {
+      title: 'Vegetasi',
+      description: 'Peta indeks vegetasi (NDVI) dan analisis sebaran hijauan.',
+      href: '/peta?tab=vegetasi',
+      tone: 'green',
+    },
+    {
+      title: 'Erosi',
+      description: 'Analisis erosi pesisir dan peta kerentanan erosi.',
+      href: '/peta?tab=erosi',
+      tone: 'terracotta',
+    },
+    {
+      title: 'Blue Carbon',
+      description: 'Distribusi blue carbon mangrove dan potensi karbon pesisir.',
+      href: '/peta?tab=blue-carbon',
+      tone: 'water',
+    },
+    {
+      title: 'Irigasi & Kekeringan',
+      description: 'Jaringan irigasi, saluran tersier, dan peta rawan kekeringan.',
+      href: '/irigasi',
+      tone: 'olive',
+    },
+  ]
 
   return (
     <>
       <PageHero
         kicker={ps.heroKicker ?? 'LINGKUNGAN'}
-        title={ps.heroTitle ?? 'Vegetasi, Erosi & Blue Carbon'}
-        intro={ps.heroIntro ?? 'Analisis lingkungan Kecamatan Sambelia: indeks vegetasi, tingkat erosi, dan sebaran blue carbon di wilayah pesisir dan daratan.'}
+        title={ps.heroTitle ?? 'Hijau, Biru, Lestari'}
+        intro={ps.heroIntro ?? 'Menjaga keseimbangan alam untuk generasi mendatang.'}
         tone="green"
       />
 
@@ -49,16 +82,21 @@ export default function LingkunganPage() {
           <FadeIn>
             <SectionHeader
               kicker={ps.sectionKicker ?? 'LINGKUNGAN'}
-              title={ps.sectionTitle ?? 'Analisis Lingkungan'}
-              intro={ps.sectionIntro ?? 'Data analisis lingkungan dan peta tematik Kecamatan Sambelia.'}
+              title={ps.sectionTitle ?? 'Data & Analisis Lingkungan'}
+              intro={ps.sectionIntro ?? 'Jelajahi data lingkungan Kecamatan Sambelia: air, vegetasi, erosi, dan lainnya.'}
               tone="green"
             />
           </FadeIn>
 
-          {items.length > 0 ? (
-            <LingkunganCardGrid items={items} />
-          ) : (
-            <EmptyState message={empty.lingkungan} />
+          <FadeIn>
+            <HubSectionList sections={hubSections} />
+          </FadeIn>
+
+          {items.length > 0 && (
+            <FadeIn className="mt-10">
+              <h2 className="mb-4 font-beautique text-display-lg text-brown-900">Analisis Lingkungan</h2>
+              <AnalysisList items={items} />
+            </FadeIn>
           )}
 
           <div className="mt-10 text-center">
@@ -76,7 +114,7 @@ export default function LingkunganPage() {
         <>
           <MotifDivider />
           <section className="relative bg-page">
-            <div className="mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+            <div className="mx-auto max-w-4xl overflow-hidden px-4 py-8 md:py-10">
               <FadeIn>
                 <h2 className="mb-6 font-beautique text-display-lg text-brown-900">Peta Tematik GIS</h2>
               </FadeIn>

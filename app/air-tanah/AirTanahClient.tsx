@@ -86,6 +86,15 @@ export function AirTanahClient({
         <p className="mt-8 text-center text-xs text-ink/70">{credit}</p>
       )}
 
+      <div className="mt-8 text-center">
+        <Link
+          href="/peta?tab=air"
+          className="inline-block rounded-full bg-water-900 px-6 py-2.5 text-sm font-medium text-cream-light transition-colors hover:bg-water-700"
+        >
+          Lihat di Peta Interaktif →
+        </Link>
+      </div>
+
     </div>
   )
 }

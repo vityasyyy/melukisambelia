@@ -11,6 +11,7 @@ import { AlternatingCardGrid } from '@/components/AlternatingCardGrid'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 import { MotifFloater } from '@/components/MotifFloater'
 
+import Link from 'next/link'
 import { petaLink } from '@/lib/links'
 import type { Kesehatan } from '@/lib/schemas'
 
@@ -94,6 +95,14 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
               }}
             />
           )}
+          <div className="mt-8 text-center">
+            <Link
+              href="/peta?layer=kesehatan"
+              className="inline-block rounded-full bg-olive px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-olive-dark"
+            >
+              Lihat semua di Peta Interaktif →
+            </Link>
+          </div>
           <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
         </div>
       </section>
