@@ -1,8 +1,9 @@
 ---
-title: "Analisis Erosi Pesisir"
+title: Analisis Erosi Pesisir
 category: Erosi
-cover: /images/content/kegiatan-ekowisata.svg
-description: "Identifikasi zona erosi pesisir dan daratan di Kecamatan Sambelia berdasarkan analisis spasial dan survei lapangan."
+cover: /images/hero-placeholder.svg
+description: Identifikasi zona erosi pesisir dan daratan di Kecamatan Sambelia
+  berdasarkan analisis spasial dan survei lapangan.
 order: 2
 ---
 
