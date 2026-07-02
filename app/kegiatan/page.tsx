@@ -2,15 +2,12 @@ import type { Metadata } from 'next'
 import { REVALIDATE_SECONDS } from '@/lib/config'
 import { getCollection } from '@/lib/content'
 import { getPageSettings, getEmptyStates } from '@/lib/settings'
-import { DataCard } from '@/components/DataCard'
 import { EmptyState } from '@/components/EmptyState'
 import { SectionHeader } from '@/components/SectionHeader'
 import { FadeIn } from '@/components/FadeIn'
-
+import { KegiatanCardGrid } from '@/components/KegiatanCardGrid'
 import { PageHero } from '@/components/PageHero'
 import { MotifFloater } from '@/components/MotifFloater'
-import { StaggerContainer, StaggerItem } from '@/components/Stagger'
-import { getAlternatingSpan, isAlternatingFeatured } from '@/lib/utils'
 
 export async function generateMetadata(): Promise<Metadata> {
   const kegiatan = getPageSettings('kegiatan')
@@ -55,24 +52,7 @@ export default function KegiatanPage() {
           {items.length === 0 ? (
             <EmptyState message={empty.kegiatan} />
           ) : (
-            <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
-              {items.map((c, i) => (
-                <StaggerItem key={c.slug} className={getAlternatingSpan(i, items.length)}>
-                  <DataCard
-                    href={`/kegiatan/${c.slug}`}
-                    image={c.cover}
-                    title={c.title}
-                    chips={[
-                      { label: c.author, tone: 'brown' },
-                      { label: c.date, tone: 'gold' },
-                    ]}
-                    desc={c.excerpt}
-                    featured={isAlternatingFeatured(i, items.length)}
-                    accent="#5A3A28"
-                  />
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+            <KegiatanCardGrid items={items} />
           )}
         </div>
       </section>

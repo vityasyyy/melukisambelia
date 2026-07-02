@@ -70,27 +70,6 @@ export function PageHero({
         style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 30%, rgba(244,232,208,0.18) 0%, transparent 70%)' }}
       />
 
-      {/* Ring — right side, rotating */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 z-[1] w-[30vw] max-w-[350px]"
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.9, ease: 'easeOut' }}
-      >
-        <div className="motif-glow motif-rotate" style={{ animationDuration: '60s', transform: 'translate3d(0,0,0)' }}>
-          <Image
-            src="/images/design-system/cincin_sambel.svg"
-            alt=""
-            width={500}
-            height={500}
-            className="w-full h-auto"
-            style={{ filter: MOTIF_FILTERS[tone], opacity: 0.65 }}
-            loading="lazy"
-          />
-        </div>
-      </motion.div>
-
       {/* Ring — bottom-right, rotating */}
       <motion.div
         aria-hidden

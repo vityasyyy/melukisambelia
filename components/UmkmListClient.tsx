@@ -6,13 +6,12 @@ import { UmkmCard } from '@/components/UmkmCard'
 import { EmptyState } from '@/components/EmptyState'
 import { PageHero } from '@/components/PageHero'
 import { SectionHeader } from '@/components/SectionHeader'
-import { StaggerContainer, StaggerItem } from '@/components/Stagger'
+import { AlternatingCardGrid } from '@/components/AlternatingCardGrid'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 import { MotifFloater } from '@/components/MotifFloater'
 
 import { petaLink } from '@/lib/links'
 import { cn } from '@/lib/utils'
-import { getAlternatingSpan } from '@/lib/utils'
 import type { Umkm } from '@/lib/schemas'
 
 const KATEGORI_OPTIONS = ['Semua', 'Kuliner', 'Jasa', 'Kerajinan', 'Pertanian', 'Perikanan', 'Lainnya'] as const
@@ -97,18 +96,13 @@ export function UmkmListClient({ items, pageSettings, emptyMessage }: { items: (
               ))}
             </div>
             <div role="region" aria-live="polite" aria-label={`Menampilkan ${filtered.length} UMKM`}>
-            <StaggerContainer
-              key={activeKategori}
-              stagger={0.08}
-              mode="mount"
-              className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr"
-            >
-              {filtered.map((u, i) => (
-                <StaggerItem key={u.slug} className={getAlternatingSpan(i, filtered.length)}>
-                  <UmkmCard item={u} onDetailClick={() => openModal(u)} />
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+            <AlternatingCardGrid
+              items={filtered}
+              renderItem={(u: unknown) => {
+                const item = u as Umkm & { slug: string }
+                return <UmkmCard item={item} onDetailClick={() => openModal(item)} />
+              }}
+            />
             </div>
           </>
         )}

@@ -5,12 +5,11 @@ import { DataCard } from '@/components/DataCard'
 import { EmptyState } from '@/components/EmptyState'
 import { PageHero } from '@/components/PageHero'
 import { SectionHeader } from '@/components/SectionHeader'
-import { StaggerContainer, StaggerItem } from '@/components/Stagger'
+import { AlternatingCardGrid } from '@/components/AlternatingCardGrid'
 import { MotifFloater } from '@/components/MotifFloater'
 
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 import { petaLink } from '@/lib/links'
-import { getAlternatingSpan, isAlternatingFeatured } from '@/lib/utils'
 import type { Pariwisata } from '@/lib/schemas'
 
 export function PariwisataListClient({ items, pageSettings, emptyMessage }: { items: (Pariwisata & { slug: string })[]; pageSettings: Record<string, string>; emptyMessage: string }) {
@@ -65,24 +64,26 @@ export function PariwisataListClient({ items, pageSettings, emptyMessage }: { it
           {items.length === 0 ? (
             <EmptyState message={emptyMessage} />
           ) : (
-            <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
-              {items.map((p, i) => (
-                <StaggerItem key={p.slug} className={getAlternatingSpan(i, items.length)}>
+            <AlternatingCardGrid
+              items={items}
+              renderItem={(p: unknown, _i: number, featured: boolean) => {
+                const item = p as Pariwisata & { slug: string }
+                return (
                   <DataCard
-                    image={p.cover}
-                    title={p.title}
+                    image={item.cover}
+                    title={item.title}
                     chips={[
-                      { label: p.category, tone: 'water' },
-                      { label: p.village, tone: 'green' },
+                      { label: item.category, tone: 'water' },
+                      { label: item.village, tone: 'green' },
                     ]}
-                    desc={p.shortDesc}
-                    onDetailClick={() => openModal(p)}
-                    featured={isAlternatingFeatured(i, items.length)}
+                    desc={item.shortDesc}
+                    onDetailClick={() => openModal(item)}
+                    featured={featured}
                     accent="#14A8E1"
                   />
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+                )
+              }}
+            />
           )}
           <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
         </div>

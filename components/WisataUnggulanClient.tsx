@@ -2,9 +2,8 @@
 
 import { useState } from 'react'
 import { DataCard } from '@/components/DataCard'
-import { StaggerContainer, StaggerItem } from '@/components/Stagger'
+import { AlternatingCardGrid } from '@/components/AlternatingCardGrid'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
-import { getAlternatingSpan, isAlternatingFeatured } from '@/lib/utils'
 import { petaLink } from '@/lib/links'
 import type { Pariwisata } from '@/lib/schemas'
 
@@ -36,24 +35,26 @@ export function WisataUnggulanClient({ items }: { items: (Pariwisata & { slug: s
 
   return (
     <>
-      <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
-        {items.map((p, i) => (
-          <StaggerItem key={p.slug} className={getAlternatingSpan(i, items.length)}>
+      <AlternatingCardGrid
+        items={items}
+        renderItem={(p: unknown, _i: number, featured: boolean) => {
+          const item = p as Pariwisata & { slug: string }
+          return (
             <DataCard
-              image={p.cover}
-              title={p.title}
+              image={item.cover}
+              title={item.title}
               chips={[
-                { label: p.category, tone: 'water' },
-                { label: p.village, tone: 'green' },
+                { label: item.category, tone: 'water' },
+                { label: item.village, tone: 'green' },
               ]}
-              desc={p.shortDesc}
-              onDetailClick={() => openModal(p)}
-              featured={isAlternatingFeatured(i, items.length)}
+              desc={item.shortDesc}
+              onDetailClick={() => openModal(item)}
+              featured={featured}
               accent="#14A8E1"
             />
-          </StaggerItem>
-        ))}
-      </StaggerContainer>
+          )
+        }}
+      />
       <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
     </>
   )

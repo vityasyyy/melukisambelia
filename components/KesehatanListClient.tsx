@@ -7,11 +7,11 @@ import { EmptyState } from '@/components/EmptyState'
 import { PageHero } from '@/components/PageHero'
 import { SectionHeader } from '@/components/SectionHeader'
 import { StaggerContainer, StaggerItem } from '@/components/Stagger'
+import { AlternatingCardGrid } from '@/components/AlternatingCardGrid'
 import { DetailModal, type DetailModalData } from '@/components/DetailModal'
 import { MotifFloater } from '@/components/MotifFloater'
 
 import { petaLink } from '@/lib/links'
-import { getAlternatingSpan, isAlternatingFeatured } from '@/lib/utils'
 import type { Kesehatan } from '@/lib/schemas'
 
 export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }: { items: (Kesehatan & { slug: string })[]; stats: { posyandu: number; puskesmas: number; cadres: number; stunting: number }; pageSettings: Record<string, string>; emptyMessage: string }) {
@@ -72,25 +72,27 @@ export function KesehatanListClient({ items, stats, pageSettings, emptyMessage }
           {items.length === 0 ? (
             <EmptyState message={emptyMessage} />
           ) : (
-            <StaggerContainer stagger={0.1} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
-              {items.map((k, i) => (
-                <StaggerItem key={k.slug} className={getAlternatingSpan(i, items.length)}>
+            <AlternatingCardGrid
+              items={items}
+              renderItem={(k: unknown, _i: number, featured: boolean) => {
+                const item = k as Kesehatan & { slug: string }
+                return (
                   <DataCard
-                    image={k.cover}
-                    title={k.facilityName}
+                    image={item.cover}
+                    title={item.facilityName}
                     chips={[
-                      { label: k.type, tone: 'olive' },
-                      { label: k.village, tone: 'green' },
-                      ...(k.stuntingProgram ? [{ label: 'Stunting', tone: 'terracotta' as const }] : []),
+                      { label: item.type, tone: 'olive' },
+                      { label: item.village, tone: 'green' },
+                      ...(item.stuntingProgram ? [{ label: 'Stunting', tone: 'terracotta' as const }] : []),
                     ]}
-                    desc={`Kader: ${k.cadresCount}`}
-                    onDetailClick={() => openModal(k)}
-                    featured={isAlternatingFeatured(i, items.length)}
+                    desc={`Kader: ${item.cadresCount}`}
+                    onDetailClick={() => openModal(item)}
+                    featured={featured}
                     accent="#68794A"
                   />
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+                )
+              }}
+            />
           )}
           <DetailModal open={open} onOpenChange={setOpen} data={modalData} />
         </div>
