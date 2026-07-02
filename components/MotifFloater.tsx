@@ -60,7 +60,7 @@ export function MotifFloater({
     >
       <div className={`relative w-full h-full motif-glow ${isFlower ? 'motif-rotate-reverse' : 'motif-rotate'}`} style={{ animationDuration: isFlower ? '50s' : '60s', transform: 'translate3d(0,0,0)' }}>
         {isFlower && (
-          <div className="relative motif-float" style={{ transform: 'translate3d(0,0,0)' }}>
+          <div className="relative w-full h-full motif-float" style={{ transform: 'translate3d(0,0,0)' }}>
             <Image
               src={`/images/design-system/${motif}.svg`}
               alt=""

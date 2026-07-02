@@ -139,8 +139,8 @@ export default function Beranda() {
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width: 640px) 80vw, 420px"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-brown-950/30 via-transparent to-transparent" />
-                      <h3 className="absolute bottom-3 left-4 right-4 z-10 font-beautique text-2xl text-white group-hover:text-gold-bright transition-colors" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}>{p.title}</h3>
+                      <div className="absolute inset-0 bg-gradient-to-t from-brown-950/70 via-brown-950/20 to-transparent" />
+                      <h3 className="absolute bottom-3 left-4 right-4 z-10 font-beautique text-2xl text-white group-hover:text-gold-bright transition-colors" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.8)' }}>{p.title}</h3>
                     </div>
                     {p.desc && (
                       <div className="px-5 pt-3 pb-4">
@@ -161,7 +161,7 @@ export default function Beranda() {
 
       {wisataUnggulan.length > 0 && (
         <section aria-labelledby="wisata-heading" className="relative bg-page">
-          <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <div className="relative mx-auto max-w-4xl overflow-hidden px-4 py-8 md:py-10">
             <MotifFloater motif="bunga_sambel" position="top-right" size="lg" color="terracotta" />
             <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" />
             <MotifFloater motif="bunga_sambel" position="center-left" size="sm" color="terracotta" />
@@ -233,7 +233,7 @@ export default function Beranda() {
       {umkmSpotlight.length > 0 && (
         <section aria-labelledby="umkm-heading" className="relative bg-cream-beige">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(240,172,109,0.06),transparent_70%)]" aria-hidden />
-          <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+          <div className="relative mx-auto max-w-4xl overflow-hidden px-4 py-8 md:py-10">
             <MotifFloater motif="bunga_sambel" position="bottom-right" size="lg" color="gold" />
             <MotifFloater motif="bunga_sambel" position="top-left" size="lg" color="terracotta" />
             <MotifFloater motif="bunga_sambel" position="center-right" size="sm" color="terracotta" />

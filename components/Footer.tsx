@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { Mail, ExternalLink } from 'lucide-react'
 import { getSettings, getFooter } from '@/lib/settings'
 
 export function Footer() {
@@ -23,7 +24,7 @@ export function Footer() {
               style={{ height: 'auto', width: 'auto' }}
             />
             <p className="mt-4 text-sm text-cream-light/85">{footer.tagline}</p>
-            <p className="text-sm text-cream-light/75">{s.contact.address}</p>
+            <p className="mt-2 text-sm text-cream-light/75">{s.contact.address}</p>
           </div>
           <nav aria-label="Navigasi footer">
             <h2 className="mb-4 font-beautique-condensed text-xs font-semibold uppercase tracking-[0.2em] text-goldSoft">Navigasi</h2>
@@ -41,29 +42,41 @@ export function Footer() {
             </ul>
           </nav>
           <div>
-            <h2 className="mb-4 font-beautique-condensed text-xs font-semibold uppercase tracking-[0.2em] text-goldSoft">Sosial</h2>
-            {s.socials.instagram && (
-              <p>
+            <h2 className="mb-4 font-beautique-condensed text-xs font-semibold uppercase tracking-[0.2em] text-goldSoft">Kontak & Sosial</h2>
+            <div className="space-y-3">
+              {s.socials.instagram && (
                 <a
                   href={`https://instagram.com/${s.socials.instagram}`}
-                  className="text-sm text-cream-light/85 transition-colors hover:text-goldSoft"
+                  className="flex items-center gap-2 text-sm text-cream-light/85 transition-colors hover:text-goldSoft"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
+                  <ExternalLink className="h-4 w-4" />
                   @{s.socials.instagram}
                 </a>
-              </p>
-            )}
-            {s.socials.tiktok && (
-              <p>
+              )}
+              {s.socials.tiktok && (
                 <a
                   href={`https://tiktok.com/@${s.socials.tiktok}`}
-                  className="text-sm text-cream-light/85 transition-colors hover:text-goldSoft"
+                  className="flex items-center gap-2 text-sm text-cream-light/85 transition-colors hover:text-goldSoft"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
+                  <ExternalLink className="h-4 w-4" />
                   @{s.socials.tiktok}
                 </a>
-              </p>
-            )}
-            <p className="mt-2 text-sm text-cream-light/75">{s.contact.email}</p>
-            <div className="mt-5 flex gap-3">
+              )}
+              {s.contact.email && (
+                <a
+                  href={`mailto:${s.contact.email}`}
+                  className="flex items-center gap-2 text-sm text-cream-light/85 transition-colors hover:text-goldSoft"
+                >
+                  <Mail className="h-4 w-4" />
+                  {s.contact.email}
+                </a>
+              )}
+            </div>
+            <div className="mt-5 flex items-center gap-3">
               <Image
                 src="/images/design-system/logo_kkn_ugm.svg"
                 alt="KKN-PPM UGM"

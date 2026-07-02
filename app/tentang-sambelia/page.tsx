@@ -107,11 +107,11 @@ export default function TentangSambeliaPage() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 640px) 80vw, 420px"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-brown-950/50 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brown-950/70 via-brown-950/20 to-transparent" />
                     <div aria-hidden className="absolute top-3 left-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-brown-950/60 font-beautique-condensed text-sm font-bold text-gold-bright ring-1 ring-white/15 backdrop-blur-sm">
                       {String(i + 1).padStart(2, '0')}
                     </div>
-                    <h3 className="absolute bottom-3 left-4 right-4 z-10 font-beautique text-2xl text-white group-hover:text-gold-bright transition-colors" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}>{d.name}</h3>
+                    <h3 className="absolute bottom-3 left-4 right-4 z-10 font-beautique text-2xl text-white group-hover:text-gold-bright transition-colors" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.8)' }}>{d.name}</h3>
                   </div>
                   <div className="p-4">
                     <p className="text-sm leading-relaxed text-ink/60">{d.description}</p>

@@ -40,9 +40,11 @@ export function PetaClient({
 }) {
   const searchParams = useSearchParams()
   const activeLayer = searchParams.get('layer') as MapLayer | null
+  const activeTab = searchParams.get('tab')
   const latParam = searchParams.get('lat')
   const lngParam = searchParams.get('lng')
   const dataRef = useRef<HTMLDivElement>(null)
+  const gisRef = useRef<HTMLDivElement>(null)
 
   const grouped = markers.reduce<Record<string, MarkerItem[]>>((acc, m) => {
     ;(acc[m.layer] ??= []).push(m)
@@ -56,10 +58,12 @@ export function PetaClient({
     : mapEmbedUrl
 
   useEffect(() => {
-    if (activeLayer || latParam) {
+    if (activeTab) {
+      gisRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    } else if (activeLayer || latParam) {
       dataRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
-  }, [activeLayer, latParam])
+  }, [activeTab, activeLayer, latParam])
 
   return (
     <>
@@ -123,7 +127,7 @@ export function PetaClient({
         )}
       </div>
 
-      <div className="mt-16">
+      <div ref={gisRef} className="mt-16 scroll-mt-20">
         <FadeIn>
           <h2 className="mb-6 font-beautique text-display-lg text-brown-900">{gisSectionTitle}</h2>
         </FadeIn>
@@ -133,10 +137,14 @@ export function PetaClient({
         {(Object.keys(GIS_CATEGORY_LABELS) as Array<keyof typeof GIS_CATEGORY_LABELS>).map((cat) => {
           const files = gisByCategory(cat)
           if (files.length === 0) return null
+          const isHighlighted = activeTab === cat
           return (
-            <div key={cat} className="mb-10">
+            <div key={cat} className="mb-10" id={`gis-${cat}`}>
               <FadeIn>
-                <h3 className="mb-4 font-beautique text-xl text-brown-900">{GIS_CATEGORY_LABELS[cat]}</h3>
+                <h3 className={`mb-4 font-beautique text-xl ${isHighlighted ? 'text-water-900' : 'text-brown-900'}`}>
+                  {GIS_CATEGORY_LABELS[cat]}
+                  {isHighlighted && <span className="ml-2 text-xs font-medium text-water-500">(aktif)</span>}
+                </h3>
               </FadeIn>
               <PetaSection files={files} />
             </div>

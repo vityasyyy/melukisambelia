@@ -47,7 +47,7 @@ export function IrigasiListClient({ items, stats, pageSettings, emptyMessage }: 
         tone="green"
       />
       <section className="relative bg-cream-beige/50">
-        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
+        <div className="relative mx-auto max-w-4xl overflow-hidden px-4 py-8 md:py-10">
           <MotifFloater motif="bunga_sambel" position="bottom-left" color="terracotta" size="lg" opacity={0.85} />
           <MotifFloater motif="bunga_sambel" position="top-right" color="gold" size="lg" opacity={0.85} />
           <MotifFloater motif="bunga_sambel" position="center-left" color="terracotta" size="sm" opacity={0.8} />

@@ -72,7 +72,7 @@ export default function LingkunganPage() {
       />
 
       <section className="relative bg-cream-beige/50">
-        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10 scroll-mt-20">
+        <div className="relative mx-auto max-w-4xl overflow-hidden px-4 py-8 md:py-10 scroll-mt-20">
           <MotifFloater motif="bunga_sambel" position="bottom-right" color="terracotta" size="lg" opacity={0.85} />
           <MotifFloater motif="bunga_sambel" position="top-left" color="gold" size="lg" opacity={0.85} />
           <MotifFloater motif="bunga_sambel" position="center-left" color="terracotta" size="sm" opacity={0.8} />

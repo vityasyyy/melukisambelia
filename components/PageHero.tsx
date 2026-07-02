@@ -91,7 +91,7 @@ export function PageHero({
             height={500}
             className="w-full h-auto"
             style={{ filter: MOTIF_FILTERS[tone], opacity: 0.35 }}
-            loading="lazy"
+            priority
           />
         </div>
       </motion.div>
