@@ -3,8 +3,8 @@ name: UMKM Pertanian Organik Sugian
 owner: Kelompok Tani Sugian
 kategori: Pertanian
 village: Sugian
-contact: ''
-cover: /images/content/sugian-group44.png
+contact: "123456756789"
+cover: /images/hero-placeholder.svg
 gallery: []
 lat: -8.35
 lng: 116.84
