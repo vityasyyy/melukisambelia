@@ -1,10 +1,10 @@
 ---
 name: Peyek Mangrove Sambelia
-owner: Muadz — UMKM Lokal
+owner: UMKM Lokal
 kategori: Kuliner
 village: Labuhan Pandan
-contact: ''
-cover: /images/content/scuba.png
+contact: "123456789"
+cover: /images/hero-placeholder.svg
 gallery: []
 lat: -8.34
 lng: 116.86
