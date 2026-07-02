@@ -46,7 +46,8 @@ export function IrigasiListClient({ items, stats, pageSettings, emptyMessage }: 
       />
       <section className="relative bg-cream-beige/50">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="bottom-left" color="olive" size="md" opacity={0.25} />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" color="olive" size="md" />
+          <MotifFloater motif="cincin_sambel" position="top-right" color="gold" size="sm" />
 
           <StaggerContainer stagger={0.06} className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
             <StaggerItem><StatCard label="Total Saluran" value={String(stats.total)} /></StaggerItem>

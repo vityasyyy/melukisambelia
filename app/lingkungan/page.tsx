@@ -42,7 +42,8 @@ export default function LingkunganPage() {
 
       <section className="relative bg-cream-beige/50">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10 scroll-mt-20">
-          <MotifFloater motif="bunga_sambel" position="bottom-right" color="olive" size="md" opacity={0.25} />
+          <MotifFloater motif="bunga_sambel" position="bottom-right" color="olive" size="md" />
+          <MotifFloater motif="cincin_sambel" position="top-left" color="olive" size="sm" />
 
           <FadeIn>
             <h2 className="mb-6 font-beautique text-display-lg text-brown-900">

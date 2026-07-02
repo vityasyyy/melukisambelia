@@ -51,7 +51,8 @@ export default function FestivalPage() {
 
       <section className="relative bg-page">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="gold" />
+          <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="gold" />
+          <MotifFloater motif="cincin_sambel" position="bottom-right" size="md" color="terracotta" />
 
           {events.length === 0 ? (
             <EmptyState message={empty.festival} />

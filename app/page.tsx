@@ -81,6 +81,7 @@ export default function Beranda() {
       <section id="tentang" aria-labelledby="tentang-heading" className="relative z-10 scroll-mt-16 overflow-hidden bg-page">
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
           <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="gold" />
+          <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="terracotta" />
 
           <FadeIn>
             <SectionHeader
@@ -114,6 +115,7 @@ export default function Beranda() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(240,172,109,0.06),transparent_70%)]" aria-hidden />
         <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
           <MotifFloater motif="bunga_sambel" position="bottom-left" size="sm" color="terracotta" />
+          <MotifFloater motif="cincin_sambel" position="top-right" size="sm" color="gold" />
 
           <FadeIn>
             <SectionHeader kicker={hi.jejakiKicker} title={hi.jejakiTitle} tone="gold" headingId="jejaki-heading" />
@@ -155,6 +157,7 @@ export default function Beranda() {
         <section aria-labelledby="wisata-heading" className="relative bg-page">
           <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
             <MotifFloater motif="bunga_sambel" position="top-right" size="md" color="water" />
+            <MotifFloater motif="cincin_sambel" position="bottom-left" size="sm" color="gold" />
 
             <FadeIn>
               <SectionHeader
@@ -184,6 +187,7 @@ export default function Beranda() {
         <section aria-labelledby="festival-heading" className="relative bg-terracotta-500/[0.08]">
           <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
             <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="gold" />
+            <MotifFloater motif="cincin_sambel" position="bottom-right" size="sm" color="terracotta" />
 
             <FadeIn>
               <SectionHeader
@@ -219,6 +223,7 @@ export default function Beranda() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(240,172,109,0.06),transparent_70%)]" aria-hidden />
           <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
             <MotifFloater motif="bunga_sambel" position="bottom-right" size="sm" color="gold" />
+            <MotifFloater motif="cincin_sambel" position="top-left" size="md" color="olive" />
 
             <FadeIn>
               <SectionHeader
