@@ -21,7 +21,7 @@ export function AlternatingCardGrid({
   const groups = buildGroups(items)
 
   return (
-    <div className={`flex flex-col gap-3 max-w-4xl mx-auto ${className}`}>
+    <div className={`flex flex-col gap-3 ${className}`}>
       {groups.map((group, gi) => {
         if (group.type === 'single') {
           return (

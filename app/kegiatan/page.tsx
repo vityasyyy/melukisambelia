@@ -32,13 +32,10 @@ export default function KegiatanPage() {
         tone="brown"
       />
 
-      <section className="relative bg-cream-beige/50">
-        <div className="relative mx-auto max-w-content overflow-hidden px-4 py-8 md:py-10">
-          <MotifFloater motif="bunga_sambel" position="bottom-right" color="terracotta" size="lg" opacity={0.85} />
-          <MotifFloater motif="bunga_sambel" position="top-left" color="gold" size="lg" opacity={0.85} />
-          <MotifFloater motif="bunga_sambel" position="center-right" color="terracotta" size="sm" opacity={0.8} />
-          <MotifFloater motif="bunga_sambel" position="top-right" color="gold" size="md" opacity={0.7} />
-          <MotifFloater motif="bunga_sambel" position="bottom-left" color="terracotta" size="md" opacity={0.7} />
+      <section className="relative overflow-hidden bg-cream-beige/50">
+          <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="gold" opacity={0.5} />
+          <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="brown" opacity={0.5} />
+        <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
 
           <FadeIn>
             <SectionHeader

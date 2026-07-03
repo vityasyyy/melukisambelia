@@ -309,7 +309,6 @@
     letter-spacing: 0.1em;
     border-width: 1px;
     border-style: solid;
-    font-family: var(--font-beautique-condensed), sans-serif;
   }
   .chip-water { background-color: color-mix(in srgb, var(--water-50) 40%, transparent); color: var(--water-900); border-color: color-mix(in srgb, var(--water-500) 25%, transparent); }
   .chip-green { background-color: color-mix(in srgb, var(--green-50) 40%, transparent); color: var(--green-900); border-color: color-mix(in srgb, var(--green-500) 25%, transparent); }

@@ -106,15 +106,14 @@ export function DetailModalClient({
             transition={{ duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="mx-auto w-full max-w-lg mt-auto sm:mt-0"
           >
-          <div className="rounded-2xl p-[1.5px] bg-gradient-to-br from-terracotta-500 via-gold-500 to-water-900 shadow-[0_24px_64px_-16px_rgba(15,8,5,0.5)]">
             <div
               ref={modalRef}
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
-              className="relative rounded-[14px] bg-page/95 backdrop-blur-sm overflow-hidden max-h-[90dvh] transition-transform ring-1 ring-tan-700/15"
+              className="relative bg-white rounded-2xl shadow-2xl overflow-hidden max-h-[90dvh] transition-transform border border-black/10"
             >
-              <DialogPrimitive.Close className="absolute right-3 top-3 z-[1102] flex h-10 w-10 items-center justify-center rounded-full bg-brown-950/40 text-white ring-1 ring-white/15 backdrop-blur-md transition-all hover:bg-brown-950/60 hover:scale-105" aria-label="Tutup dialog">
+              <DialogPrimitive.Close className="absolute right-3 top-3 z-[1102] flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-brown-950 backdrop-blur-sm border border-black/10 transition-all hover:bg-white hover:scale-105" aria-label="Tutup dialog">
                 <X className="h-4 w-4" />
                 <span className="sr-only">Tutup</span>
               </DialogPrimitive.Close>
@@ -125,18 +124,19 @@ export function DetailModalClient({
                   type="button"
                   onClick={() => lightboxImages.length > 0 && setLightboxOpen(true)}
                   className="relative aspect-[16/10] w-full overflow-hidden cursor-pointer block"
+                  data-lightbox-trigger
                 >
-                  <Image src={image} alt={title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 512px" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brown-950/80 via-brown-950/20 to-transparent" />
+                  <Image src={image} alt={title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 512px" priority />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
                     <DialogTitle className="font-beautique text-xl sm:text-2xl text-white break-words" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.7)' }}>{title}</DialogTitle>
                     {description && <DialogDescription className="mt-1 text-sm text-white/90 line-clamp-2" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}>{description}</DialogDescription>}
                   </div>
                 </button>
               ) : (
-                <div className="relative bg-gradient-to-r from-terracotta-500 to-gold-500 px-4 pt-12 pb-4 sm:px-6 sm:pt-14 sm:pb-6">
-                  <DialogTitle className="font-beautique text-xl sm:text-2xl text-white break-words">{title}</DialogTitle>
-                  {description && <DialogDescription className="mt-1 text-sm text-white/90">{description}</DialogDescription>}
+                <div className="px-4 pt-12 pb-4 sm:px-6 sm:pt-14 sm:pb-6">
+                  <DialogTitle className="font-beautique text-xl sm:text-2xl text-brown-900 break-words">{title}</DialogTitle>
+                  {description && <DialogDescription className="mt-1 text-sm text-ink/60">{description}</DialogDescription>}
                 </div>
               )}
 
@@ -148,7 +148,7 @@ export function DetailModalClient({
                 {body && (
                   <>
                     {chips && chips.length > 0 && <Separator className="my-4 bg-tan-700/15" />}
-                    <div className={cn('prose prose-sm max-w-none text-ink/80 prose-headings:text-brown-900 prose-headings:font-beautique prose-p:text-ink/70 break-words', !image && !chips?.length && 'mt-0', image && !chips?.length && 'mt-4')}>{body}</div>
+                    <div className={cn('prose prose-sm max-w-none text-ink/80 prose-headings:text-brown-900 prose-headings:font-semibold prose-p:text-ink/70 break-words', !image && !chips?.length && 'mt-0', image && !chips?.length && 'mt-4')}>{body}</div>
                   </>
                 )}
 
@@ -156,14 +156,14 @@ export function DetailModalClient({
                   <>
                     <Separator className="my-5 bg-tan-700/15" />
                     <div>
-                      <div className="mb-2 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] font-beautique-condensed text-brown-900">
+                      <div className="mb-2 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-brown-900">
                         <MapPin className="h-3.5 w-3.5" /> Lokasi
                       </div>
                       <a
                          href={mapsLink}
                          target="_blank"
                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-brown-950 shadow-lg transition-all hover:bg-cream-warm hover:shadow-xl hover:scale-[1.02]"
+                          className="inline-flex items-center gap-2 rounded-full bg-brown-950 px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:bg-brown-800 hover:shadow-xl hover:scale-[1.02]"
                        >
                          <MapPin className="h-4 w-4" />
                           Lihat di Google Maps
@@ -178,17 +178,16 @@ export function DetailModalClient({
                     <div className="flex justify-end">
                       <Link
                         href={href}
-                         className="rounded-full border-2 border-terracotta-500/50 bg-terracotta-500/10 backdrop-blur-sm px-5 py-2.5 text-sm font-semibold text-terracotta-500 transition-all hover:bg-terracotta-500/20 hover:border-terracotta-500/70 hover:scale-[1.02]"
-                      >
+                         className="rounded-full bg-terracotta-500 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-terracotta-700 hover:scale-[1.02]"
+                     >
                         {linkLabel ?? 'Lihat halaman lengkap →'}
-                      </Link>
+                     </Link>
                     </div>
                   </>
                 )}
               </div>
             </div>
             </div>
-          </div>
           </motion.div>
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>
