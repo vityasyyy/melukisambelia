@@ -33,7 +33,7 @@ export function AlternatingCardGrid({
 
         if (group.type === 'pair') {
           return (
-            <div key={gi} className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div key={gi} className="grid grid-cols-1 sm:grid-cols-2 gap-3 items-start">
               {group.items.map((item, i) => (
                 <div key={group.indices[i]}>
                   {renderItem(item, group.indices[i], group.featured[i])}
@@ -44,7 +44,7 @@ export function AlternatingCardGrid({
         }
 
         return (
-          <div key={gi} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div key={gi} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 items-start">
             {group.featuredFirst ? (
               <>
                 <div className="sm:col-span-2 lg:col-span-2">

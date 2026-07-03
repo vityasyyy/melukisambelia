@@ -96,8 +96,6 @@
   </style>
   <div id="cms-validation-badge">Memeriksa konten...</div>
   <script>
-    window.CMS_MANUAL_INIT = true
-
     function showNotification(message, type) {
       var existing = document.getElementById('cms-notification')
       if (existing) existing.remove()
@@ -118,11 +116,11 @@
         var data = await res.json()
         if (data.ok) {
           badge.className = 'ok'
-          badge.textContent = '✓ Konten valid'
+          badge.textContent = '\u2713 Konten valid'
         } else {
           var count = Object.values(data.collections).reduce(function(sum, c) { return sum + c.invalid.length }, 0)
           badge.className = 'error'
-          badge.textContent = '✗ ' + count + ' konten tidak valid'
+          badge.textContent = '\u2717 ' + count + ' konten tidak valid'
           badge.onclick = function() { window.open('/api/validate-content', '_blank') }
         }
       } catch (e) {
@@ -131,24 +129,29 @@
       }
     }
 
-    function initCMS() {
-      if (window.CMS) {
-        CMS.init()
-        CMS.registerEventListener({
-          name: 'postSave',
-          handler: function() {
-            showNotification('Konten berhasil disimpan! Perubahan akan muncul di website dalam beberapa menit.', 'success')
-            setTimeout(checkValidation, 3000)
-          }
-        })
-        checkValidation()
+    // Wait for DecapCMS to be fully loaded before registering event listeners.
+    // Using the 'ready' event prevents the removeChild DOM error.
+    function setupCMSHooks() {
+      try {
+        if (window.CMS) {
+          CMS.registerEventListener({
+            name: 'postSave',
+            handler: function() {
+              showNotification('Konten berhasil disimpan! Perubahan akan muncul di website dalam beberapa menit.', 'success')
+              setTimeout(checkValidation, 3000)
+            }
+          })
+        }
+      } catch (e) {
+        console.warn('[CMS] Failed to register event listener:', e)
       }
+      checkValidation()
     }
 
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', function() { setTimeout(initCMS, 500) })
+      document.addEventListener('DOMContentLoaded', function() { setTimeout(setupCMSHooks, 1000) })
     } else {
-      setTimeout(initCMS, 500)
+      setTimeout(setupCMSHooks, 1000)
     }
   </script>
 </body>
