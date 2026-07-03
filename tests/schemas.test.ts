@@ -193,13 +193,17 @@ describe('schemas reject bad data', () => {
     })
     expect(r.success).toBe(false)
   })
-  it('umkm rejects missing lat/lng', () => {
+  it('umkm defaults missing lat/lng', () => {
     const r = umkmSchema.safeParse({
       name: 'Test', owner: 'Test', kategori: 'Kuliner',
       village: 'Sugian', contact: '', cover: '/images/test.jpg',
       gallery: [], body: 'Test',
     })
-    expect(r.success).toBe(false)
+    expect(r.success).toBe(true)
+    if (r.success) {
+      expect(r.data.lat).toBe(-8.6)
+      expect(r.data.lng).toBe(116.5)
+    }
   })
   it('lingkungan rejects missing required fields', () => {
     const r = lingkunganSchema.safeParse({

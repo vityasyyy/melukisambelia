@@ -85,12 +85,13 @@ describe('getPageSettings', () => {
 })
 
 describe('getEmptyStates', () => {
-  it('returns all 11 empty state keys', () => {
+  it('returns all 12 empty state keys', () => {
     const e = getEmptyStates()
-    expect(Object.keys(e)).toHaveLength(11)
+    expect(Object.keys(e)).toHaveLength(12)
     expect(e.pariwisata).toBeTruthy()
     expect(e.petaDataEmpty).toBeTruthy()
     expect(e.airTanahDataEmpty).toBeTruthy()
+    expect(e.profilTim).toBeTruthy()
   })
 })
 
