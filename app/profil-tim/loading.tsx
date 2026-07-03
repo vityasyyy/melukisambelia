@@ -12,7 +12,14 @@ export default function Loading() {
       </div>
       <div className="mx-auto max-w-content px-4 py-8">
         <SectionHeader kicker="..." title="..." intro="" tone="gold" />
-        <div className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 mt-8">
+        <div className="mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <div key={i} className="glass-card animate-pulse h-28" />
+            ))}
+          </div>
+        </div>
+        <div className="mt-8 flex gap-4 overflow-x-auto pb-4 -mx-4 px-4">
           {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className="shrink-0 w-[280px] glass-card animate-pulse h-64" />
           ))}

@@ -5,7 +5,7 @@ import type { Umkm } from '@/lib/schemas'
 export function UmkmCard({ item, onDetailClick }: { item: Umkm & { slug: string }; onDetailClick?: () => void }) {
   return (
     <div
-      className="glass-card glass-accent-top group relative flex flex-col overflow-hidden"
+      className="glass-card glass-accent-top group relative flex h-full flex-col overflow-hidden"
       style={{ '--accent-color': '#E3795C' } as React.CSSProperties}
     >
       <button type="button" onClick={onDetailClick} className="flex min-w-0 w-full flex-1 flex-col text-left overflow-hidden">

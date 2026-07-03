@@ -1,7 +1,25 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Mail, ExternalLink } from 'lucide-react'
+import { Mail } from 'lucide-react'
 import { getSettings, getFooter } from '@/lib/settings'
+
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <circle cx="12" cy="12" r="5.5" />
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </svg>
+  )
+}
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.76a8.27 8.27 0 004.76 1.5V6.83a4.83 4.83 0 01-1-.14z" />
+    </svg>
+  )
+}
 
 export function Footer() {
   const s = getSettings()
@@ -52,7 +70,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <ExternalLink className="h-4 w-4" />
+                  <InstagramIcon className="h-4 w-4" />
                   @{s.socials.instagram}
                 </a>
               )}
@@ -63,7 +81,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <ExternalLink className="h-4 w-4" />
+                  <TikTokIcon className="h-4 w-4" />
                   @{s.socials.tiktok}
                 </a>
               )}
@@ -76,15 +94,6 @@ export function Footer() {
                   {s.contact.email}
                 </a>
               )}
-            </div>
-            <div className="mt-5 flex items-center gap-3">
-              <Image
-                src="/images/design-system/logo_kkn_ugm.svg"
-                alt="KKN-PPM UGM"
-                width={48}
-                height={48}
-                className="brightness-110"
-              />
             </div>
           </div>
         </div>

@@ -431,6 +431,8 @@ export const lingkunganSchema = z.object({
 
 export type Lingkungan = z.infer<typeof lingkunganSchema>
 
+export const divisiTeknisOptions = ['DDD', 'HumasPublikasi', 'Bendahara', 'Sekretaris', 'LokoTrans', 'Sponsorship'] as const
+
 export const profilTimSchema = z.object({
   name: z.string(),
   role: z.string().default(''),
@@ -441,6 +443,15 @@ export const profilTimSchema = z.object({
   year: z.string().default('2026'),
   photo: z.string().default('/images/hero-placeholder.svg'),
   description: z.string().default(''),
+  studyProgram: z.string().default(''),
+  divisiTeknis: z.preprocess(
+    (v) => typeof v === 'string' ? v.trim() : v,
+    z.enum(divisiTeknisOptions)
+  ),
+  subunit: z.string().default(''),
+  isKormanit: z.preprocess((v) => v === true || v === 'true', z.boolean().default(false)),
+  isKormaSHE: z.preprocess((v) => v === true || v === 'true', z.boolean().default(false)),
+  isDosen: z.preprocess((v) => v === true || v === 'true', z.boolean().default(false)),
   order: z.number().int().default(0),
 })
 
