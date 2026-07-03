@@ -318,6 +318,14 @@
   .chip-olive { background-color: color-mix(in srgb, var(--olive) 10%, transparent); color: var(--olive-dark); border-color: color-mix(in srgb, var(--olive) 25%, transparent); }
   .chip-brown { background-color: color-mix(in srgb, var(--brown-700) 10%, transparent); color: var(--brown-900); border-color: color-mix(in srgb, var(--brown-700) 25%, transparent); }
 
+  /* Scroll snap for section-by-section browsing */
+  .snap-y-proximity {
+    scroll-snap-type: y proximity;
+  }
+  .snap-start {
+    scroll-snap-align: start;
+  }
+
   /* Glass card system — Woven Sambelia */
   .glass-card {
     background: rgba(255, 255, 255, 0.70);

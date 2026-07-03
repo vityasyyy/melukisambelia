@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { AlternatingCardGrid } from '@/components/AlternatingCardGrid'
 import { MapLinkBadge } from '@/components/MapLinkBadge'
 import { GIS_CATEGORY_LABELS } from '@/lib/gis-manifest'
 
@@ -110,41 +109,40 @@ type GisFile = {
 }
 
 export function GisCardGrid({ items }: { items: GisFile[] }) {
+  if (items.length === 0) return null
+
   return (
-    <AlternatingCardGrid
-      items={items}
-      renderItem={(it: unknown, _i: number, featured: boolean) => {
-        const f = it as GisFile
-        return (
-          <Link
-            href="/peta?tab=vegetasi"
-            className="glass-card glass-accent-top group overflow-hidden"
-            style={{ '--accent-color': '#99BA57' } as React.CSSProperties}
-          >
-            <div className="relative aspect-video overflow-hidden rounded-t-2xl bg-white">
-              {f.type === 'image' && (
-                <Image
-                  src={f.url}
-                  alt={f.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes={featured ? '(max-width: 1024px) 100vw, 60vw' : '(max-width: 640px) 100vw, 33vw'}
-                  unoptimized
-                />
-              )}
-              {f.type !== 'image' && (
-                <div className="absolute inset-0 flex items-center justify-center text-green-900">
-                  <span className="text-sm font-medium">{GIS_CATEGORY_LABELS[f.category]}</span>
-                </div>
-              )}
-            </div>
-            <div className="p-4">
-              <h3 className="font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{f.name}</h3>
-              {f.description && <p className="mt-1.5 text-sm leading-relaxed text-ink/60">{f.description}</p>}
-            </div>
-          </Link>
-        )
-      }}
-    />
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {items.map((f) => (
+        <Link
+          key={`${f.category}-${f.name}`}
+          href="/peta?tab=vegetasi"
+          className="glass-card glass-accent-top group overflow-hidden"
+          style={{ '--accent-color': '#99BA57' } as React.CSSProperties}
+        >
+          <div className="relative aspect-video overflow-hidden rounded-t-2xl bg-white">
+            {f.type === 'image' && (
+              <Image
+                src={f.url}
+                alt={f.name}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                unoptimized
+              />
+            )}
+            {f.type !== 'image' && (
+              <div className="absolute inset-0 flex items-center justify-center text-green-900">
+                <span className="text-sm font-medium">{GIS_CATEGORY_LABELS[f.category]}</span>
+              </div>
+            )}
+          </div>
+          <div className="p-4">
+            <h3 className="font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{f.name}</h3>
+            {f.description && <p className="mt-1.5 text-sm leading-relaxed text-ink/60">{f.description}</p>}
+          </div>
+        </Link>
+      ))}
+    </div>
   )
 }
