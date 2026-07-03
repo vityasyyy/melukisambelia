@@ -85,7 +85,7 @@ export function FestivalTimeline({ events }: { events: (Festival & { slug: strin
                         <span className="font-beautique-condensed text-[10px] tracking-[0.2em] uppercase text-terracotta-500">
                           {String(i + 1).padStart(2, '0')}
                         </span>
-                        <h3 className="mt-0.5 font-beautique text-lg text-brown-900 group-hover/card:text-terracotta-500 transition-colors">{e.eventName}</h3>
+                        <h3 className="mt-0.5 font-semibold text-lg text-brown-900 group-hover/card:text-terracotta-500 transition-colors">{e.eventName}</h3>
                         <p className="mt-1 font-beautique-condensed text-xs tracking-wide text-ink/60">{e.schedule} · {e.venue}</p>
                         <p className="mt-2 text-sm text-ink/60 leading-relaxed line-clamp-2">{e.description}</p>
                       </div>

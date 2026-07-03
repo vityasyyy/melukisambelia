@@ -63,7 +63,7 @@ export default function TentangSambeliaPage() {
             ))}
           </StaggerContainer>
           <div className="group glass-card glass-accent-left mt-6 p-5" style={{ '--accent-color': '#99BA57' } as React.CSSProperties}>
-            <h3 className="mb-2 font-beautique text-lg text-brown-900">Letak Geografis</h3>
+            <h3 className="mb-2 font-semibold text-lg text-brown-900">Letak Geografis</h3>
             <p className="text-sm leading-relaxed text-ink/60">
               {tentang.geographyProse}
             </p>
@@ -137,7 +137,7 @@ export default function TentangSambeliaPage() {
             {tentang.potensiDesa.map((p) => (
               <StaggerItem key={p.title}>
                   <div className="glass-card glass-accent-top group h-full p-6" style={{ '--accent-color': '#E3795C' } as React.CSSProperties}>
-                    <h3 className="font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{p.title}</h3>
+                    <h3 className="font-semibold text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{p.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-ink/60">
                       {p.description}
                     </p>

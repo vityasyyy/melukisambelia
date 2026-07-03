@@ -21,7 +21,7 @@ export function AlternatingCardGrid({
   const groups = buildGroups(items)
 
   return (
-    <div className={`flex flex-col gap-3 ${className}`}>
+    <div className={`flex flex-col gap-3 max-w-4xl mx-auto ${className}`}>
       {groups.map((group, gi) => {
         if (group.type === 'single') {
           return (
@@ -44,13 +44,13 @@ export function AlternatingCardGrid({
         }
 
         return (
-          <div key={gi} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div key={gi} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {group.featuredFirst ? (
               <>
-                <div className="sm:col-span-2 lg:col-span-3">
+                <div className="sm:col-span-2 lg:col-span-2">
                   {renderItem(group.featured, group.featuredIndex, true)}
                 </div>
-                <div className="sm:col-span-2 lg:col-span-2 flex flex-col gap-3">
+                <div className="sm:col-span-2 lg:col-span-1 flex flex-col gap-3">
                   {group.smalls.map((s) => (
                     <div key={s.index} className="flex-1 min-h-0">
                       {renderItem(s.item, s.index, false)}
@@ -60,14 +60,14 @@ export function AlternatingCardGrid({
               </>
             ) : (
               <>
-                <div className="sm:col-span-2 lg:col-span-2 flex flex-col gap-3">
+                <div className="sm:col-span-2 lg:col-span-1 flex flex-col gap-3">
                   {group.smalls.map((s) => (
                     <div key={s.index} className="flex-1 min-h-0">
                       {renderItem(s.item, s.index, false)}
                     </div>
                   ))}
                 </div>
-                <div className="sm:col-span-2 lg:col-span-3">
+                <div className="sm:col-span-2 lg:col-span-2">
                   {renderItem(group.featured, group.featuredIndex, true)}
                 </div>
               </>

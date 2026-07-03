@@ -113,7 +113,7 @@ export default function LingkunganPage() {
           <section className="relative overflow-hidden bg-page">
               <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="water" opacity={0.5} />
               <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" opacity={0.5} />
-            <div className="mx-auto max-w-4xl px-4 py-8 md:py-10">
+            <div className="mx-auto max-w-content px-4 py-8 md:py-10">
               <FadeIn>
                 <h2 className="mb-6 font-beautique text-display-lg text-brown-900">Peta Tematik GIS</h2>
               </FadeIn>

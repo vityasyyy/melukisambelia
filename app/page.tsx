@@ -74,12 +74,11 @@ export default function Beranda() {
 
   return (
     <>
-      <section className="relative z-0 -mt-[63px] flex h-[100dvh] min-h-[600px] items-center justify-center overflow-hidden text-center">
+      <section className="sticky top-0 z-0 -mt-[63px] flex h-[100dvh] min-h-[600px] items-center justify-center overflow-hidden text-center">
         <HeroAnimation src={s.heroImage} tagline={s.heroTagline} />
       </section>
 
-      <div className="snap-y-proximity">
-      <section id="tentang" aria-labelledby="tentang-heading" className="relative z-10 scroll-mt-16 overflow-hidden bg-page snap-start">
+      <section id="tentang" aria-labelledby="tentang-heading" className="relative z-10 scroll-mt-16 overflow-hidden bg-page">
           <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="terracotta" opacity={0.5} />
           <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="olive" opacity={0.5} />
         <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
@@ -110,9 +109,9 @@ export default function Beranda() {
         </div>
       </section>
 
-      <MotifDivider />
+      <MotifDivider className="bg-page" />
 
-      <section aria-labelledby="jejaki-heading" className="relative overflow-hidden bg-cream-beige snap-start">
+      <section aria-labelledby="jejaki-heading" className="relative overflow-hidden bg-cream-beige">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(240,172,109,0.06),transparent_70%)]" aria-hidden />
           <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="gold" opacity={0.5} />
           <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="water" opacity={0.5} />
@@ -152,10 +151,10 @@ export default function Beranda() {
         </div>
       </section>
 
-      <MotifDivider />
+      <MotifDivider className="bg-cream-beige" />
 
       {wisataUnggulan.length > 0 && (
-        <section aria-labelledby="wisata-heading" className="relative overflow-hidden bg-page snap-start">
+        <section aria-labelledby="wisata-heading" className="relative overflow-hidden bg-page">
             <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="water" opacity={0.5} />
             <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" opacity={0.5} />
           <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
@@ -182,10 +181,10 @@ export default function Beranda() {
         </section>
       )}
 
-      <MotifDivider />
+      <MotifDivider className="bg-page" />
 
       {festival.length > 0 && (
-        <section aria-labelledby="festival-heading" className="relative overflow-hidden bg-terracotta-500/[0.08] snap-start">
+        <section aria-labelledby="festival-heading" className="relative overflow-hidden" style={{ backgroundColor: '#FEF5F1' }}>
             <MotifFloater motif="bunga_sambel" position="top-right" size="sm" color="terracotta" opacity={0.5} />
             <MotifFloater motif="bunga_sambel" position="bottom-left" size="md" color="gold" opacity={0.5} />
           <div className="relative mx-auto max-w-content px-4 py-8 md:py-10">
@@ -217,10 +216,10 @@ export default function Beranda() {
         </section>
       )}
 
-      <MotifDivider />
+      <MotifDivider className="bg-[#FEF5F1]" />
 
       {umkmSpotlight.length > 0 && (
-        <section aria-labelledby="umkm-heading" className="relative overflow-hidden bg-cream-beige snap-start">
+        <section aria-labelledby="umkm-heading" className="relative overflow-hidden bg-cream-beige">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(240,172,109,0.06),transparent_70%)]" aria-hidden />
             <MotifFloater motif="bunga_sambel" position="top-left" size="md" color="terracotta" opacity={0.5} />
             <MotifFloater motif="bunga_sambel" position="bottom-right" size="sm" color="gold" opacity={0.5} />
@@ -254,14 +253,13 @@ export default function Beranda() {
         </section>
       )}
 
-      <MotifDivider />
+      <MotifDivider className="bg-cream-beige" />
 
-      <section aria-label="Statistik kegiatan" className="relative overflow-hidden bg-gold-50/40 snap-start">
+      <section aria-label="Statistik kegiatan" className="relative overflow-hidden" style={{ backgroundColor: '#FFF4D4' }}>
           <MotifFloater motif="bunga_sambel" position="top-left" size="sm" color="gold" opacity={0.5} />
           <MotifFloater motif="bunga_sambel" position="bottom-right" size="md" color="terracotta" opacity={0.5} />
         <KegiatanStats />
       </section>
-      </div>
     </>
   )
 }

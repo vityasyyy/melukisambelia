@@ -54,7 +54,7 @@ export function AnalysisList({ items }: { items: LingkunganItem[] }) {
             <span className="inline-block rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-900">
               {item.category}
             </span>
-            <h3 className="mt-1 font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">
+            <h3 className="mt-1 font-semibold text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">
               {item.title}
             </h3>
             <p className="mt-1 text-sm leading-relaxed text-ink/60 line-clamp-2">{item.description}</p>
@@ -87,7 +87,7 @@ export function HubSectionList({ sections }: { sections: HubSection[] }) {
           style={{ '--accent-color': TONE_ACCENT[section.tone] } as React.CSSProperties}
         >
           <Link href={section.href} className="absolute inset-0 z-10" aria-label={section.title} />
-          <h3 className="font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">
+          <h3 className="font-semibold text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">
             {section.title}
           </h3>
           <p className="text-sm leading-relaxed text-ink/60">{section.description}</p>
@@ -138,7 +138,7 @@ export function GisCardGrid({ items }: { items: GisFile[] }) {
             )}
           </div>
           <div className="p-4">
-            <h3 className="font-beautique text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{f.name}</h3>
+            <h3 className="font-semibold text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{f.name}</h3>
             {f.description && <p className="mt-1.5 text-sm leading-relaxed text-ink/60">{f.description}</p>}
           </div>
         </Link>
