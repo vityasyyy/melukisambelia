@@ -3,7 +3,7 @@ name: PASAR KEREN
 owner: MAS HAFIZ
 kategori: Kuliner
 village: Sugian
-contact: "Fidel WhatsApp: 0812098198273120983"
+contact: Fidel WhatsApp: 0812098198273120983
 cover: /images/hero-placeholder.svg
 lat: -8.39215432234944
 lng: 1167227583546647
