@@ -47,7 +47,7 @@ const SCHEMAS: SchemaMap = {
   desa: { schema: desaSchema, ext: 'md' },
   tentang: { schema: tentangSchema, ext: 'md' },
   lingkungan: { schema: lingkunganSchema, ext: 'md' },
-  profilTim: { schema: profilTimSchema, ext: 'md' },
+  profilTim: { schema: profilTimSchema, ext: 'md', dir: 'profil-tim' },
 }
 
 export type CollectionName = keyof SchemaMap
