@@ -1466,9 +1466,41 @@ collections:
     format: "yaml-frontmatter"
     fields:
       - { label: "Nama", name: "name", widget: "string" }
-      - { label: "Peran", name: "role", widget: "string", required: false, hint: "Jabatan atau divisi" }
-      - { label: "Klaster", name: "cluster", widget: "select", options: ["Saintek", "Soshum", "Agro", "Medika"] }
-      - { label: "Tahun", name: "year", widget: "string", default: "2026" }
+      - { label: "Peran", name: "role", widget: "string", required: false, hint: "Jabatan atau divisi, contoh: Kormanit, KormaSHE, Bidang DDD" }
       - { label: "Foto", name: "photo", widget: "image", required: false }
+      - { label: "Instagram", name: "instagram", widget: "string", required: false, hint: "Username Instagram tanpa @, contoh: melukis.sambelia" }
+      - { label: "Program Studi", name: "studyProgram", widget: "string", required: false, hint: "Program studi di UGM" }
+      - label: "Klaster"
+        name: "cluster"
+        widget: "select"
+        options: ["Saintek", "Soshum", "Agro", "Medika"]
+      - label: "Divisi Teknis"
+        name: "divisiTeknis"
+        widget: "select"
+        required: false
+        options: ["DDD", "HumasPublikasi", "Bendahara", "Sekretaris", "LokoTrans", "Sponsorship"]
+        hint: "Divisi teknis KKN"
+      - label: "Subunit (Kelurahan)"
+        name: "subunit"
+        widget: "select"
+        required: false
+        options: ["Obel-Obel", "Dara Kunci", "Belanting", "Sambelia", "Madayin", "Senanggalih", "Labuhan Pandan", "Sugian", "Padak Guar", "Dadap", "Paok Motong"]
+        hint: "Kelurahan tempat bertugas"
+      - label: "Kormanit"
+        name: "isKormanit"
+        widget: "boolean"
+        default: false
+        hint: "Centang jika anggota ini adalah Koordinator Mahasiswa"
+      - label: "KormaSHE"
+        name: "isKormaSHE"
+        widget: "boolean"
+        default: false
+        hint: "Centang jika anggota ini adalah Koordinator Safety Health Environment"
+      - label: "Dosen Pembimbing"
+        name: "isDosen"
+        widget: "boolean"
+        default: false
+        hint: "Centang jika ini adalah Dosen Pembimbing Lapangan"
+      - { label: "Tahun", name: "year", widget: "string", default: "2026" }
       - { label: "Deskripsi", name: "description", widget: "text", required: false }
       - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }

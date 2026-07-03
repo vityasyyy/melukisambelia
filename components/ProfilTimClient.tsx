@@ -120,15 +120,15 @@ export function ProfilTimClient({
               )}
 
               <div className="mt-8">
-                <div className="flex items-center gap-2 mb-4">
+                <div className="inline-flex items-center rounded-full bg-tan-700/10 p-1 mb-6">
                   <button
                     type="button"
                     onClick={() => setViewMode('kluster')}
                     className={cn(
-                      'px-4 py-2 rounded-full text-sm font-semibold transition-colors',
+                      'px-5 py-2 rounded-full text-sm font-semibold transition-all',
                       viewMode === 'kluster'
-                        ? 'bg-gold-bright text-brown-950 shadow-sm'
-                        : 'bg-tan-700/15 text-ink/60 hover:text-ink'
+                        ? 'bg-gold-bright text-brown-950 shadow-md'
+                        : 'text-ink/50 hover:text-ink'
                     )}
                   >
                     Kluster
@@ -137,10 +137,10 @@ export function ProfilTimClient({
                     type="button"
                     onClick={() => setViewMode('subunit')}
                     className={cn(
-                      'px-4 py-2 rounded-full text-sm font-semibold transition-colors',
+                      'px-5 py-2 rounded-full text-sm font-semibold transition-all',
                       viewMode === 'subunit'
-                        ? 'bg-gold-bright text-brown-950 shadow-sm'
-                        : 'bg-tan-700/15 text-ink/60 hover:text-ink'
+                        ? 'bg-gold-bright text-brown-950 shadow-md'
+                        : 'text-ink/50 hover:text-ink'
                     )}
                   >
                     Subunit
@@ -237,6 +237,28 @@ export function ProfilTimClient({
                           <div>
                             <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-ink/50">Program Studi</p>
                             <p className="mt-1 text-sm text-ink/80">{selectedMember.studyProgram}</p>
+                          </div>
+                        </>
+                      )}
+
+                      {selectedMember.instagram && (
+                        <>
+                          <Separator className="my-4 bg-tan-700/15" />
+                          <div>
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-ink/50">Instagram</p>
+                            <a
+                              href={`https://instagram.com/${selectedMember.instagram}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="mt-1 inline-flex items-center gap-1.5 text-sm text-terracotta-500 hover:text-terracotta-700 transition-colors"
+                            >
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <circle cx="12" cy="12" r="5.5" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                              </svg>
+                              @{selectedMember.instagram}
+                            </a>
                           </div>
                         </>
                       )}
@@ -357,14 +379,11 @@ function KlusterView({
             >
               {CLUSTER_LABELS[cluster]}
             </h3>
-            <div className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-4 -mx-4 px-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {clusterMembers.map((m) => (
-                <div key={m.slug} className="snap-center shrink-0 w-[75vw] sm:w-[280px]">
-                  <MemberCard m={m} accent={CLUSTER_ACCENTS[cluster]} onClick={() => openModal(m)} />
-                </div>
+                <MemberCard key={m.slug} m={m} accent={CLUSTER_ACCENTS[cluster]} onClick={() => openModal(m)} />
               ))}
             </div>
-            <p className="mt-2 text-xs font-beautique-condensed uppercase tracking-[0.15em] text-ink/50">Geser horizontal untuk menjelajah →</p>
           </div>
         )
       })}

@@ -444,9 +444,10 @@ export const profilTimSchema = z.object({
   photo: z.string().default('/images/hero-placeholder.svg'),
   description: z.string().default(''),
   studyProgram: z.string().default(''),
+  instagram: z.string().default(''),
   divisiTeknis: z.preprocess(
     (v) => typeof v === 'string' ? v.trim() : v,
-    z.enum(divisiTeknisOptions)
+    z.enum([...divisiTeknisOptions, ''])
   ),
   subunit: z.string().default(''),
   isKormanit: z.preprocess((v) => v === true || v === 'true', z.boolean().default(false)),

@@ -8,8 +8,9 @@ description: Contoh deskripsi anggota tim KKN-PPM UGM Melukis Sambelia.
 studyProgram: Teknik Informatika
 divisiTeknis: HumasPublikasi
 subunit: Sugian
-isKormanit: true
+isKormanit: false
 isKormaSHE: false
 isDosen: false
-order: 0
+instagram: contoh.sambelia
+order: 99
 ---
