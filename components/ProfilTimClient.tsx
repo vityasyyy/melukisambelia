@@ -194,30 +194,27 @@ export function ProfilTimClient({
                   </DialogPrimitive.Close>
 
                   <div className="overflow-y-auto overflow-x-hidden flex-1 scrollbar-none">
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-gold-700 to-terracotta-700">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="relative h-32 w-32 sm:h-40 sm:w-40 overflow-hidden rounded-full ring-4 ring-white/30">
-                          <Image
-                            src={selectedMember.photo || '/images/hero-placeholder.svg'}
-                            alt={selectedMember.name}
-                            fill
-                            className="object-cover"
-                            sizes="160px"
-                          />
-                        </div>
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                        <DialogTitle className="font-beautique text-xl sm:text-2xl text-white break-words" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.7)' }}>
-                          {selectedMember.name}
-                        </DialogTitle>
-                        {selectedMember.role && (
-                          <DialogDescription className="mt-1 text-sm text-white/90" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}>
-                            {selectedMember.role}
-                          </DialogDescription>
-                        )}
-                      </div>
-                    </div>
+                    <div className="relative aspect-[16/10] w-full overflow-hidden">
+                       <Image
+                         src={selectedMember.photo || '/images/hero-placeholder.svg'}
+                         alt={selectedMember.name}
+                         fill
+                         className="object-cover"
+                         sizes="(max-width: 640px) 100vw, 560px"
+                         priority
+                       />
+                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                       <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                         <DialogTitle className="font-beautique text-xl sm:text-2xl text-white break-words" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.8)' }}>
+                           {selectedMember.name}
+                         </DialogTitle>
+                         {selectedMember.role && (
+                           <DialogDescription className="mt-1 text-sm text-white/90" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.7)' }}>
+                             {selectedMember.role}
+                           </DialogDescription>
+                         )}
+                       </div>
+                     </div>
 
                     <div className="p-4 sm:p-6">
                       <ChipRow

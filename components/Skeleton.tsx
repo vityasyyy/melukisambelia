@@ -16,15 +16,19 @@ export function HeroSkeleton() {
 
 export function CardSkeleton() {
   return (
-    <div className="rounded-2xl border border-tan-700/20 bg-cream-beige/50 overflow-hidden">
-      <div className="animate-pulse aspect-video w-full bg-cream-beige" />
-      <div className="p-5 space-y-3">
+    <div className="glass-card glass-accent-top overflow-hidden" style={{ '--accent-color': '#F0AC6D' } as React.CSSProperties}>
+      <div className="relative aspect-video w-full animate-pulse bg-cream-beige" />
+    </div>
+  )
+}
+
+export function PetaCardSkeleton() {
+  return (
+    <div className="glass-card glass-accent-top overflow-hidden" style={{ '--accent-color': '#F0AC6D' } as React.CSSProperties}>
+      <div className="aspect-[4/3] w-full animate-pulse bg-cream-beige" />
+      <div className="p-4 space-y-2">
         <div className="animate-pulse h-5 w-3/4 rounded bg-cream-beige" />
-        <div className="animate-pulse h-4 w-1/2 rounded bg-cream-beige" />
-        <div className="flex gap-2">
-          <div className="animate-pulse h-5 w-16 rounded-full bg-cream-beige" />
-          <div className="animate-pulse h-5 w-20 rounded-full bg-cream-beige" />
-        </div>
+        <div className="animate-pulse h-4 w-full rounded bg-cream-beige" />
       </div>
     </div>
   )

@@ -124,8 +124,8 @@ export default function Beranda() {
             {previews.map((p, i) => (
               <div key={p.href} className="snap-center shrink-0 w-[80vw] sm:w-[420px]">
                 <a href={p.href} className="group block h-full">
-                  <div className="glass-card glass-accent-left relative overflow-hidden h-full" style={{ '--accent-color': p.accent } as React.CSSProperties}>
-                    <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl">
+                  <div className="glass-card glass-accent-left group h-full flex flex-col overflow-hidden" style={{ '--accent-color': p.accent } as React.CSSProperties}>
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-t-2xl">
                       <Image
                         src={p.image}
                         alt={p.title}
@@ -133,15 +133,14 @@ export default function Beranda() {
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width: 640px) 80vw, 420px"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-brown-950/70 via-brown-950/20 to-transparent" />
-                      <h3 className="absolute bottom-3 left-4 right-4 z-10 font-beautique text-2xl text-white group-hover:text-gold-bright transition-colors" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.8)' }}>{p.title}</h3>
-                    </div>
-                    {p.desc && (
-                      <div className="px-5 pt-3 pb-4">
-                        <span className="font-beautique-condensed text-[10px] tracking-[0.2em] uppercase text-ink/40">{String(i + 1).padStart(2, '0')}</span>
-                        <p className="mt-1 text-sm leading-relaxed text-ink/60 line-clamp-2">{p.desc}</p>
+                      <div aria-hidden className="absolute top-3 left-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-brown-950/60 font-beautique-condensed text-sm font-bold text-gold-bright ring-1 ring-white/15 backdrop-blur-sm">
+                        {String(i + 1).padStart(2, '0')}
                       </div>
-                    )}
+                    </div>
+                    <div className="min-w-0 flex-1 p-4">
+                      <h3 className="truncate font-semibold text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{p.title}</h3>
+                      {p.desc && <p className="mt-1 text-sm text-ink/60 leading-relaxed line-clamp-2">{p.desc}</p>}
+                    </div>
                   </div>
                 </a>
               </div>
