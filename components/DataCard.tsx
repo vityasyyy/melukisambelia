@@ -43,15 +43,15 @@ export function DataCard({
 
   return (
     <div
-      className="glass-card glass-accent-top group relative flex flex-col overflow-hidden"
+      className="glass-card glass-accent-top group relative h-full flex flex-col overflow-hidden"
       style={{ '--accent-color': accent } as React.CSSProperties}
     >
       {onDetailClick ? (
-        <button type="button" onClick={onDetailClick} className="block min-w-0 h-full w-full text-left">
+        <button type="button" onClick={onDetailClick} className="flex min-w-0 h-full w-full flex-col text-left">
           {inner}
         </button>
       ) : (
-        <Link href={href ?? '#'} className="block min-w-0 h-full">
+        <Link href={href ?? '#'} className="flex min-w-0 h-full flex-col">
           {inner}
         </Link>
       )}
