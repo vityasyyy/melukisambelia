@@ -5,7 +5,7 @@ kategori: Kuliner
 village: Sugian
 contact: Fidel WhatsApp 0812098198273120983
 cover: /images/hero-placeholder.svg
-lat: -8.39215432234944
+lat: -8.4
 lng: 116.5
 googleMapsUrl: https://maps.app.goo.gl/q6tnvFcKQ1XyG4wPA
 ---
