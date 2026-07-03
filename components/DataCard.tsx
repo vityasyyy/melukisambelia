@@ -43,7 +43,7 @@ export function DataCard({
 
   return (
     <div
-      className="glass-card glass-accent-top group relative h-full flex flex-col overflow-hidden"
+      className="glass-card glass-accent-top group relative flex flex-col overflow-hidden"
       style={{ '--accent-color': accent } as React.CSSProperties}
     >
       {onDetailClick ? (
