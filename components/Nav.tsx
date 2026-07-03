@@ -25,6 +25,7 @@ const NAV_GROUPS: NavGroup[] = [
     items: [
       { href: '/tentang-sambelia', label: 'Tentang Sambelia' },
       { href: '/kegiatan', label: 'Kegiatan' },
+      { href: '/profil-tim', label: 'Profil Tim' },
     ],
   },
   {

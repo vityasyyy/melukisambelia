@@ -18,7 +18,15 @@ export async function GET(request: NextRequest) {
     const state = searchParams.get('state') || crypto.randomUUID()
 
     const params = new URLSearchParams({ client_id: CLIENT_ID, scope, state })
-    return NextResponse.redirect(`${GITHUB_AUTHORIZE_URL}?${params.toString()}`)
+    const response = NextResponse.redirect(`${GITHUB_AUTHORIZE_URL}?${params.toString()}`)
+    response.cookies.set('oauth_state', state, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'lax',
+      maxAge: 600,
+      path: '/api/auth',
+    })
+    return response
   }
 
   // Phase 2: GitHub redirected back with a code — exchange it for a token
@@ -27,6 +35,19 @@ export async function GET(request: NextRequest) {
 
   if (!CLIENT_ID || !CLIENT_SECRET) {
     return NextResponse.json({ error: 'OAuth env vars not set' }, { status: 500 })
+  }
+
+  const returnedState = searchParams.get('state')
+  const cookieState = request.cookies.get('oauth_state')?.value
+  if (!returnedState || !cookieState || returnedState !== cookieState) {
+    const errorHtml = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Auth Error</title></head><body><script>
+(function() {
+  var msg = 'authorization:github:error:' + JSON.stringify({ message: 'CSRF check failed' });
+  if (window.opener) { window.opener.postMessage(msg, '*'); }
+  window.close();
+})();
+</script></body></html>`
+    return new NextResponse(errorHtml, { status: 403, headers: { 'Content-Type': 'text/html; charset=utf-8' } })
   }
 
   try {
@@ -119,10 +140,12 @@ export async function GET(request: NextRequest) {
 })();
 </script></body></html>`
 
-    return new NextResponse(html, {
+    const response = new NextResponse(html, {
       status: 200,
       headers: { 'Content-Type': 'text/html; charset=utf-8' },
     })
+    response.cookies.delete('oauth_state')
+    return response
   } catch {
     return NextResponse.json({ error: 'OAuth exchange error' }, { status: 500 })
   }

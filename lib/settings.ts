@@ -12,7 +12,7 @@ export function getSettings(): Settings {
   return settingsSchema.parse(data)
 }
 
-type PageName = 'home' | 'tentang' | 'pariwisata' | 'irigasi' | 'kesehatan' | 'umkm' | 'peta' | 'lingkungan' | 'airTanah' | 'festival' | 'kegiatan'
+type PageName = 'home' | 'tentang' | 'pariwisata' | 'irigasi' | 'kesehatan' | 'umkm' | 'peta' | 'lingkungan' | 'airTanah' | 'festival' | 'kegiatan' | 'profilTim'
 
 const PAGE_EXTRA_DEFAULTS: Record<string, Record<string, string>> = {
   tentang: {
@@ -51,6 +51,7 @@ export function getPageSettings(page: PageName) {
     airTanah: { heroKicker: 'AIR & TANAH', heroTitle: 'Tinggi Muka Airtanah', heroIntro: 'Data TMA dan DHL dari survei lapangan di Kecamatan Sambelia.', seoTitle: 'Air & Tanah', seoDescription: 'Data Tinggi Muka Airtanah (TMA) dan kualitas air Kecamatan Sambelia.' },
     festival: { heroKicker: 'FESTIVAL', heroTitle: 'Festival Pesona Sambelia', heroIntro: 'Peresean, Pawai Dulangan, dan Gendang Beleq — warisan budaya Sasak yang hidup di Sambelia.', seoTitle: 'Festival Pesona Sambelia', seoDescription: 'Jadwal dan informasi Festival Pesona Sambelia: Peresean, Pawai Dulangan, Gendang Beleq, dan warisan budaya Sasak lainnya.' },
     kegiatan: { heroKicker: 'JEJAK LANGKAH', heroTitle: 'Jejak Langkah Kita', heroIntro: 'Catatan perjalanan dan kerja bersama masyarakat.', seoTitle: 'Kegiatan Sambelia', seoDescription: 'Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia.', sectionKicker: 'KEGIATAN', sectionTitle: 'Kegiatan Sambelia', sectionIntro: 'Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia.' },
+    profilTim: { heroKicker: 'PROFIL TIM', heroTitle: 'Tim Melukis Sambelia', heroIntro: 'Kenali tim KKN-PPM UGM yang melayani dan berkarya bersama masyarakat Sambelia.', seoTitle: 'Profil Tim', seoDescription: 'Tim KKN-PPM UGM Melukis Sambelia — anggota, peran, dan cerita di balik layanan.', sectionKicker: 'TIM', sectionTitle: 'Anggota Tim', sectionIntro: 'Kenali wajah-wajah di balik KKN-PPM UGM Melukis Sambelia.' },
   }
   const pageData = s.pages?.[page] as Record<string, string> | undefined
   const extra = PAGE_EXTRA_DEFAULTS[page] ?? {}
@@ -79,6 +80,7 @@ export function getEmptyStates() {
     petaDataEmpty: 'Belum ada data lokasi. Tim akan menambahkan segera.',
     petaGisEmpty: 'Peta GIS belum tersedia.',
     airTanahDataEmpty: 'Data TMA dari cluster air tanah akan diunggah.',
+    profilTim: 'Belum ada data anggota tim. Data akan ditambahkan segera.',
   }
   return { ...defaults, ...s.emptyStates }
 }

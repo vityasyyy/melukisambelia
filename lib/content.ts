@@ -4,13 +4,23 @@ import matter from 'gray-matter'
 import {
   pariwisataSchema, irigasiSchema, kesehatanSchema,
   festivalSchema, kegiatanSchema, umkmSchema, airTanahSchema,
-  desaSchema, tentangSchema, lingkunganSchema,
+  desaSchema, tentangSchema, lingkunganSchema, profilTimSchema,
   type Pariwisata, type Irigasi, type Kesehatan,
   type Festival, type Kegiatan, type Umkm, type AirTanah,
-  type Desa, type Tentang, type Lingkungan,
+  type Desa, type Tentang, type Lingkungan, type ProfilTim,
 } from '@/lib/schemas'
 
 const CONTENT_DIR = path.join(process.cwd(), 'content')
+
+let validationErrors: string[] = []
+
+export function getValidationErrors(): string[] {
+  return [...validationErrors]
+}
+
+export function clearValidationErrors(): void {
+  validationErrors = []
+}
 
 type SchemaMap = {
   pariwisata: { schema: typeof pariwisataSchema; ext: string; dir?: string }
@@ -23,6 +33,7 @@ type SchemaMap = {
   desa: { schema: typeof desaSchema; ext: string; dir?: string }
   tentang: { schema: typeof tentangSchema; ext: string; dir?: string }
   lingkungan: { schema: typeof lingkunganSchema; ext: string; dir?: string }
+  profilTim: { schema: typeof profilTimSchema; ext: string; dir?: string }
 }
 
 const SCHEMAS: SchemaMap = {
@@ -36,6 +47,7 @@ const SCHEMAS: SchemaMap = {
   desa: { schema: desaSchema, ext: 'md' },
   tentang: { schema: tentangSchema, ext: 'md' },
   lingkungan: { schema: lingkunganSchema, ext: 'md' },
+  profilTim: { schema: profilTimSchema, ext: 'md' },
 }
 
 export type CollectionName = keyof SchemaMap
@@ -50,6 +62,7 @@ export type CollectionItem<C extends CollectionName> =
   C extends 'desa' ? Desa & { slug: string } :
   C extends 'tentang' ? Tentang & { slug: string } :
   C extends 'lingkungan' ? Lingkungan & { slug: string } :
+  C extends 'profilTim' ? ProfilTim & { slug: string } :
   never
 
 export function getCollection<C extends CollectionName>(name: C): CollectionItem<C>[] {
@@ -65,7 +78,10 @@ export function getCollection<C extends CollectionName>(name: C): CollectionItem
     const { data, content } = matter(raw)
     const parsed = schema.safeParse({ ...data, body: content || data.body || '' })
     if (!parsed.success) {
-      console.error(`[content] Invalid frontmatter in ${name}/${file} — skipping entry:\n${parsed.error.toString()}`)
+      const formatted = parsed.error.issues.map((i) => `  ${i.path.join('.')}: ${i.message}`).join('\n')
+      const msg = `[content] ${name}/${file}:\n${formatted}`
+      validationErrors.push(msg)
+      console.error(msg)
       continue
     }
     const slug = file.replace(/\.(md|mdx)$/, '')

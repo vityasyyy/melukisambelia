@@ -34,13 +34,17 @@ collections:
           widget: "select",
           options:
             [
-              "Sugian",
-              "Labuhan Pandan",
+              "Obel-Obel",
+              "Dara Kunci",
+              "Belanting",
               "Sambelia",
-              "Rarang",
-              "Sambelia Rarang Selatan",
-              "Tembayar",
-              "Paok Motong",
+              "Madayin",
+              "Senanggalih",
+              "Labuhan Pandan",
+              "Sugian",
+              "Padak Guar",
+              "Dadap",
+              "Bagik Manis",
               "lainnya",
             ],
         }
@@ -115,13 +119,17 @@ collections:
           widget: "select",
           options:
             [
-              "Sugian",
-              "Labuhan Pandan",
+              "Obel-Obel",
+              "Dara Kunci",
+              "Belanting",
               "Sambelia",
-              "Rarang",
-              "Sambelia Rarang Selatan",
-              "Tembayar",
-              "Paok Motong",
+              "Madayin",
+              "Senanggalih",
+              "Labuhan Pandan",
+              "Sugian",
+              "Padak Guar",
+              "Dadap",
+              "Bagik Manis",
               "lainnya",
             ],
         }
@@ -189,13 +197,17 @@ collections:
           widget: "select",
           options:
             [
-              "Sugian",
-              "Labuhan Pandan",
+              "Obel-Obel",
+              "Dara Kunci",
+              "Belanting",
               "Sambelia",
-              "Rarang",
-              "Sambelia Rarang Selatan",
-              "Tembayar",
-              "Paok Motong",
+              "Madayin",
+              "Senanggalih",
+              "Labuhan Pandan",
+              "Sugian",
+              "Padak Guar",
+              "Dadap",
+              "Bagik Manis",
               "lainnya",
             ],
         }
@@ -349,13 +361,17 @@ collections:
           widget: "select",
           options:
             [
-              "Sugian",
-              "Labuhan Pandan",
+              "Obel-Obel",
+              "Dara Kunci",
+              "Belanting",
               "Sambelia",
-              "Rarang",
-              "Sambelia Rarang Selatan",
-              "Tembayar",
-              "Paok Motong",
+              "Madayin",
+              "Senanggalih",
+              "Labuhan Pandan",
+              "Sugian",
+              "Padak Guar",
+              "Dadap",
+              "Bagik Manis",
               "lainnya",
             ],
         }
@@ -1440,3 +1456,19 @@ collections:
                   required: false,
                 }
 
+  - name: "profil-tim"
+    label: "Profil Tim"
+    folder: "content/profil-tim"
+    create: true
+    identifier_field: "name"
+    slug: "{{slug}}"
+    extension: "md"
+    format: "yaml-frontmatter"
+    fields:
+      - { label: "Nama", name: "name", widget: "string" }
+      - { label: "Peran", name: "role", widget: "string", required: false, hint: "Jabatan atau divisi" }
+      - { label: "Klaster", name: "cluster", widget: "select", options: ["Saintek", "Soshum", "Agro", "Medika"] }
+      - { label: "Tahun", name: "year", widget: "string", default: "2026" }
+      - { label: "Foto", name: "photo", widget: "image", required: false }
+      - { label: "Deskripsi", name: "description", widget: "text", required: false }
+      - { label: "Urutan", name: "order", widget: "number", required: false, hint: "Angka lebih kecil tampil lebih dulu" }

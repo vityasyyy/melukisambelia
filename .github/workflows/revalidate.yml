@@ -1,0 +1,19 @@
+name: Revalidate Content
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+
+jobs:
+  revalidate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger revalidation
+        run: |
+          curl -X POST "${{ vars.SITE_URL || 'https://melukisambelia.site' }}/api/revalidate" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.REVALIDATION_SECRET }}" \
+            -d '{"collection": "all"}' \
+            || true

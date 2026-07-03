@@ -1,15 +1,55 @@
 import { z } from 'zod'
 
+const villageEnum = z.preprocess(
+  (v) => typeof v === 'string' ? v.trim() : v,
+  z.enum(['Obel-Obel', 'Dara Kunci', 'Belanting', 'Sambelia', 'Madayin', 'Senanggalih', 'Labuhan Pandan', 'Sugian', 'Padak Guar', 'Dadap', 'Bagik Manis', 'lainnya'])
+)
+
+const categoryPariwisataEnum = z.preprocess(
+  (v) => typeof v === 'string' ? v.trim() : v,
+  z.enum(['Pantai', 'Budaya', 'Desa Wisata', 'Air', 'Trekking'])
+)
+
+const conditionEnum = z.preprocess(
+  (v) => typeof v === 'string' ? v.trim() : v,
+  z.enum(['Baik', 'Rusak Ringan', 'Rusak Berat'])
+)
+
+const flowStatusEnum = z.preprocess(
+  (v) => typeof v === 'string' ? v.trim() : v,
+  z.enum(['Mengalir', 'Kering', 'Mengalir Sebagian'])
+)
+
+const saluranTypeEnum = z.preprocess(
+  (v) => typeof v === 'string' ? v.trim() : v,
+  z.enum(['Primer', 'Sekunder', 'Tersier'])
+)
+
+const typeKesehatanEnum = z.preprocess(
+  (v) => typeof v === 'string' ? v.trim() : v,
+  z.enum(['Posyandu', 'Puskesmas', 'Bidan', 'Polides'])
+)
+
+const kategoriUmkmEnum = z.preprocess(
+  (v) => typeof v === 'string' ? v.trim() : v,
+  z.enum(['Kuliner', 'Jasa', 'Kerajinan', 'Pertanian', 'Perikanan', 'Lainnya'])
+)
+
+const categoryLingkunganEnum = z.preprocess(
+  (v) => typeof v === 'string' ? v.trim() : v,
+  z.enum(['Vegetasi', 'Erosi', 'Blue Carbon', 'Lainnya'])
+)
+
 export const pariwisataSchema = z.object({
-  title: z.string(),
-  category: z.enum(['Pantai', 'Budaya', 'Desa Wisata', 'Air', 'Trekking']),
-  village: z.enum(['Sugian', 'Labuhan Pandan', 'Sambelia', 'Rarang', 'Sambelia Rarang Selatan', 'Tembayar', 'Paok Motong', 'lainnya']),
+  title: z.string().default(''),
+  category: categoryPariwisataEnum,
+  village: villageEnum,
   cover: z.string(),
   gallery: z.array(z.string()).default([]),
-  shortDesc: z.string(),
-  body: z.string(),
-  lat: z.number().min(-90).max(90),
-  lng: z.number().min(-180).max(180),
+  shortDesc: z.string().default(''),
+  body: z.string().default(''),
+  lat: z.number().min(-90).max(90).default(-8.6),
+  lng: z.number().min(-180).max(180).default(116.5),
   facilities: z.array(z.string()).default([]),
   accessNotes: z.string().default(''),
   googleMapsUrl: z.string().optional(),
@@ -17,30 +57,30 @@ export const pariwisataSchema = z.object({
 })
 
 export const irigasiSchema = z.object({
-  name: z.string(),
-  saluranType: z.enum(['Primer', 'Sekunder', 'Tersier']),
-  village: z.enum(['Sugian', 'Labuhan Pandan', 'Sambelia', 'Rarang', 'Sambelia Rarang Selatan', 'Tembayar', 'Paok Motong', 'lainnya']),
-  condition: z.enum(['Baik', 'Rusak Ringan', 'Rusak Berat']),
-  lengthM: z.number().nonnegative(),
-  flowStatus: z.enum(['Mengalir', 'Kering', 'Mengalir Sebagian']),
+  name: z.string().default(''),
+  saluranType: saluranTypeEnum,
+  village: villageEnum,
+  condition: conditionEnum,
+  lengthM: z.number().nonnegative().default(0),
+  flowStatus: flowStatusEnum,
   cover: z.string(),
-  body: z.string(),
-  lat: z.number().min(-90).max(90),
-  lng: z.number().min(-180).max(180),
+  body: z.string().default(''),
+  lat: z.number().min(-90).max(90).default(-8.6),
+  lng: z.number().min(-180).max(180).default(116.5),
   googleMapsUrl: z.string().optional(),
   order: z.number().int().default(0),
 })
 
 export const kesehatanSchema = z.object({
-  facilityName: z.string(),
-  type: z.enum(['Posyandu', 'Puskesmas', 'Bidan', 'Polides']),
-  village: z.enum(['Sugian', 'Labuhan Pandan', 'Sambelia', 'Rarang', 'Sambelia Rarang Selatan', 'Tembayar', 'Paok Motong', 'lainnya']),
+  facilityName: z.string().default(''),
+  type: typeKesehatanEnum,
+  village: villageEnum,
   cadresCount: z.number().int().nonnegative().default(0),
   stuntingProgram: z.boolean().default(false),
   cover: z.string(),
-  body: z.string(),
-  lat: z.number().min(-90).max(90),
-  lng: z.number().min(-180).max(180),
+  body: z.string().default(''),
+  lat: z.number().min(-90).max(90).default(-8.6),
+  lng: z.number().min(-180).max(180).default(116.5),
   googleMapsUrl: z.string().optional(),
   order: z.number().int().default(0),
 })
@@ -57,26 +97,26 @@ export const festivalSchema = z.object({
 })
 
 export const kegiatanSchema = z.object({
-  title: z.string(),
-  author: z.string(),
-  date: z.coerce.string(),
+  title: z.string().default(''),
+  author: z.string().default('Tim Melukis Sambelia'),
+  date: z.coerce.string().default(() => new Date().toISOString().slice(0, 10)),
   cover: z.string(),
-  excerpt: z.string(),
-  body: z.string(),
+  excerpt: z.string().default(''),
+  body: z.string().default(''),
   order: z.number().int().default(0),
 })
 
 export const umkmSchema = z.object({
-  name: z.string(),
+  name: z.string().default(''),
   owner: z.string(),
-  kategori: z.enum(['Kuliner', 'Jasa', 'Kerajinan', 'Pertanian', 'Perikanan', 'Lainnya']),
-  village: z.enum(['Sugian', 'Labuhan Pandan', 'Sambelia', 'Rarang', 'Sambelia Rarang Selatan', 'Tembayar', 'Paok Motong', 'lainnya']),
-  contact: z.string(),
+  kategori: kategoriUmkmEnum,
+  village: villageEnum,
+  contact: z.string().default('-'),
   cover: z.string(),
   gallery: z.array(z.string()).default([]),
-  body: z.string(),
-  lat: z.number().min(-90).max(90),
-  lng: z.number().min(-180).max(180),
+  body: z.string().default(''),
+  lat: z.number().min(-90).max(90).default(-8.6),
+  lng: z.number().min(-180).max(180).default(116.5),
   googleMapsUrl: z.string().optional(),
   order: z.number().int().default(0),
 })
@@ -264,6 +304,13 @@ export const settingsSchema = z.object({
       seoTitle: 'Kegiatan Sambelia',
       seoDescription: 'Kegiatan, laporan, dan informasi terbaru dari Kecamatan Sambelia.',
     }),
+    profilTim: pageHeroSchema.optional().default({
+      heroKicker: 'PROFIL TIM',
+      heroTitle: 'Tim Melukis Sambelia',
+      heroIntro: 'Kenali tim KKN-PPM UGM yang melayani dan berkarya bersama masyarakat Sambelia.',
+      seoTitle: 'Profil Tim',
+      seoDescription: 'Tim KKN-PPM UGM Melukis Sambelia — anggota, peran, dan cerita di balik layanan.',
+    }),
   }).optional(),
   jejakiCards: z.array(z.object({
     href: z.string(),
@@ -299,6 +346,7 @@ export const settingsSchema = z.object({
     petaDataEmpty: z.string().default('Belum ada data lokasi. Tim akan menambahkan segera.'),
     petaGisEmpty: z.string().default('Peta GIS belum tersedia.'),
     airTanahDataEmpty: z.string().default('Data TMA dari cluster air tanah akan diunggah.'),
+    profilTim: z.string().default('Belum ada data anggota tim. Data akan ditambahkan segera.'),
   }).optional().default({
     pariwisata: 'Belum ada data wisata. Data akan ditambahkan segera.',
     irigasi: 'Belum ada data irigasi. Data akan ditambahkan segera.',
@@ -311,6 +359,7 @@ export const settingsSchema = z.object({
     petaDataEmpty: 'Belum ada data lokasi. Tim akan menambahkan segera.',
     petaGisEmpty: 'Peta GIS belum tersedia.',
     airTanahDataEmpty: 'Data TMA dari cluster air tanah akan diunggah.',
+    profilTim: 'Belum ada data anggota tim. Data akan ditambahkan segera.',
   }),
 })
 
@@ -373,7 +422,7 @@ export type Tentang = z.infer<typeof tentangSchema>
 
 export const lingkunganSchema = z.object({
   title: z.string(),
-  category: z.enum(['Vegetasi', 'Erosi', 'Blue Carbon', 'Lainnya']),
+  category: categoryLingkunganEnum,
   cover: z.string().default('/images/content/kegiatan-ekowisata.svg'),
   description: z.string(),
   body: z.string().default(''),
@@ -381,3 +430,18 @@ export const lingkunganSchema = z.object({
 })
 
 export type Lingkungan = z.infer<typeof lingkunganSchema>
+
+export const profilTimSchema = z.object({
+  name: z.string(),
+  role: z.string().default(''),
+  cluster: z.preprocess(
+    (v) => typeof v === 'string' ? v.trim() : v,
+    z.enum(['Saintek', 'Soshum', 'Agro', 'Medika'])
+  ),
+  year: z.string().default('2026'),
+  photo: z.string().default('/images/hero-placeholder.svg'),
+  description: z.string().default(''),
+  order: z.number().int().default(0),
+})
+
+export type ProfilTim = z.infer<typeof profilTimSchema>

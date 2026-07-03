@@ -1,5 +1,5 @@
 ---
-name: Senanggalih
-description: Desa Senanggalih
+name: Padak Guar
+description: Desa Padak Guar
 image: /images/hero-placeholder.svg
 ---
