@@ -1,12 +1,12 @@
 ---
-name: Hafiz Abbad
-role: Koor LokoTrans
-photo: /images/abbad_kluster.png
-photoSubunit: /images/abbad_subunit.png
-instagram: "@abbaadal"
-studyProgram: Teknik Geologi
-cluster: Saintek
-divisiTeknis: LokoTrans
+name: Annisa Uswatun Khasanah
+role: Staff HumPub
+photo: ""
+photoSubunit: ""
+instagram: anisauk_
+studyProgram: Akuakultur
+cluster: Agro
+divisiTeknis: HumasPublikasi
 subunit: Labuhan Pandan
 isKormanit: false
 isKormaSHE: false
