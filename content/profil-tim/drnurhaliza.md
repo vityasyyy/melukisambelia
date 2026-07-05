@@ -1,16 +1,17 @@
 ---
-name: Dr. Siti Nurhaliza
+name: Dr. Muhamad Sulhan ,  S.I.P, M.Si.
 role: Dosen Pembimbing Lapangan
-cluster: Saintek
-year: "2026"
 photo: /images/hero-placeholder.svg
-description: Dosen pembimbing lapangan KKN-PPM UGM Melukis Sambelia dari Fakultas Teknik UGM.
-studyProgram: Teknik Sipil
+instagram: hansukma
+studyProgram: ""
+cluster: Soshum
 divisiTeknis: ""
 subunit: ""
 isKormanit: false
 isKormaSHE: false
 isDosen: true
-instagram: ""
+year: "2026"
+description: Dosen pembimbing lapangan KKN-PPM UGM Melukis Sambelia 2026 dari
+  Fakultas Ilmu Sosial dan Ilmu Politik UGM.
 order: 0
 ---
