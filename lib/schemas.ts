@@ -442,6 +442,7 @@ export const profilTimSchema = z.object({
   ),
   year: z.string().default('2026'),
   photo: z.string().default('/images/hero-placeholder.svg'),
+  photoSubunit: z.string().default('/images/hero-placeholder.svg'),
   description: z.string().default(''),
   studyProgram: z.string().default(''),
   instagram: z.string().default(''),

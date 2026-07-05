@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 import { ReactNode } from 'react'
+import { presetFade } from '@/lib/animation'
 
 export function FadeIn({
   children,
@@ -10,6 +11,7 @@ export function FadeIn({
   y = 12,
   className,
   once = true,
+  hover = false,
 }: {
   children: ReactNode
   delay?: number
@@ -17,6 +19,7 @@ export function FadeIn({
   y?: number
   className?: string
   once?: boolean
+  hover?: boolean
 }) {
   const shouldReduce = useReducedMotion()
   if (shouldReduce) {
@@ -27,7 +30,9 @@ export function FadeIn({
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once, margin: '-60px' }}
-      transition={{ duration, delay, ease: 'easeOut' }}
+      transition={{ duration, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+      whileHover={hover ? { y: -2, transition: presetFade } : undefined}
+      whileTap={hover ? { scale: 0.98 } : undefined}
       className={className}
     >
       {children}

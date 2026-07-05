@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils'
+import { HoverableCard } from '@/components/HoverableCard'
 
 export function ContentCard({
   className,
@@ -10,14 +11,8 @@ export function ContentCard({
   accentColor?: string
 }) {
   return (
-    <div
-      className={cn(
-        'glass-card glass-accent-top group relative h-full flex flex-col overflow-hidden',
-        className
-      )}
-      style={{ '--accent-color': accentColor } as React.CSSProperties}
-    >
+    <HoverableCard className={cn('h-full flex flex-col', className)} accentColor={accentColor}>
       {children}
-    </div>
+    </HoverableCard>
   )
 }

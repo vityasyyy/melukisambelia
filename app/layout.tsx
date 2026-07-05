@@ -7,6 +7,7 @@ import { Nav } from '@/components/Nav'
 import { Footer } from '@/components/Footer'
 import { ScrollProgress } from '@/components/ScrollProgress'
 import { BackToTop } from '@/components/BackToTop'
+import { PageTransitionProvider } from '@/components/PageTransitionProvider'
 
 import localFont from 'next/font/local'
 import { DM_Sans } from 'next/font/google'
@@ -89,7 +90,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <ScrollProgress />
         <Nav />
-        <main id="main" className="flex-1 pt-[63px]">{children}</main>
+        <main id="main" className="flex-1 pt-[63px]">
+          <PageTransitionProvider>
+            {children}
+          </PageTransitionProvider>
+        </main>
         <Footer />
         <BackToTop />
         <Analytics />

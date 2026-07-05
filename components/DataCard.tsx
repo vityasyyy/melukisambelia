@@ -1,13 +1,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { ChipData } from '@/components/Chip'
+import { HoverableCard } from '@/components/HoverableCard'
 
 export function DataCard({
   href,
   image,
   title,
   chips = [],
-  // desc is accepted but not rendered (overlay layout)
+  // desc is accepted for API compatibility but not rendered (overlay layout)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  desc,
   accent = '#F0AC6D',
   featured = false,
   onDetailClick,
@@ -55,10 +58,7 @@ export function DataCard({
   )
 
   return (
-    <div
-      className="glass-card glass-accent-top group relative overflow-hidden"
-      style={{ '--accent-color': accent } as React.CSSProperties}
-    >
+    <HoverableCard accentColor={accent} onClick={onDetailClick}>
       {onDetailClick ? (
         <button type="button" onClick={onDetailClick} className="block w-full text-left">
           {inner}
@@ -68,6 +68,6 @@ export function DataCard({
           {inner}
         </Link>
       )}
-    </div>
+    </HoverableCard>
   )
 }

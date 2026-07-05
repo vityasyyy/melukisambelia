@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { REVALIDATE_SECONDS } from '@/lib/config'
 import { getCollection } from '@/lib/content'
 import { getPageSettings } from '@/lib/settings'
-import { ProfilTimClient } from '@/components/ProfilTimClient'
+import { ProfilTimLandingClient } from '@/components/ProfilTimLandingClient'
 import type { ProfilTim } from '@/lib/schemas'
 
 type ProfilTimItem = ProfilTim & { slug: string }
@@ -22,7 +22,7 @@ export default function ProfilTimPage() {
   const members = getCollection('profilTim') as ProfilTimItem[]
 
   return (
-    <ProfilTimClient
+    <ProfilTimLandingClient
       members={members}
       pageSettings={{
         heroKicker: ps.heroKicker ?? '',

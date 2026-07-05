@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react'
 
 type Motif = 'cincin_sambel' | 'bunga_sambel' | 'ornament-gold'
 type Position = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right'
@@ -38,25 +39,40 @@ export function MotifFloater({
   size = 'md',
   color = 'gold',
   opacity = 0.9,
+  parallax = false,
 }: {
   motif?: Motif
   position?: Position
   size?: Size
   color?: MotifColor
   opacity?: number
+  parallax?: boolean
 }) {
   const reduce = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null)
   const isImage = motif === 'ornament-gold'
   const isFlower = motif === 'bunga_sambel'
 
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  })
+
+  const parallaxY = useTransform(
+    scrollYProgress,
+    reduce || !parallax ? [0, 1] : [0, 1],
+    reduce || !parallax ? [0, 0] : [-30, 30]
+  )
+
   return (
     <motion.div
+      ref={ref}
       aria-hidden
       className={`pointer-events-none absolute z-0 ${POSITION_CLASSES[position]} ${SIZE_CLASSES[size]}`}
       initial={reduce ? undefined : { opacity: 0, scale: 0.85, y: 12 }}
       animate={reduce ? undefined : { opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.9, ease: 'easeOut' }}
-      style={reduce ? { opacity: 0.7 } : undefined}
+      style={reduce ? { opacity: 0.7 } : parallax ? { y: parallaxY } : undefined}
     >
       <div className={`relative w-full h-full motif-glow ${isFlower ? 'motif-rotate-reverse' : 'motif-rotate'}`} style={{ animationDuration: isFlower ? '50s' : '60s', transform: 'translate3d(0,0,0)' }}>
         {isFlower && (

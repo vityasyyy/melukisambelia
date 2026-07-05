@@ -1,12 +1,10 @@
 import Image from 'next/image'
 import type { Umkm } from '@/lib/schemas'
+import { HoverableCard } from '@/components/HoverableCard'
 
 export function UmkmCard({ item, onDetailClick }: { item: Umkm & { slug: string }; onDetailClick?: () => void }) {
   return (
-    <div
-      className="glass-card glass-accent-top group relative overflow-hidden"
-      style={{ '--accent-color': '#E3795C' } as React.CSSProperties}
-    >
+    <HoverableCard accentColor="#E3795C" onClick={onDetailClick}>
       <button type="button" onClick={onDetailClick} className="block w-full text-left">
         <div className="relative aspect-video overflow-hidden rounded-2xl">
           <Image
@@ -31,6 +29,6 @@ export function UmkmCard({ item, onDetailClick }: { item: Umkm & { slug: string 
           </div>
         </div>
       </button>
-    </div>
+    </HoverableCard>
   )
 }
