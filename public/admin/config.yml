@@ -1467,7 +1467,8 @@ collections:
     fields:
       - { label: "Nama", name: "name", widget: "string" }
       - { label: "Peran", name: "role", widget: "string", required: false, hint: "Jabatan atau divisi, contoh: Kormanit, KormaSHE, Bidang DDD" }
-      - { label: "Foto", name: "photo", widget: "image", required: false }
+      - { label: "Foto Kluster", name: "photo", widget: "image", required: false, hint: "Foto yang ditampilkan di tampilan kluster" }
+      - { label: "Foto Subunit", name: "photoSubunit", widget: "image", required: false, hint: "Foto yang ditampilkan di tampilan subunit (berbeda dari foto kluster)" }
       - { label: "Instagram", name: "instagram", widget: "string", required: false, hint: "Username Instagram tanpa @, contoh: melukis.sambelia" }
       - { label: "Program Studi", name: "studyProgram", widget: "string", required: false, hint: "Program studi di UGM" }
       - label: "Klaster"
