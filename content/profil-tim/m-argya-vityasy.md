@@ -1,5 +1,6 @@
 ---
 name: M. Argya Vityasy
+role: Developer Website
 photo: /images/argya_kluster.png
 photoSubunit: /images/argay_subunit.png
 instagram: "@vityasy"
