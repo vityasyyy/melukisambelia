@@ -2,6 +2,7 @@
 name: Alexander Dimas Aryasena Nugraha
 role: KormaSHE
 instagram: alxndr_dimas
+linkedin: ""
 studyProgram: Teknik Pertanian
 cluster: Agro
 divisiTeknis: LokoTrans

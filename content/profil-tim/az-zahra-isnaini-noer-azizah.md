@@ -1,7 +1,8 @@
 ---
-name: Az-zahra Isnaini Noer Azizah
+name: Az-Zahra Isnaini Noer Azizah
 role: Staff DDD
 instagram: zhr_nraa
+linkedin: ""
 studyProgram: Ilmu Keperawatan
 cluster: Medika
 divisiTeknis: DDD

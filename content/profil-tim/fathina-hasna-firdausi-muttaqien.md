@@ -2,6 +2,7 @@
 name: Fathina Hasna Firdausi Muttaqien
 role: Sekretaris I
 instagram: fathina.naa
+linkedin: ""
 studyProgram: Kedokteran Hewan
 cluster: Agro
 divisiTeknis: Sekretaris

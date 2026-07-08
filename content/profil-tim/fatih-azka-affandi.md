@@ -1,12 +1,12 @@
 ---
-name: Khumaida Az Zahra
+name: Fatih Azka Affandi
 role: Staff Sponsorship
-instagram: aidaazzhra
+instagram: ""
 linkedin: ""
-studyProgram: Kimia
-cluster: Saintek
+studyProgram: Manajemen Kebijakan Publik
+cluster: Soshum
 divisiTeknis: Sponsorship
-subunit: Labuhan Pandan
+subunit: Sugian
 isKormanit: false
 isKormaSHE: false
 isDosen: false

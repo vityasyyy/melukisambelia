@@ -1,7 +1,8 @@
 ---
 name: Anisah 'Ulayya
-role: Kormasit
+role: Staff Humas Publikasi
 instagram: jehaniss
+linkedin: "https://www.linkedin.com/in/anisah-ulayya-a26301277/?locale=in"
 studyProgram: Hubungan Internasional
 cluster: Soshum
 divisiTeknis: HumasPublikasi

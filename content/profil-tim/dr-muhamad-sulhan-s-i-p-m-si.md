@@ -8,6 +8,7 @@ photoSubunit: /images/hero-placeholder.svg
 description: Dosen pembimbing lapangan KKN-PPM UGM Melukis Sambelia.
 studyProgram: Ilmu Pemerintahan
 instagram: hansukma
+linkedin: ""
 divisiTeknis: ""
 subunit: ""
 isKormanit: false

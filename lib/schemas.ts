@@ -446,6 +446,7 @@ export const profilTimSchema = z.object({
   description: z.string().default(''),
   studyProgram: z.string().default(''),
   instagram: z.string().default(''),
+  linkedin: z.string().default(''),
   divisiTeknis: z.preprocess(
     (v) => typeof v === 'string' ? v.trim() : v,
     z.enum([...divisiTeknisOptions, ''])

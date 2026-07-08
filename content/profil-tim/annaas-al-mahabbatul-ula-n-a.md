@@ -1,12 +1,12 @@
 ---
-name: Sekar Arum Saharani
-role: Kormater Medika
-instagram: sekararms
+name: Annaas Al Mahabbatul Ula N. A.
+role: Staff DDD
+instagram: ""
 linkedin: ""
 studyProgram: Gizi
 cluster: Medika
-divisiTeknis: LokoTrans
-subunit: Labuhan Pandan
+divisiTeknis: DDD
+subunit: Sugian
 isKormanit: false
 isKormaSHE: false
 isDosen: false

@@ -2,6 +2,7 @@
 name: Dwi Nur Lailatun Nissa
 role: Bendahara II
 instagram: dwinlaa28_
+linkedin: ""
 studyProgram: Geografi Lingkungan
 cluster: Saintek
 divisiTeknis: Bendahara

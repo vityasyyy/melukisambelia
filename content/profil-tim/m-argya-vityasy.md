@@ -3,7 +3,8 @@ name: M. Argya Vityasy
 role: Developer Website
 photo: /images/argya_kluster.png
 photoSubunit: /images/argay_subunit.png
-instagram: "@vityasy"
+instagram: "vityasy"
+linkedin: "https://www.linkedin.com/in/vityasy/"
 studyProgram: Ilmu Komputer
 cluster: Saintek
 divisiTeknis: DDD
