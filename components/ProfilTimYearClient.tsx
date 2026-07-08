@@ -42,16 +42,11 @@ const CLUSTER_LABELS: Record<string, string> = {
 
 const SUBUNIT_ACCENTS = ['#14A8E1', '#99BA57', '#E3795C', '#3B82F6', '#D4A843', '#68794A']
 
-function isLeader(m: ProfilTimItem): boolean {
-  if (m.isDosen || m.isKormanit || m.isKormaSHE) return true
-  const r = m.role?.toLowerCase() ?? ''
-  if (r.includes('kormater') || r.includes('kormasit')) return true
-  if (r.startsWith('koordinator')) return true
-  if (r === 'bendahara i' || r === 'bendahara ii' || r === 'sekretaris' || r === 'sekretaris i') return true
-  return false
+function isTopLeader(m: ProfilTimItem): boolean {
+  return m.isDosen || m.isKormanit || m.isKormaSHE
 }
 
-function leaderRank(m: ProfilTimItem): number {
+function memberSortRank(m: ProfilTimItem): number {
   if (m.isDosen) return 0
   if (m.isKormanit) return 1
   if (m.isKormaSHE) return 2
@@ -65,9 +60,6 @@ function leaderBadge(m: ProfilTimItem): string | null {
   if (m.isDosen) return 'Dosen Pembimbing'
   if (m.isKormanit) return 'Kormanit'
   if (m.isKormaSHE) return 'KormaSHE'
-  const r = m.role ?? ''
-  if (r.toLowerCase().includes('kormater')) return `Kormater ${m.cluster}`
-  if (r.toLowerCase().includes('kormasit') || r.toLowerCase().startsWith('koordinator') || r === 'Bendahara I' || r === 'Bendahara II' || r === 'Sekretaris' || r === 'Sekretaris I') return 'Koor. Divisi Teknis'
   return null
 }
 
@@ -88,7 +80,7 @@ export function ProfilTimYearClient({
   const [direction, setDirection] = useState(0)
   const shouldReduce = useReducedMotion()
 
-  const leaders = members.filter(isLeader).sort((a, b) => leaderRank(a) - leaderRank(b))
+  const leaders = members.filter(isTopLeader).sort((a, b) => memberSortRank(a) - memberSortRank(b))
 
   const groupedByCluster = members.reduce<Record<string, ProfilTimItem[]>>((acc, m) => {
     const cluster = m.cluster || 'Saintek'
@@ -157,7 +149,7 @@ export function ProfilTimYearClient({
             <div className="mt-6">
               <FadeIn>
                 <h3 className="mb-4 font-beautique-condensed text-sm font-semibold uppercase tracking-[0.15em] text-gold-bright">
-                  Pengurus & Pembimbing
+                  Koordinator & Pembimbing
                 </h3>
               </FadeIn>
               {shouldReduce ? (
@@ -475,7 +467,9 @@ function KlusterView({
   return (
     <>
       {CLUSTER_ORDER.map((cluster) => {
-        const clusterMembers = (grouped[cluster] || []).filter((m) => !isLeader(m))
+        const clusterMembers = (grouped[cluster] || [])
+          .filter((m) => !isTopLeader(m))
+          .sort((a, b) => memberSortRank(a) - memberSortRank(b) || (a.order ?? 0) - (b.order ?? 0))
         if (!clusterMembers.length) return null
         return (
           <div key={cluster} className="mt-6">
@@ -526,7 +520,9 @@ function SubunitView({
   return (
     <>
       {allSubunits.map((subunit, si) => {
-        const subunitMembers = (grouped[subunit] || []).filter((m) => !isLeader(m))
+        const subunitMembers = (grouped[subunit] || [])
+          .filter((m) => !isTopLeader(m))
+          .sort((a, b) => memberSortRank(a) - memberSortRank(b) || (a.order ?? 0) - (b.order ?? 0))
         if (!subunitMembers.length) return null
         const accent = SUBUNIT_ACCENTS[si % SUBUNIT_ACCENTS.length]
         return (
