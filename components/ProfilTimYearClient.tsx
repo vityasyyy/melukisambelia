@@ -16,7 +16,6 @@ import { ChipRow } from '@/components/Chip'
 import { cn } from '@/lib/utils'
 import {
   tabContentVariants,
-  presetTabIndicator,
   modalVariants,
   staggerContainerVariants,
   staggerItemVariants,
@@ -43,6 +42,35 @@ const CLUSTER_LABELS: Record<string, string> = {
 
 const SUBUNIT_ACCENTS = ['#14A8E1', '#99BA57', '#E3795C', '#3B82F6', '#D4A843', '#68794A']
 
+function isLeader(m: ProfilTimItem): boolean {
+  if (m.isDosen || m.isKormanit || m.isKormaSHE) return true
+  const r = m.role?.toLowerCase() ?? ''
+  if (r.includes('kormater') || r.includes('kormasit')) return true
+  if (r.startsWith('koordinator')) return true
+  if (r === 'bendahara i' || r === 'bendahara ii' || r === 'sekretaris' || r === 'sekretaris i') return true
+  return false
+}
+
+function leaderRank(m: ProfilTimItem): number {
+  if (m.isDosen) return 0
+  if (m.isKormanit) return 1
+  if (m.isKormaSHE) return 2
+  const r = m.role?.toLowerCase() ?? ''
+  if (r.includes('kormater')) return 3
+  if (r.includes('kormasit') || r.startsWith('koordinator') || r === 'bendahara i' || r === 'bendahara ii' || r === 'sekretaris' || r === 'sekretaris i') return 4
+  return 5
+}
+
+function leaderBadge(m: ProfilTimItem): string | null {
+  if (m.isDosen) return 'Dosen Pembimbing'
+  if (m.isKormanit) return 'Kormanit'
+  if (m.isKormaSHE) return 'KormaSHE'
+  const r = m.role ?? ''
+  if (r.toLowerCase().includes('kormater')) return `Kormater ${m.cluster}`
+  if (r.toLowerCase().includes('kormasit') || r.toLowerCase().startsWith('koordinator') || r === 'Bendahara I' || r === 'Bendahara II' || r === 'Sekretaris' || r === 'Sekretaris I') return 'Koor. Divisi Teknis'
+  return null
+}
+
 export function ProfilTimYearClient({
   year,
   members,
@@ -60,7 +88,7 @@ export function ProfilTimYearClient({
   const [direction, setDirection] = useState(0)
   const shouldReduce = useReducedMotion()
 
-  const leaders = members.filter((m) => m.isKormanit || m.isKormaSHE || m.isDosen)
+  const leaders = members.filter(isLeader).sort((a, b) => leaderRank(a) - leaderRank(b))
 
   const groupedByCluster = members.reduce<Record<string, ProfilTimItem[]>>((acc, m) => {
     const cluster = m.cluster || 'Saintek'
@@ -129,7 +157,7 @@ export function ProfilTimYearClient({
             <div className="mt-6">
               <FadeIn>
                 <h3 className="mb-4 font-beautique-condensed text-sm font-semibold uppercase tracking-[0.15em] text-gold-bright">
-                  Koordinator & Pembimbing
+                  Pengurus & Pembimbing
                 </h3>
               </FadeIn>
               {shouldReduce ? (
@@ -172,23 +200,15 @@ export function ProfilTimYearClient({
           {/* Kluster / Subunit toggle */}
           <div className="mt-8">
             <FadeIn>
-              <div className="relative inline-flex items-center rounded-full bg-brown-950/10 border border-brown-950/10 p-1 mb-6">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={viewMode}
-                    className="absolute h-[calc(100%-8px)] rounded-full bg-gold-bright shadow-md"
-                    initial={false}
-                    layoutId="viewModeIndicator"
-                    transition={presetTabIndicator}
-                    style={{ width: 'auto' }}
-                  />
-                </AnimatePresence>
+              <div className="inline-flex items-center rounded-full bg-brown-900/8 border border-brown-900/12 p-1 mb-6 shadow-sm">
                 <button
                   type="button"
                   onClick={() => handleViewModeChange('kluster')}
                   className={cn(
-                    'relative z-10 px-5 py-2 rounded-full text-sm font-semibold transition-colors',
-                    viewMode === 'kluster' ? 'text-brown-950' : 'text-ink/70 hover:text-ink hover:bg-white/30'
+                    'px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200',
+                    viewMode === 'kluster'
+                      ? 'bg-gold-bright text-brown-950 shadow-md'
+                      : 'text-ink/60 hover:text-ink hover:bg-white/40'
                   )}
                 >
                   Kluster
@@ -197,8 +217,10 @@ export function ProfilTimYearClient({
                   type="button"
                   onClick={() => handleViewModeChange('subunit')}
                   className={cn(
-                    'relative z-10 px-5 py-2 rounded-full text-sm font-semibold transition-colors',
-                    viewMode === 'subunit' ? 'text-brown-950' : 'text-ink/70 hover:text-ink hover:bg-white/30'
+                    'px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200',
+                    viewMode === 'subunit'
+                      ? 'bg-gold-bright text-brown-950 shadow-md'
+                      : 'text-ink/60 hover:text-ink hover:bg-white/40'
                   )}
                 >
                   Subunit
@@ -286,9 +308,7 @@ export function ProfilTimYearClient({
                             { label: CLUSTER_LABELS[selectedMember.cluster] || selectedMember.cluster, tone: 'gold' },
                             ...(selectedMember.subunit ? [{ label: selectedMember.subunit, tone: 'water' as const }] : []),
                             ...(selectedMember.divisiTeknis ? [{ label: selectedMember.divisiTeknis, tone: 'olive' as const }] : []),
-                            ...(selectedMember.isKormanit ? [{ label: 'Kormanit', tone: 'terracotta' as const }] : []),
-                            ...(selectedMember.isKormaSHE ? [{ label: 'KormaSHE', tone: 'green' as const }] : []),
-                            ...(selectedMember.isDosen ? [{ label: 'Dosen Pembimbing', tone: 'brown' as const }] : []),
+                            ...(leaderBadge(selectedMember) ? [{ label: leaderBadge(selectedMember)!, tone: 'terracotta' as const }] : []),
                           ]}
                         />
 
@@ -367,10 +387,7 @@ export function ProfilTimYearClient({
 }
 
 function LeaderCard({ m }: { m: ProfilTimItem }) {
-  const badges: string[] = []
-  if (m.isKormanit) badges.push('Kormanit')
-  if (m.isKormaSHE) badges.push('KormaSHE')
-  if (m.isDosen) badges.push('Dosen Pembimbing')
+  const badge = leaderBadge(m)
 
   return (
     <div
@@ -390,13 +407,13 @@ function LeaderCard({ m }: { m: ProfilTimItem }) {
         <div className="min-w-0 flex-1">
           <h4 className="truncate font-semibold text-lg text-brown-900 group-hover:text-terracotta-500 transition-colors">{m.name}</h4>
           {m.role && <p className="truncate text-sm font-medium text-gold-bright">{m.role}</p>}
-          <div className="mt-1 flex flex-wrap gap-1">
-            {badges.map((b) => (
-              <span key={b} className="inline-block rounded-full bg-gold-bright/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-gold-bright">
-                {b}
+          {badge && (
+            <div className="mt-1 flex flex-wrap gap-1">
+              <span className="inline-block rounded-full bg-gold-bright/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-gold-bright">
+                {badge}
               </span>
-            ))}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -458,9 +475,7 @@ function KlusterView({
   return (
     <>
       {CLUSTER_ORDER.map((cluster) => {
-        const clusterMembers = (grouped[cluster] || []).filter(
-          (m) => !m.isKormanit && !m.isKormaSHE && !m.isDosen
-        )
+        const clusterMembers = (grouped[cluster] || []).filter((m) => !isLeader(m))
         if (!clusterMembers.length) return null
         return (
           <div key={cluster} className="mt-6">
@@ -511,9 +526,7 @@ function SubunitView({
   return (
     <>
       {allSubunits.map((subunit, si) => {
-        const subunitMembers = (grouped[subunit] || []).filter(
-          (m) => !m.isKormanit && !m.isKormaSHE && !m.isDosen
-        )
+        const subunitMembers = (grouped[subunit] || []).filter((m) => !isLeader(m))
         if (!subunitMembers.length) return null
         const accent = SUBUNIT_ACCENTS[si % SUBUNIT_ACCENTS.length]
         return (
