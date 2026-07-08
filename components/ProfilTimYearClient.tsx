@@ -172,7 +172,7 @@ export function ProfilTimYearClient({
           {/* Kluster / Subunit toggle */}
           <div className="mt-8">
             <FadeIn>
-              <div className="relative inline-flex items-center rounded-full bg-tan-700/10 p-1 mb-6">
+              <div className="relative inline-flex items-center rounded-full bg-brown-950/10 border border-brown-950/10 p-1 mb-6">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={viewMode}
@@ -188,7 +188,7 @@ export function ProfilTimYearClient({
                   onClick={() => handleViewModeChange('kluster')}
                   className={cn(
                     'relative z-10 px-5 py-2 rounded-full text-sm font-semibold transition-colors',
-                    viewMode === 'kluster' ? 'text-brown-950' : 'text-ink/50 hover:text-ink'
+                    viewMode === 'kluster' ? 'text-brown-950' : 'text-ink/70 hover:text-ink hover:bg-white/30'
                   )}
                 >
                   Kluster
@@ -198,7 +198,7 @@ export function ProfilTimYearClient({
                   onClick={() => handleViewModeChange('subunit')}
                   className={cn(
                     'relative z-10 px-5 py-2 rounded-full text-sm font-semibold transition-colors',
-                    viewMode === 'subunit' ? 'text-brown-950' : 'text-ink/50 hover:text-ink'
+                    viewMode === 'subunit' ? 'text-brown-950' : 'text-ink/70 hover:text-ink hover:bg-white/30'
                   )}
                 >
                   Subunit
