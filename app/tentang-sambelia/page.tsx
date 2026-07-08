@@ -55,7 +55,7 @@ export default function TentangSambeliaPage() {
               tone="green"
             />
           </FadeIn>
-          <StaggerContainer stagger={0.06} className="grid grid-cols-2 gap-3 md:grid-cols-4">
+          <StaggerContainer stagger={0.06} className="grid grid-cols-2 gap-3 md:grid-cols-4 auto-rows-fr">
             {geography.map((g) => (
               <StaggerItem key={g.label}>
                 <CountUpStat label={g.label} value={g.value} />

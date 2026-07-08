@@ -16,7 +16,7 @@ export function UmkmCard({ item, onDetailClick }: { item: Umkm & { slug: string 
           />
           <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">
-            <h3 className="truncate font-semibold text-base sm:text-lg text-white group-hover:text-goldSoft transition-colors" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.9)' }}>{item.name}</h3>
+            <h3 className="truncate font-beautique text-lg sm:text-xl text-white group-hover:text-goldSoft transition-colors" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.9)' }}>{item.name}</h3>
             <p className="truncate text-sm text-white/80">{item.owner}</p>
             <div className="mt-1 flex flex-wrap gap-1.5">
               <span className="inline-flex items-center rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-white/90 backdrop-blur-sm">

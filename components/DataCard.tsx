@@ -36,7 +36,7 @@ export function DataCard({
       <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">
         <h3
-          className={`truncate font-semibold text-white group-hover:text-goldSoft transition-colors ${featured ? 'font-beautique text-xl sm:text-2xl' : 'text-base sm:text-lg'}`}
+          className={`truncate font-beautique text-white group-hover:text-goldSoft transition-colors ${featured ? 'text-xl sm:text-2xl' : 'text-lg sm:text-xl'}`}
           style={{ textShadow: '0 2px 8px rgba(0,0,0,0.9)' }}
         >
           {title}
